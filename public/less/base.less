@@ -1,0 +1,520 @@
+// base.less
+
+.card {
+  background-color: #fff;
+  padding: 15px;
+}
+
+// ellipsis text
+.ellipsis {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+// margin class
+.mr10 {
+  margin-right: 10px;
+}
+
+.mr20 {
+  margin-right: 20px;
+}
+
+.mt10 {
+  margin-top: 10px;
+}
+
+.mt20 {
+  margin-top: 20px;
+}
+
+.app-container {
+  width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.3);
+}
+
+.app-container {
+  &.show-sidebar {
+    > .content {
+      margin-left: 200px;
+    }
+    .sidebar {
+      width: 200px;
+    }
+  }
+}
+
+// content
+.content {
+  background-color: @bodyBgColor;
+  position: relative;
+  margin-left: 60px;
+  padding: 0 15px;
+  min-height: 100%;
+  .toggled-transition(margin-left);
+  > .content-inner {
+    padding-bottom: 40px;
+  }
+  > .footer {
+    position: absolute;
+    background: #ffffff;
+    border-top: 1px solid @borderColor;
+    bottom: 0;
+    left: 0;
+    padding: 10px 15px;
+    right: 0;
+  }
+}
+
+// has top search bar
+.has-top-bar {
+  padding-top: 61px;
+}
+
+// top search bar
+.t-sb {
+  background-color: #fff;
+  position: absolute;
+  border-bottom: 1px solid @borderColor;
+  left: 0;
+  right: 0;
+  > .t-sb-header {
+    > .form-control {
+      box-shadow: none;
+      height: 50px;
+      border: none;
+      padding-left: 50px;
+      &:focus {
+        box-shadow: none;
+      }
+    }
+    > .feed-icon {
+      font-size: 20px;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 2;
+      width: 50px;
+      height: 50px;
+      line-height: 50px;
+      text-align: center;
+      pointer-events: none;
+      color: @linkColor;
+    }
+  }
+  > .t-sb-result {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    left: 0;
+    right: 0;
+    top: 50px;
+    z-index: 999;
+    border-top: 1px solid @borderColor;
+    padding: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, .2);
+    &.show {
+      display: block;
+    }
+  }
+  .tips-list {
+    > ul {
+      list-style-type: disc;
+      margin-left: 20px;
+      > li {
+        margin: 5px 0;
+        .name {
+          display: inline-block;
+          padding: 3px;
+          background-color: #cecece;
+          color: #fff;
+          margin: 0 5px;
+          border-radius: 3px;
+        }
+      }
+    }
+  }
+}
+
+// show wrap
+.show-wrap {
+  margin-bottom: 20px;
+}
+
+// detail top
+.show-top {
+  height: 51px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  background-color: #ffffff;
+  border-bottom: 1px solid @borderColor;
+  padding: 0 15px;
+  > .photo {
+    width: 40px;
+    height: 40px;
+    background-size: cover;
+    border-radius: 50%;
+    margin-top: 3px;
+  }
+  > .ctrl-btn {
+    margin-top: 7px;
+  }
+  > .info {
+    margin-left: 50px;
+    margin-right: 128px;
+    line-height: 50px;
+    font-size: 18px;
+  }
+}
+
+// show song list
+.show-song-list {
+  > li {
+    margin-bottom: 5px;
+    > .name {
+      display: inline-block;
+      width: 25px;
+      text-align: right;
+      margin-right: 8px;
+    }
+  }
+}
+
+// artist list
+.artist-list {
+  > li {
+    margin-top: 15px;
+    margin-bottom: 15px;
+  }
+  > .col-sm-2 {
+    width: 20%;
+  }
+  .artist {
+    background-color: #ffffff;
+    width: 100%;
+    overflow: hidden;
+    > .thumb {
+      height: 100px;
+      width: 100px;
+      border-radius: 50%;
+      overflow: hidden;
+      margin: 10px auto 0;
+      text-align: center;
+      cursor: pointer;
+      img {
+        max-width: 100px;
+        max-height: 100px;
+      }
+    }
+    > .name {
+      margin-top: 10px;
+    }
+    > .info {
+      margin-top: 10px;
+      background-color: #fbfbfb;
+      > .number {
+        position: relative;
+        &.first {
+          &:after {
+            content: '';
+            position: absolute;
+            top: 5px;
+            bottom: 5px;
+            width: 1px;
+            right: 0;
+            background-color: @borderColor;
+          }
+        }
+      }
+    }
+  }
+}
+
+// album list
+.album-list {
+  > li {
+    margin-top: 15px;
+    margin-bottom: 15px;
+  }
+  > .col-sm-2 {
+    width: 20%;
+  }
+  .album {
+    width: 100%;
+    overflow: hidden;
+    background-color: #fff;
+    > .thumb {
+      width: 100%;
+      height: 170px;
+      overflow: hidden;
+      text-align: center;
+      img {
+        max-width: 100%;
+        cursor: pointer;
+      }
+    }
+    > .name {
+      height: 40px;
+      overflow: hidden;
+      padding: 0 5px;
+      margin-top: 5px;
+    }
+    > .info {
+      padding: 0 5px;
+      margin-top: 5px;
+    }
+  }
+}
+
+// song list
+.song-list {
+  background-color: #fff;
+  margin-top: 10px;
+  .fa-2x {
+    font-size: 22px;
+  }
+  .nocheck {
+    color: #f0ad4e;
+  }
+  .check {
+    color: #5cb85c;
+  }
+  .table {
+    > thead {
+      > tr {
+        > th {
+          padding: 15px 8px;
+          background-image: linear-gradient(#fafafa, #f7f7f7);
+          vertical-align: middle;
+        }
+      }
+    }
+    tbody {
+      > tr {
+        > td {
+          img {
+            max-width: 50px;
+            max-height: 50px;
+          }
+          vertical-align: middle;
+        }
+      }
+    }
+  }
+  .table-striped {
+    > tbody {
+      > tr {
+        &:nth-of-type(odd) {
+          background-color: #fbfbfb;
+        }
+      }
+    }
+  }
+  .btn-link {
+    color: @linkColor;
+  }
+}
+
+// user list
+.user-list {
+  background-color: #fff;
+  .table {
+    > thead {
+      > tr {
+        > th {
+          padding: 15px 8px;
+          background-image: linear-gradient(#fafafa, #f7f7f7);
+          vertical-align: middle;
+        }
+      }
+    }
+    tbody {
+      > tr {
+        > td {
+          img {
+            width: 50px;
+            height: 50px;
+          }
+          vertical-align: middle;
+        }
+        &.status-0 {
+          background-color: rgb(240, 240, 240);
+        }
+        &.status-1 {
+          background-color: #fff;
+        }
+        &.status-2 {
+          background-color: #f9bdbb;
+        }
+      }
+    }
+  }
+}
+
+// pager
+.m-pager {
+  margin: 20px 0;
+  > .m-pagination {
+    text-align: center;
+    > li {
+      display: inline-block;
+      margin: 0 3px;
+      > a {
+        display: inline-block;
+        user-select: none;
+        padding: 7px 15px;
+        border: 1px solid #e6e6e6;
+        border-radius: 3px;
+        background-color: #fff;
+        color: #2e4057;
+        &:active {
+          transform: scale(.9);
+        }
+      }
+      &.active {
+        > a {
+          background-color: #64a281;
+          border-color: #64a281;
+          color: #ffffff;
+          cursor: default;
+        }
+      }
+      &.btn-first-page.disabled,
+      &.btn-prev-page.disabled,
+      &.btn-next-page.disabled,
+      &.btn-last-page.disabled {
+        > a {
+          cursor: no-drop;
+          color: rgba(46, 64, 87, 0.4);
+        }
+      }
+    }
+  }
+}
+
+// edit wrap
+.has-assist-box {
+  margin-right: 315px;
+}
+.edit-wrap {
+  padding-top: 15px;
+}
+.edit-form {
+  > .edit-left {
+    float: left;
+    width: 300px;
+    height: 300px;
+  }
+  > .edit-right {
+    margin-left: 300px;
+    padding-left: 15px;
+  }
+  textarea {
+    resize: none;
+    max-height: 200px;
+  }
+}
+
+// upload avatar
+.up-avatar {
+  width: 300px;
+  height: 300px;
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+  input[type='file'] {
+    display: none;
+  }
+  > .photo {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+  }
+  > .tips {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    line-height: 300px;
+    text-align: center;
+    font-size: 18px;
+    color: #fff;
+    opacity: 1;
+    transition: all 0.5s ease;
+
+  }
+  &:hover {
+    > .tips {
+      visibility: visible;
+      opacity: 1;
+      background-color: rgba(0, 0, 0, .6);
+    }
+  }
+  > .progress {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.7;
+  }
+}
+
+
+// assist box
+.assist-box {
+  position: fixed;
+  background-color: #fff;
+  top: 15px;
+  height: 80%;
+  right: 50%;
+  width: 300px;
+  margin-right: -585px;
+  padding: 15px;
+  overflow-y: auto;
+  .search-box-header {
+    > .title {
+      border-bottom: 1px solid @borderColor;
+      margin-bottom: 15px;
+      padding-bottom: 15px;
+    }
+  }
+  .search-box-results {
+    > .no-result {
+      padding: 10px;
+      margin-top: 10px;
+      border: 1px solid @borderColor;
+      background-color: #f6f6f6;
+      text-align: center;
+      border-radius: 3px;
+    }
+  }
+}
+
+// loading
+.loading {
+  padding: 50px 0;
+  margin: 0 auto;
+  width: 70px;
+  text-align: center;
+  > div {
+    width: 18px;
+    height: 18px;
+    background-color: #12bdc4;
+    border-radius: 50%;
+    display: inline-block;
+    animation: bounce 1.4s infinite ease-in-out;
+    animation-fill-mode: both;
+    &.bounce1 {
+      animation-delay: -0.32s;
+    }
+    &.bounce2 {
+      animation-delay: -0.16s;
+    }
+  }
+}

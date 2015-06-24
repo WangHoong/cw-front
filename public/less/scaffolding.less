@@ -1,0 +1,46 @@
+// Scaffolding
+// --------------------------------------------------
+ol,
+ul,
+p,
+dl,
+dt,
+dd {
+  margin: 0;
+  padding: 0;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+a {
+  color: @linkColor;
+  cursor: pointer;
+  text-decoration: none;
+  &:hover,
+  &:focus {
+    color: @linkColor + #333;
+    text-decoration: none;
+  }
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  font-family: '\5FAE\8F6F\96C5\9ED1', tahoma, arial, 'Hiragino Sans GB', '\5b8b\4f53', sans-serif;
+  color: @primaryColor;
+  background: url('../images/body-bg.png');
+}
+
+// responsive image
+.m-img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
