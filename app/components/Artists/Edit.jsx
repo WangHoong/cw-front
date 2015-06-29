@@ -1,7 +1,7 @@
 var ArtistStore = require('../../stores/ArtistStore');
 var ArtistActions = require('../../actions/ArtistActions');
 var Form = require('./Form.jsx');
-var Loader = require('../common/Loader.jsx');
+var Loader = require('../Common/Loader.jsx');
 
 /**
  * 编辑歌手

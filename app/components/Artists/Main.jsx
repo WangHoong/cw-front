@@ -8,8 +8,8 @@ var ArtistList = require('./List.jsx');
 var ArtistStore = require('../../stores/ArtistListStore');
 var CountryStore = require('../../stores/CountryStore');
 var ArtistActions = require('../../actions/ArtistActions');
-var Pager = require('../common/Pager.jsx');
-var ListSearch = require('../common/ListSearch.jsx');
+var Pager = require('../Common/Pager.jsx');
+var ListSearch = require('../Common/ListSearch.jsx');
 
 /**
  * 右侧过滤

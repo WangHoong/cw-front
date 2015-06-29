@@ -161,17 +161,9 @@ var Sidebar = React.createClass({
           text: '日程安排',
           to: 'calendar'
         }, {
-          faIconName: 'users',
-          text: '人员管理',
-          to: 'users'
-        }, {
           faIconName: 'cogs',
           text: '系统设置',
           to: 'settings'
-        }, {
-          faIconName: 'motorcycle',
-          text: '版权管理',
-          to: 'publishers'
         }
       ]
     };

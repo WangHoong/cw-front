@@ -1,4 +1,4 @@
-var dbg = require('debug')('topdmc:common/PercentCircle');
+var dbg = require('debug')('topdmc:Common/PercentCircle');
 var PercentCircle = React.createClass({
     componentDidMount: function() {
       jQuery(".data-attributes .percentCircle").peity("donut");

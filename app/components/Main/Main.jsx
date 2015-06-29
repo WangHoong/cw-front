@@ -1,10 +1,10 @@
-var PercentCircle = require('app/components/common/PercentCircle.jsx');
-var TopSongs = require('app/components/common/TopSongs.jsx');
-var TopSingers = require('app/components/common/TopSingers.jsx');
-var SongChart = require('../common/Charts/SongChart.jsx');
-var SongChannelChart = require('../common/Charts/SongChannelChart.jsx');
-var TotalCard = require('app/components/common/TotalCard.jsx');
-var TotalCardOfData = require('app/components/common/TotalCardOfData.jsx');
+var PercentCircle = require('app/components/Common/PercentCircle.jsx');
+var TopSongs = require('app/components/Common/TopSongs.jsx');
+var TopSingers = require('app/components/Common/TopSingers.jsx');
+var SongChart = require('../Common/Charts/SongChart.jsx');
+var SongChannelChart = require('../Common/Charts/SongChannelChart.jsx');
+var TotalCard = require('app/components/Common/TotalCard.jsx');
+var TotalCardOfData = require('app/components/Common/TotalCardOfData.jsx');
 
 var Main = React.createClass({
   render: function() {

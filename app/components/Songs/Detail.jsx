@@ -6,10 +6,10 @@ var AlbumMiniCard = require('../Albums/MiniCard.jsx');
 var ArtistMiniCard = require('../Artists/MiniCard.jsx');
 var StringUtil = require('../../utils/StringUtil');
 
-var SongChart = require('../common/Charts/SongChart.jsx');
-var SongChannelChart = require('../common/Charts/SongChannelChart.jsx');
+var SongChart = require('../Common/Charts/SongChart.jsx');
+var SongChannelChart = require('../Common/Charts/SongChannelChart.jsx');
 
-var Loader = require('../common/Loader.jsx');
+var Loader = require('../Common/Loader.jsx');
 
 var Detail = React.createClass({
 

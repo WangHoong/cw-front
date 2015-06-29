@@ -1,6 +1,6 @@
 'use strict';
-var UpAvatar = require('../common/UpAvatar.jsx');
-var TextareaAutosize = require('../common/TextareaAutosize.jsx');
+var UpAvatar = require('../Common/UpAvatar.jsx');
+var TextareaAutosize = require('../Common/TextareaAutosize.jsx');
 
 var Form = React.createClass({
 

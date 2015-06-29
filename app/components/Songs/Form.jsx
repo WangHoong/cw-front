@@ -1,17 +1,17 @@
 'use strict';
-var Assist = require('../common/Assist.jsx');
+var Assist = require('../Common/Assist.jsx');
 var dbg = require('debug')('topdmc:Song/Form');
 var ArtistMiniCard = require('../Artists/MiniCard.jsx');
 var AlbumMiniCard = require('../Albums/MiniCard.jsx');
 
-var AddCardTips = require('../common/AddCardTips.jsx');
+var AddCardTips = require('../Common/AddCardTips.jsx');
 var assign = require('object-assign');
 var classNames = require('classnames');
 
 
-var TextareaAutosize = require('../common/TextareaAutosize.jsx');
+var TextareaAutosize = require('../Common/TextareaAutosize.jsx');
 
-//var TextareaAutosize = require('../common/TextareaAutosize/TextareaAutosize.jsx');
+//var TextareaAutosize = require('../Common/TextareaAutosize/TextareaAutosize.jsx');
 
 var Form = React.createClass({
 

@@ -3,7 +3,7 @@ var Router = window.ReactRouter;
 // const OnlineState = require('./components/OnlineState.react.jsx');
 const analytics = require('app/utils/GoogleAnalytics');
 
-var Sidebar = require('./components/common/Sidebar.jsx');
+var Sidebar = require('./components/Common/Sidebar.jsx');
 
 //new code
 var Artists = require('./components/Artists/Main.jsx');
@@ -20,26 +20,19 @@ var Songs = require('./components/Songs/Main.jsx');
 var SongNew = require('./components/Songs/New.jsx');
 var SongShow=require('./components/Songs/Show.jsx');
 
-// users
-var Users = require('./components/Users/Main.jsx');
-var UsersEdit = require('./components/Users/Edit.jsx');
-
 // searchBox
-var SearchBox = require('./components/searchBox/Main.jsx');
+var SearchBox = require('./components/SearchBox/Main.jsx');
 
 // Whoami
-var {Whoami} = require('app/components/common/Whoami.jsx');
+var {Whoami} = require('app/components/Common/Whoami.jsx');
 
 var Main = require('./components/Main/Main.jsx');
-var Publisher = require('./components/Publisher/Publisher.jsx');
-var PublisherShow = require('./components/Publisher/Show.jsx');
-var PublisherAdd = require('./components/Publisher/Edit.jsx');
 
 // Calendar
 var Calendar = require('./components/Calendar/Main.jsx');
 
 // LargeFileUploader
-var LargeFileUploader = require('app/components/common/LargeFileUploader.jsx');
+var LargeFileUploader = require('app/components/Common/LargeFileUploader.jsx');
 
 var {Route,RouteHandler,DefaultRoute,NotFoundRoute}=Router;
 
@@ -213,23 +206,12 @@ var routes = (
 
     <Route name="charts" handler={Chart}/>
 
-    // user route
-    <Route name="users" handler={Empty}>
-      <Route name='edit_user' path=':id' handler={UsersEdit} />
-      <DefaultRoute handler={Users} />
-    </Route>
-
     // calendar route
     <Route name='calendar' handler={Empty}>
       <DefaultRoute handler={Calendar} />
     </Route>
 
     <Route name="settings" handler={Settings}/>
-    <Route name="publishers" handler={Empty}>
-      <Route name="show_edit_publishers" path="view/:id" handler={PublisherShow} />
-      <Route name="show_add_album" path="add/:id" handler={PublisherAdd} />
-      <DefaultRoute handler={Publisher} />
-    </Route>
 
     <NotFoundRoute handler={NotFound}/>
   </Route>

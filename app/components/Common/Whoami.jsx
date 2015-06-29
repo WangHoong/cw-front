@@ -1,6 +1,6 @@
-var PercentCircle = require('app/components/common/PercentCircle.jsx');
-var TopSongs = require('app/components/common/TopSongs.jsx');
-var TopSingers = require('app/components/common/TopSingers.jsx');
+var PercentCircle = require('app/components/Common/PercentCircle.jsx');
+var TopSongs = require('app/components/Common/TopSongs.jsx');
+var TopSingers = require('app/components/Common/TopSingers.jsx');
 export class Whoami extends React.Component {
   constructor(props){
     super(props);

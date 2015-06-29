@@ -3,10 +3,10 @@
 var AlbumStore = require('../../stores/AlbumStore');
 var AlbumActions = require('../../actions/AlbumActions');
 
-var SongChart = require('../common/Charts/SongChart.jsx');
-var SongChannelChart = require('../common/Charts/SongChannelChart.jsx');
+var SongChart = require('../Common/Charts/SongChart.jsx');
+var SongChannelChart = require('../Common/Charts/SongChannelChart.jsx');
 
-var Loader = require('../common/Loader.jsx');
+var Loader = require('../Common/Loader.jsx');
 
 var Detail = React.createClass({
 

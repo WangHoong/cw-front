@@ -1,4 +1,4 @@
-var Loader = require('../common/Loader.jsx');
+var Loader = require('../Common/Loader.jsx');
 var classNames = require('classnames');
 var debug = require('debug')('topdmc:ListSearch/Result');
 

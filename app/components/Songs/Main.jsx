@@ -6,7 +6,7 @@
 var SongList = require('./List.jsx');
 var SongStore = require('../../stores/SongListStore');
 var SongActions = require('../../actions/SongActions');
-var Pager = require('../common/Pager.jsx');
+var Pager = require('../Common/Pager.jsx');
 var ListSearch = require('../ListSearch/Main.jsx');
 let dbg = require('debug')('topdmc:Songs/new');
 

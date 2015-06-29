@@ -1,5 +1,5 @@
 'use strict';
-var SearchBoxMain = require('app/components/searchBox/Main.jsx');
+var SearchBoxMain = require('app/components/SearchBox/Main.jsx');
 
 var Assist = React.createClass({
   render: function(){

@@ -4,7 +4,7 @@
 var AlbumList = require('../Albums/List.jsx');
 var AlbumListStore = require('../../stores/AlbumListStore');
 var AlbumActions = require('../../actions/AlbumActions');
-var Pager = require('../common/Pager.jsx');
+var Pager = require('../Common/Pager.jsx');
 
 module.exports = exports = React.createClass({
 

@@ -86,7 +86,7 @@ var BarChart = React.createClass({
 
 module.exports = BarChart;
 
-// var dbDate = require('../../../utils/commonFn.js').dbDate
+// var dbDate = require('../../../utils/CommonFn.js').dbDate
 // var mockSongs = require('../../../utils/MockChartData.js')
 //
 // var classNames = require('classnames')

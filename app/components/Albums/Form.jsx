@@ -1,16 +1,16 @@
 'use strict';
-var UpAvatar = require('../common/UpAvatar.jsx');
-var Assist = require('../common/Assist.jsx');
+var UpAvatar = require('../Common/UpAvatar.jsx');
+var Assist = require('../Common/Assist.jsx');
 var dbg = require('debug')('topdmc:album/Form');
 var SongMiniCard = require('../Songs/MiniCard.jsx');
 var ArtistMiniCard = require('../Artists/MiniCard.jsx');
 
-var TextareaAutosize = require('../common/TextareaAutosize.jsx');
+var TextareaAutosize = require('../Common/TextareaAutosize.jsx');
 
 
-//var TextareaAutosize = require('../common/TextareaAutosize/TextareaAutosize.jsx');
+//var TextareaAutosize = require('../Common/TextareaAutosize/TextareaAutosize.jsx');
 
-var AddCardTips = require('../common/AddCardTips.jsx');
+var AddCardTips = require('../Common/AddCardTips.jsx');
 var assign = require('object-assign');
 var classNames = require('classnames');
 

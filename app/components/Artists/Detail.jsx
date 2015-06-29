@@ -1,9 +1,9 @@
 'use strict';
 var ArtistStore = require('../../stores/ArtistStore');
 var ArtistActions = require('../../actions/ArtistActions');
-var Loader = require('../../components/common/Loader.jsx');
-var SongChart = require('../common/Charts/SongChart.jsx');
-var SongChannelChart = require('../common/Charts/SongChannelChart.jsx');
+var Loader = require('../../components/Common/Loader.jsx');
+var SongChart = require('../Common/Charts/SongChart.jsx');
+var SongChannelChart = require('../Common/Charts/SongChannelChart.jsx');
 
 var Albums = require('./Albums.jsx');
 

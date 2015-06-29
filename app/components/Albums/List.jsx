@@ -1,7 +1,7 @@
 // var React = require('react');
 
-var Loader = require('../common/Loader.jsx');
-var ImagePreloader = require('app/components/common/ImagePreloader.jsx');
+var Loader = require('../Common/Loader.jsx');
+var ImagePreloader = require('app/components/Common/ImagePreloader.jsx');
 
 var List = React.createClass({
 
