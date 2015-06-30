@@ -14,7 +14,10 @@ var render = views(__dirname + '/public/views', {
 app.use(require('koa-static')(path.join(__dirname, '/public'), {}));
 
 app.use(function *() {
-    this.body = yield render('index', {API_PREFIX: config['API_PREFIX']});
+    this.body = yield render('index', {
+      API_PREFIX: config['API_PREFIX'],
+      BUNDLE_SRC: config['BUNDLE_SRC']
+    });
 });
 
 app.listen(9009);

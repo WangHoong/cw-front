@@ -1,8 +1,6 @@
 var classNames = require('classnames');
-const dbg = require('debug')('topdmc:Sidebar/component');
+var dbg = require('debug')('topdmc:Sidebar/component');
 
-var OnlineState = require('app/components/OnlineState.react.jsx');
-const OnlineStateStore = require('app/stores/OnlineStateStore');
 var NavItemLink = React.createClass({
   propTypes: {
     activeClassName: React.PropTypes.string.isRequired,
@@ -111,25 +109,7 @@ var ToggleMenuButton = React.createClass({
   }
 
 });
-var OnlineStatecircle = React.createClass({
 
-  mixins: [Reflux.connect(OnlineStateStore, 'onlineState')],
-
-  render: function () {
-    var circleColor = '#cecece';
-    if (this.state.onlineState && (this.state.onlineState.startsWith('Connected') || this.state.onlineState.startsWith('Authenticated'))) {
-      circleColor = '#5cb85c'; // 在线
-    }
-    dbg('OnlineStatecircle circleColor=' + circleColor + ' this.state', this.state);
-    var circleStyle = {
-      borderColor: circleColor,
-      backgroundImage: 'url(' + this.props.imgUrl + ')'
-    }
-    return (
-      <div className='whoami-img' style={circleStyle}/>
-    )
-  }
-})
 var Sidebar = React.createClass({
 
   getDefaultProps: function () {
@@ -177,8 +157,9 @@ var Sidebar = React.createClass({
         <NavItemLink icon={className} key={i} text={text} to={item.to}/>
       );
     });
-    var imgUrl = window.DMC_AVATAR || 'https://s3.cn-north-1.amazonaws.com.cn/dmc-img/avatar/40039e9c-bcdf-4dbc-8827-fa8082eda648.jpg';
-    var userName = window.DMC_USERNAME;
+    var imgUrl = {
+      backgroundImage: 'url(https://s3.cn-north-1.amazonaws.com.cn/dmc-img/avatar/40039e9c-bcdf-4dbc-8827-fa8082eda648.jpg)'
+    };
     return (
       <aside className='sidebar'>
         <div className='sidebar-wrap'>
@@ -191,8 +172,8 @@ var Sidebar = React.createClass({
         </div>
         <div className='sidebar-assist'>
           <div className='whoami-wrap'>
-            <OnlineStatecircle imgUrl={imgUrl}/>
-            <p className="whoami-username ellipsis">{userName}</p>
+            <div className='whoami-img' style={imgUrl}/>
+            <p className="whoami-username ellipsis">xxx</p>
           </div>
           <ToggleMenuButton handleToggleMenuClick={this.props.handleToggleMenuClick} toggleMenuClass={this.props.toggleMenuClass}/>
         </div>

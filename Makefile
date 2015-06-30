@@ -46,7 +46,7 @@ lint: $(js_files)
 # >>>>>> JS Related
 
 public/dist/js/bundle.js: distdir
-	browserify -d -x events -x socketcluster-client -x debug -x classnames client -o $@
+	browserify -d -x events -x debug -x classnames client -o $@
 
 public/dist/js/vendor.js: distdir
 	bower install
@@ -63,17 +63,17 @@ public/dist/js/vendor.js: distdir
 	cp bower_components/d3/d3.js $(compiled_js_dir)/d3.js
 	cp bower_components/nvd3-community/build/nv.d3.js $(compiled_js_dir)/nv.d3.js
 	cp bower_components/echarts/build/dist/echarts-all.js $(compiled_js_dir)/echarts-all.js
-	browserify -d -r socketcluster-client -r events -r debug -r classnames  -r object-assign -o $(compiled_js_dir)/vendor.js
+	browserify -d -r events -r debug -r classnames  -r object-assign -o $(compiled_js_dir)/vendor.js
 
 # Build all js
 js: $(compiled_js_dir)/vendor.js $(compiled_js_dir)/bundle.js
 	@echo '>>> Make development javascript files'
 
 public/dist/js/bundle.prod.js: distdir
-	@browserify -x events -x socketcluster-client -x debug -x classnames client -o $@
+	@browserify -x events -x debug -x classnames client -o $@
 
 public/dist/js/vendor.prod.js: distdir
-	@browserify -r events -r socketcluster-client -r debug -r classnames -r object-assign -o $@
+	@browserify -r events -r debug -r classnames -r object-assign -o $@
 
 copy_deps: distdir
 	@bower install
