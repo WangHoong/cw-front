@@ -1,4 +1,5 @@
 'use strict';
+var React = require('react');
 var Assist = require('../Common/Assist.jsx');
 var dbg = require('debug')('topdmc:Song/Form');
 var ArtistMiniCard = require('../Artists/MiniCard.jsx');

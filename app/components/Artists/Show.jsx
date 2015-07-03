@@ -1,5 +1,5 @@
 'use strict';
-
+var React = require('react');
 var Detail = require('./Detail.jsx');
 var Edit = require('./Edit.jsx');
 

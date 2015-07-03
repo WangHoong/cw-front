@@ -1,9 +1,10 @@
+var React = require('react');
 var Main = React.createClass({
 
   componentDidMount: function() {
     var $calendar = $(React.findDOMNode(this.refs.calendar));
     var fc = $calendar.fullCalendar({
-      
+
     });
   },
 

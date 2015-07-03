@@ -1,40 +1,4 @@
-//
-// var SingerList = React.createClass({
-//   render:function(){
-//     var createItem = function(comment){
-//       var imgUrl = comment.avatar || 'images/loading.gif';
-//       var _style={
-//         backgroundImage:'url(' + imgUrl + ')'
-//       }
-//       if(comment.rank<=3){
-//         return(
-//             <p>
-//             <span className="tsr-rank-top"><b>{comment.rank}</b></span>
-//               <a href={comment.link}>
-//             <span className="tsr-avatar" style={_style}></span>
-//             <span className="tsr-name">{comment.name}</span>
-//             <span className="tsr-num">{comment.num}</span></a>
-//           </p>
-//
-//         )
-//       }else{
-//         return(
-//           <p>
-//             <span className="tsr-rank-other"><b>{comment.rank}</b></span>
-//             <a href={comment.link}>
-//             <span className="tsr-avatar" style={_style}></span>
-//             <span className="tsr-name">{comment.name}</span>
-//             <span className="tsr-num">{comment.num}</span></a>
-//           </p>
-//         )
-//       }
-//     };
-//     return(
-//       <div className="tsr-body">{this.props.singers.map(createItem)}</div>
-//     )
-//   }
-// });
-
+var React = require('react');
 var ArtistItemWrapper = React.createClass({
   render: function(){
     // 前三名使用粉色,其他使用默认色

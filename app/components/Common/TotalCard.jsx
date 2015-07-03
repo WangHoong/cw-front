@@ -1,3 +1,4 @@
+var React = require('react');
 const dbg = require('debug')('topdmc:TotalCard/component');
 
 var TotalCard = React.createClass({

@@ -1,5 +1,4 @@
-/*global Reflux*/
-// var Reflux = require('reflux');
+var Reflux = require('reflux');
 var actions = require('../actions/AlbumActions');
 
 module.exports = Reflux.createStore({

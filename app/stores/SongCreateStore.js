@@ -1,6 +1,5 @@
-/*global Reflux*/
 "use strict";
-
+var Reflux = require('reflux');
 var actions = require('../actions/SongActions');
 
 var SongCreateStore = Reflux.createStore({

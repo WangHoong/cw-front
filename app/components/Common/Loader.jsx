@@ -1,5 +1,4 @@
-// var React=require('react');
-
+var React = require('react');
 var Loader=React.createClass({
 
     render:function(){

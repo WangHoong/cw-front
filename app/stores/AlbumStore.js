@@ -1,5 +1,4 @@
-/*global Reflux*/
-// var Reflux = require('reflux');
+var Reflux = require('reflux');
 var actions = require('../actions/AlbumActions');
 var assign = require('object-assign');
 

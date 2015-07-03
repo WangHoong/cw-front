@@ -1,316 +1,136 @@
-// dependencies
+var gulp = require('gulp');
+var browserify = require('browserify');
+var streamify = require('vinyl-source-stream');
+var watchify = require('watchify');
+var babelify = require('babelify');
+var reactify = require('reactify');
+var browserSync = require('browser-sync');
+var reload = browserSync.reload;
+var $ = require('gulp-load-plugins')();
+var runSequence = require('run-sequence');
+var argv = require('minimist')(process.argv.slice(2));
 
-var gulp = require('gulp'),
-    source = require('vinyl-source-stream'),
-    browserify = require('browserify'),
-    watchify = require('watchify'),
-    less = require('gulp-less'),
-    browserSync = require('browser-sync'),
-    reload = browserSync.reload,
-    autoprefixer = require('gulp-autoprefixer'),
-    minifycss = require('gulp-minify-css'),
-    uglify = require('gulp-uglify'),
-    notify = require('gulp-notify'),
-    prettyTime = require('pretty-hrtime'),
-    htmlreplace = require('gulp-html-replace'),
-    runSequence = require('run-sequence').use(gulp),
-    qn = require('gulp-qn'),
-    babelify = require('babelify'),
-    webpack = require('webpack'),
-    WebpackDevServer = require('webpack-dev-server'),
-    config = require('./webpack.config');
+var DEBUG = !!argv.debug;
 
+var BOWER_COMPONENTS = './bower_components/';
+var BUILD = './build/';
+var PUBLIC = './public/';
 
-// paths
-var dist = './public/dist/';
+// React vendors
+var VENDORS = [
+  'react',
+  'debug',
+  'object-assign',
+  'reflux',
+  'react-router',
+  'axios',
+  'kefir',
+  'lodash'
+];
 
-var lessPath = './public/less/',
-    bowerPath = './bower_components/',
-    imagePath = './public/images/';
+// https://github.com/ai/autoprefixer
+var AUTOPREFIXER_BROWSERS = [
+  'ie >= 10',
+  'ie_mob >= 10',
+  'ff >= 30',
+  'chrome >= 34',
+  'safari >= 7',
+  'opera >= 23',
+  'ios >= 7',
+  'android >= 4.4',
+  'bb >= 10'
+];
 
-var jsDist = dist + 'js/',
-    cssDist = dist + 'css/',
-    fontDist = dist + 'fonts/',
-    imageDist = dist + 'images/';
-
-var viewsPath = './public/views';
-var viewsPublishPath = './views.pub';
-var versioning = new Date().valueOf();
-var cdnDirPrefix = 'd_' + versioning + '/';
-
-// files
-
-var files = {
-    react_app: './app/app.js',
-    less_main: lessPath + 'main.less',
-    mbs: lessPath + 'mbs/mbs.less',
-    all_less: lessPath + '*.less'
-};
-
-var reactBuildName = 'bundle.js';
-
-//react-wpk task
-gulp.task("react-wpk", function() {
-  new WebpackDevServer(webpack(config), {
-    publicPath: './dist/js/',
-    contentBase: './dist/js/',
-    hot: true,
-    historyApiFallback: true,
-    stats: {
-      colors: true
-    },
-    headers: {
-      'Access-Control-Allow-Origin': 'http://localhost:9000',
-      'Access-Control-Allow-Headers': 'X-Requested-With'
-    }
-  }).listen(9001, 'localhost', function(err, result) {
-    if (err) {
-      console.log(err);
-    }
-    console.log('WebpackDevServer listening at localhost:9001');
+// Build react vendors
+gulp.task('vendors', function(cb) {
+  var bundler = browserify();
+  VENDORS.forEach(function(name) {
+    bundler.require(name);
   });
-})
+  bundler.bundle().pipe(streamify('vendor.js')).pipe(gulp.dest(BUILD + 'js'));
+});
 
-// react task
-
-gulp.task('react', function() {
+gulp.task('bundle', function(cb) {
   var bundler = browserify({
-    entries: files.react_app,
-    debug: true,
-    cache: {},
-    packageCache: {},
-    fullPaths: true
+		entries: './app/app.jsx',
+    extensions: ['.jsx', '.js'],
+    debug: true
+	});
+  VENDORS.forEach(function(name) {
+    bundler.external(name);
   });
-
-  // bundler.transform(envify({
-  // 	NODE_ENV: process.env.NODE_ENV,
-  // 	PORT: 9000
-  // }));
-
-  bundler.external('react');
-  bundler.external('react-router');
-  bundler.external('events');
-  bundler.external('lodash');
-  bundler.external('debug');
-  bundler.external('reflux');
-  bundler.external('object-assign');
-  bundler.external('axios');
-  bundler.external('classnames');
-
-  var watcher = watchify(bundler);
-
-  return watcher.on('update', function() {
-      var updateStart = Date.now();
-      var start = process.hrtime();
-      console.log('╭─Updating ' + reactBuildName);
-      watcher.bundle()
-        .pipe(source(reactBuildName))
-        .pipe(gulp.dest(jsDist))
-        .pipe(notify({
-          onLast: true,
-          message: "Finished rebundle after " + prettyTime(process.hrtime(start))
-        }))
-        .on('finish', function() {
-          console.log('╰─Updated ---------- ' + reactBuildName, (Date.now() - updateStart) + 'ms');
-        })
-        .pipe(reload({
-          stream: true
-        }));
-    })
-    .bundle()
-    .pipe(source(reactBuildName))
-    .pipe(gulp.dest(jsDist));
+  // var watcher = watchify(bundler);
+  // return watcher.on('update', function() {
+  //   var updateStart = Date.now();
+  //   console.log('╭─Updating');
+  //   watcher.bundle()
+  //   .transform(babelify)
+  //   .pipe(source('bundle.js'))
+  //   .pipe(gulp.dest(BUILD + 'js'))
+	// 	.pipe(reload({stream: true}));
+  //   console.log('╰─Updated ---------- ' + (Date.now() - updateStart) + 'ms');
+	// })
+	bundler.transform(babelify)
+  .bundle()
+  .on('error', function(err) {$.util.log('Error : ' + err.message)})
+  .pipe(streamify('bundle.js'))
+  .pipe(gulp.dest(BUILD + 'js'));
 });
 
-gulp.task('client-app', function() {
-  browserify({
-      entries: './app/app.js',
-      extensions: ['.jsx', '.js'],
-      debug: true
-    })
-    .transform(babelify)
-    .bundle()
-    .pipe(source(reactBuildName))
-    .pipe(gulp.dest(jsDist));
+// Launch BrowserSync development server
+gulp.task('sync', function(cb) {
+  browserSync({
+    logPrefix: 'cw-front',
+    notify: false,
+    https: false,
+    proxy: 'lo.topdmc.cn:9000'
+  }, cb);
 });
 
-// minify react
-
-gulp.task('minify_react', function() {
-  return gulp.src(jsDist + reactBuildName)
-    .pipe(uglify())
-    .pipe(gulp.dest(jsDist));
+gulp.task('bower_libs', function() {
+  gulp.src(BOWER_COMPONENTS + 'jquery/jquery.min.js')
+    .pipe(gulp.dest(BUILD + 'js'));
+  gulp.src(BOWER_COMPONENTS + 'jquery/jquery.min.map')
+    .pipe(gulp.dest(BUILD + 'js'));
+  gulp.src(BOWER_COMPONENTS + 'peity/jquery.peity.min.js')
+    .pipe(gulp.dest(BUILD + 'js'));
+  gulp.src(BOWER_COMPONENTS + 'echarts/build/dist/echarts-all.js')
+    .pipe(gulp.dest(BUILD + 'js'));
+  gulp.src(BOWER_COMPONENTS + 'moment/min/moment.min.js')
+    .pipe(gulp.dest(BUILD + 'js'));
+  gulp.src(BOWER_COMPONENTS + 'fullcalendar/dist/fullcalendar.min.js')
+    .pipe(gulp.dest(BUILD + 'js'));
+  gulp.src(BOWER_COMPONENTS + 'fullcalendar/dist/lang/zh-cn.js')
+    .pipe($.rename('fullcalendar-zh-cn.js'))
+    .pipe(gulp.dest(BUILD + 'js'));
+  gulp.src(BOWER_COMPONENTS + 'fontawesome/css/font-awesome.min.css')
+    .pipe(gulp.dest(BUILD + 'css'));
+  return gulp.src(BOWER_COMPONENTS + 'fontawesome/fonts/*')
+    .pipe(gulp.dest(BUILD + 'fonts'));
 });
 
-// less compiler task
-
-gulp.task('less', function() {
-  return gulp.src(files.less_main)
-    .pipe(less())
-    .pipe(autoprefixer({
-      browsers: [
-        'last 2 versions'
-      ],
-      cascade: false
-    }))
-    .pipe(gulp.dest(cssDist))
-    .pipe(reload({
-      stream: true
-    }));
+gulp.task('images', function() {
+  return gulp.src(PUBLIC + 'images/*')
+    .pipe(gulp.dest(BUILD + 'images'));
 });
 
-// mbs compiler task
+gulp.task('styles', function() {
+  return gulp.src(PUBLIC + 'less/main.less')
+    .pipe($.less())
+    .pipe($.autoprefixer({browsers: AUTOPREFIXER_BROWSERS}))
+    .pipe(gulp.dest(BUILD + 'css'));
+});
 
 gulp.task('mbs', function() {
-  return gulp.src(files.mbs)
-    .pipe(less())
-    .pipe(minifycss({
-      keepBreaks: false
-    }))
-    .pipe(gulp.dest(cssDist));
+	return gulp.src(PUBLIC + 'less/mbs/mbs.less')
+		.pipe($.less())
+		.pipe($.minifyCss({keepBreaks: false}))
+		.pipe(gulp.dest(BUILD + 'css'));
 });
 
-// minify css
-
-gulp.task('minify_css', ['css'], function() {
-  return gulp.src(cssDist + "main.css")
-    .pipe(minifycss({
-      keepBreaks: false
-    }))
-    .pipe(gulp.dest(cssDist));
+// Build the app
+gulp.task('build', function(cb) {
+  // runSequence(['bower_libs', 'image', 'styles', 'mbs', 'sync'], cb);
 });
 
-// minify images task
-gulp.task('images', function() {
-  return gulp.src(imagePath + '*')
-    .pipe(gulp.dest(imageDist));
-});
-
-// build bower
-
-gulp.task('build-bower', function() {
-
-  gulp.src(bowerPath + 'fontawesome/css/font-awesome.min.css')
-    .pipe(gulp.dest(cssDist));
-  gulp.src(bowerPath + 'nvd3-community/build/nv.d3.min.css')
-    .pipe(gulp.dest(cssDist));
-
-  return gulp.src(bowerPath + 'fontawesome/fonts/*')
-    .pipe(gulp.dest(fontDist));
-
-});
-
-// all cssDist
-gulp.task('css', ['less', 'build-bower', 'mbs']);
-
-
-// browser sync
-
-gulp.task('browser-sync', function() {
-  return browserSync({
-    files: [
-      viewsPath + '/*.html'
-    ],
-    server: {
-      baseDir: './',
-      proxy: 'localhost:9009',
-      index: './public/views/index.html'
-    }
-  });
-});
-
-var qiniu_credential = {
-  accessKey: "WUK0psKjxDO3cdkus9uZgswJps-nFpJMFk2SzSlv",
-  secretKey: "Ojn74NudW__RE-mpM-Pahq_zBWvZuSD_db9Imhl7",
-  bucket: "topdmc-test"
-};
-
-// qiniu CDN
-gulp.task('cdn-font', function() {
-  return gulp.src('./dist/fonts/*')
-    .pipe(qn({
-      qiniu: qiniu_credential,
-      prefix: '/fonts/'
-    }));
-});
-
-gulp.task('cdn-css', function() {
-  return gulp.src('./dist/css/*')
-    .pipe(qn({
-      qiniu: qiniu_credential,
-      prefix: cdnDirPrefix + '/css/'
-    }));
-});
-
-gulp.task('cdn-image', function() {
-  return gulp.src('./dist/images/*')
-    .pipe(qn({
-      qiniu: qiniu_credential,
-      prefix: cdnDirPrefix + '/images/'
-    }));
-});
-
-gulp.task('cdn-js', function() {
-  return gulp.src('./dist/js/*')
-    .pipe(qn({
-      qiniu: qiniu_credential,
-      prefix: cdnDirPrefix + '/js/'
-    }));
-});
-
-gulp.task('replace', function() {
-  var base_url = "http://7xijye.com1.z0.glb.clouddn.com/" + cdnDirPrefix;
-  return gulp.src(['./views/index.html', './views/login.html'])
-    .pipe(htmlreplace({
-      main_js: [base_url + 'js/vendor.min.js', base_url + 'js/bundle.min.js'],
-      css: [
-        base_url + 'css/font-awesome.min.css',
-        base_url + 'css/mbs.css',
-        base_url + 'css/main.css',
-        base_url + 'css/nv.d3.min.css'
-      ],
-      dep_js: [base_url + 'js/react.min.js',
-        base_url + 'js/ReactRouter.min.js',
-        base_url + 'js/lodash.min.js',
-        base_url + 'js/axios.min.js',
-        base_url + 'js/reflux.min.js',
-        base_url + 'js/kefir.min.js',
-        base_url + 'js/jquery.min.js',
-        base_url + 'js/jquery.peity.min.js',
-        base_url + 'js/d3.min.js',
-        base_url + 'js/echarts-all.js',
-        base_url + 'js/nv.d3.min.js'
-      ]
-    }))
-    .pipe(gulp.dest(viewsPublishPath));
-});
-
-// 把views复制到views.pub目录，对views.pub页面做变形
-gulp.task('duplicate-views', function() {
-  gulp.src('./views/**/*').pipe(gulp.dest(viewsPublishPath));
-});
-
-gulp.task('publish', function(cb) {
-  runSequence('cdn-font', 'cdn-css', 'cdn-js', 'cdn-image', 'duplicate-views', 'replace', cb);
-});
-
-// default task
-
-var isDev = process.env.NODE_ENV === 'development';
-
-if (!isDev) {
-  proTask();
-} else {
-  devTask();
-}
-
-function devTask() {
-  gulp.task('default', ['images', 'less', 'mbs', 'react-wpk', 'build-bower'], function() {
-    gulp.start('browser-sync');
-    gulp.watch(files.all_less, ['less']);
-  });
-}
-
-function proTask() {
-  gulp.task('default', ['minify_css', 'mbs', 'images']);
-}
+gulp.task('default', ['build']);

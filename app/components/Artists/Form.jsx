@@ -1,4 +1,5 @@
 'use strict';
+var React = require('react');
 var UpAvatar = require('../Common/UpAvatar.jsx');
 var TextareaAutosize = require('../Common/TextareaAutosize.jsx');
 

@@ -1,6 +1,7 @@
+var React = require('react');
 class BaseChart extends React.Component{
   shouldComponentUpdate(nextProps, nextState) {
-    
+
     setTimeout( () => {
         this.$self.clear()
         this.$self.resize()

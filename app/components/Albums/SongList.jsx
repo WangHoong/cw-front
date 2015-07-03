@@ -1,3 +1,5 @@
+var React = require('react');
+var Reflux = require('reflux');
 var AlbumSongStore = require('../../stores/AlbumSongStore');
 var AlbumActions = require('../../actions/AlbumActions');
 

@@ -1,5 +1,4 @@
-/*global Reflux*/
-
+var Reflux = require('reflux');
 var ListSearchActions = require('../actions/ListSearchActions');
 
 var ListSearchStore = Reflux.createStore({

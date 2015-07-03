@@ -1,5 +1,4 @@
-/*global Reflux*/
-
+var Reflux = require('reflux');
 var AlbumAPIUtil = require('../utils/AlbumAPIUtils');
 
 var AlbumActions = Reflux.createActions({

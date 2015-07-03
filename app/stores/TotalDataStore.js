@@ -1,4 +1,4 @@
-/*global Reflux*/
+var Reflux = require('reflux');
 var actions = require('app/actions/TotalDataActions');
 
 module.exports = Reflux.createStore({
@@ -9,7 +9,7 @@ module.exports = Reflux.createStore({
   },
 
   onGetCompleted: function(res){
-    this.notifyUI(res.data);
+    this.notifyUI(res.data.data);
   },
 
   notifyUI: function(payload){

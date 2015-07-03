@@ -1,3 +1,4 @@
+var React = require('react');
 import BaseChart from './BaseChart.jsx'
 import classNames from 'classnames'
 

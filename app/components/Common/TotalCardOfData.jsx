@@ -1,4 +1,6 @@
 /* 首页顶部的「总歌曲数、专辑数、艺人数」 */
+var React = require('react');
+var Reflux = require('reflux');
 const dbg = require('debug')('topdmc:TotalCardOfData/component');
 const TotalDataStore = require('app/stores/TotalDataStore');
 const TotalDataActions = require('app/actions/TotalDataActions');

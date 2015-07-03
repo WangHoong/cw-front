@@ -1,6 +1,4 @@
-// var React = require('react');
-// var Table = require('react-bootstrap').Table;
-
+var React = require('react');
 var Loader = require('../Common/Loader.jsx');
 
 var ImagePreloader = require('app/components/Common/ImagePreloader.jsx');

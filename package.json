@@ -2,47 +2,10 @@
   "name": "cw-front",
   "version": "1.0.0",
   "description": "",
-  "main": "gulpfile.js",
-  "dependencies": {
-    "co-views": "^1.0.0",
-    "config": "^1.14.0",
-    "js-yaml": "^3.3.1",
-    "koa": "^0.21.0",
-    "koa-static": "^1.4.9",
-    "swig": "^1.4.2"
-  },
-  "devDependencies": {
-    "babel-core": "^5.6.15",
-    "babel-loader": "^5.2.2",
-    "babelify": "^6.1.2",
-    "browser-sync": "^2.7.13",
-    "browserify": "^10.2.4",
-    "classnames": "^2.1.2",
-    "debug": "^2.2.0",
-    "envify": "^3.4.0",
-    "gulp": "^3.9.0",
-    "gulp-autoprefixer": "^2.3.1",
-    "gulp-html-replace": "^1.5.0",
-    "gulp-less": "^3.0.3",
-    "gulp-minify-css": "^1.2.0",
-    "gulp-notify": "^2.2.0",
-    "gulp-qn": "^0.1.1",
-    "gulp-uglify": "^1.2.0",
-    "json-loader": "^0.5.2",
-    "node-libs-browser": "^0.5.2",
-    "object-assign": "^3.0.0",
-    "pretty-hrtime": "^1.0.0",
-    "react": "^0.13.3",
-    "react-hot-loader": "^1.2.7",
-    "reactify": "^1.1.1",
-    "run-sequence": "^1.1.1",
-    "vinyl-source-stream": "^1.1.0",
-    "watchify": "^3.2.3",
-    "webpack": "^1.10.0",
-    "webpack-dev-server": "^1.10.1"
-  },
+  "main": "server.js",
   "scripts": {
-    "dev": "make public/dist/js/vendor.js && env NODE_ENV=development gulp"
+    "dev": "webpack-dev-server --devtool eval --hot --progress --colors",
+    "watch": "npm install && gulp"
   },
   "repository": {
     "type": "git",
@@ -53,5 +16,40 @@
   "bugs": {
     "url": "https://github.com/topdmc/cw-front/issues"
   },
-  "homepage": "https://github.com/topdmc/cw-front#readme"
+  "homepage": "https://github.com/topdmc/cw-front#readme",
+  "dependencies": {
+    "axios": "^0.5.4",
+    "classnames": "^2.1.2",
+    "co-views": "^1.0.0",
+    "config": "^1.14.0",
+    "debug": "^2.2.0",
+    "kefir": "^2.7.0",
+    "koa": "^0.21.0",
+    "koa-logger": "^1.2.2",
+    "koa-route": "^2.4.1",
+    "koa-static": "^1.4.9",
+    "lodash": "^3.9.3",
+    "object-assign": "^3.0.0",
+    "react": "^0.13.3",
+    "react-router": "^0.13.3",
+    "reflux": "^0.2.8",
+    "swig": "^1.4.2"
+  },
+  "devDependencies": {
+    "babelify": "^6.1.2",
+    "browser-sync": "^2.7.13",
+    "browserify": "^10.2.4",
+    "gulp": "^3.9.0",
+    "gulp-autoprefixer": "^2.3.1",
+    "gulp-less": "^3.0.3",
+    "gulp-load-plugins": "^0.10.0",
+    "gulp-minify-css": "^1.2.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-util": "^3.0.6",
+    "minimist": "^1.1.1",
+    "reactify": "^1.1.1",
+    "run-sequence": "^1.1.1",
+    "vinyl-source-stream": "^1.1.0",
+    "watchify": "^3.2.3"
+  }
 }

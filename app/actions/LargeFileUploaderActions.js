@@ -1,5 +1,4 @@
-/*global Reflux*/
-
+var Reflux = require('reflux');
 const LargeFileUploaderActions = Reflux.createActions([
   "uploadFiles"
 ]);
