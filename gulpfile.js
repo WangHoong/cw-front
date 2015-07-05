@@ -52,7 +52,7 @@ gulp.task('vendors', function(cb) {
 
 gulp.task('bundle', function(cb) {
   var bundler = browserify({
-		entries: './app/app.jsx',
+		entries: 'node_modules/app/app.jsx',
     extensions: ['.jsx', '.js'],
     debug: true
 	});
