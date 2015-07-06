@@ -4,8 +4,7 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "dev": "webpack-dev-server --devtool eval --hot --progress --colors",
-    "watch": "npm install && gulp"
+    "debug": "gulp --debug"
   },
   "repository": {
     "type": "git",
@@ -44,10 +43,10 @@
     "gulp-less": "^3.0.3",
     "gulp-load-plugins": "^1.0.0-rc.1",
     "gulp-minify-css": "^1.2.0",
+    "gulp-notify": "^2.2.0",
     "gulp-rename": "^1.2.2",
     "gulp-util": "^3.0.6",
     "minimist": "^1.1.1",
-    "reactify": "^1.1.1",
     "run-sequence": "^1.1.1",
     "vinyl-source-stream": "^1.1.0",
     "watchify": "^3.2.3"

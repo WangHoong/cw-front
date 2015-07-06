@@ -3,7 +3,6 @@ var browserify = require('browserify');
 var streamify = require('vinyl-source-stream');
 var watchify = require('watchify');
 var babelify = require('babelify');
-var reactify = require('reactify');
 var browserSync = require('browser-sync');
 var reload = browserSync.reload;
 var $ = require('gulp-load-plugins')();
@@ -47,44 +46,48 @@ gulp.task('vendors', function(cb) {
   VENDORS.forEach(function(name) {
     bundler.require(name);
   });
-  bundler.bundle().pipe(streamify('vendor.js')).pipe(gulp.dest(BUILD + 'js'));
+  return bundler.bundle().pipe(streamify('vendor.js')).pipe(gulp.dest(BUILD + 'js'));
 });
 
 gulp.task('bundle', function(cb) {
   var bundler = browserify({
-		entries: 'node_modules/app/app.jsx',
-    extensions: ['.jsx', '.js'],
-    debug: true
+		entries: ['node_modules/app/app.jsx'],
+    debug: DEBUG,
+    cache: {},
+		packageCache: {},
+    fullPaths: true,
+    transform: [babelify]
 	});
   VENDORS.forEach(function(name) {
     bundler.external(name);
   });
-  // var watcher = watchify(bundler);
-  // return watcher.on('update', function() {
-  //   var updateStart = Date.now();
-  //   console.log('╭─Updating');
-  //   watcher.bundle()
-  //   .transform(babelify)
-  //   .pipe(source('bundle.js'))
-  //   .pipe(gulp.dest(BUILD + 'js'))
-	// 	.pipe(reload({stream: true}));
-  //   console.log('╰─Updated ---------- ' + (Date.now() - updateStart) + 'ms');
-	// })
-	bundler.transform(babelify)
-  .bundle()
-  .on('error', function(err) {$.util.log('Error : ' + err.message)})
-  .pipe(streamify('bundle.js'))
-  .pipe(gulp.dest(BUILD + 'js'));
+  if (DEBUG) {
+    var watcher = watchify(bundler);
+    watcher.on('update', rebundle);
+  }
+  function rebundle() {
+    var updateStart = Date.now();
+    return bundler.bundle()
+      .on('error', function(err) {$.util.log('Error : ' + err.message)})
+      .pipe(streamify('bundle.js'))
+      .pipe(gulp.dest(BUILD + 'js'))
+      .pipe($.notify({
+  			onLast: true,
+        title: 'bundle',
+  			message: 'Finished rebundle after ' + (Date.now() - updateStart) + 'ms'
+  		}))
+      .pipe(reload({stream: true}));
+  };
+  return rebundle();
 });
 
 // Launch BrowserSync development server
-gulp.task('sync', function(cb) {
+gulp.task('sync', function() {
   browserSync({
     logPrefix: 'cw-front',
-    notify: false,
-    https: false,
-    proxy: 'lo.topdmc.cn:9000'
-  }, cb);
+    proxy: 'http://lo.topdmc.cn:9000'
+  });
+  return gulp.watch(PUBLIC + 'less/*.less', ['styles']);
 });
 
 gulp.task('bower_libs', function() {
@@ -118,7 +121,8 @@ gulp.task('styles', function() {
   return gulp.src(PUBLIC + 'less/main.less')
     .pipe($.less())
     .pipe($.autoprefixer({browsers: AUTOPREFIXER_BROWSERS}))
-    .pipe(gulp.dest(BUILD + 'css'));
+    .pipe(gulp.dest(BUILD + 'css'))
+    .pipe(reload({stream: true}));
 });
 
 gulp.task('mbs', function() {
@@ -130,7 +134,7 @@ gulp.task('mbs', function() {
 
 // Build the app
 gulp.task('build', function(cb) {
-  // runSequence(['bower_libs', 'image', 'styles', 'mbs', 'sync'], cb);
+  runSequence(['vendors', 'bundle', 'bower_libs', 'images', 'styles', 'mbs'], 'sync', cb);
 });
 
 gulp.task('default', ['build']);
