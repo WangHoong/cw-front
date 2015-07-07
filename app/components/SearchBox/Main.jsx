@@ -1,6 +1,5 @@
 'use strict';
 var React = require('react');
-var Kefir = require('kefir');
 var Reflux = require('reflux');
 var dbg = require('debug')('topdmc:SearchBox/Component/Main');
 

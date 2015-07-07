@@ -3,6 +3,7 @@ var React = require('react');
 var Reflux = require('reflux');
 var AlbumStore = require('../../stores/AlbumStore');
 var AlbumActions = require('../../actions/AlbumActions');
+var _ = require('lodash');
 
 var SongChart = require('../Common/Charts/SongChart.jsx');
 var SongChannelChart = require('../Common/Charts/SongChannelChart.jsx');

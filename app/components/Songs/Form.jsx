@@ -8,7 +8,7 @@ var AlbumMiniCard = require('../Albums/MiniCard.jsx');
 var AddCardTips = require('../Common/AddCardTips.jsx');
 var assign = require('object-assign');
 var classNames = require('classnames');
-
+var _ = require('lodash');
 
 var TextareaAutosize = require('../Common/TextareaAutosize.jsx');
 

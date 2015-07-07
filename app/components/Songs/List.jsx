@@ -1,5 +1,6 @@
 var React = require('react');
 var Loader = require('../Common/Loader.jsx');
+var _ = require('lodash');
 
 var ImagePreloader = require('app/components/Common/ImagePreloader.jsx');
 

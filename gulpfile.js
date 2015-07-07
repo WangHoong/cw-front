@@ -23,7 +23,6 @@ var VENDORS = [
   'reflux',
   'react-router',
   'axios',
-  'kefir',
   'lodash'
 ];
 
@@ -85,7 +84,9 @@ gulp.task('bundle', function(cb) {
 gulp.task('sync', function() {
   browserSync({
     logPrefix: 'cw-front',
-    proxy: 'http://lo.topdmc.cn:9000'
+    proxy: 'http://lo.topdmc.cn:9000',
+    host: 'lo.topdmc.cn',
+    open: 'external'
   });
   return gulp.watch(PUBLIC + 'less/*.less', ['styles']);
 });
@@ -96,6 +97,8 @@ gulp.task('bower_libs', function() {
   gulp.src(BOWER_COMPONENTS + 'jquery/jquery.min.map')
     .pipe(gulp.dest(BUILD + 'js'));
   gulp.src(BOWER_COMPONENTS + 'peity/jquery.peity.min.js')
+    .pipe(gulp.dest(BUILD + 'js'));
+  gulp.src(BOWER_COMPONENTS + 'kefir/dist/kefir.min.js')
     .pipe(gulp.dest(BUILD + 'js'));
   gulp.src(BOWER_COMPONENTS + 'echarts/build/dist/echarts-all.js')
     .pipe(gulp.dest(BUILD + 'js'));
