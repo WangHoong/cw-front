@@ -1,4 +1,4 @@
-/*global Reflux*/
+var Reflux = require('reflux');
 const dbg = require('debug')('topdmc:LargeFileUploader/Store');
 const LargeFileUploaderActions = require('app/actions/LargeFileUploaderActions');
 

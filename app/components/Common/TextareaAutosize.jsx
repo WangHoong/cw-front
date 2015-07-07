@@ -1,3 +1,4 @@
+var React = require('react');
 var assign = require('object-assign');
 
 var TextareaAutosize = React.createClass({

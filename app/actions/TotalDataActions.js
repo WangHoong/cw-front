@@ -1,5 +1,4 @@
-/*global Reflux*/
-
+var Reflux = require('reflux');
 var TotalDataUtil = require('app/utils/TotalDataUtil');
 
 var TotalDataActions = Reflux.createActions({

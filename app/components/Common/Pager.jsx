@@ -1,3 +1,4 @@
+var React = require('react');
 var BASE_SHIFT = 0,
 	  TITLE_SHIFT = 1,
 	  TITLES = {

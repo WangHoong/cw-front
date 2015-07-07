@@ -1,3 +1,4 @@
+var React = require('react');
 var Header = React.createClass({
 
   handleKeyUp: function(evt) {

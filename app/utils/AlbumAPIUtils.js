@@ -1,4 +1,4 @@
-/*global axios*/
+var axios = require('axios');
 var APIHelper = require('./APIHelper').APIHelper;
 module.exports = {
 
@@ -13,7 +13,7 @@ module.exports = {
       searchq=q;
     }
     return axios({
-      url: APIHelper.getPrefix() + '/v1/admin/albums?q='+searchq,
+      url: APIHelper.getPrefix() + '/v1/albums?q='+searchq,
       responseType: 'json',
       params: params,
       withCredentials: true
@@ -72,7 +72,7 @@ module.exports = {
   build: function(publishers){
     return axios({
       method: 'POST',
-      url: APIHelper.getPrefix() + '/v1/admin/albums/mappings/',
+      url: APIHelper.getPrefix() + '/v1/albums/mappings/',
       data: publishers,
       withCredentials: true
     });

@@ -1,4 +1,6 @@
 'use strict';
+var React = require('react');
+var Reflux = require('reflux');
 var ArtistStore = require('../../stores/ArtistStore');
 var ArtistActions = require('../../actions/ArtistActions');
 var Loader = require('../../components/Common/Loader.jsx');

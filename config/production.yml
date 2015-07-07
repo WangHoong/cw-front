@@ -1,3 +1,0 @@
-# api address
-API_PREFIX: 'prod.api.topdmc.cn/api'
-BUNDLE_SRC: '/dist/js/bundle.js'
