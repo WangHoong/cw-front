@@ -1,4 +1,5 @@
 'use strict';
+var React = require('react');
 var Assist = require('../Common/Assist.jsx');
 var dbg = require('debug')('topdmc:Song/Form');
 var ArtistMiniCard = require('../Artists/MiniCard.jsx');
@@ -7,7 +8,7 @@ var AlbumMiniCard = require('../Albums/MiniCard.jsx');
 var AddCardTips = require('../Common/AddCardTips.jsx');
 var assign = require('object-assign');
 var classNames = require('classnames');
-
+var _ = require('lodash');
 
 var TextareaAutosize = require('../Common/TextareaAutosize.jsx');
 

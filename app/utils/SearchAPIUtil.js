@@ -1,6 +1,5 @@
-/* global axios */
 'use strict';
-
+var axios = require('axios');
 let dbg = require('debug')('topdmc:SearchBox/Util');
 
 import {

@@ -1,4 +1,0 @@
-# api address
-API_PREFIX: 'dev.api.topdmc.cn/api'
-BUNDLE_SRC: '/dist/js/bundle.js'
-# BUNDLE_SRC: 'http://localhost:9001/dist/js/bundle.js'

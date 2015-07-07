@@ -1,9 +1,8 @@
 "use strict";
-
-// var React = require('react');
-// var Reflux = require('reflux');
+var React = require('react');
+var Reflux = require('reflux');
 var classNames = require('classnames');
-
+var Reflux = require('reflux');
 var ArtistList = require('./List.jsx');
 var ArtistStore = require('../../stores/ArtistListStore');
 var CountryStore = require('../../stores/CountryStore');
@@ -164,112 +163,3 @@ var Main = React.createClass({
 });
 
 module.exports = Main;
-
-// 带分页
-// var Main = React.createClass({
-//     mixins: [
-//         Reflux.connect(ArtistStore, 'artists')
-//     ],
-//
-//     contextTypes: {
-//         router: React.PropTypes.func
-//     },
-//
-//     componentDidMount: function () {
-//         var params = this.context.router.getCurrentQuery();
-//         params.size = this.props.size;
-//
-//         //load artists
-//         ArtistActions.find(params);
-//
-//         // load countries
-//         ArtistActions.countries();
-//     },
-//
-//     getDefaultProps: function () {
-//         return {
-//             size: 10,
-//             visiblePages: 5
-//         };
-//     },
-//
-//     handlePageChanged: function (pageIndex) {
-//         var params = this.context.router.getCurrentQuery();
-//         params.page = pageIndex + 1;
-//         params.size = this.props.size;
-//         this.context.router.transitionTo('artists', {}, params);
-//
-//         ArtistActions.find(params);
-//     },
-//
-//     handleShowDetailAction: function (e) {
-//         var id = e.target.getAttribute('data-id');
-//         this.context.router.transitionTo('show_edit_artist', {id: id}, {});
-//     },
-//
-//     handleCountryClick: function (e) {
-//
-//
-//         e.preventDefault();
-//
-//         var country = e.target.getAttribute("data-name");
-//
-//         var params = this.context.router.getCurrentQuery();
-//         params.country = country;
-//         params.size = this.props.size;
-//         params.page = 1;
-//         this.context.router.transitionTo('artists', {}, params);
-//
-//         ArtistActions.find(params);
-//     },
-//
-//     handleSearch: function () {
-//         var params = {q: this.refs.searchBar.getValue()};
-//
-//         this.context.router.transitionTo('artists', {}, params);
-//         ArtistActions.find(params);
-//     },
-//     handleRedirectNew:function(){
-//         this.context.router.transitionTo('new_artist', {}, {});
-//     },
-//
-//     render: function () {
-//
-//         return (
-//             <div className='artist-wrap'>
-//               <ListSearch
-//                 ref='searchBar'
-//                 placeholder='搜索歌手'
-//                 handleSearch={this.handleSearch}/>
-//               <div className='btn-group'>
-//                 <button
-//                   onClick={this.handleRedirectNew}
-//                   className="btn btn-default">添加艺人</button>
-//               </div>
-//               <div className='artist-list-box'>
-//                 <ArtistList
-//                   items={this.state.artists.items}
-//                   loaded={this.state.artists.status===200}
-//                   onShowDetailAction={this.handleShowDetailAction}/>
-//
-//                 <Pager
-//                   current={this.state.artists.page}
-//                   total={this.state.artists.totalPage}
-//                   visiblePages={this.props.visiblePages}
-//                   titles={{
-//                     first: '第一页',
-//                     prev: '上一页',
-//                     prevSet: '...',
-//                     nextSet: '...',
-//                     next: '下一页',
-//                     last: '最后一页'
-//                   }}
-//                   onPageChanged={this.handlePageChanged}/>
-//                 {/* <CountriesFilter onItemClick={this.handleCountryClick}/> */}
-//               </div>
-//             </div>
-//         );
-//     }
-// });
-//
-// module.exports = Main;

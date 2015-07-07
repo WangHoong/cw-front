@@ -1,5 +1,5 @@
-/* global axios */
 'use strict';
+var axios = require('axios');
 var APIHelper = require('./APIHelper').APIHelper;
 
 module.exports = {

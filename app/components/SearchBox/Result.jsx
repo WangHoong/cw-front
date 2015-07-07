@@ -1,5 +1,5 @@
 'use strict';
-
+var React = require('react');
 var dbg = require('debug')('topdmc:SearchBox/Components/Result');
 var SongCard = require('./SongCard.jsx');
 var ArtistCard = require('./ArtistCard.jsx');

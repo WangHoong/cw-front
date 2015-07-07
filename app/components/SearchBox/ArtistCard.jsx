@@ -1,4 +1,5 @@
 'use strict';
+var React = require('react');
 var debug = require('debug')('topdmc:SearchBox/Component/ArtistCard');
 var classNames = require('classnames');
 

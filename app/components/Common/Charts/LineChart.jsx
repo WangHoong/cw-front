@@ -1,4 +1,4 @@
-
+var React = require('react');
 var LineChart = React.createClass({
   getDefaultProps: function() {
     return {

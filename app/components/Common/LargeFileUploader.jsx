@@ -1,3 +1,5 @@
+var React = require('react');
+var Reflux = require('reflux');
 const dbg = require('debug')('topdmc:LargeFileUploader/component');
 
 const LargeFileUploaderStore = require('app/stores/LargeFileUploaderStore');

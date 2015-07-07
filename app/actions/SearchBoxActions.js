@@ -1,6 +1,5 @@
-/* global Reflux */
 'use strict';
-
+var Reflux = require('reflux');
 var SearchAPIUtil = require('app/utils/SearchAPIUtil');
 
 var SearchBoxActions = Reflux.createActions({

@@ -1,6 +1,5 @@
-// var React = require('react');
-// var Reflux = require('reflux');
-
+var React = require('react');
+var Reflux = require('reflux');
 var AlbumList = require('../Albums/List.jsx');
 var AlbumListStore = require('../../stores/AlbumListStore');
 var AlbumActions = require('../../actions/AlbumActions');

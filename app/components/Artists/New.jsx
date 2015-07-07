@@ -1,3 +1,5 @@
+var React = require('react');
+var Reflux = require('reflux');
 var ArtistStore = require('../../stores/ArtistStore');
 var ArtistActions = require('../../actions/ArtistActions');
 var Form = require('./Form.jsx');

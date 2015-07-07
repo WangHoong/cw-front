@@ -1,5 +1,4 @@
-/* global Reflux */
-
+var Reflux = require('reflux');
 var actions = require('../actions/SearchBoxActions');
 // var dbg = require('debug')('app:SearchBoxStore');
 

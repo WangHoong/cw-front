@@ -1,4 +1,4 @@
-
+var React = require('react');
 var BarChart = React.createClass({
   componentDidMount: function() {
     var $self = echarts.init(React.findDOMNode(this.refs.renderDOMNode))

@@ -1,4 +1,5 @@
 'use strict';
+var React = require('react');
 var UpAvatar = require('../Common/UpAvatar.jsx');
 var Assist = require('../Common/Assist.jsx');
 var dbg = require('debug')('topdmc:album/Form');
@@ -7,13 +8,10 @@ var ArtistMiniCard = require('../Artists/MiniCard.jsx');
 
 var TextareaAutosize = require('../Common/TextareaAutosize.jsx');
 
-
-//var TextareaAutosize = require('../Common/TextareaAutosize/TextareaAutosize.jsx');
-
 var AddCardTips = require('../Common/AddCardTips.jsx');
 var assign = require('object-assign');
 var classNames = require('classnames');
-
+var _ = require('lodash');
 
 var Form = React.createClass({
 

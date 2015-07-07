@@ -1,3 +1,4 @@
+var React = require('react');
 var Loader = require('../Common/Loader.jsx');
 var classNames = require('classnames');
 var debug = require('debug')('topdmc:ListSearch/Result');

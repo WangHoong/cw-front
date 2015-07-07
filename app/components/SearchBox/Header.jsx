@@ -1,3 +1,4 @@
+var React = require('react');
 var dbg = require('debug')('topdmc:SearchBox/Components/Header');
 
 var SEARCH_BUTTON_STATE = {

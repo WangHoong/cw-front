@@ -1,3 +1,5 @@
+var React = require('react');
+var Reflux = require('reflux');
 var Header = require('./Header.jsx');
 var Result = require('./Result.jsx');
 

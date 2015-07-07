@@ -1,6 +1,5 @@
-/*global Reflux*/
 "use strict";
-
+var Reflux = require('reflux');
 var SearchListAPIUtils = require('../utils/ListSearchAPIUtils');
 
 var SearchListActions = Reflux.createActions({

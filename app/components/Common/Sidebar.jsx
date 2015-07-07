@@ -1,3 +1,4 @@
+var React = require('react');
 var classNames = require('classnames');
 var dbg = require('debug')('topdmc:Sidebar/component');
 
