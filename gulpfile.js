@@ -1,13 +1,14 @@
 var gulp = require('gulp');
-var browserify = require('browserify');
-var streamify = require('vinyl-source-stream');
-var watchify = require('watchify');
-var babelify = require('babelify');
 var browserSync = require('browser-sync');
 var reload = browserSync.reload;
 var $ = require('gulp-load-plugins')();
 var runSequence = require('run-sequence');
 var argv = require('minimist')(process.argv.slice(2));
+
+var browserify = require('browserify');
+var streamify = require('vinyl-source-stream');
+var watchify = require('watchify');
+var babelify = require('babelify');
 
 var DEBUG = !!argv.debug;
 
@@ -50,13 +51,13 @@ gulp.task('vendors', function(cb) {
 
 gulp.task('bundle', function(cb) {
   var bundler = browserify({
-		entries: ['node_modules/app/app.jsx'],
+    entries: ['node_modules/app/app.jsx'],
     debug: DEBUG,
     cache: {},
-		packageCache: {},
+    packageCache: {},
     fullPaths: true,
     transform: [babelify]
-	});
+  });
   VENDORS.forEach(function(name) {
     bundler.external(name);
   });
@@ -67,14 +68,17 @@ gulp.task('bundle', function(cb) {
   function rebundle() {
     var updateStart = Date.now();
     return bundler.bundle()
-      .on('error', function(err) {$.util.log('Error : ' + err.message)})
+      .on('error', function(err) {
+        $.util.log('Error : ' + err.message);
+        this.emit('end');
+      })
       .pipe(streamify('bundle.js'))
       .pipe(gulp.dest(BUILD + 'js'))
       .pipe($.notify({
-  			onLast: true,
+        onLast: true,
         title: 'bundle',
-  			message: 'Finished rebundle after ' + (Date.now() - updateStart) + 'ms'
-  		}))
+        message: 'Finished rebundle after ' + (Date.now() - updateStart) + 'ms'
+      }))
       .pipe(reload({stream: true}));
   };
   return rebundle();
@@ -92,20 +96,15 @@ gulp.task('sync', function() {
 });
 
 gulp.task('bower_libs', function() {
-  gulp.src(BOWER_COMPONENTS + 'jquery/jquery.min.js')
-    .pipe(gulp.dest(BUILD + 'js'));
-  gulp.src(BOWER_COMPONENTS + 'jquery/jquery.min.map')
-    .pipe(gulp.dest(BUILD + 'js'));
-  gulp.src(BOWER_COMPONENTS + 'peity/jquery.peity.min.js')
-    .pipe(gulp.dest(BUILD + 'js'));
-  gulp.src(BOWER_COMPONENTS + 'kefir/dist/kefir.min.js')
-    .pipe(gulp.dest(BUILD + 'js'));
-  gulp.src(BOWER_COMPONENTS + 'echarts/build/dist/echarts-all.js')
-    .pipe(gulp.dest(BUILD + 'js'));
-  gulp.src(BOWER_COMPONENTS + 'moment/min/moment.min.js')
-    .pipe(gulp.dest(BUILD + 'js'));
-  gulp.src(BOWER_COMPONENTS + 'fullcalendar/dist/fullcalendar.min.js')
-    .pipe(gulp.dest(BUILD + 'js'));
+  gulp.src([
+    BOWER_COMPONENTS + 'jquery/jquery.min.js',
+    BOWER_COMPONENTS + 'jquery/jquery.min.map',
+    BOWER_COMPONENTS + 'peity/jquery.peity.min.js',
+    BOWER_COMPONENTS + 'kefir/dist/kefir.min.js',
+    BOWER_COMPONENTS + 'echarts/build/dist/echarts-all.js',
+    BOWER_COMPONENTS + 'moment/min/moment.min.js',
+    BOWER_COMPONENTS + 'fullcalendar/dist/fullcalendar.min.js'
+  ]).pipe(gulp.dest(BUILD + 'js'));
   gulp.src(BOWER_COMPONENTS + 'fullcalendar/dist/lang/zh-cn.js')
     .pipe($.rename('fullcalendar-zh-cn.js'))
     .pipe(gulp.dest(BUILD + 'js'));
@@ -123,16 +122,18 @@ gulp.task('images', function() {
 gulp.task('styles', function() {
   return gulp.src(PUBLIC + 'less/main.less')
     .pipe($.less())
-    .pipe($.autoprefixer({browsers: AUTOPREFIXER_BROWSERS}))
+    .pipe($.autoprefixer({
+      browsers: AUTOPREFIXER_BROWSERS
+    }))
     .pipe(gulp.dest(BUILD + 'css'))
     .pipe(reload({stream: true}));
 });
 
 gulp.task('mbs', function() {
-	return gulp.src(PUBLIC + 'less/mbs/mbs.less')
-		.pipe($.less())
-		.pipe($.minifyCss({keepBreaks: false}))
-		.pipe(gulp.dest(BUILD + 'css'));
+  return gulp.src(PUBLIC + 'less/mbs/mbs.less')
+    .pipe($.less())
+    .pipe($.minifyCss({keepBreaks: false}))
+    .pipe(gulp.dest(BUILD + 'css'));
 });
 
 // Build the app
