@@ -1,5 +1,5 @@
 ###本地调试
-```sh
-node server.js
-npm run debug
-```
+##启动服务端
+`npm run server`
+##启动客户端
+`npm run debug`
