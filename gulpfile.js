@@ -129,6 +129,12 @@ gulp.task('styles', function() {
     .pipe(reload({stream: true}));
 });
 
+gulp.task('styles:minify', function() {
+  return gulp.src(BUILD + 'css/main.css')
+    .pipe($.minifyCss())
+    .pipe(gulp.dest(BUILD + 'css'));
+});
+
 gulp.task('mbs', function() {
   return gulp.src(PUBLIC + 'less/mbs/mbs.less')
     .pipe($.less())
@@ -136,9 +142,31 @@ gulp.task('mbs', function() {
     .pipe(gulp.dest(BUILD + 'css'));
 });
 
+gulp.task('mbs:minify', function() {
+  return gulp.src(BUILD + 'css/mbs.css')
+    .pipe($.minifyCss())
+    .pipe(gulp.dest(BUILD + 'css'));
+});
+
+gulp.task('bundle:minify', function() {
+  return gulp.src(BUILD + 'js/bundle.js')
+    .pipe($.uglify())
+    .pipe(gulp.dest(BUILD + 'js'));
+});
+
+gulp.task('vendor:minify', function() {
+  return gulp.src(BUILD + 'js/vendor.js')
+    .pipe($.uglify())
+    .pipe(gulp.dest(BUILD + 'js'));
+});
+
 // Build the app
-gulp.task('build', function(cb) {
-  runSequence(['vendors', 'bundle', 'bower_libs', 'images', 'styles', 'mbs'], 'sync', cb);
+gulp.task('build', function() {
+  if (DEBUG) {
+    runSequence(['vendors', 'bundle', 'bower_libs', 'images', 'styles', 'mbs'], 'sync');
+  } else {
+    runSequence(['vendors', 'bundle', 'bower_libs', 'images', 'styles', 'mbs'], ['styles:minify', 'mbs:minify', 'bundle:minify', 'vendor:minify']);
+  }
 });
 
 gulp.task('default', ['build']);
