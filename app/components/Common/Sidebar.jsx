@@ -138,10 +138,6 @@ var Sidebar = React.createClass({
           text: '图表统计',
           to: 'charts'
         }, {
-          faIconName: 'calendar',
-          text: '日程安排',
-          to: 'calendar'
-        }, {
           faIconName: 'cogs',
           text: '系统设置',
           to: 'settings'

@@ -20,8 +20,6 @@ var SearchBox = require('./components/SearchBox/Main.jsx');
 // Whoami
 var Whoami = require('app/components/Common/Whoami.jsx');
 var Main = require('./components/Main/Main.jsx');
-// Calendar
-var Calendar = require('./components/Calendar/Main.jsx');
 // LargeFileUploader
 var LargeFileUploader = require('app/components/Common/LargeFileUploader.jsx');
 var {Route, RouteHandler, DefaultRoute, NotFoundRoute}=Router;
@@ -155,10 +153,6 @@ var routes = (
       <DefaultRoute handler={Songs} />
     </Route>
     <Route name="charts" handler={Chart}/>
-    // calendar route
-    <Route name='calendar' handler={Empty}>
-      <DefaultRoute handler={Calendar} />
-    </Route>
     <Route name="settings" handler={Settings}/>
     <NotFoundRoute handler={NotFound}/>
   </Route>
