@@ -45,6 +45,6 @@ app.use(route.get('/', function*() {
   });
 }));
 
-app.listen(9000, function() {
+app.listen(process.env.PORT || 9000, function() {
   console.log('listening on port 9000');
 });
