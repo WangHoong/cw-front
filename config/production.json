@@ -1,3 +1,3 @@
 {
-  "API_PREFIX": "http://api.topdmc.com/api"
+  "API_PREFIX": "http://demo.topdmc.com:9200/api"
 }
