@@ -14,5 +14,5 @@
     "rm -rf build",
     "npm run build"
   ],
-  "run_cmd": "sudo npm run start-staging"
+  "run_cmd": "npm run start-staging"
 }

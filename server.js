@@ -20,24 +20,24 @@ app.use(logger());
 
 app.use(_static(path.join(__dirname, '/build'), {}));
 
-if (app.env === 'development') {
-  app.use(function*(next) {
-    if (_.startsWith(this.path, '/api')) {
-      var result = yield request({
-        uri: 'http://dev.api.topdmc.cn' + this.path,
-        method: this.method,
-        headers: {
-          cookie: this.request.headers.cookie
-        },
-        debug: true
-      });
-      this.status = 200;
-      this.body = result.body;
-      return;
-    }
-    yield next;
-  });
-}
+// if (app.env === 'development') {
+//   app.use(function*(next) {
+//     if (_.startsWith(this.path, '/api')) {
+//       var result = yield request({
+//         uri: 'http://dev.api.topdmc.cn' + this.path,
+//         method: this.method,
+//         headers: {
+//           cookie: this.request.headers.cookie
+//         },
+//         debug: true
+//       });
+//       this.status = 200;
+//       this.body = result.body;
+//       return;
+//     }
+//     yield next;
+//   });
+// }
 
 app.use(route.get('/', function*() {
   this.body = yield render('index', {
