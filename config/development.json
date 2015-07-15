@@ -1,3 +1,4 @@
 {
-  "API_PREFIX": "/api"
+  "API_PREFIX": "/api",
+  "PROXY_PREFIX": "http://dev.api.topdmc.cn"
 }

@@ -20,11 +20,11 @@ app.use(logger());
 
 app.use(_static(path.join(__dirname, '/build'), {}));
 
-if (app.env === 'development') {
+if (app.env != 'production') {
   app.use(function*(next) {
-    if (_.startsWith(this.path, '/api')) {
+    if (_.startsWith(this.path, '/api')|| _.startsWith(this.path, '/test')) {
       var result = yield request({
-        uri: 'http://dev.api.topdmc.cn' + this.path,
+        uri: config['PROXY_PREFIX'] + this.path,
         method: this.method,
         headers: {
           cookie: this.request.headers.cookie
