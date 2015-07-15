@@ -1,6 +1,7 @@
 var React = require('react');
 var classNames = require('classnames');
 var dbg = require('debug')('topdmc:Sidebar/component');
+var APIHelper = require('app/utils/APIHelper').APIHelper;
 
 var NavItemLink = React.createClass({
   propTypes: {
@@ -23,57 +24,40 @@ var NavItemLink = React.createClass({
   },
   getClassName: function () {
     var names = {};
-
     if (this.props.className) {
       names[this.props.className] = true;
     }
-
     if (this.context.router.isActive(this.props.to, this.props.params, this.props.query)) {
       names[this.props.activeClassName] = true;
     }
-
     return classNames(names);
   },
 
   handleRouteTo: function (event) {
     var allowTransition = true;
     var clickResult;
-
     if (this.props.onClick) {
       clickResult = this.props.onClick(event);
     }
-
     function isLeftClickEvent(event) {
       return event.button === 0;
     }
-
     function isModifiedEvent(event) {
       return !!(event.metaKey || event.altKey || event.ctrlKey || event.shiftKey);
     }
-
     if (isModifiedEvent(event) || !isLeftClickEvent(event)) {
       return;
     }
-
     if (clickResult === false || event.defaultPrevented === true) {
       allowTransition = false;
     }
-
     event.preventDefault();
-
     if (allowTransition) {
       this.context.router.transitionTo(this.props.to, this.props.params, this.props.query);
     }
   },
-  render: function () {
-    var {
-      to,
-      params,
-      query,
-      active,
-      icon,
-      text
-    } = this.props;
+  render: function() {
+    var {to, params, query, active, icon, text} = this.props;
     if (this.props.active === undefined) {
       active = this.context.router.isActive(to, params, query);
     }
@@ -108,11 +92,17 @@ var ToggleMenuButton = React.createClass({
       </a>
     );
   }
-
 });
 
 var Sidebar = React.createClass({
-
+  getInitialState: function() {
+    return {
+      loginUserInfo: {
+        avatar: 'https://s3.cn-north-1.amazonaws.com.cn/dmc-img/avatar/40039e9c-bcdf-4dbc-8827-fa8082eda648.jpg',
+        name: '---'
+      }
+    };
+  },
   getDefaultProps: function () {
     return {
       logoSrc: 'images/logo2.png',
@@ -146,6 +136,24 @@ var Sidebar = React.createClass({
     };
   },
 
+  loadLoginUserInfoFromServe: function() {
+    $.ajax({
+      url: APIHelper.getPrefix() + '/v1/users/login',
+      dataType: 'json',
+      success: function(res) {
+        if (res.status === 200) {
+          this.state.loginUserInfo.avatar = res.data.avatar;
+          this.state.loginUserInfo.name = res.data.name;
+          this.setState(this.state);
+        }
+      }.bind(this)
+    });
+  },
+
+  componentDidMount: function() {
+    this.loadLoginUserInfoFromServe();
+  },
+
   render: function () {
     var navItems = this.props.navItems.map(function (item, i) {
       var className = classNames('fa', 'fa-' + item.faIconName);
@@ -154,8 +162,8 @@ var Sidebar = React.createClass({
         <NavItemLink icon={className} key={i} text={text} to={item.to}/>
       );
     });
-    var imgUrl = {
-      backgroundImage: 'url(https://s3.cn-north-1.amazonaws.com.cn/dmc-img/avatar/40039e9c-bcdf-4dbc-8827-fa8082eda648.jpg)'
+    var avatarUrl = {
+      backgroundImage: 'url(' + this.state.loginUserInfo.avatar + ')'
     };
     return (
       <aside className='sidebar'>
@@ -169,8 +177,8 @@ var Sidebar = React.createClass({
         </div>
         <div className='sidebar-assist'>
           <div className='whoami-wrap'>
-            <div className='whoami-img' style={imgUrl}/>
-            <p className="whoami-username ellipsis">xxx</p>
+            <div className='whoami-img' style={avatarUrl}/>
+            <p className="whoami-username ellipsis">{this.state.loginUserInfo.name}</p>
           </div>
           <ToggleMenuButton handleToggleMenuClick={this.props.handleToggleMenuClick} toggleMenuClass={this.props.toggleMenuClass}/>
         </div>

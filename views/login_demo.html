@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta charset="UTF-8">
+<title>TOPDMC</title>
+<link rel="shortcut icon" type="image/x-icon" href="/build/images/favicon.ico" />
+<link rel="stylesheet" type="text/css" href="/css/mbs.css" />
+<link rel="stylesheet" type="text/css" href="/css/font-awesome.min.css" />
+<link rel="stylesheet" type="text/css" href="/css/main.css" />
+<style type="text/css">
+html, body{
+  height: 100%;
+  overflow: hidden;
+}
+.btn-center {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.loading {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: none;
+}
+.loading > div {
+  background-color: #5bc0de;
+}
+.btn {
+  font-weight: bold;
+}
+</style>
+</head>
+<body>
+<section class="btn-center">
+  <a href="/" class="btn btn-info mr10" id="adminBtn">以管理员身份演示</a>
+  <a href="/" class="btn btn-info mr10" id="eqBtn">以权益人身份演示</a>
+  <a href="/" class="btn btn-info" id="cpBtn">以CP身份演示</a>
+</section>
+<div class='loading'>
+  <div class='bounce1'></div>
+  <div class='bounce2'></div>
+  <div class='bounce3'></div>
+</div>
+<script type="text/javascript" src="/js/jquery.min.js"></script>
+<script type="text/javascript">
+window.DMC_OPT = {
+  API_PREFIX: '{{API_PREFIX}}'
+};
+(function($, window) {
+  var DEMO_USER_ID = {
+    admin: 8,
+    eq: 9,
+    cp: 10
+  };
+  var TEST_PREFIX = window.DMC_OPT.API_PREFIX.replace('api', '');
+  function login(evt) {
+    evt.preventDefault();
+    $.ajax({
+      url: TEST_PREFIX + 'test/users/' + evt.data.id,
+      dataType: 'json',
+      beforeSend: function() {
+        $('.loading').css('display', 'block');
+      },
+      success: function(res) {
+        if (res.status === 200) {
+          window.location.href = '/';
+        }
+      }
+    });
+  };
+  $('#adminBtn').click({id: DEMO_USER_ID.admin}, login);
+  $('#eqBtn').click({id: DEMO_USER_ID.eq}, login);
+  $('#cpBtn').click({id: DEMO_USER_ID.cp}, login);
+})(jQuery, window);
+</script>
+</body>
+</html>

@@ -39,6 +39,12 @@ if (app.env === 'development') {
   });
 }
 
+app.use(route.get('/login_demo', function *() {
+  this.body = yield render('login_demo', {
+    API_PREFIX: config['API_PREFIX']
+  });
+}));
+
 app.use(route.get('/', function*() {
   this.body = yield render('index', {
     API_PREFIX: config['API_PREFIX']
