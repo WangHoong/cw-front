@@ -1,4 +1,4 @@
 {
-  "API_PREFIX": "http://demo.topdmc.com:9200/api",
+  "API_PREFIX": "/api",
   "PROXY_PREFIX": "http://demo.topdmc.com:9200"
 }

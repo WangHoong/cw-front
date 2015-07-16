@@ -7,6 +7,7 @@ var config = require('config');
 var logger = require('koa-logger');
 var _ = require('lodash');
 var request = require('co-request');
+var proxy=require('koa-proxy');
 
 var app = koa();
 
@@ -21,29 +22,16 @@ app.use(logger());
 app.use(_static(path.join(__dirname, '/build'), {}));
 
 if (app.env != 'production') {
-  app.use(function*(next) {
-    if (_.startsWith(this.path, '/api')|| _.startsWith(this.path, '/test')) {
-      var result = yield request({
-        uri: config['PROXY_PREFIX'] + this.path,
-        method: this.method,
-        headers: {
-          cookie: this.request.headers.cookie
-        },
-        debug: true
-      });
-      this.status = 200;
-      this.body = result.body;
-      return;
-    }
-    yield next;
-  });
+  app.use(proxy({
+    host:  config['PROXY_PREFIX'],
+    match: /(^\/test\/|^\/api\/)/
+  }));
+  app.use(route.get('/login_demo', function *() {
+    this.body = yield render('login_demo', {
+      API_PREFIX: config['API_PREFIX']
+    });
+  }));
 }
-
-app.use(route.get('/login_demo', function *() {
-  this.body = yield render('login_demo', {
-    API_PREFIX: config['API_PREFIX']
-  });
-}));
 
 app.use(route.get('/', function*() {
   this.body = yield render('index', {

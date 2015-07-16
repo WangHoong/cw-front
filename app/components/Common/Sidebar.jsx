@@ -136,22 +136,16 @@ var Sidebar = React.createClass({
     };
   },
 
-  loadLoginUserInfoFromServe: function() {
-    $.ajax({
-      url: APIHelper.getPrefix() + '/v1/users/login',
-      dataType: 'json',
-      success: function(res) {
-        if (res.status === 200) {
-          this.state.loginUserInfo.avatar = res.data.avatar;
-          this.state.loginUserInfo.name = res.data.name;
-          this.setState(this.state);
-        }
-      }.bind(this)
-    });
+  loadLoginUserInfoFromStorage: function() {
+    if (window.sessionStorage) {
+      var demoUserInfo = sessionStorage.getItem('demoUserInfo');
+      this.state.loginUserInfo = JSON.parse(demoUserInfo);
+      this.setState(this.state);
+    }
   },
 
   componentDidMount: function() {
-    this.loadLoginUserInfoFromServe();
+    this.loadLoginUserInfoFromStorage();
   },
 
   render: function () {
