@@ -139,8 +139,10 @@ var Sidebar = React.createClass({
   loadLoginUserInfoFromStorage: function() {
     if (window.sessionStorage) {
       var demoUserInfo = sessionStorage.getItem('demoUserInfo');
-      this.state.loginUserInfo = JSON.parse(demoUserInfo);
-      this.setState(this.state);
+      if (demoUserInfo) {
+        this.state.loginUserInfo = JSON.parse(demoUserInfo);
+        this.setState(this.state);
+      }
     }
   },
 
