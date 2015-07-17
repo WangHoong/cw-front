@@ -13,7 +13,7 @@ var ArtistItemWrapper = React.createClass({
       _artist.classname = "tsr-rank-other";
     }
     // set default artist avatar
-    var imgUrl = _artist.photo || 'images/loading.gif';
+    var imgUrl = _artist.artist_photo || 'images/loading.gif';
     var _style={ backgroundImage:'url(' + imgUrl + ')' }
     // set _artist.link
     _artist.link = `#/artists/${_artist.artist_id}`

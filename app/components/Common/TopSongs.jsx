@@ -18,8 +18,8 @@ var TopTrackItemWrapper = React.createClass({
     }
     _track.link = `#/songs/${_track.track_id}`
     var name='暂无';
-    if(_track.artists_name){
-      name = _track.artists_name;
+    if(_track.artists[0].name){
+      name = _track.artists[0].name;
     }
 
     return (
