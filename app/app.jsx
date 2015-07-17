@@ -15,6 +15,8 @@ var AlbumNew = require('./components/Albums/New.jsx');
 var Songs = require('./components/Songs/Main.jsx');
 var SongNew = require('./components/Songs/New.jsx');
 var SongShow=require('./components/Songs/Show.jsx');
+// store
+var Store = require('./components/Store/Main.jsx');
 // searchBox
 var SearchBox = require('./components/SearchBox/Main.jsx');
 // Whoami
@@ -151,6 +153,10 @@ var routes = (
       <Route name="new_song" path="new" handler={SongNew} />
       <Route name="show_edit_song" path=":id" handler={SongShow} />
       <DefaultRoute handler={Songs} />
+    </Route>
+    // store route
+    <Route name='store' handler={Empty}>
+      <DefaultRoute handler={Store} />
     </Route>
     <Route name="charts" handler={Chart}/>
     <Route name="settings" handler={Settings}/>
