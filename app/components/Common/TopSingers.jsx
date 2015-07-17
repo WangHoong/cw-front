@@ -64,7 +64,7 @@ var TopSingers = React.createClass({
         </p>
         <div className="tsr-body">
           {this.state.topsinger.data.data.data.map(function(artist,i){
-            return <ArtistItemWrapper data={artist} key={artist.id} rank={i}/>
+            return <ArtistItemWrapper data={artist} key={artist.artist_id} rank={i}/>
           })}
         </div>
       </div>

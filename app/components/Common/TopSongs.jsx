@@ -70,7 +70,7 @@ var TopSongs = React.createClass({
         <p className="tps-title"><b>歌曲TOP10</b></p>
         <div className="tps-body">
           { this.state.topsong.data.data.data.map(function(track,i){
-            return <TopTrackItemWrapper data={track} key={track.id} maxNum={maxNum} rank={i}/>
+            return <TopTrackItemWrapper data={track} key={track.track_id} maxNum={maxNum} rank={i}/>
           }) }
         </div>
       </div>
