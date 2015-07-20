@@ -1,6 +1,7 @@
 var React = require('react');
 var ListSearch = require('../Common/ListSearch.jsx');
 var Pager = require('../Common/Pager.jsx');
+var List = require('./List.jsx');
 
 var Main = React.createClass({
 
