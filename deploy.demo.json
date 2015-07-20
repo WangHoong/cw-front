@@ -12,7 +12,8 @@
     "npm install",
     "node_modules/bower/bin/bower install",
     "rm -rf build",
-    "npm run build"
+    "npm run build",
+    "npm run start-demo || true"
   ],
   "run_cmd": "npm run start-demo"
 }
