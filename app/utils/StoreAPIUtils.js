@@ -9,7 +9,8 @@ module.exports = {
    */
   find: function(params) {
     return axios({
-      url: APIHelper.getPrefix() + '/v1/albums?q='+searchq,
+      method: 'GET',
+      url: 'http://dev.api.topdmc.cn/store/items',
       responseType: 'json',
       params: params,
       withCredentials: true

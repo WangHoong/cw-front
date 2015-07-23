@@ -42,8 +42,8 @@
   }
 }
 .store-list{
-  position: relative;
-  top:100px;
+  padding-top: 100px;
+
   .store-cardlist{
     position: relative;
     float: left;
@@ -61,6 +61,9 @@
       overflow:hidden;
       border: 1px solid #ffffff;
       .store-name{
+        white-space:nowrap;
+        overflow:hidden;
+        text-overflow:ellipsis;
         margin-top: 5px;
         font-size: 18px;
         font-weight: 700;

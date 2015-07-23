@@ -13,5 +13,16 @@ module.exports = Reflux.createStore({
       data: {},
       loaded: false
     };
+  },
+
+
+  onFindCompleted: function(res){
+
+    this.store.data=res.data.data;
+    this.store.loaded=true;
+    this.trigger(this.store);
+  },
+  getInitialState: function () {
+    return this.store;
   }
 });
