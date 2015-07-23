@@ -41,7 +41,7 @@ var ListSearch = React.createClass({
         <div className='s-sb-header'>
           <input
             type='text'
-            className='form-control'
+            className='form-control s-sb-im'
             placeholder={this.props.placeholder}
             onChange={this.handleChange}
             onKeyDown={this.handleKeyDown} />
