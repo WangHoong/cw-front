@@ -22,32 +22,33 @@ var Main = React.createClass({
       visiblePages: 5
     };
   },
-  handleSearch: function () {
+  handleSearch: function (pageIndex) {
   var q = this.refs.searchBar.getValue();
-  var page = 1;
+  var page = pageIndex+1;
   var id = this.context.router.getCurrentParams().id;
   this.context.router.transitionTo('store', {
     id: id
   }, {});
   StoreActions.find({
-    size:10,
+    size:20,
     page: page
   }, q);
 },
-onClick: function(){
+onClick: function(pageIndex){
   var q = this.refs.searchBar.getValue();
-  var page = 1;
+  var page = pageIndex+1;
   var id = this.context.router.getCurrentParams().id;
   this.context.router.transitionTo('store', {
     id: id
   }, {});
   StoreActions.find({
-    size:10,
+    size:20,
     page: page
   }, q);
 
 },
   handlePageChanged: function (pageIndex) {
+    var q = this.refs.searchBar.getValue();
     var params = this.context.router.getCurrentQuery();
     params.page = pageIndex + 1;
     params.size = this.props.size;
@@ -57,7 +58,7 @@ onClick: function(){
     StoreActions.find({
       size: this.props.size,
       page: pageIndex + 1
-    });
+    },q);
   },
 
   render: function() {
