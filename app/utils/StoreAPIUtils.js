@@ -7,10 +7,15 @@ module.exports = {
    * @param  {Object} params {page: 1, size: 5}
    * @returns {axios.Promise}
    */
-  find: function(params) {
+  find: function(params,q) {
+    var searchq = '';
+    if(q){
+      searchq = q;
+    }
+
     return axios({
       method: 'GET',
-      url: 'http://dev.api.topdmc.cn/store/items',
+      url: 'http://dev.api.topdmc.cn/store/items?q='+searchq,
       responseType: 'json',
       params: params,
       withCredentials: true

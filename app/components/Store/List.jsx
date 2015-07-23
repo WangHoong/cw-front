@@ -14,6 +14,14 @@ var List = React.createClass({
     if(record.artists[0]&&record.artists[0]['name']){
       name = record.artists[0]['name'];
     }
+    var lyricist = '未知';
+    if(record.lyricist){
+      lyricist = record.lyricist;
+    }
+    var composer = '未知';
+    if(record.composer){
+      composer = record.composer;
+    }
     // if(record.artist)
     //   record.artist.map(function(item,i){
     //     console.log(item.name);
@@ -30,6 +38,8 @@ var List = React.createClass({
             <p className='store-zt'><span className='store-sq'>已独家</span></p>
             <p className='store-name'>{record.name}</p>
             <p className='store-artist'><span>艺人：</span><span>{name}</span></p>
+            <p className='store-yy'><span>作曲：</span>{composer}</p>
+            <p className='store-yy'><span>作词：</span>{lyricist}</p>
             <p className='store-record'><span>所属唱片公司：</span>索尼音乐</p>
             <p className='store-yy'><span>授权公司：</span>QQ音乐</p>
             <p className='store-record'><span>版权有效期：</span>2015.3~2020.3</p>

@@ -22,6 +22,31 @@ var Main = React.createClass({
       visiblePages: 5
     };
   },
+  handleSearch: function () {
+  var q = this.refs.searchBar.getValue();
+  var page = 1;
+  var id = this.context.router.getCurrentParams().id;
+  this.context.router.transitionTo('store', {
+    id: id
+  }, {});
+  StoreActions.find({
+    size:10,
+    page: page
+  }, q);
+},
+onClick: function(){
+  var q = this.refs.searchBar.getValue();
+  var page = 1;
+  var id = this.context.router.getCurrentParams().id;
+  this.context.router.transitionTo('store', {
+    id: id
+  }, {});
+  StoreActions.find({
+    size:10,
+    page: page
+  }, q);
+
+},
   handlePageChanged: function (pageIndex) {
     var params = this.context.router.getCurrentQuery();
     params.page = pageIndex + 1;
@@ -40,7 +65,7 @@ var Main = React.createClass({
     return (
 
       <div>
-        <ListSearch handleSearch={this.handleSearch} placeholder='歌手/专辑/歌曲' ref='searchBar'/>
+        <ListSearch handleSearch={this.handleSearch} onClick={this.onClick} placeholder='歌手/专辑/歌曲' ref='searchBar'/>
         <ul className='store-list row'>
             {this.state.store.data.items.map(function(store,i){
               return <List data={store} key={store.id} rank={i}/>
