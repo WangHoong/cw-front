@@ -4,6 +4,14 @@ var React = require('react');
 var Reflux = require('reflux');
 
 var List = React.createClass({
+  contextTypes: {
+    router: React.PropTypes.func
+  },
+  onClick: function(e){
+    var id = e.target.getAttribute('data-id');
+    console.log(id);
+    this.context.router.transitionTo('show_edit_song', {id: id}, {});
+  },
   render: function(){
     var record = this.props.data;
     var imgurl ='../images/load-fail.jpg';
@@ -35,8 +43,8 @@ var List = React.createClass({
 
         <li className='store-cardlist col-sm-6'>
           <div className='store-card'>
-            <div className='store-img'>
-              <img src={imgurl}></img>
+            <div className='store-img' >
+              <a onClick={this.onClick} ><img src={imgurl} data-id={record.id}></img></a>
             </div>
             <p className='store-zt'><span className='store-sq'>{state}</span></p>
             <p className='store-name'>{record.name}</p>
