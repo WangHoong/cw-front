@@ -9,6 +9,8 @@ var AddCardTips = require('../Common/AddCardTips.jsx');
 var assign = require('object-assign');
 var classNames = require('classnames');
 var _ = require('lodash');
+var APIHelper = require('app/utils/APIHelper').APIHelper;
+var axios = require('axios');
 
 var TextareaAutosize = require('../Common/TextareaAutosize.jsx');
 
@@ -20,12 +22,21 @@ var Form = React.createClass({
     var defaultState = assign({
       isDropArtistActive: false,
       isDropAlbumActive: false,
-      SearchBoxType: 'Artist'
+      SearchBoxType: 'Artist',
+      clients: null
     }, this.props.data);
     return defaultState;
   },
 
   componentDidMount: function() {
+    var clientsUrl = APIHelper.getPrefix() + '/v1/clients/';
+    var self = this;
+    axios.get(clientsUrl).then(function(res) {
+      if (self.isMounted()) {
+        self.state.clients = res.data.data;
+        self.setState(self.state);
+      }
+    });
     this.isDropArtistActiveState = false;
     this.isDropAlbumActiveState = false;
   },
@@ -107,6 +118,7 @@ var Form = React.createClass({
     delete this.state.isDropArtistActive;
     delete this.state.isDropAlbumActive;
     delete this.state.SearchBoxType;
+    delete this.state.clients;
     this.state.lrc = this.state.lrc.split('\n').join('\\n');
     return this.state;
   },
@@ -139,16 +151,6 @@ var Form = React.createClass({
 
   handleCopyrightChangeF: function(evt) {
     this.state.copyRight[evt.target.name] = evt.target.value;
-    this.setState(this.state);
-  },
-
-  handleCopyrightChangeCompanyName: function(evt) {
-    this.state.copyRight.company.name = evt.target.value;
-    this.setState(this.state);
-  },
-
-  handleCopyrightChangeClientName: function(evt) {
-    this.state.copyRight.client.name = evt.target.value;
     this.setState(this.state);
   },
 
@@ -230,32 +232,30 @@ var Form = React.createClass({
     }
   },
 
-  renderCopyright: function() {
-    if (!this.state.copyRight) {
-      return '';
+  handleClientsChange: function(evt) {
+    this.state.copyRight.client_id = evt.target.value;
+    this.setState(this.state);
+  },
+
+  renderClients: function() {
+    if (this.state.clients === null) {
+      return (
+        <select className='form-control'>
+          <option>暂无信息</option>
+        </select>
+      );
     }
-    var copyright = this.state.copyRight;
+    var client_id = this.state.copyRight.client_id;
+    var items = [];
+    this.state.clients.items.map(function(item) {
+      var selected = (item.id == client_id) ? true : false;
+      items.push(<option key={item.id} value={item.id} selected={selected}>{item.name}</option>);
+    });
     return (
-      <div className='card'>
-        <div className='row'>
-          <div className='col-sm-3'>
-            <p>版权方：</p>
-            <div><input type='text' value={copyright.company['name']} onChange={this.handleCopyrightChangeCompanyName} /></div>
-          </div>
-          <div className='col-sm-3'>
-            <p>版权有效期：</p>
-            <div><input type='date' value={moment(copyright.expired).format('YYYY-MM-DD')} name='expired' onChange={this.handleCopyrightChangeF} /></div>
-          </div>
-          <div className='col-sm-3'>
-            <p>独家授权：</p>
-            <div><input type='text' value={copyright.client['name']} onChange={this.handleCopyrightChangeClientName} /></div>
-          </div>
-          <div className='col-sm-3'>
-            <p>授权有效期：</p>
-            <div><input type='date' value={moment(copyright.client_expired).format('YYYY-MM-DD')} name='client_expired' onChange={this.handleCopyrightChangeF} /></div>
-          </div>
-        </div>
-      </div>
+      <select className='form-control' onChange={this.handleClientsChange}>
+        <option>——请选择——</option>
+        {items}
+      </select>
     );
   },
 
@@ -279,7 +279,25 @@ var Form = React.createClass({
       <div className='show-wrap'>
         <div className='edit-wrap has-assist-box'>
 
-          {this.renderCopyright()}
+          <div className='card'>
+            <div className='row'>
+              <div className='col-sm-3'>
+                <p>独家授权：</p>
+                {this.renderClients()}
+              </div>
+              <div className='col-sm-3'>
+                <p>授权有效期：</p>
+                <div>
+                  <input
+                    className='form-control'
+                    type='date'
+                    value={this.state.copyRight.client_expired && moment(this.state.copyRight.client_expired).format('YYYY-MM-DD') || ''}
+                    name='client_expired'
+                    onChange={this.handleCopyrightChangeF} />
+                </div>
+              </div>
+            </div>
+          </div>
 
           <div className='edit-form card'>
             <div className='form-group'>

@@ -9,7 +9,6 @@ var List = React.createClass({
   },
   onClick: function(e){
     var id = e.target.getAttribute('data-id');
-    console.log(id);
     this.context.router.transitionTo('show_edit_song', {id: id}, {});
   },
   render: function(){

@@ -52,10 +52,10 @@ var Detail = React.createClass({
     var copyright = data.copyRight;
     return (
       <div className='mt10'>
-        <p>版权方：{copyright.company['name']}</p>
-        <p>版权有效期：{moment(copyright.expired).format('YYYY年MM月DD日')}</p>
-        <p>独家授权：{copyright.client['name']}</p>
-        <p>授权有效期：{moment(copyright.client_expired).format('YYYY年MM月DD日')}</p>
+        <p>版权方：{copyright.company && copyright.company['name'] || '暂无'}</p>
+        <p>版权有效期：{copyright.expired && moment(copyright.expired).format('YYYY年MM月DD日') || '暂无'}</p>
+        <p>独家授权：{copyright.client && copyright.client['name'] || '暂无'}</p>
+        <p>授权有效期：{copyright.client_expired && moment(copyright.client_expired).format('YYYY年MM月DD日') || '暂无'}</p>
       </div>
     );
   },

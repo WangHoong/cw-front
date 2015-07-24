@@ -14,7 +14,6 @@ var Main = React.createClass({
 
   componentDidMount: function () {
     StoreActions.find();
-    console.log(this.state.store);
   },
   getDefaultProps: function () {
     return {
