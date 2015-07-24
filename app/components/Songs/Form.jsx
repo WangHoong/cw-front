@@ -137,6 +137,21 @@ var Form = React.createClass({
     this.setState(this.state);
   },
 
+  handleCopyrightChangeF: function(evt) {
+    this.state.copyRight[evt.target.name] = evt.target.value;
+    this.setState(this.state);
+  },
+
+  handleCopyrightChangeCompanyName: function(evt) {
+    this.state.copyRight.company.name = evt.target.value;
+    this.setState(this.state);
+  },
+
+  handleCopyrightChangeClientName: function(evt) {
+    this.state.copyRight.client.name = evt.target.value;
+    this.setState(this.state);
+  },
+
   handleRemoveArtist: function(evt, data) {
     var id = data.id;
     if (!id) return;
@@ -215,6 +230,35 @@ var Form = React.createClass({
     }
   },
 
+  renderCopyright: function() {
+    if (!this.state.copyRight) {
+      return '';
+    }
+    var copyright = this.state.copyRight;
+    return (
+      <div className='card'>
+        <div className='row'>
+          <div className='col-sm-3'>
+            <p>版权方：</p>
+            <div><input type='text' value={copyright.company['name']} onChange={this.handleCopyrightChangeCompanyName} /></div>
+          </div>
+          <div className='col-sm-3'>
+            <p>版权有效期：</p>
+            <div><input type='date' value={moment(copyright.expired).format('YYYY-MM-DD')} name='expired' onChange={this.handleCopyrightChangeF} /></div>
+          </div>
+          <div className='col-sm-3'>
+            <p>独家授权：</p>
+            <div><input type='text' value={copyright.client['name']} onChange={this.handleCopyrightChangeClientName} /></div>
+          </div>
+          <div className='col-sm-3'>
+            <p>授权有效期：</p>
+            <div><input type='date' value={moment(copyright.client_expired).format('YYYY-MM-DD')} name='client_expired' onChange={this.handleCopyrightChangeF} /></div>
+          </div>
+        </div>
+      </div>
+    );
+  },
+
   render: function() {
     var data = this.state;
     var SearchBoxType = this.state.SearchBoxType;
@@ -234,6 +278,8 @@ var Form = React.createClass({
     return (
       <div className='show-wrap'>
         <div className='edit-wrap has-assist-box'>
+
+          {this.renderCopyright()}
 
           <div className='edit-form card'>
             <div className='form-group'>
