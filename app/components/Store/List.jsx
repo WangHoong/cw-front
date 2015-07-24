@@ -6,7 +6,7 @@ var Reflux = require('reflux');
 var List = React.createClass({
   render: function(){
     var record = this.props.data;
-    var imgurl ='../../../public/images/load-fail.jpg';
+    var imgurl ='../images/load-fail.jpg';
     if(record.album&&record.album.photo){
       imgurl=record.album.photo;
     }
