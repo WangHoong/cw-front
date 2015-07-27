@@ -34,7 +34,6 @@ var ListSearch = React.createClass({
     }
   },
 
-
   render: function() {
     return (
       <div className='s-sb'>
@@ -45,7 +44,7 @@ var ListSearch = React.createClass({
             placeholder={this.props.placeholder}
             onChange={this.handleChange}
             onKeyDown={this.handleKeyDown} />
-          <a onClick={this.props.onClick}><div className="s-sb-button"><i className='feed-icon fa fa-search'></i></div></a>
+          <a onClick={this.props.handleSearch}><div className="s-sb-button"><i className='feed-icon fa fa-search'></i></div></a>
         </div>
       </div>
     );

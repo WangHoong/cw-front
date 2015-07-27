@@ -7,15 +7,24 @@ module.exports = {
    * @param  {Object} params {page: 1, size: 5}
    * @returns {axios.Promise}
    */
-  find: function(params,q) {
-    var searchq = '';
-    if(q){
-      searchq = q;
-    }
-
+  // find: function(params,q) {
+  //   var searchq = '';
+  //   if(q){
+  //     searchq = q;
+  //   }
+  //
+  //   return axios({
+  //     method: 'GET',
+  //     url: 'http://dev.api.topdmc.cn/store/items?q='+searchq,
+  //     responseType: 'json',
+  //     params: params,
+  //     withCredentials: true
+  //   });
+  // }
+  find: function(params) {
     return axios({
       method: 'GET',
-      url: 'http://dev.api.topdmc.cn/store/items?q='+searchq,
+      url: 'http://dev.api.topdmc.cn/store/items',
       responseType: 'json',
       params: params,
       withCredentials: true

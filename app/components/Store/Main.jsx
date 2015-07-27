@@ -3,11 +3,14 @@ var Reflux = require('reflux');
 var List = require('./List.jsx');
 var ListSearch = require('./Search.jsx');
 var Pager = require('../common/Pager.jsx');
-var StoreStore = require('../../stores/StoreStore')
-var StoreActions = require('../../actions/StoreActions')
+var StoreStore = require('../../stores/StoreStore');
+var StoreActions = require('../../actions/StoreActions');
+
+var Loader = require('../Common/Loader.jsx');
 var Main = React.createClass({
 
   mixins: [Reflux.connect(StoreStore, 'store')],
+
   contextTypes: {
     router: React.PropTypes.func
   },
@@ -15,65 +18,50 @@ var Main = React.createClass({
   componentDidMount: function () {
     StoreActions.find();
   },
+
   getDefaultProps: function () {
     return {
       size: 20,
       visiblePages: 5
     };
   },
-  handleSearch: function (pageIndex) {
-  var q = this.refs.searchBar.getValue();
-  var page = pageIndex+1;
-  var id = this.context.router.getCurrentParams().id;
-  this.context.router.transitionTo('store', {
-    id: id
-  }, {});
-  StoreActions.find({
-    size:20,
-    page: page
-  }, q);
-},
-onClick: function(pageIndex){
-  var q = this.refs.searchBar.getValue();
-  var page = pageIndex+1;
-  var id = this.context.router.getCurrentParams().id;
-  this.context.router.transitionTo('store', {
-    id: id
-  }, {});
-  StoreActions.find({
-    size:20,
-    page: page
-  }, q);
 
-},
-  handlePageChanged: function (pageIndex) {
-    var q = this.refs.searchBar.getValue();
+  handleSearch: function() {
+    var params = {
+      q: this.refs.searchBar.getValue(),
+      page: 1,
+      size: this.props.size
+    };
+    this.context.router.transitionTo('store', {}, params);
+    StoreActions.find(params);
+  },
+
+  handlePageChanged: function(pageIndex) {
     var params = this.context.router.getCurrentQuery();
     params.page = pageIndex + 1;
-    params.size = this.props.size;
     this.context.router.transitionTo('store', {}, params);
 
+    StoreActions.find(params);
+  },
 
-    StoreActions.find({
-      size: this.props.size,
-      page: pageIndex + 1
-    },q);
+  renderResult: function() {
+    if (!this.state.store.loaded) {
+      return <Loader />;
+    }
+    var __items = this.state.store.data.items.map(function(store, i) {
+      return <List data={store} key={store.id} rank={i} />
+    });
+    return <ul className='store-list row'>{__items}</ul>;
   },
 
   render: function() {
-    if(this.state.store.loaded){
     return (
-
       <div>
-        <ListSearch handleSearch={this.handleSearch} onClick={this.onClick} placeholder='歌手/专辑/歌曲' ref='searchBar'/>
-        <ul className='store-list row'>
-            {this.state.store.data.items.map(function(store,i){
-              return <List data={store} key={store.id} rank={i}/>
-            })}
-        </ul>
+        <ListSearch handleSearch={this.handleSearch} placeholder='歌手/专辑/歌曲' ref='searchBar'/>
+        {this.renderResult()}
         <Pager
-          current={this.state.store.data.page}
-          total={this.state.store.data.totalPage}
+          current={this.state.store.data.page || 0}
+          total={this.state.store.data.totalPage || 0}
           visiblePages={this.props.visiblePages}
           titles={{
             first: '第一页',
@@ -83,26 +71,11 @@ onClick: function(pageIndex){
             next: '下一页',
             last: '最后一页'
           }}
-          onPageChanged={this.handlePageChanged}/>
-
+          onPageChanged={this.handlePageChanged} />
       </div>
-
-
-      );
-    }else {
-      return(
-        <div>
-          <ListSearch handleSearch={this.handleSearch} placeholder='歌手/专辑/歌曲' ref='searchBar'/>
-        </div>
-      );
-    }
+    );
   }
 
 });
 
 module.exports = Main;
-// <div >
-//   {this.state.store.data.map(function(store,i){
-//     return <List data={store} key={store.id} rank={i}/>
-//   })}
-// </div>

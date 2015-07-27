@@ -10,18 +10,27 @@ module.exports = Reflux.createStore({
 
   init: function () {
     this.store = {
-      data: {},
+      data: {
+        items: []
+      },
       loaded: false
     };
   },
 
-
-  onFindCompleted: function(res){
-
-    this.store.data=res.data.data;
-    this.store.loaded=true;
+  onFind: function() {
+    this.store.data = {
+      items: []
+    };
+    this.store.loaded = true;
     this.trigger(this.store);
   },
+
+  onFindCompleted: function(res){
+    this.store.data = res.data.data;
+    this.store.loaded = true;
+    this.trigger(this.store);
+  },
+
   getInitialState: function () {
     return this.store;
   }
