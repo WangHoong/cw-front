@@ -36,7 +36,8 @@ if (app.env != 'production') {
 
 app.use(route.get('/', function*() {
     this.body = yield render('index', {
-        API_PREFIX: config['API_PREFIX']
+        API_PREFIX: config['API_PREFIX'],
+        LOGIN_URL: config['LOGIN_URL']
     });
 }));
 
