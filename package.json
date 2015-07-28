@@ -4,8 +4,7 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "server": "NODE_ENV=development node server.js",
-    "debug": "gulp --debug",
+    "debug": "gulp serve --debug",
     "start-staging": "NODE_ENV=production PORT=9000 pm2 start server.js --name cms_staging",
     "start-demo": "NODE_ENV=demo PORT=9000 pm2 start server.js --name cms_demo",
     "build": "gulp default"
