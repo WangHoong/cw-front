@@ -28,6 +28,8 @@ var {Route, RouteHandler, DefaultRoute, NotFoundRoute}=Router;
 var classNames = require('classnames');
 
 var Loader = require('app/components/Common/Loader.jsx');
+var Remind = require('app/components/Common/Remind.jsx');
+
 
 /**
  * axios
@@ -145,6 +147,12 @@ var StartPage = React.createClass({
         });
     },
     render() {
+        if(navigator.userAgent.indexOf("Chrome")==-1){
+          return(
+            <Remind />
+          );
+        }
+
         if (this.state.loaded) {
             return (
                 <RouteHandler/>
