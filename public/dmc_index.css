@@ -806,7 +806,8 @@ z-index: 999;
 }
 .post-body > .post-image {
 	background-repeat: no-repeat;
-	background-size: 100% 100%;
+	background-size: contain;
+	background-position: center;
 	-webkit-flex: 1;
 	flex: 1;
 	margin: 5px 10px 0;
