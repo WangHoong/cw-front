@@ -2,7 +2,7 @@ var React = require('react');
 var Reflux = require('reflux');
 var List = require('./List.jsx');
 var ListSearch = require('./Search.jsx');
-var Pager = require('../common/Pager.jsx');
+var Pager = require('../Common/Pager.jsx');
 var StoreStore = require('../../stores/StoreStore');
 var StoreActions = require('../../actions/StoreActions');
 
