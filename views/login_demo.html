@@ -17,6 +17,26 @@ html, body{
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-flow: row wrap;
+}
+.btn-center > a {
+  display: block;
+  width: 70px;
+  text-align: center;
+  margin: 5px;
+}
+
+.btn-center > a > img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+.btn-center > a > p {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  color: #eb8282;
+  margin-top: 5px;
 }
 .loading {
   position: absolute;
@@ -35,9 +55,7 @@ html, body{
 </head>
 <body>
 <section class="btn-center">
-  <a href="/" class="btn btn-info mr10" id="adminBtn">以管理员身份演示</a>
-  <a href="/" class="btn btn-info mr10" id="eqBtn">以权益人身份演示</a>
-  <a href="/" class="btn btn-info" id="cpBtn">以CP身份演示</a>
+
 </section>
 <div class='loading'>
   <div class='bounce1'></div>
@@ -50,16 +68,29 @@ window.DMC_OPT = {
   API_PREFIX: '{{API_PREFIX}}'
 };
 (function($, window) {
-  var DEMO_USER_ID = {
-    admin: 8,
-    eq: 9,
-    cp: 10
-  };
   var TEST_PREFIX = window.DMC_OPT.API_PREFIX.replace('api', '');
-  function login(evt) {
-    evt.preventDefault();
+  var USERS_URL = TEST_PREFIX + 'test/users/';
+  $.ajax({
+    url: USERS_URL,
+    dataType: 'json',
+    type: 'GET',
+    beforeSend: function() {
+      $('.loading').css('display', 'block');
+    },
+    success: function(res, status, xhr) {
+      if (res.length > 0) {
+        var __htmlArr = [];
+        $(res).each(function(idx, item) {
+          __htmlArr.push('<a class="j-user" data-id=' + item.id + '><img src="' + item.avatar + '"><br><p>' + item.username + '</p></a>');
+        });
+        $('.btn-center').append(__htmlArr.join(''));
+        $('.loading').css('display', 'none');
+      }
+    }
+  });
+  function login(__id) {
     $.ajax({
-      url: TEST_PREFIX + 'test/users/' + evt.data.id,
+      url: TEST_PREFIX + 'test/users/' + __id,
       dataType: 'json',
       type: 'GET',
       beforeSend: function() {
@@ -77,9 +108,11 @@ window.DMC_OPT = {
       }
     });
   };
-  $('#adminBtn').click({id: DEMO_USER_ID.admin}, login);
-  $('#eqBtn').click({id: DEMO_USER_ID.eq}, login);
-  $('#cpBtn').click({id: DEMO_USER_ID.cp}, login);
+  $('.btn-center').on('click', '.j-user', function(evt) {
+    evt.preventDefault();
+    var __id = $(this).data('id');
+    login(__id);
+  });
 })(jQuery, window);
 </script>
 </body>
