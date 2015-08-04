@@ -41,6 +41,11 @@ app.use(route.get('/', function*() {
     });
 }));
 
+// 临时
+app.use(route.get('/index', function *() {
+  this.body = yield render('dmc_index');
+}));
+
 app.listen(process.env.PORT || 9000, function () {
     console.log('listening on port 9000');
     process.send('online');

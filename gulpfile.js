@@ -162,14 +162,22 @@ gulp.task('vendor:minify', function () {
         .pipe(gulp.dest(BUILD + 'js'));
 });
 
+// 临时
+gulp.task('build:dmc_index', function() {
+  gulp.src(PUBLIC + 'dmc_index.css')
+      .pipe(gulp.dest(BUILD + 'css'));
+  return gulp.src(PUBLIC + 'dmc_index.js')
+      .pipe(gulp.dest(BUILD + 'js'));
+});
+
 // Build the app
 gulp.task('build', function (cb) {
     if (DEBUG) {
-        runSequence(['vendors', 'bundle', 'bower_libs', 'images', 'styles', 'mbs'], 'sync', function () {
+        runSequence(['vendors', 'bundle', 'bower_libs', 'images', 'styles', 'mbs', 'build:dmc_index'], 'sync', function () {
             cb();
         });
     } else {
-        runSequence(['vendors', 'bundle', 'bower_libs', 'images', 'styles', 'mbs'], ['styles:minify', 'mbs:minify', 'bundle:minify', 'vendor:minify'], function () {
+        runSequence(['vendors', 'bundle', 'bower_libs', 'images', 'styles', 'mbs', 'build:dmc_index'], ['styles:minify', 'mbs:minify', 'bundle:minify', 'vendor:minify'], function () {
             cb();
         });
     }
