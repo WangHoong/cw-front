@@ -3,7 +3,7 @@
   "port": 22,
   "server_dir": "/srv/cms_staging",
   "repo": "git@cw-front-github:topdmc/cw-front.git",
-  "branch": "develop",
+  "branch": "master",
   "force_regenerate_git_dir": false,
   "shared_dirs": [
     "bower_components"
