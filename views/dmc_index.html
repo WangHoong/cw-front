@@ -7,6 +7,12 @@
 	<title>数字音乐云topdmc</title>
 	<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0' />
 	<link rel="stylesheet" href="css/dmc_index.css">
+	<style>
+	html, body {
+		height: 100%;
+		overflow: hidden;
+	}
+	</style>
 </head>
 
 <body>
@@ -204,6 +210,14 @@
 		<div class="swiper-pagination"></div>
 	</div>
 	<script src="js/dmc_index.js"></script>
+	<script>
+	window.ontouchmove = function(e){
+    e.preventDefault && e.preventDefault();
+    e.returnValue = false;
+    e.stopPropagation && e.stopPropagation();
+    return false;
+	}
+	</script>
 </body>
 
 </html>
