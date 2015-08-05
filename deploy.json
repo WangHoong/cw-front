@@ -1,8 +1,8 @@
 {
-  "server": ["ec2-user@54.223.207.55"],
+  "server": ["cw-maria"],
   "port": 22,
-  "server_dir": "/srv/cms_staging",
-  "repo": "git@cw-front-github:topdmc/cw-front.git",
+  "server_dir": "/srv/cms",
+  "repo": "git@github.com:topdmc/cw-front.git",
   "branch": "master",
   "force_regenerate_git_dir": false,
   "shared_dirs": [
