@@ -1,5 +1,25 @@
-###本地调试
-##启动服务端
-`npm run server`
-##启动客户端
+## (A) 本地调试
+
+### `npm install -dd`
+
+### 启动
+
 `npm run debug`
+
+### 打开浏览器
+
+(http://lo.topdmc.cn:3000)[http://lo.topdmc.cn:3000]
+
+### 选择用户登录
+
+(http://lo.topdmc.cn:3000/login_demo)[http://lo.topdmc.cn:3000/login_demo]
+
+## (B) 部署
+
+### Demo enviroment
+
+`mina deploy deploy.demo.json`
+
+### Production enviroment
+
+`mina deploy`
