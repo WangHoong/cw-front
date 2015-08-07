@@ -16,7 +16,7 @@ var PercentCircle = React.createClass({
     var specialPercent=(specialNumber[0]/specialNumber[1]*100).toFixed(0)+"%";
 
     return(
-        <div className="datum-cpn">
+      <div className="datum-cpn">
         <p className="percentTitle"><b>资料完成度</b></p>
         <p className="data-attributes">
           <span className="percentCircle" data-peity='{ "fill": ["#f48daf", "#f6e8ed"], "innerRadius": 34, "radius": 40 }'>{this.props.percent[0]}</span>
@@ -33,7 +33,7 @@ var PercentCircle = React.createClass({
           <span ><a href="#/artists">歌手资料</a></span>
           <span ><a href="#/albums">专辑资料</a></span>
         </p>
-        </div>
+      </div>
     )
   }
 })

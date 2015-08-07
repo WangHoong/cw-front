@@ -6,12 +6,16 @@ var SongChart = require('../Common/Charts/SongChart.jsx');
 var SongChannelChart = require('../Common/Charts/SongChannelChart.jsx');
 var TotalCard = require('app/components/Common/TotalCard.jsx');
 var TotalCardOfData = require('app/components/Common/TotalCardOfData.jsx');
+var Process = require('app/components/Common/Process.jsx');
+var ProcessTips = require('app/components/Common/ProcessTips.jsx');
 
 var Main = React.createClass({
   render: function() {
     var _data=["4/7","6/7","3/7"];
+    let tip = status<=0 ? (<div className='card'><ProcessTips /></div>) : (<div></div>)
     return (
       <div className='dashboard-container'>
+        {tip}
         <div className='row dashboard-header'>
           <div className='col-sm-4'>
             <div className='income'>

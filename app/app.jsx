@@ -142,7 +142,9 @@ var StartPage = React.createClass({
             withCredentials: true
         }).then(function (response) {
             if (response.data.data.online) {
-                self.setState({loaded: true});
+              window.account_type = response.data.data.user.account_type;
+              window.status = response.data.data.user.status;
+              self.setState({loaded: true});
             }
         });
     },
