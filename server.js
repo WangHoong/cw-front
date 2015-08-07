@@ -48,5 +48,6 @@ app.use(route.get('/index', function *() {
 
 app.listen(process.env.PORT || 9000, function () {
     console.log('listening on port 9000');
-    process.send('online');
+
+    process.send && process.send('online');
 });
