@@ -291,7 +291,7 @@ var Form = React.createClass({
                   <input
                     className='form-control'
                     type='date'
-                    value={this.state.copyRight.client_expired && moment(this.state.copyRight.client_expired).format('YYYY-MM-DD') || ''}
+                    value={this.state.copyRight && this.state.copyRight.client_expired && moment(this.state.copyRight.client_expired).format('YYYY-MM-DD') || ''}
                     name='client_expired'
                     onChange={this.handleCopyrightChangeF} />
                 </div>

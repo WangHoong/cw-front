@@ -50,7 +50,7 @@ axios.interceptors.request.use(function (config) {
 // Add a response interceptor
 axios.interceptors.response.use(function (response) {
     // Do something with response data
-    if (response.data.status === 403) {
+    if (response.data.status === 403&& response.url.indexOf('v1/online')!==-1) {
         window.location.href = window.DMC_OPT.LOGIN_URL;
         //window.location.href = 'http://dev.api.topdmc.cn/login';
     }
