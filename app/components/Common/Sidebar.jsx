@@ -2,6 +2,7 @@ var React = require('react');
 var classNames = require('classnames');
 var dbg = require('debug')('topdmc:Sidebar/component');
 var APIHelper = require('app/utils/APIHelper').APIHelper;
+var axios = require('axios');
 
 var NavItemLink = React.createClass({
   propTypes: {
@@ -99,7 +100,8 @@ var Sidebar = React.createClass({
     return {
       loginUserInfo: {
         avatar: 'https://s3.cn-north-1.amazonaws.com.cn/dmc-img/avatar/40039e9c-bcdf-4dbc-8827-fa8082eda648.jpg',
-        name: '---'
+        name: '---',
+        borderColor: '#eee'
       }
     };
   },
@@ -140,18 +142,22 @@ var Sidebar = React.createClass({
     };
   },
 
-  loadLoginUserInfoFromStorage: function() {
-    if (window.sessionStorage) {
-      var demoUserInfo = sessionStorage.getItem('demoUserInfo');
-      if (demoUserInfo) {
-        this.state.loginUserInfo = JSON.parse(demoUserInfo);
+  loadLoginUserInfoFromServer: function() {
+    axios.get(APIHelper.getPrefix() + '/v1/online').then(function(res) {
+      var _data = res.data;
+      if (_data.data.online) {
+        this.state.loginUserInfo = {
+          avatar: _data.data.user['avatar'],
+          name: _data.data.user['name'],
+          borderColor: 'green'
+        };
         this.setState(this.state);
       }
-    }
+    }.bind(this));
   },
 
   componentDidMount: function() {
-    this.loadLoginUserInfoFromStorage();
+    this.loadLoginUserInfoFromServer();
   },
 
   render: function () {
@@ -163,7 +169,8 @@ var Sidebar = React.createClass({
       );
     });
     var avatarUrl = {
-      backgroundImage: 'url(' + this.state.loginUserInfo.avatar + ')'
+      backgroundImage: 'url(' + this.state.loginUserInfo.avatar + ')',
+      borderColor: this.state.loginUserInfo.borderColor
     };
     return (
       <aside className='sidebar'>

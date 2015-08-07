@@ -5,7 +5,6 @@
   "main": "server.js",
   "scripts": {
     "debug": "gulp serve --debug",
-    "start-staging": "NODE_ENV=production PORT=9000 pm2 start server.js --name cms_staging",
     "start-production": "NODE_ENV=production PORT=8001 pm2 start server.js --name cw-front",
     "start-demo": "NODE_ENV=demo PORT=9000 pm2 start server.js --name cms_demo",
     "build": "gulp default"

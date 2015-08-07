@@ -97,13 +97,6 @@ window.DMC_OPT = {
         $('.loading').css('display', 'block');
       },
       success: function(res, status, xhr) {
-        if (window.sessionStorage) {
-          var demoUserInfo = {
-            avatar: res.data['avatar'],
-            name: res.data['name']
-          };
-          window.sessionStorage.setItem('demoUserInfo', JSON.stringify(demoUserInfo));
-        }
         window.location.href = '/';
       }
     });
