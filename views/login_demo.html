@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta charset="UTF-8">
+<title>TOPDMC</title>
+<link rel="shortcut icon" type="image/x-icon" href="/build/images/favicon.ico" />
+<link rel="stylesheet" type="text/css" href="/css/mbs.css" />
+<link rel="stylesheet" type="text/css" href="/css/font-awesome.min.css" />
+<link rel="stylesheet" type="text/css" href="/css/main.css" />
+<style type="text/css">
+html, body{
+  height: 100%;
+  overflow: hidden;
+}
+.btn-center {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-flow: row wrap;
+}
+.btn-center > a {
+  display: block;
+  width: 70px;
+  text-align: center;
+  margin: 5px;
+}
+
+.btn-center > a > img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+.btn-center > a > p {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  color: #eb8282;
+  margin-top: 5px;
+}
+.loading {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: none;
+}
+.loading > div {
+  background-color: #5bc0de;
+}
+.btn {
+  font-weight: bold;
+}
+</style>
+</head>
+<body>
+<section class="btn-center">
+
+</section>
+<div class='loading'>
+  <div class='bounce1'></div>
+  <div class='bounce2'></div>
+  <div class='bounce3'></div>
+</div>
+<script type="text/javascript" src="/js/jquery.min.js"></script>
+<script type="text/javascript">
+window.DMC_OPT = {
+  API_PREFIX: '{{API_PREFIX}}'
+};
+(function($, window) {
+  var TEST_PREFIX = window.DMC_OPT.API_PREFIX.replace('api', '');
+  var USERS_URL = TEST_PREFIX + 'test/users/';
+  $.ajax({
+    url: USERS_URL,
+    dataType: 'json',
+    type: 'GET',
+    beforeSend: function() {
+      $('.loading').css('display', 'block');
+    },
+    success: function(res, status, xhr) {
+      if (res.length > 0) {
+        var __htmlArr = [];
+        $(res).each(function(idx, item) {
+          __htmlArr.push('<a class="j-user" data-id=' + item.id + '><img src="' + item.avatar + '"><br><p>' + item.username + '</p></a>');
+        });
+        $('.btn-center').append(__htmlArr.join(''));
+        $('.loading').css('display', 'none');
+      }
+    }
+  });
+  function login(__id) {
+    $.ajax({
+      url: TEST_PREFIX + 'test/users/' + __id,
+      dataType: 'json',
+      type: 'GET',
+      beforeSend: function() {
+        $('.loading').css('display', 'block');
+      },
+      success: function(res, status, xhr) {
+        window.location.href = '/';
+      }
+    });
+  };
+  $('.btn-center').on('click', '.j-user', function(evt) {
+    evt.preventDefault();
+    var __id = $(this).data('id');
+    login(__id);
+  });
+})(jQuery, window);
+</script>
+</body>
+</html>

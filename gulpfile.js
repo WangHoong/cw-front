@@ -1,19 +1,23 @@
 var gulp = require('gulp');
-var browserify = require('browserify');
-var streamify = require('vinyl-source-stream');
-var watchify = require('watchify');
-var babelify = require('babelify');
 var browserSync = require('browser-sync');
 var reload = browserSync.reload;
 var $ = require('gulp-load-plugins')();
 var runSequence = require('run-sequence');
+var pngquant = require('imagemin-pngquant');
 var argv = require('minimist')(process.argv.slice(2));
+
+var browserify = require('browserify');
+var streamify = require('vinyl-source-stream');
+var watchify = require('watchify');
+var babelify = require('babelify');
 
 var DEBUG = !!argv.debug;
 
 var BOWER_COMPONENTS = './bower_components/';
 var BUILD = './build/';
 var PUBLIC = './public/';
+
+var src = {};
 
 // React vendors
 var VENDORS = [
@@ -50,13 +54,13 @@ gulp.task('vendors', function(cb) {
 
 gulp.task('bundle', function(cb) {
   var bundler = browserify({
-		entries: ['node_modules/app/app.jsx'],
+    entries: ['node_modules/app/app.jsx'],
     debug: DEBUG,
     cache: {},
-		packageCache: {},
+    packageCache: {},
     fullPaths: true,
     transform: [babelify]
-	});
+  });
   VENDORS.forEach(function(name) {
     bundler.external(name);
   });
@@ -64,18 +68,24 @@ gulp.task('bundle', function(cb) {
     var watcher = watchify(bundler);
     watcher.on('update', rebundle);
   }
+
   function rebundle() {
     var updateStart = Date.now();
     return bundler.bundle()
-      .on('error', function(err) {$.util.log('Error : ' + err.message)})
+      .on('error', function(err) {
+        $.util.log('Error : ' + err.message);
+        this.emit('end');
+      })
       .pipe(streamify('bundle.js'))
       .pipe(gulp.dest(BUILD + 'js'))
       .pipe($.notify({
-  			onLast: true,
+        onLast: true,
         title: 'bundle',
-  			message: 'Finished rebundle after ' + (Date.now() - updateStart) + 'ms'
-  		}))
-      .pipe(reload({stream: true}));
+        message: 'Finished rebundle after ' + (Date.now() - updateStart) + 'ms'
+      }))
+      .pipe(reload({
+        stream: true
+      }));
   };
   return rebundle();
 });
@@ -83,6 +93,7 @@ gulp.task('bundle', function(cb) {
 // Launch BrowserSync development server
 gulp.task('sync', function() {
   browserSync({
+    files: './views/index.html',
     logPrefix: 'cw-front',
     proxy: 'http://lo.topdmc.cn:9000',
     host: 'lo.topdmc.cn',
@@ -92,22 +103,16 @@ gulp.task('sync', function() {
 });
 
 gulp.task('bower_libs', function() {
-  gulp.src(BOWER_COMPONENTS + 'jquery/jquery.min.js')
-    .pipe(gulp.dest(BUILD + 'js'));
-  gulp.src(BOWER_COMPONENTS + 'jquery/jquery.min.map')
-    .pipe(gulp.dest(BUILD + 'js'));
-  gulp.src(BOWER_COMPONENTS + 'peity/jquery.peity.min.js')
-    .pipe(gulp.dest(BUILD + 'js'));
-  gulp.src(BOWER_COMPONENTS + 'kefir/dist/kefir.min.js')
-    .pipe(gulp.dest(BUILD + 'js'));
-  gulp.src(BOWER_COMPONENTS + 'echarts/build/dist/echarts-all.js')
-    .pipe(gulp.dest(BUILD + 'js'));
-  gulp.src(BOWER_COMPONENTS + 'moment/min/moment.min.js')
-    .pipe(gulp.dest(BUILD + 'js'));
-  gulp.src(BOWER_COMPONENTS + 'fullcalendar/dist/fullcalendar.min.js')
-    .pipe(gulp.dest(BUILD + 'js'));
-  gulp.src(BOWER_COMPONENTS + 'fullcalendar/dist/lang/zh-cn.js')
-    .pipe($.rename('fullcalendar-zh-cn.js'))
+  gulp.src([
+    BOWER_COMPONENTS + 'jquery/jquery.min.js',
+    BOWER_COMPONENTS + 'jquery/jquery.min.map',
+    BOWER_COMPONENTS + 'peity/jquery.peity.min.js',
+    BOWER_COMPONENTS + 'kefir/dist/kefir.min.js',
+    BOWER_COMPONENTS + 'echarts/build/dist/echarts-all.js',
+    BOWER_COMPONENTS + 'moment/min/moment.min.js'
+  ]).pipe(gulp.dest(BUILD + 'js'));
+  gulp.src(BOWER_COMPONENTS + 'moment/locale/zh-cn.js')
+    .pipe($.rename('moment.zh-cn.js'))
     .pipe(gulp.dest(BUILD + 'js'));
   gulp.src(BOWER_COMPONENTS + 'fontawesome/css/font-awesome.min.css')
     .pipe(gulp.dest(BUILD + 'css'));
@@ -123,21 +128,119 @@ gulp.task('images', function() {
 gulp.task('styles', function() {
   return gulp.src(PUBLIC + 'less/main.less')
     .pipe($.less())
-    .pipe($.autoprefixer({browsers: AUTOPREFIXER_BROWSERS}))
+    .pipe($.autoprefixer({
+      browsers: AUTOPREFIXER_BROWSERS
+    }))
     .pipe(gulp.dest(BUILD + 'css'))
-    .pipe(reload({stream: true}));
+    .pipe(reload({
+      stream: true
+    }));
+});
+
+gulp.task('styles:minify', function() {
+  return gulp.src(BUILD + 'css/main.css')
+    .pipe($.minifyCss())
+    .pipe(gulp.dest(BUILD + 'css'));
 });
 
 gulp.task('mbs', function() {
-	return gulp.src(PUBLIC + 'less/mbs/mbs.less')
-		.pipe($.less())
-		.pipe($.minifyCss({keepBreaks: false}))
-		.pipe(gulp.dest(BUILD + 'css'));
+  return gulp.src(PUBLIC + 'less/mbs/mbs.less')
+    .pipe($.less())
+    .pipe($.minifyCss({
+      keepBreaks: false
+    }))
+    .pipe(gulp.dest(BUILD + 'css'));
+});
+
+gulp.task('mbs:minify', function() {
+  return gulp.src(BUILD + 'css/mbs.css')
+    .pipe($.minifyCss())
+    .pipe(gulp.dest(BUILD + 'css'));
+});
+
+gulp.task('bundle:minify', function() {
+  return gulp.src(BUILD + 'js/bundle.js')
+    .pipe($.uglify())
+    .pipe(gulp.dest(BUILD + 'js'));
+});
+
+gulp.task('vendor:minify', function() {
+  return gulp.src(BUILD + 'js/vendor.js')
+    .pipe($.uglify())
+    .pipe(gulp.dest(BUILD + 'js'));
+});
+
+gulp.task('images:minify', function() {
+  return gulp.src(BUILD + 'images/*')
+    .pipe($.imagemin({
+      progressive: true,
+      svgoPlugins: [{
+        removeViewBox: false
+      }],
+      use: [pngquant()]
+    }))
+    .pipe(gulp.dest(BUILD + 'images'));
+});
+
+// 临时
+gulp.task('build:dmc_index', function() {
+  gulp.src(PUBLIC + 'dmc_index.css')
+    .pipe(gulp.dest(BUILD + 'css'));
+  return gulp.src(PUBLIC + 'dmc_index.js')
+    .pipe(gulp.dest(BUILD + 'js'));
 });
 
 // Build the app
 gulp.task('build', function(cb) {
-  runSequence(['vendors', 'bundle', 'bower_libs', 'images', 'styles', 'mbs'], 'sync', cb);
+  if (DEBUG) {
+    runSequence(['vendors', 'bundle', 'bower_libs', 'images', 'styles', 'mbs', 'build:dmc_index'], 'sync', function() {
+      cb();
+    });
+  } else {
+    runSequence(['vendors', 'bundle', 'bower_libs', 'images', 'styles', 'mbs', 'build:dmc_index'], ['styles:minify', 'mbs:minify', 'bundle:minify', 'vendor:minify', 'images:minify'], function() {
+      cb();
+    });
+  }
+});
+
+var started = false;
+// Launch a Node.js/Express server
+gulp.task('serve', ['build'], function(cb) {
+  src.server = [
+    './server.js'
+  ];
+
+  var started = false;
+  var cp = require('child_process');
+
+  var server = (function startup() {
+    var child = cp.fork('./server.js', {
+      env: {
+        NODE_ENV: process.env.NODE_ENV || 'development'
+      }
+    });
+    child.once('message', function(message) {
+      if (message.match(/^online$/)) {
+        if (browserSync) {
+          browserSync.reload();
+        }
+        if (!started) {
+          started = true;
+          gulp.watch(src.server, function() {
+            $.util.log('Restarting development server.');
+            server.kill('SIGTERM');
+            server = startup();
+          });
+          cb();
+        }
+      }
+    });
+    return child;
+  })();
+
+  process.on('exit', function() {
+    server.kill('SIGTERM');
+  });
 });
 
 gulp.task('default', ['build']);

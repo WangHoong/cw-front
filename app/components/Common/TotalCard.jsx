@@ -1,6 +1,5 @@
 var React = require('react');
 const dbg = require('debug')('topdmc:TotalCard/component');
-
 var TotalCard = React.createClass({
   _generateMoney: function(seed){
     var d = new Date(seed);
@@ -15,8 +14,8 @@ var TotalCard = React.createClass({
     return money;
   },
   _mockData: function(seed){
-    var money = this._generateMoney(seed);
-    var moneygive = 553256.12;
+    var money = ((this._generateMoney(seed))/100).toFixed(2);
+    var moneygive = 3256.12;
     var moneyungive = (money-moneygive).toFixed(2);
     money=this.addCommas(money);
     moneygive=this.addCommas(moneygive);

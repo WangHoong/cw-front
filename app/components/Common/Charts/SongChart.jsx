@@ -13,7 +13,7 @@ class SongChart extends React.Component {
 
   createOpt(_){
     let date = []
-    let data = [80000, 90000, 70000, 75000, 85000,
+    let streamingData = [80000, 90000, 70000, 75000, 85000,
                 100000, 90000, 100000, 90000, 85000,
                 80000, 90000, 70000, 75000, 75000,
                 85000, 85000, 80000, 70000, 90000,
@@ -38,6 +38,9 @@ class SongChart extends React.Component {
                 100000, 70000, 85000, 85000, 80000,
                 90000, 70000, 75000, 90000, 85000
                 ]
+    let downloadingData = streamingData.map(function(_){
+      return (_ - 40000)
+    })
     let fix = (_) => {
       if(Number(_)<10){
         return '0'+_
@@ -56,7 +59,7 @@ class SongChart extends React.Component {
         _--
       }
     })(_)
-    data = data.reverse().slice(0, _).reverse()
+    streamingData = streamingData.reverse().slice(0, _).reverse()
 
     return {
       title : {
@@ -86,15 +89,27 @@ class SongChart extends React.Component {
       ],
       series : [
       {
-        name:'歌曲播放总量',
-        type:'line',
-        smooth:true,
+        name: '流量',
+        type: 'line',
+        smooth: true,
 
         itemStyle: {normal: {areaStyle: {type: 'default',color: 'RGBA(209, 242, 243, .5)'}}},
-        data:data,
+        data: streamingData,
         markLine : {
           data : [
-          {type : 'average', name : '平均值'}
+            {type : 'average', name : '平均值'}
+          ]
+        }
+      },
+      {
+        name: '下载量',
+        type: 'line',
+        smooth: true,
+        itemStyle: {normal: {areaStyle: {type: 'default',color: 'RGBA(243, 243, 243, .5)'}}},
+        data: downloadingData,
+        markLine: {
+          data: [
+            {type : 'average', name : '平均值'}
           ]
         }
       }

@@ -45,6 +45,20 @@ var Detail = React.createClass({
   handleBack: function() {
     history.go(-1);
   },
+  renderCopyright: function(data) {
+    if (!data.copyRight) {
+      return <p className='mt10'>版权信息暂未录入</p>;
+    }
+    var copyright = data.copyRight;
+    return (
+      <div className='mt10'>
+        <p>版权方：{copyright.company && copyright.company['name'] || '暂无'}</p>
+        <p>版权有效期：{copyright.expired && moment(copyright.expired).format('YYYY年MM月DD日') || '暂无'}</p>
+        <p>独家授权：{copyright.client && copyright.client['name'] || '暂无'}</p>
+        <p>授权有效期：{copyright.client_expired && moment(copyright.client_expired).format('YYYY年MM月DD日') || '暂无'}</p>
+      </div>
+    );
+  },
   render: function () {
     if (!this.state.song.loaded) {
       return <Loader />;
@@ -72,6 +86,10 @@ var Detail = React.createClass({
         </div>
         <div className='has-top-bar'>
           <div className='card'>
+            <p>版权信息：</p>
+            {this.renderCopyright(data)}
+          </div>
+          <div className='card mt20'>
             <SongChart />
           </div>
           <div className='card mt20'>
