@@ -143,7 +143,7 @@ var Sidebar = React.createClass({
   },
 
   loadLoginUserInfoFromServer: function() {
-    axios.get(APIHelper.getPrefix() + '/v1/online').then(function(res) {
+    axios.get(APIHelper.getPrefix() + '/v1/online',{withCredentials: true}).then(function(res) {
       var _data = res.data;
       if (_data.data.online) {
         this.state.loginUserInfo = {
