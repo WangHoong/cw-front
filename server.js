@@ -27,17 +27,11 @@ if (app.env != 'production') {
     match: /(^\/test\/|^\/api\/)/
   }));
 
-  app.use(route.get('/login', function*() {
-    var url = config['PROXY_PREFIX'] + this.path + "?" + this.querystring;
-    this.redirect(url);
-  }));
-
   app.use(route.get('/login_demo', function*() {
     this.body = yield render('login_demo', {
       API_PREFIX: config['API_PREFIX']
     });
   }));
-
 }
 
 app.use(route.get('/', function*() {
@@ -45,6 +39,11 @@ app.use(route.get('/', function*() {
     API_PREFIX: config['API_PREFIX'],
     LOGIN_URL: config['LOGIN_URL']
   });
+}));
+
+app.use(route.get('/login', function*() {
+  var url = config['PROXY_PREFIX'] + this.path + "?" + this.querystring;
+  this.redirect(url);
 }));
 
 // 临时
