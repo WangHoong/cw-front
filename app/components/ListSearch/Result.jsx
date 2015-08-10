@@ -1,7 +1,6 @@
 var React = require('react');
 var Loader = require('../Common/Loader.jsx');
 var classNames = require('classnames');
-var debug = require('debug')('topdmc:ListSearch/Result');
 
 var Result = React.createClass({
 
@@ -32,7 +31,6 @@ var Result = React.createClass({
 
   renderList: function() {
     var data = this.props.data;
-    debug(data);
 
     // 初始化提示
     if (data.state === 'DISABLED') {

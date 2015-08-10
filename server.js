@@ -17,11 +17,10 @@ var render = views(__dirname + '/views', {
   }
 });
 
-app.use(logger());
-
 app.use(_static(path.join(__dirname, '/build'), {}));
 
 if (app.env != 'production') {
+  app.use(logger());
   app.use(proxy({
     host: config['PROXY_PREFIX'],
     match: /(^\/test\/|^\/api\/|^\/online)/
