@@ -142,22 +142,32 @@ var Sidebar = React.createClass({
     };
   },
 
-  loadLoginUserInfoFromServer: function() {
-    axios.get(APIHelper.getPrefix() + '/v1/online',{withCredentials: true}).then(function(res) {
-      var _data = res.data;
-      if (_data.data.online) {
-        this.state.loginUserInfo = {
-          avatar: _data.data.user['avatar'],
-          name: _data.data.user['name'],
+  loadLoginUserInfoFromWindow: function() {
+    if (window.currentUser.name && window.currentUser.avatar) {
+      this.setState({
+        loginUserInfo: {
+          avatar: window.currentUser.avatar,
+          name: window.currentUser.name,
           borderColor: 'green'
-        };
-        this.setState(this.state);
-      }
-    }.bind(this));
+        }
+      });
+    }
+    // var onlineURL = APIHelper.getPrefix().replace('api', '') + 'online';
+    // axios.get(onlineURL, {withCredentials: true}).then(function(res) {
+    //   var _data = res.data;
+    //   if (_data.data.online) {
+    //     this.state.loginUserInfo = {
+    //       avatar: _data.data.user['avatar'],
+    //       name: _data.data.user['name'],
+    //       borderColor: 'green'
+    //     };
+    //     this.setState(this.state);
+    //   }
+    // }.bind(this));
   },
 
   componentDidMount: function() {
-    this.loadLoginUserInfoFromServer();
+    this.loadLoginUserInfoFromWindow();
   },
 
   render: function () {

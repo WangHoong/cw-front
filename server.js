@@ -24,9 +24,8 @@ app.use(_static(path.join(__dirname, '/build'), {}));
 if (app.env != 'production') {
   app.use(proxy({
     host: config['PROXY_PREFIX'],
-    match: /(^\/test\/|^\/api\/)/
+    match: /(^\/test\/|^\/api\/|^\/online)/
   }));
-
   app.use(route.get('/login_demo', function*() {
     this.body = yield render('login_demo', {
       API_PREFIX: config['API_PREFIX']
