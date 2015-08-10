@@ -7,8 +7,9 @@ const dbg = require('debug')('topdmc:TopSongs/component');
 var TopTrackItemWrapper = React.createClass({
   render: function(){
     var rank = this.props.rank+1;
-    var maxWidth = 490, minWidth = 150, maxNum = this.props.maxNum, _track = this.props.data;
-    var bglWidth = (_track.count / maxNum * maxWidth).toFixed(0);
+    var maxWidth = 80, minWidth = 150, maxNum = this.props.maxNum, _track = this.props.data;
+    var bglWidth = (_track.count / maxNum )* maxWidth;
+    bglWidth = bglWidth+'%';
     // dbg('id=' + _track.id, 'bglWidth=' + bglWidth);
     var _style = { width: bglWidth };
     var classnameOfBadge = 'tps-rank-top', classnameOfBar = 'tps-bgl-top';
@@ -57,6 +58,7 @@ var TopSongs = React.createClass({
       ]
     }
   },
+
 
   render: function(){
     var maxNum = 10000000;
