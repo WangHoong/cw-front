@@ -42,7 +42,7 @@ app.use(route.get('/', function*() {
 }));
 
 app.use(route.get('/login', function*() {
-  var url = config['PROXY_PREFIX'] + this.path + "?" + this.querystring;
+  var url = config['PROXY_PREFIX'] + this.path + '?' + this.querystring;
   this.redirect(url);
 }));
 

@@ -107,7 +107,7 @@ var Sidebar = React.createClass({
   },
   getDefaultProps: function () {
     return {
-      logoSrc: 'images/logo2.png',
+      logoSrc: 'images/new_logo.png',
       navItems: [
         {
           faIconName: 'home',
