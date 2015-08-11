@@ -59,7 +59,7 @@ class SongChannelChart extends React.Component {
       xAxis : [
       {
         type : 'category',
-        boundaryGap : false,
+        boundaryGap : true,
         data : date
       }
       ],
@@ -71,7 +71,7 @@ class SongChannelChart extends React.Component {
       series : [
       {
         name:'千千静听',
-        type:'line',
+        type:'bar',
         stack: '国内',
         symbol: 'emptyCircle',
         data:data[0],
@@ -79,7 +79,7 @@ class SongChannelChart extends React.Component {
       },
       {
         name:'网易云音乐',
-        type:'line',
+        type:'bar',
         stack: '国内',
         symbol: 'emptyCircle',
         data:data[1],
@@ -87,7 +87,7 @@ class SongChannelChart extends React.Component {
       },
       {
         name:'百度云音乐',
-        type:'line',
+        type:'bar',
         stack: '国内',
         symbol: 'emptyCircle',
         data:data[2],
@@ -95,7 +95,7 @@ class SongChannelChart extends React.Component {
       },
       {
         name:'QQ音乐',
-        type:'line',
+        type:'bar',
         stack: '国内',
         symbol: 'emptyCircle',
         data:data[3],
@@ -103,7 +103,7 @@ class SongChannelChart extends React.Component {
       },
       {
         name:'酷我音乐',
-        type:'line',
+        type:'bar',
         stack: '国内',
         symbol: 'emptyCircle',
         data:data[4],
