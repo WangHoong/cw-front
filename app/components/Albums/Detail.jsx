@@ -36,13 +36,14 @@ var Detail = React.createClass({
   },
 
   renderList: function() {
-    var data = this.state.album.data.tracks || [];
-    if (data.length == 0) {
+    var data = this.state.album.data || {};
+    var tracks = data.tracks || [];
+    if (tracks.length == 0) {
       return (
         <li style={{width: 'auto', textAlign: 'center', float: 'none'}}>暂无歌曲信息</li>
       );
     } else {
-      return data.map(function(item, idx) {
+      return tracks.map(function(item, idx) {
         return (
           <li key={idx} className='col-sm-4 ellipsis'>
             <span className='name'>{idx + 1}</span>
@@ -61,7 +62,7 @@ var Detail = React.createClass({
     if (!this.state.album.loaded) {
       return <Loader />;
     }
-    var data = this.state.album.data;
+    var data = this.state.album.data || {};
     var photoStyles = {
       backgroundImage: 'url(' + data.photo + ')'
     };
