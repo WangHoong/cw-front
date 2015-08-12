@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta charset="UTF-8">
+<title>TOPDMC</title>
+<link rel="shortcut icon" href="/images/favicon.ico">
+<link rel="icon" sizes="32x32" href="/images/favicon-32x32.png">
+<link rel="icon" sizes="96x96" href="/images/favicon-96x96.png">
+<link rel="icon" sizes="16x16" href="/images/favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="57x57" href="/images/apple-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="/images/apple-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="/images/apple-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="/images/apple-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="/images/apple-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="/images/apple-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="/images/apple-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="/images/apple-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-icon-180x180.png">
+<link rel="stylesheet" href="/css/mbs.css">
+<link rel="stylesheet" href="/css/waves.min.css">
+<link rel="stylesheet" href="/css/main.css">
+<style>
+html, body {
+  height: 100%;
+  overflow: hidden;
+}
+</style>
+</head>
+<body>
+<div class="doorbell-bg"></div>
+<section class="doorbell-wrap">
+  <header class="header">
+    <div class="header-logo">
+      <h1>成为科技</h1>
+    </div>
+  </header>
+  <div class="main">
+    <div class="form-group">
+      <label for="number">请填写手机号码：</label>
+      <input type="tel" class="form-control" id="number" placeholder="手机号码">
+    </div>
+    <div class="form-group">
+      <label for="code">短信验证码：</label>
+      <div class="input-flex">
+        <input type="number" class="form-control" id="code" placeholder="短信验证码">
+        <button type="button" class="flat-buttons" id="getCodeBtn">获取验证码</button>
+      </div>
+    </div>
+    <a class="submit-btn flat-buttons" id="submitBtn">提交</a>
+  </div>
+</section>
+<script src="/js/jquery.min.js"></script>
+<script src="/js/waves.min.js"></script>
+<script>
+(function($, undefined) {
+  Waves.attach('.flat-buttons', ['waves-button']);
+  Waves.init();
+
+  var $getCodeBtn = $('#getCodeBtn'),
+      $number = $('#number'),
+      $code = $('#code'),
+      $submitBtn = $('#submitBtn')
+  var msgTimer;
+  var count = 60;
+  var curCount;
+  var phoneReg = /(^(13\d|14[57]|15[^4,\D]|17[678]|18\d)\d{8}|170[059]\d{7})$/g;
+
+  var API_URL = '{{API_PREFIX}}'.replace(/api$/, ''),
+      SMS_URL = API_URL + 'sms',
+      VERIFY_URL = API_URL + 'sms/verify';
+
+  $getCodeBtn.click(function() {
+    var phoneNumber = $number.val();
+    if (phoneNumber.match(phoneReg)) {
+      curCount = count;
+      $.ajax({
+        method: 'POST',
+        url: SMS_URL,
+        dataType: 'json',
+        headers: {
+          'Content-Type':'application/json'
+        },
+        data: JSON.stringify({
+          number: phoneNumber
+        }),
+        success: function() {
+          $getCodeBtn.attr('disabled', 'true');
+          $getCodeBtn.text(curCount + '秒后重发');
+          msgTimer = setInterval(setRemainTime, 1000);
+        },
+        error: function() {
+          alert('异常错误');
+        }
+      });
+    } else {
+      alert('输入的手机号有误');
+    }
+  });
+
+  $submitBtn.click(function() {
+    var phoneNumber = $number.val(),
+        codeNumber = $code.val();
+    if (phoneNumber.match(phoneReg) && '' != $.trim(codeNumber)) {
+      $.ajax({
+        method: 'POST',
+        url: VERIFY_URL,
+        dataType: 'json',
+        headers: {
+          'Content-Type':'application/json'
+        },
+        data: JSON.stringify({
+          number: phoneNumber,
+          code: codeNumber
+        }),
+        success: function(res) {
+          if (res.status === 200) {
+            alert('提交成功，稍后我们工作人员会与您联系');
+          } else {
+            alert(res.message);
+          }
+        },
+        error: function() {
+          alert('异常错误');
+        }
+      });
+    } else {
+      alert('输入信息有误');
+    }
+  });
+
+  function setRemainTime() {
+    if (curCount == 0) {
+      clearInterval(msgTimer);
+      $getCodeBtn.removeAttr('disabled');
+      $getCodeBtn.text('重发验证码');
+    } else {
+      curCount--;
+      $getCodeBtn.text(curCount + '秒后重发');
+    }
+  }
+})(jQuery);
+</script>
+</body>
+</html>
