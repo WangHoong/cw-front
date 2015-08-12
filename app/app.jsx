@@ -60,7 +60,9 @@ axios.interceptors.response.use(function (response) {
 });
 
 window._dbg = require('debug');
-window._dbg.enable("topdmc:*");
+// window._dbg.enable("topdmc:*");
+let ClearDebugForProdUrlArray = ['www.topdmc.com', 'www.topdmc.cn', 'demo.topdmc.com']
+ClearDebugForProdUrlArray.indexOf(location.hostname) !== -1 ? _dbg.disable() : _dbg.enable("topdmc:*")
 
 var App = React.createClass({
   contextTypes: {
