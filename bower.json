@@ -7,6 +7,7 @@
     "echarts": "~2.2.5",
     "fontawesome": "~4.3.0",
     "kefir": "~1.3.2",
-    "moment": "~2.10.3"
+    "moment": "~2.10.3",
+    "waves": "~0.7.2"
   }
 }

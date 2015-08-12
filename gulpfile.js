@@ -93,7 +93,7 @@ gulp.task('bundle', function(cb) {
 // Launch BrowserSync development server
 gulp.task('sync', function() {
   browserSync({
-    files: './views/index.html',
+    files: './views/*.html',
     logPrefix: 'cw-front',
     proxy: 'http://lo.topdmc.cn:9000',
     host: 'lo.topdmc.cn',
@@ -109,12 +109,15 @@ gulp.task('bower_libs', function() {
     BOWER_COMPONENTS + 'peity/jquery.peity.min.js',
     BOWER_COMPONENTS + 'kefir/dist/kefir.min.js',
     BOWER_COMPONENTS + 'echarts/build/dist/echarts-all.js',
-    BOWER_COMPONENTS + 'moment/min/moment.min.js'
+    BOWER_COMPONENTS + 'moment/min/moment.min.js',
+    BOWER_COMPONENTS + 'waves/dist/waves.min.js'
   ]).pipe(gulp.dest(BUILD + 'js'));
   gulp.src(BOWER_COMPONENTS + 'moment/locale/zh-cn.js')
     .pipe($.rename('moment.zh-cn.js'))
     .pipe(gulp.dest(BUILD + 'js'));
   gulp.src(BOWER_COMPONENTS + 'fontawesome/css/font-awesome.min.css')
+    .pipe(gulp.dest(BUILD + 'css'));
+  gulp.src(BOWER_COMPONENTS + 'waves/dist/waves.min.css')
     .pipe(gulp.dest(BUILD + 'css'));
   return gulp.src(BOWER_COMPONENTS + 'fontawesome/fonts/*')
     .pipe(gulp.dest(BUILD + 'fonts'));
