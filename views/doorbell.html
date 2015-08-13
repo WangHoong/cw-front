@@ -91,7 +91,7 @@ html, body {
             $getCodeBtn.text(curCount + '秒后重发');
             msgTimer = setInterval(setRemainTime, 1000);
             showMsg('发送成功，请在60秒内输入', '#1bb556');
-          } else if (res.status === 400) {
+          } else if (res.status === 201 || res.status === 400) {
             showMsg(res.message, '#d54f38');
           } else {
             showMsg('异常错误', '#d54f38');
