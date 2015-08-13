@@ -47,6 +47,7 @@ html, body {
       </div>
     </div>
     <a class="submit-btn flat-buttons" id="submitBtn">提交</a>
+    <p class="tips" id="showMsg">错误提示</p>
   </div>
 </section>
 <script src="/js/jquery.min.js"></script>
@@ -59,7 +60,8 @@ html, body {
   var $getCodeBtn = $('#getCodeBtn'),
       $number = $('#number'),
       $code = $('#code'),
-      $submitBtn = $('#submitBtn')
+      $submitBtn = $('#submitBtn'),
+      $showMsg = $('#showMsg');
   var msgTimer;
   var count = 60;
   var curCount;
@@ -83,17 +85,24 @@ html, body {
         data: JSON.stringify({
           number: phoneNumber
         }),
-        success: function() {
-          $getCodeBtn.attr('disabled', 'true');
-          $getCodeBtn.text(curCount + '秒后重发');
-          msgTimer = setInterval(setRemainTime, 1000);
+        success: function(res) {
+          if (res.status === 200) {
+            $getCodeBtn.attr('disabled', 'true');
+            $getCodeBtn.text(curCount + '秒后重发');
+            msgTimer = setInterval(setRemainTime, 1000);
+            showMsg('发送成功，请在60秒内输入', '#1bb556');
+          } else if (res.status === 400) {
+            showMsg(res.message, '#d54f38');
+          } else {
+            showMsg('异常错误', '#d54f38');
+          }
         },
         error: function() {
-          alert('异常错误');
+          showMsg('异常错误', '#d54f38');
         }
       });
     } else {
-      alert('输入的手机号有误');
+      showMsg('输入的手机号有误', '#d54f38');
     }
   });
 
@@ -114,17 +123,17 @@ html, body {
         }),
         success: function(res) {
           if (res.status === 200) {
-            alert('提交成功，稍后我们工作人员会与您联系');
+            showMsg('提交成功，稍后我们工作人员会与您联系', '#1bb556');
           } else {
-            alert(res.message);
+            showMsg(res.message, '#d54f38');
           }
         },
         error: function() {
-          alert('异常错误');
+          showMsg('异常错误', '#d54f38');
         }
       });
     } else {
-      alert('输入信息有误');
+      showMsg('输入信息有误', '#d54f38');
     }
   });
 
@@ -137,6 +146,14 @@ html, body {
       curCount--;
       $getCodeBtn.text(curCount + '秒后重发');
     }
+  }
+
+  function showMsg(msg, color) {
+    $showMsg.css({
+      display: 'block',
+      color: color
+    });
+    $showMsg.text(msg);
   }
 })(jQuery);
 </script>
