@@ -15,7 +15,7 @@ if (app.env != 'production') {
   app.use(logger());
   app.use(proxy({
     host: config['PROXY_PREFIX'],
-    match: /(^\/test\/|^\/api\/|^\/online\/|^\/sms)/
+    match: /(^\/test\/|^\/api\/|^\/online|^\/sms)/
   }));
   app.use(router.dev().routes());
 }
