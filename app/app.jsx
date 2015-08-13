@@ -152,12 +152,11 @@ var StartPage = React.createClass({
     });
   },
   render() {
-    if (navigator.userAgent.indexOf("Chrome") == -1) {
+    if (navigator.userAgent.indexOf("Chrome") == -1 && navigator.userAgent.indexOf("Safari")==-1) {
       return (
         <Remind/>
       );
     }
-
     if (this.state.loaded) {
       return (
         <RouteHandler/>
