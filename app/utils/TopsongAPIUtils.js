@@ -4,7 +4,7 @@ module.exports={
   find: function() {
     return axios({
       method: 'GET',
-      url: APIHelper.getPrefix() + '/v1/rpt/tracks/top/:top',
+      url: APIHelper.getPrefix() + '/rpt/tracks/top/:top',
       responseType: 'json',
       withCredentials: true
     });

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title>加入成为科技</title>
+		<meta charset="utf-8">
+		<style>
+			a {
+				outline: 0;
+			}
+			h1, h2, h3, h4, h5, h6, p {
+				margin: 0;
+				font-weight: 400;
+			}
+			a img, fieldset {
+				border: 0;
+			}
+			body {
+				font-family: "Microsoft Yahei";
+				color: #ffffff;
+				background: transparent;
+				padding: 150px;
+				background-color: rgb(51, 51, 51);
+			}
+			.impowerBox {
+				line-height: 1.6;
+				position: relative;
+				display: inline-block;
+				*display: inline;
+				*zoom: 1;
+				width: 100%;
+				vertical-align: middle;
+				z-index: 1;
+				text-align: center;
+			}
+			.impowerBox .title {
+				text-align: center;
+				font-size: 20px;
+			}
+		</style>
+    <script src="/js/jquery.min.js"></script>
+    <script>
+      (function($){
+        var url = '{{PROXY_PREFIX}}' + '{{API_PREFIX}}' + '/invitation/' + '{{CODE}}'
+        $.get(url, function(result){
+          $('.title').html(result.data.invitation.company.name + '邀请您加入TopDMC管理平台，<br />请稍候扫码登陆。')
+          setTimeout(function(){
+    				location.href = result.data.href
+    			}, 3000)
+        })
+      })(jQuery)
+    </script>
+	</head>
+	<body>
+		<div class="main impowerBox">
+			<div class="loginPanel normalPanel">
+				<div class="title"></div>
+			</div>
+		</div>
+	</body>
+</html>

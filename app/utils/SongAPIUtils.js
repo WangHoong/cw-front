@@ -15,7 +15,7 @@ module.exports = {
   find: function(params) {
     return axios({
       method: 'GET',
-      url: APIHelper.getPrefix() + '/v1/tracks',
+      url: APIHelper.getPrefix() + '/tracks',
       responseType: 'json',
       params: params,
       withCredentials: true
@@ -30,7 +30,7 @@ module.exports = {
 
     return axios({
       method: 'GET',
-      url: APIHelper.getPrefix() + '/v1/tracks/' + id,
+      url: APIHelper.getPrefix() + '/tracks/' + id,
       withCredentials: true
     });
   },
@@ -43,7 +43,7 @@ module.exports = {
 
     return axios({
       method: 'POST',
-      url: APIHelper.getPrefix() + '/v1/tracks/',
+      url: APIHelper.getPrefix() + '/tracks/',
       data: song,
       withCredentials: true
     });
@@ -58,7 +58,7 @@ module.exports = {
 
     return axios({
       method: 'PUT',
-      url: APIHelper.getPrefix() + '/v1/tracks/' + id,
+      url: APIHelper.getPrefix() + '/tracks/' + id,
       data: song,
       withCredentials: true
     });

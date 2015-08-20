@@ -26,7 +26,7 @@ module.exports = {
     var _searchType = getSearchType(type);
     dbg('search', 'keyword=' + keyword + ', type' + type);
     return axios({
-      url: APIHelper.getPrefix() + '/v1/' + _searchType,
+      url: APIHelper.getPrefix() + '/' + _searchType,
       responseType: 'json',
       params: {
         size: 50,

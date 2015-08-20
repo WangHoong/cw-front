@@ -13,7 +13,7 @@ module.exports = {
       searchq=q;
     }
     return axios({
-      url: APIHelper.getPrefix() + '/v1/albums?q='+searchq,
+      url: APIHelper.getPrefix() + '/albums?q='+searchq,
       responseType: 'json',
       params: params,
       withCredentials: true
@@ -22,7 +22,7 @@ module.exports = {
 
   search: function(params) {
     return axios({
-      url: APIHelper.getPrefix() + '/v1/albums/search',
+      url: APIHelper.getPrefix() + '/albums/search',
       responseType: 'json',
       params: params,
       withCredentials: true
@@ -35,7 +35,7 @@ module.exports = {
    * @return {axios.Promise}
    */
   get: function(id) {
-    return axios.get(APIHelper.getPrefix() + '/v1/albums/' + id, {
+    return axios.get(APIHelper.getPrefix() + '/albums/' + id, {
       withCredentials: true
     });
   },
@@ -49,7 +49,7 @@ module.exports = {
    */
   update: function(id, attributes) {
     return axios({
-      url: APIHelper.getPrefix() + '/v1/albums/' + id,
+      url: APIHelper.getPrefix() + '/albums/' + id,
       data: attributes,
       method: 'PUT',
       withCredentials: true
@@ -63,7 +63,7 @@ module.exports = {
    */
   create: function(album) {
     return axios({
-      url: APIHelper.getPrefix() + '/v1/albums',
+      url: APIHelper.getPrefix() + '/albums',
       data: album,
       method: 'POST',
       withCredentials: true
@@ -72,7 +72,7 @@ module.exports = {
   build: function(publishers){
     return axios({
       method: 'POST',
-      url: APIHelper.getPrefix() + '/v1/albums/mappings/',
+      url: APIHelper.getPrefix() + '/albums/mappings/',
       data: publishers,
       withCredentials: true
     });

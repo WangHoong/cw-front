@@ -1,5 +1,5 @@
 {
-  "API_PREFIX": "/api",
+  "API_PREFIX": "/api/v1",
   "PROXY_PREFIX": "http://dev.api.topdmc.cn",
   "LOGIN_URL":"/login_demo"
 }

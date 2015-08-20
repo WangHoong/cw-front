@@ -1,4 +1,4 @@
 {
-  "API_PREFIX": "http://api.topdmc.com/api",
+  "API_PREFIX": "http://api.topdmc.com/api/v1",
   "LOGIN_URL":"http://api.topdmc.com/login"
 }

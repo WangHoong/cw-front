@@ -29,7 +29,7 @@ var Form = React.createClass({
   },
 
   componentDidMount: function() {
-    var clientsUrl = APIHelper.getPrefix() + '/v1/clients/';
+    var clientsUrl = APIHelper.getPrefix() + '/clients/';
     var self = this;
     axios.get(clientsUrl).then(function(res) {
       if (self.isMounted()) {

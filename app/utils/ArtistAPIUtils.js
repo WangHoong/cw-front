@@ -20,7 +20,7 @@ module.exports = {
   find: function(params) {
 
     return axios({
-      url: APIHelper.getPrefix() + '/v1/artists',
+      url: APIHelper.getPrefix() + '/artists',
       responseType: 'json',
       params: params,
       withCredentials: true
@@ -41,7 +41,7 @@ module.exports = {
   search: function(params) {
 
     return axios({
-      url: APIHelper.getPrefix() + '/v1/artists/search',
+      url: APIHelper.getPrefix() + '/artists/search',
       responseType: 'json',
       params: params,
       withCredentials: true
@@ -54,7 +54,7 @@ module.exports = {
    * @returns {axios.Promise}
    */
   get: function(id) {
-    return axios.get(APIHelper.getPrefix() + '/v1/artists/' + id, {
+    return axios.get(APIHelper.getPrefix() + '/artists/' + id, {
       withCredentials: true
     });
   },
@@ -67,7 +67,7 @@ module.exports = {
    */
   update: function(id, attributes) {
     return axios({
-      url: APIHelper.getPrefix() + '/v1/artists/' + id,
+      url: APIHelper.getPrefix() + '/artists/' + id,
       data: attributes,
       method: 'PUT',
       withCredentials: true
@@ -81,7 +81,7 @@ module.exports = {
    */
   create: function(artist) {
     return axios({
-      url: APIHelper.getPrefix() + '/v1/artists/',
+      url: APIHelper.getPrefix() + '/artists/',
       data: artist,
       method: 'POST',
       withCredentials: true
@@ -95,6 +95,6 @@ module.exports = {
    * @returns {axios.Promise}
    */
   countries: function() {
-    return axios.get(APIHelper.getPrefix() + '/v1/artists/countries', {withCredentials: true});
+    return axios.get(APIHelper.getPrefix() + '/artists/countries', {withCredentials: true});
   }
 };

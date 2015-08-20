@@ -11,7 +11,7 @@ module.exports = {
   search: function(params) {
     return axios({
       method: 'GET',
-      url: APIHelper.getPrefix() + '/v1/autocomplete',
+      url: APIHelper.getPrefix() + '/autocomplete',
       responseType: 'json',
       params: params,
       withCredentials: true

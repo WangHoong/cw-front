@@ -65,8 +65,9 @@ html, body{
 <script type="text/javascript" src="/js/jquery.min.js"></script>
 <script type="text/javascript">
 (function($, window) {
-  var TEST_PREFIX = '{{API_PREFIX}}'.replace('api', '');
-  var USERS_URL = TEST_PREFIX + 'test/users/';
+  // dev mode use test/user, del API_PREFIX
+  var TEST_PREFIX = '{{API_PREFIX}}'.replace('/api/v1', '');
+  var USERS_URL = TEST_PREFIX + '/test/users/';
   var PROXY_PREFIX = '{{PROXY_PREFIX}}';
   $.ajax({
     url: USERS_URL,
