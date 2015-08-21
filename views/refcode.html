@@ -71,16 +71,12 @@
 				$.get(url, function(result) {
 					$('.title').html(result.data.invitation.username + ',<br>欢迎您加入TopDMC管理平台');
 					$('#getIn').click(function() {
-						location.href = result.data.href;
-					})
-				})
+						location.href = '{{LOGIN_URL}}?refcode=' + result.invitation.code;
+					});
+				});
 			} else {
-				$.get(url, function(result) {
-					$('.title').html('请你使用Chrome浏览器登录')
-					$('#getIn').click(function() {
-						location.href = result.data.href;
-					})
-				})
+				$('.title').html('请你使用Chrome浏览器登录');
+				$('#getIn').css('display', 'none');
 			}
 
 		})(jQuery);
