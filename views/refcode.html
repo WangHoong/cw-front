@@ -71,7 +71,7 @@
 				$.get(url, function(result) {
 					$('.title').html(result.data.invitation.username + ',<br>欢迎您加入TopDMC管理平台');
 					$('#getIn').click(function() {
-						location.href = '{{LOGIN_URL}}?refcode=' + result.invitation.code;
+						location.href = '{{LOGIN_URL}}?refcode=' + result.data.invitation.code;
 					});
 				});
 			} else {
