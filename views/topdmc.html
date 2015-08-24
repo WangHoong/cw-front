@@ -1,34 +1,162 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-    <style media="screen">
-      .navigation{
-        position: fixed;
-        top:0;
-        width: 80%;
-        height: 80px;
-        background-color: red;
-      }
-    </style>
-  </head>
-  <body>
-    <div class="navigation">
-      <img src="" alt="" />
-      <p>
-        <span>关于我们|</span>
-        <span>DMC平台|</span>
-        <span>工作机会|</span>
-        <span>联系我们</span>
 
-      </p>
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <style media="screen">
+    .navigation {
+      position: fixed;
+      top: 0;
+      width: 80%;
+      height: 60px;
+      margin-left: 10%;
+      background-color: #fff;
+      z-index: 99;
+    }
 
+    .tab {
+      text-align: right;
+      font-size: 9px;
+      margin-right: 20px;
+      margin-top: 20px;
+    }
+
+    .section {
+      margin-top: -10px;
+      width: 100%;
+      height: 350px;
+    }
+
+    .sec-one {
+      background-color: #252525;
+      color: #fff;
+    }
+
+    .sec-two,
+    .sec-four {
+      background-color: #ececec;
+    }
+
+    .sec-three,
+    .sec-five {
+      background-color: #ff1949;
+      color: #fff;
+    }
+
+    .title {
+      font-size: 40px;
+      padding-top: 70px;
+    }
+
+    .left {
+      margin-left: 15%;
+    }
+
+    .right {
+      text-align: right;
+      margin-right: 15%;
+    }
+
+    .description {
+      margin-top: 30px;
+      z-index: 98;
+      line-height: 150%;
+    }
+
+    .graph {
+      position: relative;
+      top: -188px;
+      z-index: 1;
+    }
+    .first,.last{
+      margin-top: -40px!important;
+    }
+    .f-description{
+      position: relative;
+      top: 200px;
+      text-align: center;
+    }
+    .login{
+      background: rgba(0, 0, 0, 0);
+      border: 1px solid #fff;
+      position: relative;
+      top:250px;
+      text-align: center;
+      width: 150px;
+      padding: 10px 0 10px 0px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="navigation">
+    <img src="" alt="" />
+    <div class="tab">
+      <span>关于我们|</span>
+      <span>DMC平台|</span>
+      <span>工作机会|</span>
+      <span>联系我们</span>
     </div>
-    <div class="">
-      <section class="">
-        
-      </section>
-    </div>
-  </body>
+  </div>
+  <div class="">
+    <section class="section sec-one">
+      <div class="f-description">DMC依托先进的技术平台，为音乐权利人提供内容自主授权、数据监测、盗版排查、法务合作和企划推广一站式服务</div>
+      <div class="login">平台登录</div>
+    </section>
+    <section class="section sec-two">
+      <div class="title left"><b>轻松实现<br>歌曲版权价值</b></div>
+      <div class="description left">DMC将歌曲全面直观地展现给海量的音乐服务商，权利人通过自主
+        <br>授权、全面奋发，真正实现每一次在线播放都得到及时合理的支付</div>
+      <div class="graph right first">
+        <svg width="400" height="340" xmlns="http://www.w3.org/2000/svg">
+          <g>
+            <ellipse ry="175" rx="175" id="svg_1" cy="170" cx="200" stroke-width="35" stroke="#e0e0e0" fill="#ececec" />
+          </g>
+        </svg>
+      </div>
+
+
+    </section>
+    <section class="section sec-three">
+      <div class="title right"><b>省时、省钱、省力</b></div>
+      <div class="description right">大幅度减少重复而反锁的商务合作，降低不确定性，音乐人和唱片
+        <br>公司将更多的经历和资源投入在音乐之中</div>
+      <div class="graph left ">
+        <svg width="400" height="340" xmlns="http://www.w3.org/2000/svg">
+          <path d="M200 0 L0 400 L 400 400 L200 0 " fill="#ff1949" stroke-width="35" stroke="#f81844"></path>
+        </svg>
+      </div>
+
+
+    </section>
+    <section class="section sec-four">
+      <div class="title left"><b>实时、透明的<br>数据监测</b></div>
+      <div class="description left">支持随时查阅各歌曲各渠道播放数据，让音乐权利人对歌曲播放情况
+        <br>了然于心，收益更透明、可靠</div>
+      <div class="graph right">
+        <svg width="400" height="300" xmlns="http://www.w3.org/2000/svg">
+          <rect x="20" y="20" width="300" height="300" style="fill:#ececec;stroke-width:35; stroke:#e0e0e0;" />
+        </svg>
+      </div>
+
+
+    </section>
+    <section class="section sec-five">
+      <div class="title right"><b>和盗版游击战<br>说再见</b></div>
+      <div class="description right">对线上音乐实施盗版排查，同专业的版权法务团队合作。让盗
+        <br>版维权有据可依，有理可依</div>
+      <div class="graph left last">
+        <svg width="400" height="350" xmlns="http://www.w3.org/2000/svg">
+          <path d="M200 350 L400 -40 L 0 -40 L200 350 " fill="#ff1949" stroke-width="35" stroke="#f81844"></path>
+        </svg>
+      </div>
+
+
+    </section>
+  </div>
+</body>
+
 </html>
