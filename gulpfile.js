@@ -210,7 +210,9 @@ var started = false;
 // Launch a Node.js/Express server
 gulp.task('serve', ['build'], function(cb) {
   src.server = [
-    './server.js'
+    './server.js',
+    './lib/*.js',
+    './config/*.json'
   ];
 
   var started = false;
