@@ -7,10 +7,20 @@ class Main extends Component {
     super(props)
   }
   render() {
+    let songTop100 = [
+      {
+        thisWeek: 1,
+        lastWeek: 2,
+        peakPosition: 1,
+        wksOnChart: 9,
+        bGInX: 'Biggest gain in streams',
+        songName: 'Can\'t Feel My Face',
+        artistAvator: 'http://www.billboard.com/images/pref_images/q25361d2jtk.jpg',
+        artistName: 'The Weeknd',
+      }
+    ]
     return (
-      <div>
-        {List}
-      </div>
+      <List songTop100={songTop100} />
     )
   }
 }
