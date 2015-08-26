@@ -1,100 +1,133 @@
 <!DOCTYPE html>
 <html>
-
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>加入成为科技</title>
-	<meta charset="utf-8">
-	<link rel="shortcut icon" href="/images/favicon.ico">
-	<link rel="icon" sizes="32x32" href="/images/favicon-32x32.png">
-	<link rel="icon" sizes="96x96" href="/images/favicon-96x96.png">
-	<link rel="icon" sizes="16x16" href="/images/favicon-16x16.png">
-	<link rel="apple-touch-icon" sizes="57x57" href="/images/apple-icon-57x57.png">
-	<link rel="apple-touch-icon" sizes="60x60" href="/images/apple-icon-60x60.png">
-	<link rel="apple-touch-icon" sizes="72x72" href="/images/apple-icon-72x72.png">
-	<link rel="apple-touch-icon" sizes="76x76" href="/images/apple-icon-76x76.png">
-	<link rel="apple-touch-icon" sizes="114x114" href="/images/apple-icon-114x114.png">
-	<link rel="apple-touch-icon" sizes="120x120" href="/images/apple-icon-120x120.png">
-	<link rel="apple-touch-icon" sizes="144x144" href="/images/apple-icon-144x144.png">
-	<link rel="apple-touch-icon" sizes="152x152" href="/images/apple-icon-152x152.png">
-	<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-icon-180x180.png">
-	<link rel="stylesheet" href="/css/mbs.css">
-	<link rel="stylesheet" href="/css/font-awesome.min.css">
-	<link rel="stylesheet" href="/css/main.css">
-	<style>
-		body {
-			background: rgb(51, 51, 51) !important;
-		}
+<meta charset="utf-8">
+<title>加入成为科技</title>
+<meta charset="utf-8">
+<link rel="shortcut icon" href="/images/favicon.ico">
+<link rel="icon" sizes="32x32" href="/images/favicon-32x32.png">
+<link rel="icon" sizes="96x96" href="/images/favicon-96x96.png">
+<link rel="icon" sizes="16x16" href="/images/favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="57x57" href="/images/apple-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="/images/apple-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="/images/apple-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="/images/apple-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="/images/apple-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="/images/apple-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="/images/apple-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="/images/apple-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-icon-180x180.png">
+<link rel="stylesheet" href="/css/mbs.css">
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+<link rel="stylesheet" href="/css/main.css">
+<style>
+html, body {
+	height: 100%;
+}
+body {
+	background: rgb(51, 51, 51) !important;
+}
+.rc-content {
+	text-align: center;
+	margin-top: 80px;
+	font-size: 24px;
+	display: none;
+}
+.rc-content .logo {
+	margin: 0 0 30px;
+}
+.rc-content .logo img {
+	width: 300px;
+}
+.rc-content .success-tips p {
+	margin-top: 10px;
+	color: #fff;
+}
 
-		.impowerBox {
-			line-height: 1.6;
-			position: relative;
-			display: inline-block;
-			*display: inline;
-			*zoom: 1;
-			width: 100%;
-			vertical-align: middle;
-			z-index: 1;
-			text-align: center;
-		}
-
-		.impowerBox, .loginPanel {
-			height: 100%;
-		}
-		.loginPanel {
-			display: flex;
-			display: -webkit-flex;
-			flex-direction: column;
-			-webkit-flex-direction: column;
-			justify-content: center;
-			-webkit-justify-content: center;
-			align-items: center;
-			-webkit-align-items: center;
-		}
-		.loginPanel .title {
-			text-align: center;
-			font-size: 24px;
-			color: #fff;
-			margin: 20px 0;
-		}
-		#getIn{
-			background-color: #fff;
-			border-radius: 10px;
-			width: 90px;
-			height: 40px;
-			box-shadow: 2px 2px 5px #888888;
-			color: rgb(51, 51, 51);
-		}
-	</style>
-	<script src="/js/jquery.min.js"></script>
-	<script>
-		(function($) {
-			var url = '{{PROXY_PREFIX}}' + '{{API_PREFIX}}' + '/invitation/' + '{{CODE}}';
-
-			if (navigator.userAgent.indexOf("Chrome") > -1 || navigator.userAgent.indexOf("Safari") > -1) {
-				$.get(url, function(result) {
-					$('.title').html('只有更多选择，没有更多局限<br>'+'<b><span style="font-size:40px;">'+result.data.invitation.username +'</b></span>'+'&nbsp;&nbsp;&nbsp;先生/女士'+ ',<br>DMC音乐服务平台欢迎你');
-					$('#getIn').click(function() {
-						location.href = '{{LOGIN_URL}}?refcode=' + result.data.invitation.code;
-					});
-				});
-			} else {
-				$('.title').html('请你使用Chrome浏览器登录');
-				$('#getIn').css('display', 'none');
-			}
-
-		})(jQuery);
-	</script>
+.rc-content .username {
+	margin-right: 20px;
+}
+.rc-content .in-btn {
+	margin-top: 20px;
+}
+.rc-content .in-btn .btn {
+	width: 150px;
+}
+.rc-loading {
+	color: #fff;
+	text-align: center;
+	margin-top: 40px;
+	font-size: 18px;
+	display: none;
+}
+.fail-tips {
+	color: #fff;
+	font-size: 18px;
+	margin-top: 40px;
+	text-align: center;
+	display: none;
+}
+</style>
 </head>
 
 <body>
-	<div class="main impowerBox">
-		<div class="loginPanel normalPanel">
-			<img src="/images/red-logo.png" style="width:200px;" />
-			<div class="title"></div>
-			<input type="button" class="btn" id="getIn" name="name" value="加入">
+<div class="main">
+	<p class="rc-loading">正在加载...</p>
+	<div class="rc-content">
+		<h1 class="logo"><img src="/images/red-logo.png"></h1>
+		<div class="success-tips">
+			<p>只有更多选择 没有更多局限</p>
+			<p><strong class="username">您好</strong>先生/女士</p>
+			<p>DMC音乐服务平台欢迎你</p>
+			<div class="in-btn"><a class="btn btn-default" href="#" id="inBtn">加入</a></div>
 		</div>
 	</div>
+	<p class="fail-tips">您的邀请码已失效，请联系DMC客服</p>
+</div>
+<script src="/js/jquery.min.js"></script>
+<script>
+(function($) {
+	var $loading = $('.rc-loading'),
+			$failTips = $('.fail-tips'),
+			$content = $('.rc-content'),
+			$username = $('.username'),
+			$inBtn = $('#inBtn');
+	if (navigator.userAgent.indexOf('Chrome') === -1 || navigator.userAgent.indexOf('Safari') === -1) {
+		$failTips.text('请使用Chrome或Safari浏览器').css('display', 'block');
+		$loading.css('display', 'none');
+		return;
+	}
+	var url = '{{PROXY_PREFIX}}' + '{{API_PREFIX}}' + '/invitation/' + '{{CODE}}';
+	$.ajax({
+		url: url,
+		method: 'GET',
+		dataType: 'json',
+		beforeSend: function() {
+			$loading.show();
+			$content.hide();
+			$failTips.hide();
+		},
+		success: function(result) {
+			$loading.hide();
+			if (result.status === 200) {
+				$failTips.hide();
+				$username.text(result.data.invitation.username || '您好');
+				$inBtn.attr('href', '{{LOGIN_URL}}?refcode=' + result.data.invitation.code);
+				$content.show();
+				return;
+			}
+			if (result.status === 400) {
+				$failTips.text('您的邀请码已失效，请联系DMC客服').show();
+				return;
+			}
+		},
+		error: function() {
+			$loading.hide();
+			$content.hide();
+			$failTips.text('异常错误，请重试').show();
+		}
+	});
+})(jQuery);
+</script>
 </body>
-
 </html>
