@@ -59,6 +59,10 @@
 		}
 		#getIn{
 			background-color: #fff;
+			border-radius: 10px;
+			width: 90px;
+			height: 40px;
+			box-shadow: 2px 2px 5px #888888;
 			color: rgb(51, 51, 51);
 		}
 	</style>
@@ -69,7 +73,7 @@
 
 			if (navigator.userAgent.indexOf("Chrome") > -1 || navigator.userAgent.indexOf("Safari") > -1) {
 				$.get(url, function(result) {
-					$('.title').html(result.data.invitation.username + ',<br>欢迎您加入TopDMC管理平台');
+					$('.title').html('只有更多选择，没有更多局限<br>'+'<b><span style="font-size:40px;">'+result.data.invitation.username +'</b></span>'+'&nbsp;&nbsp;&nbsp;先生/女士'+ ',<br>DMC音乐服务平台欢迎你');
 					$('#getIn').click(function() {
 						location.href = '{{LOGIN_URL}}?refcode=' + result.data.invitation.code;
 					});
@@ -88,7 +92,7 @@
 		<div class="loginPanel normalPanel">
 			<img src="/images/red-logo.png" style="width:200px;" />
 			<div class="title"></div>
-			<input type="button" class="btn" id="getIn" name="name" value="点击进入">
+			<input type="button" class="btn" id="getIn" name="name" value="加入">
 		</div>
 	</div>
 </body>
