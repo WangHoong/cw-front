@@ -1,5 +1,6 @@
 var React = require('react');
 var classNames = require('classnames');
+var APIHelper = require('app/utils/APIHelper').APIHelper;
 
 var UpAvatar = React.createClass({
 
@@ -120,7 +121,7 @@ var UpAvatar = React.createClass({
     xhr.addEventListener('load', this.uploadComplete, false);
     xhr.addEventListener('error', this.uploadFailed, false);
     xhr.addEventListener('abort', this.uploadCanceled, false);
-    xhr.open('POST', '/api/v1/resources/upload?type='+this.props.type);
+    xhr.open('POST', APIHelper.getPrefix() + '/resources/upload?type='+this.props.type);
     xhr.send(fd);
   },
 
