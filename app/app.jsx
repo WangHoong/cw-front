@@ -40,27 +40,29 @@ var Remind = require('app/components/Common/Remind.jsx');
  * @type {axios.AxiosStatic}
  */
 var axios = require('axios');
-
+window.print_http_log = false;
 // Add a request interceptor
 axios.interceptors.request.use(function (config) {
-// Do something before request is sent
+  if (window.print_http_log) {
+    config.__startTime = +new Date();
+  }
   return config;
 }, function (error) {
-// Do something with request error
   return Promise.reject(error);
 });
-
 // Add a response interceptor
 axios.interceptors.response.use(function (response) {
-// Do something with response data
+  if (window.print_http_log) {
+    var name = response.config.url,
+        time = +new Date() - response.config.__startTime;
+    console.log('%ctime: ' + time + 'ms ------ name: ' + name, 'font-size: 14px; color: #fff; background-color: green; padding: 1px 5px;');
+  }
   return response;
 }, function (error) {
-// Do something with response error
   return Promise.reject(error);
 });
 
 window._dbg = require('debug');
-// window._dbg.enable("topdmc:*");
 let CleanDebugForProdModeUrl = 'www.topdmc.com'
 CleanDebugForProdModeUrl === location.hostname ? _dbg.disable() : _dbg.enable("topdmc:*")
 
