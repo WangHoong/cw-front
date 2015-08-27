@@ -121,21 +121,24 @@ body {
 		},
 		success: function(result) {
 			$loading.hide();
-			if (result.status === 200) {
+			if (result.status == 200) {
 				$failTips.hide();
 				$username.text(result.data.invitation.username || '您好');
 				$inBtn.attr('href', '{{LOGIN_URL}}?refcode=' + result.data.invitation.code);
 				$content.show();
 				return;
 			}
-			if (result.status === 400) {
+			if (result.status == 400) {
 				$failTips.text('您的邀请码已失效，请联系DMC客服').show();
+				return;
+			}
+			if (result.status == 404) {
+				$failTips.text('没有这个邀请码哟，请联系DMC客服').show();
 				return;
 			}
 		},
 		error: function() {
 			$loading.hide();
-			$content.hide();
 			$failTips.text('异常错误，请重试').show();
 		}
 	});
