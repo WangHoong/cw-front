@@ -13,7 +13,7 @@ class SongChart extends React.Component {
 
   createOpt(_){
     let date = []
-    let streamingData = [80000, 90000, 70000, 75000, 85000,
+    let baseData = [80000, 90000, 70000, 75000, 85000,
                 100000, 90000, 100000, 90000, 85000,
                 80000, 90000, 70000, 75000, 75000,
                 85000, 85000, 80000, 70000, 90000,
@@ -38,9 +38,16 @@ class SongChart extends React.Component {
                 100000, 70000, 85000, 85000, 80000,
                 90000, 70000, 75000, 90000, 85000
                 ]
-    let downloadingData = streamingData.map(function(_){
-      return (_ - 40000)
-    })
+    let randomArray = arr => {
+      return arr.sort(() =>
+        Math.random() > 0.5 ? -1 : 1
+      )
+    }
+    let streamingData = randomArray(baseData)
+    let downloadingData = randomArray(baseData.map(function(_){
+      return (Math.random() > 0.5 ? _*1/10 : _*1/5)
+    }))
+
     let fix = (_) => {
       if(Number(_)<10){
         return '0'+_
