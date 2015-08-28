@@ -85,15 +85,15 @@ var TotalCard = React.createClass({
       createItem=
         <div className="totalcard">
           <p className="ttc-title"><b>总收入</b></p>
-          <p className="ttc-sum"><span>{this.state.money}</span><span className="ttc-unit">元</span></p>
+          <p className="ttc-sum"><span>0</span><span className="ttc-unit">元</span></p>
           <div className="ttc-class">
             <div className="ttc-first ">
               <p>已入账</p>
-              <p className="ttc-num"><span>{this.state.moneygive}</span><span className="ttc-unit">元</span></p>
+              <p className="ttc-num"><span>0</span><span className="ttc-unit">元</span></p>
             </div>
             <div className="ttc-next">
               <p>未入账</p>
-              <p className="ttc-num"><span>{this.state.moneyungive}</span><span className="ttc-unit">元</span></p>
+              <p className="ttc-num"><span>0</span><span className="ttc-unit">元</span></p>
             </div>
           </div>
         </div>
