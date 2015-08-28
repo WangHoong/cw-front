@@ -2,6 +2,7 @@ var React = require('react');
 import BaseChart from './BaseChart.jsx'
 import classNames from 'classnames'
 
+const ISPRODMODE = location.hostname==='www.topdmc.com'
 class SongChart extends React.Component {
   constructor(props){
     super(props);
@@ -38,6 +39,7 @@ class SongChart extends React.Component {
                 100000, 70000, 85000, 85000, 80000,
                 90000, 70000, 75000, 90000, 85000
                 ]
+    ISPRODMODE && (baseData = [])
     let randomArray = arr => {
       return arr.sort(() =>
         Math.random() > 0.5 ? -1 : 1
@@ -74,7 +76,7 @@ class SongChart extends React.Component {
         subtext: '2015'
       },
       tooltip : {
-        trigger: 'axis'
+        trigger: 'axis',
       },
       dataZoom : {
         show : true,
@@ -99,25 +101,22 @@ class SongChart extends React.Component {
         name: '流量',
         type: 'line',
         smooth: true,
-
+symbol: 'emptyCircle',
         itemStyle: {normal: {areaStyle: {type: 'default',color: 'RGBA(209, 242, 243, .5)'}}},
         data: streamingData,
         markLine : {
-          data : [
-            {type : 'average', name : '平均值'}
-          ]
+          data : ISPRODMODE ? [] : [{type : 'average', name : '平均值'}]
         }
       },
       {
         name: '下载量',
         type: 'line',
         smooth: true,
+        symbol: 'emptyCircle',
         itemStyle: {normal: {areaStyle: {type: 'default',color: 'RGBA(243, 243, 243, .5)'}}},
         data: downloadingData,
         markLine: {
-          data: [
-            {type : 'average', name : '平均值'}
-          ]
+          data: ISPRODMODE ? [] : [{type : 'average', name : '平均值'}]
         }
       }
       ]
