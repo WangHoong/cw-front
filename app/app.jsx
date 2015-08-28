@@ -24,43 +24,14 @@ var Whoami = require('app/components/Common/Whoami.jsx');
 var Main = require('./components/Main/Main.jsx');
 // LargeFileUploader
 var LargeFileUploader = require('app/components/Common/LargeFileUploader.jsx');
-var {
-  Route,
-  RouteHandler,
-  DefaultRoute,
-  NotFoundRoute
-} = Router;
+var {Route, RouteHandler, DefaultRoute, NotFoundRoute} = Router;
 var classNames = require('classnames');
 
 var Loader = require('app/components/Common/Loader.jsx');
 var Remind = require('app/components/Common/Remind.jsx');
-
-/**
- * axios
- * @type {axios.AxiosStatic}
- */
 var axios = require('axios');
-window.print_http_log = false;
-// Add a request interceptor
-axios.interceptors.request.use(function (config) {
-  if (window.print_http_log) {
-    config.__startTime = +new Date();
-  }
-  return config;
-}, function (error) {
-  return Promise.reject(error);
-});
-// Add a response interceptor
-axios.interceptors.response.use(function (response) {
-  if (window.print_http_log) {
-    var name = response.config.url,
-        time = +new Date() - response.config.__startTime;
-    console.log('%ctime: ' + time + 'ms ------ name: ' + name, 'font-size: 14px; color: #fff; background-color: green; padding: 1px 5px;');
-  }
-  return response;
-}, function (error) {
-  return Promise.reject(error);
-});
+
+require('./utils/HTTPLog');
 
 window._dbg = require('debug');
 let CleanDebugForProdModeUrl = 'www.topdmc.com'
