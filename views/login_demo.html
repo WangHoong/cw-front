@@ -62,8 +62,8 @@ html, body{
   <div class='bounce2'></div>
   <div class='bounce3'></div>
 </div>
-<script type="text/javascript" src="/js/jquery.min.js"></script>
-<script type="text/javascript">
+<script src="/js/jquery.min.js"></script>
+<script>
 (function($, window) {
   // dev mode use test/user, del API_PREFIX
   var TEST_PREFIX = '{{API_PREFIX}}'.replace('/api/v1', '');
@@ -80,7 +80,6 @@ html, body{
       if (res.length > 0) {
         var __htmlArr = [];
         $(res).each(function(idx, item) {
-          // __htmlArr.push('<a class="j-user" data-id=' + item.id + '><img src="' + item.avatar + '"><br><p>' + item.username + '</p></a>');
           __htmlArr.push('<a class="j-user" href="' + PROXY_PREFIX + '/test/users/' + item.id + '"><img src="' + item.avatar + '"><br><p>' + item.username + '</p></a>');
         });
         $('.btn-center').append(__htmlArr.join(''));
@@ -88,24 +87,6 @@ html, body{
       }
     }
   });
-  // function login(__id) {
-  //   $.ajax({
-  //     url: TEST_PREFIX + 'test/users/' + __id,
-  //     dataType: 'json',
-  //     type: 'GET',
-  //     beforeSend: function() {
-  //       $('.loading').css('display', 'block');
-  //     },
-  //     success: function(res, status, xhr) {
-  //       window.location.href = '/';
-  //     }
-  //   });
-  // };
-  // $('.btn-center').on('click', '.j-user', function(evt) {
-  //   evt.preventDefault();
-  //   var __id = $(this).data('id');
-  //   login(__id);
-  // });
 })(jQuery, window);
 </script>
 </body>
