@@ -24,10 +24,13 @@ html, body {
   height: 100%;
   overflow: hidden;
 }
+body {
+  background: none;
+}
 </style>
 </head>
 <body>
-<div class="doorbell-bg"></div>
+<div id="particles-js"></div>
 <section class="doorbell-wrap">
   <header class="header">
     <div class="header-logo">
@@ -52,10 +55,13 @@ html, body {
 </section>
 <script src="/js/jquery.min.js"></script>
 <script src="/js/waves.min.js"></script>
+<script src="/js/common.js"></script>
 <script>
 (function($, undefined) {
   Waves.attach('.flat-buttons', ['waves-button']);
   Waves.init();
+
+  particlesJS.load('particles-js', '/config/doorbell_pConfig.json');
 
   var $getCodeBtn = $('#getCodeBtn'),
       $number = $('#number'),
