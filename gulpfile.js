@@ -219,7 +219,7 @@ gulp.task('build', function(cb) {
       cb();
     });
   } else {
-    runSequence(['vendors', 'bundle', 'bower_libs', 'images', 'styles', 'mbs', 'build:dmc_index', 'config'], ['styles:minify', 'mbs:minify', 'bundle:minify', 'vendor:minify', 'images:minify', 'js:minify'], function() {
+    runSequence(['vendors', 'bundle', 'bower_libs', 'images', 'styles', 'mbs', 'build:dmc_index', 'js', 'config'], ['styles:minify', 'mbs:minify', 'bundle:minify', 'vendor:minify', 'images:minify', 'js:minify'], function() {
       cb();
     });
   }
