@@ -240,20 +240,23 @@ var Form = React.createClass({
   renderClients: function() {
     if (this.state.clients === null) {
       return (
-        <select className='form-control'>
-          <option>暂无信息</option>
+        <select>
+          <option value="0">暂无信息</option>
         </select>
       );
     }
     var client_id = this.state.copyRight.client_id;
     var items = [];
+    var selectValue = 0;
     this.state.clients.items.map(function(item) {
-      var selected = (item.id == client_id) ? true : false;
-      items.push(<option key={item.id} value={item.id} selected={selected}>{item.name}</option>);
+      if (item.id == client_id) selectValue = item.id;
+      items.push(
+        <option key={item.id} value={item.id}>{item.name}</option>
+      );
     });
     return (
-      <select className='form-control' onChange={this.handleClientsChange}>
-        <option>——请选择——</option>
+      <select className='form-control' onChange={this.handleClientsChange} value={selectValue}>
+        <option value="0">请选择</option>
         {items}
       </select>
     );
