@@ -99,7 +99,8 @@ gulp.task('sync', function() {
     host: 'lo.topdmc.cn',
     open: 'external'
   });
-  return gulp.watch(PUBLIC + 'less/*.less', ['styles']);
+  gulp.watch(PUBLIC + 'less/*.less', ['styles']);
+  gulp.watch(PUBLIC + 'js/*.js', ['js']);
 });
 
 gulp.task('bower_libs', function() {
@@ -185,6 +186,24 @@ gulp.task('images:minify', function() {
     .pipe(gulp.dest(BUILD + 'images'));
 });
 
+gulp.task('js', function() {
+  return gulp.src(PUBLIC + 'js/*.js')
+    .pipe($.concat('common.js'))
+    .pipe(gulp.dest(BUILD + 'js'))
+    .pipe(reload({stream: true}));
+});
+
+gulp.task('js:minify', function() {
+  return gulp.src(BUILD + 'js/common.js')
+    .pipe($.uglify())
+    .pipe(gulp.dest(BUILD + 'js'));
+});
+
+gulp.task('config', function() {
+  return gulp.src(PUBLIC + 'config/*.json')
+    .pipe(gulp.dest(BUILD + 'config'));
+});
+
 // 临时
 gulp.task('build:dmc_index', function() {
   gulp.src(PUBLIC + 'dmc_index.css')
@@ -196,11 +215,11 @@ gulp.task('build:dmc_index', function() {
 // Build the app
 gulp.task('build', function(cb) {
   if (DEBUG) {
-    runSequence(['vendors', 'bundle', 'bower_libs', 'images', 'styles', 'mbs', 'build:dmc_index'], 'sync', function() {
+    runSequence(['vendors', 'bundle', 'bower_libs', 'images', 'styles', 'mbs', 'build:dmc_index', 'js', 'config'], 'sync', function() {
       cb();
     });
   } else {
-    runSequence(['vendors', 'bundle', 'bower_libs', 'images', 'styles', 'mbs', 'build:dmc_index'], ['styles:minify', 'mbs:minify', 'bundle:minify', 'vendor:minify', 'images:minify'], function() {
+    runSequence(['vendors', 'bundle', 'bower_libs', 'images', 'styles', 'mbs', 'build:dmc_index', 'config'], ['styles:minify', 'mbs:minify', 'bundle:minify', 'vendor:minify', 'images:minify', 'js:minify'], function() {
       cb();
     });
   }
