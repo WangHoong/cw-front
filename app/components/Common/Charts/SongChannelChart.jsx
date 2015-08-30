@@ -20,7 +20,7 @@ class SongChannelChart extends React.Component {
       [24000, 24000, 21000, 19000, 24000, 25000, 21000, 25000, 20000, 24000, 24000, 21000, 20000, 19000, 19000, 23000, 23000, 25000, 21000, 21000, 26000, 21000, 25000, 25000, 25000, 22000, 23000, 19000, 22000, 25000],
       [18000, 24000, 17000, 19000, 24000, 25000, 22000, 24000, 27000, 25000, 18000, 23000, 16000, 20000, 21000, 25000, 25000, 19000, 17000, 23000, 24000, 17000, 25000, 26000, 19000, 24000, 17000, 22000, 24000, 26000]
     ]
-    ISPRODMODE && (baseData = [])
+    ISPRODMODE && (baseData = [[null],[],[],[],[]])
     let randomArray = arr => {
       return arr.sort(() =>
         Math.random() > 0.5 ? -1 : 1
@@ -80,6 +80,9 @@ class SongChannelChart extends React.Component {
         type : 'value'
       }
       ],
+      markLine:{
+        data:[{type : 'average', name : '平均值'}]
+      },
       series : [
       {
         name:'千千静听',
@@ -147,7 +150,7 @@ class SongChannelChart extends React.Component {
           role="group"
           aria-label=""
           style={{position:'absolute', top: 0, right: 0}}>
-          {ISPRODMODE ? '' : buttons}
+          {buttons}
         </div>
       </div>
 

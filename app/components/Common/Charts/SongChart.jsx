@@ -105,7 +105,7 @@ symbol: 'emptyCircle',
         itemStyle: {normal: {areaStyle: {type: 'default',color: 'RGBA(209, 242, 243, .5)'}}},
         data: streamingData,
         markLine : {
-          data : ISPRODMODE ? [] : [{type : 'average', name : '平均值'}]
+          data : [{type : 'average', name : '平均值'}]
         }
       },
       {
@@ -116,7 +116,7 @@ symbol: 'emptyCircle',
         itemStyle: {normal: {areaStyle: {type: 'default',color: 'RGBA(243, 243, 243, .5)'}}},
         data: downloadingData,
         markLine: {
-          data: ISPRODMODE ? [] : [{type : 'average', name : '平均值'}]
+          data: [{type : 'average', name : '平均值'}]
         }
       }
       ]
