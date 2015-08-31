@@ -1,9 +1,9 @@
-var React = require('react');
+import React, { Component } from 'react'
 import BaseChart from './BaseChart.jsx'
 import classNames from 'classnames'
 
 const ISPRODMODE = location.hostname==='www.topdmc.com'
-class SongChannelChart extends React.Component {
+class SongChannelChart extends Component {
   constructor(props){
     super(props);
     this.state = {
@@ -20,7 +20,8 @@ class SongChannelChart extends React.Component {
       [24000, 24000, 21000, 19000, 24000, 25000, 21000, 25000, 20000, 24000, 24000, 21000, 20000, 19000, 19000, 23000, 23000, 25000, 21000, 21000, 26000, 21000, 25000, 25000, 25000, 22000, 23000, 19000, 22000, 25000],
       [18000, 24000, 17000, 19000, 24000, 25000, 22000, 24000, 27000, 25000, 18000, 23000, 16000, 20000, 21000, 25000, 25000, 19000, 17000, 23000, 24000, 17000, 25000, 26000, 19000, 24000, 17000, 22000, 24000, 26000]
     ]
-    ISPRODMODE && (baseData = [[null],[],[],[],[]])
+    // ISPRODMODE && (baseData = [[null],[],[],[],[]])
+    ISPRODMODE && (baseData = baseData.map((_)=> _.map(()=>0)))
     let randomArray = arr => {
       return arr.sort(() =>
         Math.random() > 0.5 ? -1 : 1
@@ -72,12 +73,15 @@ class SongChannelChart extends React.Component {
       {
         type : 'category',
         boundaryGap : true,
-        data : date
+        data : date,
       }
       ],
       yAxis : [
       {
-        type : 'value'
+        type : 'value',
+        min: ISPRODMODE ? 0 : 0,
+        max: ISPRODMODE ? 10000 : 100000,
+        splitNumber: ISPRODMODE ? 5 : 5,
       }
       ],
       markLine:{

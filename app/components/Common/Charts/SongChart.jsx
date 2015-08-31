@@ -1,9 +1,9 @@
-var React = require('react');
+import React, { Component } from 'react'
 import BaseChart from './BaseChart.jsx'
 import classNames from 'classnames'
 
 const ISPRODMODE = location.hostname==='www.topdmc.com'
-class SongChart extends React.Component {
+class SongChart extends Component {
   constructor(props){
     super(props);
     this.state = {
@@ -39,7 +39,7 @@ class SongChart extends React.Component {
                 100000, 70000, 85000, 85000, 80000,
                 90000, 70000, 75000, 90000, 85000
                 ]
-    ISPRODMODE && (baseData = [])
+    ISPRODMODE && (baseData = baseData.map(()=>0))
     let randomArray = arr => {
       return arr.sort(() =>
         Math.random() > 0.5 ? -1 : 1
@@ -88,24 +88,34 @@ class SongChart extends React.Component {
       {
         type : 'category',
         boundaryGap : false,
-        data : date
+        data : date,
       }
       ],
       yAxis : [
       {
-        type : 'value'
+        type : 'value',
+        min: ISPRODMODE ? 0 : 0,
+        max: ISPRODMODE ? 10000 : 100000,
+        splitNumber: ISPRODMODE ? 5 : 5,
       }
       ],
       series : [
       {
-        name: '流量',
+        name: '流媒体播放量',
         type: 'line',
         smooth: true,
-symbol: 'emptyCircle',
-        itemStyle: {normal: {areaStyle: {type: 'default',color: 'RGBA(209, 242, 243, .5)'}}},
+        symbol: 'emptyCircle',
+        itemStyle: {
+          normal: {
+            areaStyle: {
+              type: 'default',
+              color: 'RGBA(209, 242, 243, .5)',
+            }
+          }
+        },
         data: streamingData,
         markLine : {
-          data : [{type : 'average', name : '平均值'}]
+          data : ISPRODMODE ? [] : [{type : 'average', name : '平均值'}]
         }
       },
       {
@@ -113,10 +123,17 @@ symbol: 'emptyCircle',
         type: 'line',
         smooth: true,
         symbol: 'emptyCircle',
-        itemStyle: {normal: {areaStyle: {type: 'default',color: 'RGBA(243, 243, 243, .5)'}}},
+        itemStyle: {
+          normal: {
+            areaStyle: {
+              type: 'default',
+              color: 'RGBA(243, 243, 243, .5)',
+            },
+          },
+        },
         data: downloadingData,
         markLine: {
-          data: [{type : 'average', name : '平均值'}]
+          data: ISPRODMODE ? [] : [{type : 'average', name : '平均值'}]
         }
       }
       ]
