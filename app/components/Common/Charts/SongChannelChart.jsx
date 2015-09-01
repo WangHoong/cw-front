@@ -65,7 +65,7 @@ class SongChannelChart extends Component {
       },
       legend: {
         //data:['直接访问','邮件营销','联盟广告','视频广告','搜索引擎','百度','谷歌','必应','其他']
-        data: ['千千静听', '网易云音乐', '百度云音乐', 'QQ音乐', '酷我音乐'],
+        data: ['考拉FM', '百度音乐', '荔枝FM', '被窝音乐', '音悦台'],
         y: 'bottom',
       },
       //calculable : true,
@@ -89,7 +89,7 @@ class SongChannelChart extends Component {
       },
       series : [
       {
-        name:'千千静听',
+        name:'考拉FM',
         type:'bar',
         stack: '国内',
         symbol: 'emptyCircle',
@@ -97,7 +97,7 @@ class SongChannelChart extends Component {
         itemStyle: {normal: {color: '#8BD1DE'}},
       },
       {
-        name:'网易云音乐',
+        name:'百度音乐',
         type:'bar',
         stack: '国内',
         symbol: 'emptyCircle',
@@ -105,7 +105,7 @@ class SongChannelChart extends Component {
         itemStyle: {normal: {color: '#88D1F2'}},
       },
       {
-        name:'百度云音乐',
+        name:'荔枝FM',
         type:'bar',
         stack: '国内',
         symbol: 'emptyCircle',
@@ -113,7 +113,7 @@ class SongChannelChart extends Component {
         itemStyle: {normal: {color: '#92BDE1'}},
       },
       {
-        name:'QQ音乐',
+        name:'被窝音乐',
         type:'bar',
         stack: '国内',
         symbol: 'emptyCircle',
@@ -121,7 +121,7 @@ class SongChannelChart extends Component {
         itemStyle: {normal: {color: '#9BAAD2'}},
       },
       {
-        name:'酷我音乐',
+        name:'音悦台',
         type:'bar',
         stack: '国内',
         symbol: 'emptyCircle',
