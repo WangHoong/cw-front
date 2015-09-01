@@ -23,6 +23,7 @@ var Form = React.createClass({
       isDropArtistActive: false,
       isDropAlbumActive: false,
       SearchBoxType: 'Artist',
+      copyRight: {},
       clients: null
     }, this.props.data);
     return defaultState;
