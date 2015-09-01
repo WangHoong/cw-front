@@ -2,7 +2,7 @@
   "name": "cw-front",
   "version": "1.0.0",
   "dependencies": {
-    "echarts": "git@github.com:topdmc/echarts.git#02ffb20d66",
+    "echarts": "git@github.com:topdmc/echarts.git#9f8f6a3",
     "fontawesome": "~4.3.0",
     "jquery": "git@github.com:components/jquery.git#2.1.4",
     "kefir": "~1.3.2",
