@@ -131,10 +131,10 @@ var Form = React.createClass({
     this.setState(this.state);
   },
 
-  handlePhotoUploaded: function () {
-    var photo=this.refs.photo.getValue();
-    this.state['photo']=photo.src;
-    this.state['resource_id']=photo.resource_id;
+  handlePhotoUploaded: function() {
+    var photo = this.refs.photo.getValue();
+    this.state['photo'] = photo.src;
+    this.state['resource_id'] = photo.resource_id;
     this.setState(this.state);
   },
 

@@ -7,7 +7,7 @@ var UpAvatar = React.createClass({
   propTypes: {
     uploadComplete: React.PropTypes.func,
     uploadFailed: React.PropTypes.func,
-    type:React.PropTypes.string,
+    type: React.PropTypes.string,
     uploadCanceled: React.PropTypes.func
   },
 
@@ -16,7 +16,8 @@ var UpAvatar = React.createClass({
       isDragActive: false,
       uploading: false,
       src: this.props.src,
-      percent: '0%'
+      percent: '0%',
+      file: {}
     };
   },
 
@@ -32,8 +33,8 @@ var UpAvatar = React.createClass({
    */
   getValue:function(){
     return {
-      src:this.state.src,
-      resource_id:this.state.resource_id
+      src: this.state.src,
+      resource_id: this.state.resource_id
     };
   },
 
@@ -71,14 +72,16 @@ var UpAvatar = React.createClass({
     this.setState({
       isDragActive: false
     });
-    var fileList = evt.dataTransfer ? evt.dataTransfer.files : evt.target.files;
-    if (!this.isImage(fileList[0])) return;
-    var src = window.URL.createObjectURL(fileList[0]);
+    var __file = evt.dataTransfer ? evt.dataTransfer.files[0] : evt.target.files[0];
+    if (!this.isImage(__file)) return;
+    var src = window.URL.createObjectURL(__file);
     this.setState({
       src: src,
-      uploading: true
+      uploading: true,
+      file: __file
+    }, function() {
+      this._upload();
     });
-    this._upload();
   },
 
   /**
@@ -115,13 +118,13 @@ var UpAvatar = React.createClass({
   // 上传
   _upload: function() {
     var fd = new FormData();
-    fd.append('src', this.refs['upInput'].getDOMNode().files[0]);
+    fd.append('src', this.state.file);
     var xhr = new XMLHttpRequest();
     xhr.upload.addEventListener('progress', this.uploadProgress, false);
     xhr.addEventListener('load', this.uploadComplete, false);
     xhr.addEventListener('error', this.uploadFailed, false);
     xhr.addEventListener('abort', this.uploadCanceled, false);
-    xhr.open('POST', APIHelper.getPrefix() + '/resources/upload?type='+this.props.type);
+    xhr.open('POST', APIHelper.getPrefix() + '/resources/upload?type=' + this.props.type);
     xhr.send(fd);
   },
 
@@ -146,7 +149,7 @@ var UpAvatar = React.createClass({
     var data = JSON.parse(evt.target.responseText).src;
     this.setState({
       src: data.fullpath,
-      resource_id:data.resource_id,
+      resource_id: data.resource_id,
       uploading: false,
       percent: '0%'
     });
