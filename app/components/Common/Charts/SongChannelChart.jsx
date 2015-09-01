@@ -147,7 +147,7 @@ class SongChannelChart extends Component {
       >近{val}天</button>
     )
     return (
-      <div style={{position:'relative'}}>
+      <div style={{position:'relative',fontFamily: 'Roboto Condensed',fontWeight: 400}}>
         <BaseChart option={this.state.option} style={this.props.style} />
         <div
           className="btn-group"
