@@ -1,14 +1,14 @@
 // HTTPLog.js - houjiazong, 2015/08/28
 var axios = require('axios');
 window.__httpLog = (function(undefined) {
-  var logArr = [],
-      MAX_LENGTH = 4,
+  var MAX_LENGTH = 100,
       LOCAL_DB_KEY = 'dmc_rlog';
+  var logArr = localStorage.getItem(LOCAL_DB_KEY) === null ? [] : JSON.parse(localStorage.getItem(LOCAL_DB_KEY));
   var saveToLocalDB = function(obj) {
     if (logArr.length >= MAX_LENGTH) {
       logArr.shift();
     }
-    logArr.push(JSON.stringify(obj));
+    logArr.push(obj);
     localStorage.setItem(LOCAL_DB_KEY, JSON.stringify(logArr));
   };
   axios.interceptors.request.use(function(config) {
@@ -31,7 +31,8 @@ window.__httpLog = (function(undefined) {
   });
   return {
     getLog: function() {
-      return JSON.parse(localStorage.getItem(LOCAL_DB_KEY));
+      var results = localStorage.getItem(LOCAL_DB_KEY);
+      return JSON.parse(results);
     }
   };
 })();
