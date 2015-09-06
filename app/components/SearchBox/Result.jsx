@@ -4,6 +4,7 @@ var dbg = require('debug')('topdmc:SearchBox/Components/Result');
 var SongCard = require('./SongCard.jsx');
 var ArtistCard = require('./ArtistCard.jsx');
 var AlbumCard = require('./AlbumCard.jsx');
+var _ = require('lodash');
 
 /*
  * SearchResult
