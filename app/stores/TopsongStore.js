@@ -19,12 +19,8 @@ module.exports = Reflux.createStore({
   },
   getInitialState: function(){
     this.topsong={
-      data:{
-        data:{
-          data: []
-
-      }
-    }
+      data:[],
+      loaded:false
     }
     return this.topsong;
   }

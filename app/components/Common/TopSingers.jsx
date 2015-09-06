@@ -52,7 +52,11 @@ var TopSingers = React.createClass({
   //   };
   // },
 
+
   render: function(){
+
+    console.log(this.state.topsinger);
+    if(this.state.topsinger.loaded){
 
     return(
       <div className="topSingers">
@@ -68,7 +72,9 @@ var TopSingers = React.createClass({
           })}
         </div>
       </div>
-    )
+    )}else {
+      return(<div>暂无数据</div>)
+    }
   }
 })
 module.exports =TopSingers;

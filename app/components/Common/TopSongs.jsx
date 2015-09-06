@@ -51,6 +51,7 @@ var TopSongs = React.createClass({
         if(i==0){maxNum=item.count;}
       });
     }
+    if(this.state.topsong.loaded){
     return(
       <div className="topSongs">
         <p className="tps-title"><b>歌曲TOP10</b></p>
@@ -60,7 +61,9 @@ var TopSongs = React.createClass({
           }) }
         </div>
       </div>
-    );
+    );}else {
+      return(<div>暂无数据</div>)
+    }
   }
 })
 module.exports = TopSongs;
