@@ -51,7 +51,8 @@ var TopSongs = React.createClass({
         if(i==0){maxNum=item.count;}
       });
     }
-    if(this.state.topsong.loaded){
+    console.log(this.state.topsong);
+    if(this.state.topsong.loaded&&this.state.topsong.data.data.data[0]){
     return(
       <div className="topSongs">
         <p className="tps-title"><b>歌曲TOP10</b></p>
@@ -62,7 +63,13 @@ var TopSongs = React.createClass({
         </div>
       </div>
     );}else {
-      return(<div>暂无数据</div>)
+      return(
+        <div className="topSongs">
+          <p className="tps-title"><b>歌曲TOP10</b></p>
+          <div className='nodata'>暂无数据</div>        
+        </div>
+
+      )
     }
   }
 })

@@ -55,9 +55,7 @@ var TopSingers = React.createClass({
 
   render: function(){
 
-    console.log(this.state.topsinger);
-    if(this.state.topsinger.loaded){
-
+    if(this.state.topsinger.loaded&&this.state.topsinger.data.data.data[0]){
     return(
       <div className="topSingers">
         <p className="tsr-title"><b>艺人Top5</b></p>
@@ -73,7 +71,18 @@ var TopSingers = React.createClass({
         </div>
       </div>
     )}else {
-      return(<div>暂无数据</div>)
+      return(
+        <div className="topSingers">
+          <p className="tsr-title"><b>艺人Top5</b></p>
+          <p className="tsr-head">
+            <span className="tsr-rank"><b>排名</b></span>
+            <span className="tsr-singer"><b>艺人</b></span>
+            <span className="tsr-total"><b>总播放量</b></span>
+          </p>
+          <div className='nodata'>暂无数据</div>
+        </div>
+
+      )
     }
   }
 })
