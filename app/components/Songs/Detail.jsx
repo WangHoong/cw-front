@@ -85,11 +85,11 @@ var Detail = React.createClass({
           </div>
         </div>
         <div className='has-top-bar'>
-          <div className='card'>
+          {/*<div className='card'>
             <p>版权信息：</p>
             {this.renderCopyright(data)}
-          </div>
-          <div className='card mt20'>
+          </div>*/}
+          <div className='card'>
             <SongChart />
           </div>
           <div className='card mt20'>

@@ -126,10 +126,6 @@ var Sidebar = React.createClass({
           text: '曲库管理',
           to: 'songs'
         }, {
-          faIconName: 'cart-plus',
-          text: '曲库商店',
-          to: 'store'
-        }, {
           faIconName: 'bar-chart',
           text: '图表统计',
           to: 'charts'

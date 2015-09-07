@@ -282,7 +282,7 @@ var Form = React.createClass({
       <div className='show-wrap'>
         <div className='edit-wrap has-assist-box'>
 
-          <div className='card'>
+          {/*<div className='card'>
             <div className='row'>
               <div className='col-sm-3'>
                 <p>独家授权：</p>
@@ -300,7 +300,7 @@ var Form = React.createClass({
                 </div>
               </div>
             </div>
-          </div>
+          </div>*/}
 
           <div className='edit-form card'>
             <div className='form-group'>
