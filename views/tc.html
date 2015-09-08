@@ -43,6 +43,10 @@ body {
 var _url = '{{API_PREFIX}}' + '/companies';
 $.ajax({
   url: _url,
+  method: 'GET',
+  xhrFields: {
+    withCredentials: true
+  },
   success: function(res) {
     if (res.data.length != 0) {
       var arr = [];
