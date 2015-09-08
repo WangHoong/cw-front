@@ -2,6 +2,10 @@ var Router = require('react-router');
 var React = require('react');
 var analytics = require('app/utils/GoogleAnalytics');
 
+// authorization
+
+var Authorization = require('./components/Authorization/Main.jsx');
+
 var Sidebar = require('./components/Common/Sidebar.jsx');
 // artist
 var Artists = require('./components/Artists/Main.jsx');
@@ -218,6 +222,9 @@ var routes = (
       // store route
       <Route handler={Empty} name='store'>
         <DefaultRoute handler={Store}/>
+      </Route>
+      <Route handler={Empty} name='authorization'>
+        <DefaultRoute handler={Authorization}/>
       </Route>
       <Route handler={Chart} name="charts"/>
       <Route handler={Settings} name="settings"/>
