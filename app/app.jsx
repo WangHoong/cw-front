@@ -34,6 +34,7 @@ var classNames = require('classnames');
 var Loader = require('app/components/Common/Loader.jsx');
 var Remind = require('app/components/Common/Remind.jsx');
 var axios = require('axios');
+var Settings = require('./components/Settings/Main.jsx');
 
 require('./utils/HTTPLog');
 
@@ -173,13 +174,7 @@ var Chart = React.createClass({
   }
 });
 
-var Settings = React.createClass({
-  render: function () {
-    return (
-      <span>系统设置</span>
-    );
-  }
-});
+
 
 var NotFound = React.createClass({
   render: function () {
@@ -223,11 +218,16 @@ var routes = (
       <Route handler={Empty} name='store'>
         <DefaultRoute handler={Store}/>
       </Route>
+<<<<<<< HEAD
       <Route handler={Empty} name='authorization'>
         <DefaultRoute handler={Authorization}/>
+=======
+      <Route handler={Empty} name='settings'>
+        <DefaultRoute handler={Settings}/>
+>>>>>>> 5191641... 添加切换公司功能
       </Route>
       <Route handler={Chart} name="charts"/>
-      <Route handler={Settings} name="settings"/>
+
       <NotFoundRoute handler={NotFound}/>
     </Route>
   </Route>
