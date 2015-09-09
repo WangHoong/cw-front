@@ -1,5 +1,4 @@
 import Reflux from 'reflux';
-import assign from 'assign';
 import actions from '../actions/AuthorizationActions';
 
 module.exports = Reflux.createStore({
@@ -11,7 +10,7 @@ module.exports = Reflux.createStore({
   },
 
   getInitialState: function () {
-
+    return {authroization: false};
   },
 
   /**
@@ -19,6 +18,12 @@ module.exports = Reflux.createStore({
    */
   onCreate: function () {
 
+  },
+
+  onCreateFailed: function (err) {
+    this.trigger({
+      err: err
+    })
   },
 
   /**

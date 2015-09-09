@@ -1,8 +1,57 @@
 import React from 'react';
+import Reflux from 'reflux';
+import Actions from '../../actions/AuthorizationActions';
+import AuthorizationStore from '../../stores/AuthorizationStore';
 
 let {Component} = React;
 
 class Main extends Component {
+
+  constructor() {
+    super();
+
+    this.state = {
+      disabled: true
+    };
+
+    this.priceChange = this.priceChange.bind(this);
+    this.create = this.create.bind(this);
+  }
+
+  /**
+   * componentDidMount
+   */
+  componentDidMount() {
+    this.unsubscribe = AuthorizationStore.listen((data)=> {
+      this.setState({data: data});
+    });
+  }
+
+  /**
+   * componentWillUnmount
+   */
+  componentWillUnmount() {
+    this.unsubscribe();
+  }
+
+  /**
+   * 创建
+   */
+  create() {
+
+    Actions.create({
+      price: this.state.price
+    });
+  }
+
+  /**
+   *
+   */
+  priceChange(e) {
+    this.state.price = e.target.value;
+    this.state.disabled = ~~this.state.price=== 0;
+    this.setState(this.state);
+  }
 
   /**
    * render
@@ -14,13 +63,20 @@ class Main extends Component {
         <div className='has-top-bar'>
           <form className="form-inline">
             <div className="form-group">
-              <label className="sr-only" for="exampleInputAmount">Amount (in dollars)</label>
+              <label className="sr-only" for="exampleInputAmount"></label>
+
               <div className="input-group">
-                <input type="text" className="form-control" id="exampleInputAmount" placeholder="0.00"/>
-                  <div className="input-group-addon">元/1000次</div>
-                </div>
+                <input onChange={this.priceChange} type="text" className="form-control" value={this.state.price}
+                       id="exampleInputAmount" placeholder="0.00"/>
+
+                <div className="input-group-addon">元/1000次</div>
               </div>
-              <button type="submit" style={{marginLeft:"10px"}} className="btn btn-primary">申请所有歌曲授权</button>
+            </div>
+            <button type="button" onClick={this.create} disabled={this.state.disabled} style={{marginLeft:"10px"}}
+                    className="btn btn-primary">
+              申请所有歌曲授权
+            </button>
+
           </form>
         </div>
         <div style={{marginTop:"20px"}}>
