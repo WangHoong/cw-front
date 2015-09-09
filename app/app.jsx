@@ -218,13 +218,11 @@ var routes = (
       <Route handler={Empty} name='store'>
         <DefaultRoute handler={Store}/>
       </Route>
-<<<<<<< HEAD
       <Route handler={Empty} name='authorization'>
         <DefaultRoute handler={Authorization}/>
-=======
+      </Route>
       <Route handler={Empty} name='settings'>
         <DefaultRoute handler={Settings}/>
->>>>>>> 5191641... 添加切换公司功能
       </Route>
       <Route handler={Chart} name="charts"/>
 
