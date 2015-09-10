@@ -1,6 +1,6 @@
 {
   "API_PREFIX": "/api/v1",
-  "PROXY_PREFIX": "http://dev.api.topdmc.cn",
+  "PROXY_PREFIX": "http://127.0.0.1:9200",
   "LOGIN_URL": "/login_demo",
   "AGREEMENT_URL": "http://dev.api.topdmc.cn/api/v1/agreement",
   "SWITCH_URL": "http://dev.api.topdmc.cn/api/v1"

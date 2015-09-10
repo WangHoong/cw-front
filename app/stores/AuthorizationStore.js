@@ -6,11 +6,9 @@ module.exports = Reflux.createStore({
   listenables: [actions],
 
   init: function () {
-
-  },
-
-  getInitialState: function () {
-    return {authroization: false};
+    this.data = {
+      authorization: undefined
+    };
   },
 
   /**
@@ -31,9 +29,23 @@ module.exports = Reflux.createStore({
    * @param res
    */
   onCreateCompleted: function (res) {
+    this.data.authorization = res.data.data;
+    this.trigger(this.data);
+  },
 
-    //this.tigger({
-    //  created: true
-    //});
+  /**
+   * 获取授权信息
+   */
+  onGet: function () {
+
+  },
+
+  /**
+   * 获取授权信息结束
+   */
+  onGetCompleted: function (res) {
+
+    this.data.authorization = res.data.data;
+    this.trigger(this.data);
   }
 });
