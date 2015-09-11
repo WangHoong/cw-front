@@ -83,7 +83,7 @@ var Form = React.createClass({
               </div>
               <div className='form-group'>
                 <p className='form-control-static'>简介</p>
-                <TextareaAutosize className='form-control' name="desc" onChange={this.handleChange} placeholder='填写简介' type='text' value={(data.desc || '').split('\\n').join('\n')}></TextareaAutosize>
+                <TextareaAutosize className='form-control' name="desc" onChange={this.handleChange} placeholder='填写简介' type='text' value={(data.desc || '').split(/\\n|\\r/).join('\n')}></TextareaAutosize>
               </div>
               <div className='text-right'>
                 {this.props.children}
