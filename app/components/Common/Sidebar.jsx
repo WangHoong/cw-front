@@ -133,11 +133,6 @@ var Sidebar = React.createClass({
           faIconName: 'cogs',
           text: '系统设置',
           to: 'settings'
-        },
-         {
-          faIconName: 'exchange',
-          text: '歌曲授权',
-          to: 'authorization'
         }
       ]
     };
