@@ -30,7 +30,7 @@ var Detail = React.createClass({
   },
 
   filter: function (value) {
-    return value.split('\\n').join('<br/>');
+    return value.split(/\\n|\\r/).join('<br/>');
   },
 
   handleBack: function () {
