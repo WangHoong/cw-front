@@ -74,6 +74,7 @@ gulp.task('bundle', function(cb) {
     return bundler.bundle()
       .on('error', function(err) {
         $.util.log('Error : ' + err.message);
+        console.log(err);
         this.emit('end');
       })
       .pipe(streamify('bundle.js'))

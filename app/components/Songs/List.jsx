@@ -1,6 +1,7 @@
 var React = require('react');
 var Loader = require('../Common/Loader.jsx');
 var _ = require('lodash');
+var bytes = require('bytes');
 
 var ImagePreloader = require('app/components/Common/ImagePreloader.jsx');
 
@@ -58,8 +59,8 @@ var SongList = React.createClass({
             <td>{item.name}</td>
             <td>{_.map(item.artists, 'name').join(',')}</td>
             <td>{(item.album || {}).name}</td>
-            <td>{item.size_128}</td>
-            <td>{item.size_320}</td>
+            <td>{bytes(item.size_128)}</td>
+            <td>{bytes(item.size_320)}</td>
             <td>{item.composer}</td>
             <td>{item.lyricist}</td>
             <td>{hasMV}</td>

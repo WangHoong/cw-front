@@ -3,6 +3,7 @@ var classNames = require('classnames');
 var dbg = require('debug')('topdmc:Sidebar/component');
 var APIHelper = require('app/utils/APIHelper').APIHelper;
 var axios = require('axios');
+var _ = require('lodash');
 
 var NavItemLink = React.createClass({
   propTypes: {
@@ -43,9 +44,11 @@ var NavItemLink = React.createClass({
     function isLeftClickEvent(event) {
       return event.button === 0;
     }
+
     function isModifiedEvent(event) {
       return !!(event.metaKey || event.altKey || event.ctrlKey || event.shiftKey);
     }
+
     if (isModifiedEvent(event) || !isLeftClickEvent(event)) {
       return;
     }
@@ -57,7 +60,7 @@ var NavItemLink = React.createClass({
       this.context.router.transitionTo(this.props.to, this.props.params, this.props.query);
     }
   },
-  render: function() {
+  render: function () {
     var {to, params, query, active, icon, text} = this.props;
     if (this.props.active === undefined) {
       active = this.context.router.isActive(to, params, query);
@@ -96,7 +99,7 @@ var ToggleMenuButton = React.createClass({
 });
 
 var Sidebar = React.createClass({
-  getInitialState: function() {
+  getInitialState: function () {
     return {
       loginUserInfo: {
         avatar: 'https://s3.cn-north-1.amazonaws.com.cn/dmc-img/avatar/40039e9c-bcdf-4dbc-8827-fa8082eda648.jpg',
@@ -112,33 +115,45 @@ var Sidebar = React.createClass({
         {
           faIconName: 'home',
           text: '基本信息',
-          to: 'base'
+          to: 'base',
+          roleName: 'CP'
         }, {
           faIconName: 'street-view',
           text: '艺人管理',
-          to: 'artists'
+          to: 'artists',
+          roleName: 'CP'
         }, {
           faIconName: 'edit',
           text: '专辑管理',
-          to: 'albums'
+          to: 'albums',
+          roleName: 'CP'
         }, {
           faIconName: 'music',
           text: '曲库管理',
-          to: 'songs'
+          to: 'songs',
+          roleName: 'CP'
         }, {
           faIconName: 'bar-chart',
           text: '图表统计',
-          to: 'charts'
+          to: 'charts',
+          roleName: 'CP'
         }, {
           faIconName: 'cogs',
           text: '系统设置',
-          to: 'settings'
+          to: 'settings',
+          roleName: 'CP'
+        },
+        {
+          faIconName: 'exchange',
+          text: '歌曲授权',
+          to: 'authorization',
+          roleName: 'SP'
         }
       ]
     };
   },
 
-  loadLoginUserInfoFromWindow: function() {
+  loadLoginUserInfoFromWindow: function () {
     if (window.currentUser.name && window.currentUser.avatar) {
       this.setState({
         loginUserInfo: {
@@ -162,12 +177,25 @@ var Sidebar = React.createClass({
     // }.bind(this));
   },
 
-  componentDidMount: function() {
+  componentDidMount: function () {
     this.loadLoginUserInfoFromWindow();
   },
 
   render: function () {
-    var navItems = this.props.navItems.map(function (item, i) {
+
+    /**
+     * 根据用户过滤菜单列表 by yali
+     */
+    var items = [];
+
+    //如果存在当前用户信息，进行菜单过滤
+    if (currentUser) {
+      items = _.filter(this.props.navItems, function (item) {
+        return _.includes(currentUser['role_names'], item.roleName);
+      });
+    }
+
+    var navItems = items.map(function (item, i) {
       var className = classNames('fa', 'fa-' + item.faIconName);
       var text = item.text;
       return (
@@ -193,7 +221,8 @@ var Sidebar = React.createClass({
             <div className='whoami-img' style={avatarUrl}/>
             <p className="whoami-username ellipsis">{this.state.loginUserInfo.name}</p>
           </div>
-          <ToggleMenuButton handleToggleMenuClick={this.props.handleToggleMenuClick} toggleMenuClass={this.props.toggleMenuClass}/>
+          <ToggleMenuButton handleToggleMenuClick={this.props.handleToggleMenuClick}
+                            toggleMenuClass={this.props.toggleMenuClass}/>
         </div>
       </aside>
     );
