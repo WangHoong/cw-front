@@ -35,6 +35,7 @@ var Loader = require('app/components/Common/Loader.jsx');
 var Remind = require('app/components/Common/Remind.jsx');
 var axios = require('axios');
 var Settings = require('./components/Settings/Main.jsx');
+var OrderInfo = require('./components/OrderInfo/OrderInfo.jsx')
 
 require('./utils/HTTPLog');
 
@@ -223,6 +224,9 @@ var routes = (
       </Route>
       <Route handler={Empty} name='settings'>
         <DefaultRoute handler={Settings}/>
+      </Route>
+      <Route handler={Empty} name='orderinfo'>
+        <DefaultRoute handler={OrderInfo}/>
       </Route>
       <Route handler={Chart} name="charts"/>
 

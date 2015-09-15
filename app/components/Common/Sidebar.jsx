@@ -146,8 +146,17 @@ var Sidebar = React.createClass({
         {
           faIconName: 'exchange',
           text: '歌曲授权',
+<<<<<<< HEAD
           to: 'authorization',
           roleName: 'SP'
+=======
+          to: 'authorization'
+        },
+        {
+          faIconName: 'envelope-o',
+          text: '授权处理',
+          to: 'orderinfo'
+>>>>>>> e21dbee... 增加SP申请通过功能
         }
       ]
     };

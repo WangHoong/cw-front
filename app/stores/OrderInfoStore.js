@@ -1,5 +1,5 @@
 var Reflux = require('reflux');
-var actions = require('app/actions/SettingsActions');
+var actions = require('app/actions/OrderInfoActions');
 var assign = require('object-assign');
 module.exports = Reflux.createStore({
 
@@ -8,18 +8,19 @@ module.exports = Reflux.createStore({
   updateUI: function(value) {
     this.trigger(value);
   },
-  onFindCompleted: function(res){
-    this.updateUI({
-      data: res,
-      loaded: true
-    });
+  onGetCompleted: function(res){
+    this.orderinfo={
+      data:res,
+      loaded:true
+    }
+    this.updateUI(this.orderinfo);
   },
 
   getInitialState: function() {
-    this.companies={
+    this.orderinfo={
       data:[],
       loaded:false
     }
-    return this.companies;
+    return this.orderinfo;
   },
 });

@@ -24,7 +24,7 @@ var Main = React.createClass({
         <div className='changeCompany'>
           <h1 className='ce-h1'>切换公司</h1>
           { this.state.companies.data.data.data.map(function(track,i){
-            return <Item data={track}  rank={i}/>
+            return <Item data={track}  key={i}/>
           }) }
         </div>
       )
