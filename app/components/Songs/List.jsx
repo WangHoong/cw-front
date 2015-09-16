@@ -59,10 +59,10 @@ var SongList = React.createClass({
             <td>{item.name}</td>
             <td>{_.map(item.artists, 'name').join(',')}</td>
             <td>{(item.album || {}).name}</td>
-            <td>{bytes(item.size_128)}</td>
-            <td>{bytes(item.size_320)}</td>
-            <td>{item.composer}</td>
+            <td>{item.size_128}</td>
+            <td>{item.size_320}</td>
             <td>{item.lyricist}</td>
+            <td>{item.composer}</td>
             <td>{hasMV}</td>
             <td>
               <a className='btn btn-link' data-id={item.id} onClick={this.props.onShowDetailAction}>查看</a>
