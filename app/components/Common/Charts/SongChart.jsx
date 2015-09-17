@@ -1,18 +1,125 @@
 import React, { Component } from 'react'
 import BaseChart from './BaseChart.jsx'
 import classNames from 'classnames'
+import Reflux from 'reflux'
+import ChartStore from 'app/stores/ChartStore'
+import ChartActions from 'app/actions/ChartActions'
+import axios from 'axios'
+import { APIHelper } from 'app/utils/APIHelper'
+import { transformDataToSDType } from 'app/utils/commonFn'
 
 const ISPRODMODE = location.hostname==='www.topdmc.com'
-class SongChart extends Component {
-  constructor(props){
-    super(props);
-    this.state = {
+console.log(ChartStore)
+let SongChart = React.createClass({
+	
+	mixins: [Reflux.connect(ChartStore, 'chart')],
+	
+	getInitialState: function (){
+    return {
       whichButton : 30,
-      option : this.createOpt(120)
+      option : {}
     }
-  }
-
-  createOpt(_){
+	},
+	transformData: function (data) {
+    let fix = (_) => {
+      if(Number(_)<10){
+        return '0'+_
+      }
+      return _
+    };
+		let year
+		let streamCountArr = [],
+			downloadCountArr = [],
+			dayArr = data.map(function(_){
+				streamCountArr.push(_.stream_count);
+				downloadCountArr.push(_.download_count);
+				return new Date(_.day).toLocaleDateString().split('/').map(fix).slice(0,2).join('/')
+			});
+			
+		return {
+      title : {
+        text: '歌曲播放总量',
+        subtext: '2015'
+      },
+      tooltip : {
+        trigger: 'axis',
+      },
+      dataZoom : {
+        show : true,
+        realtime : true,
+        start : 75,
+        end : 100,
+      },
+      xAxis : [
+      {
+        type : 'category',
+        boundaryGap : false,
+        data : dayArr,
+      }
+      ],
+      yAxis : [
+      {
+        type : 'value',
+        // min: ISPRODMODE ? 0 : 0,
+//         max: ISPRODMODE ? 10000 : 100000,
+//         splitNumber: ISPRODMODE ? 5 : 5,
+      }
+      ],
+      series : [
+      {
+        name: '流媒体播放量',
+        type: 'line',
+        smooth: true,
+        symbol: 'emptyCircle',
+        itemStyle: {
+          normal: {
+            areaStyle: {
+              type: 'default',
+              color: 'RGBA(209, 242, 243, .5)',
+            }
+          }
+        },
+        data: streamCountArr,
+        markLine : {
+          data : [{type : 'average', name : '平均值'}]
+        }
+      },
+      {
+        name: '下载量',
+        type: 'line',
+        smooth: true,
+        symbol: 'emptyCircle',
+        itemStyle: {
+          normal: {
+            areaStyle: {
+              type: 'default',
+              color: 'RGBA(243, 243, 243, .5)',
+            },
+          },
+        },
+        data: downloadCountArr,
+        markLine: {
+          data: [{type : 'average', name : '平均值'}]
+        }
+      }
+      ]
+    }
+  
+	},
+	componentDidMount: function() {
+		var s = this;
+		// ChartActions.get('play_total');
+		axios.get(APIHelper.getPrefix() + '/rpt/' + this.props.url, {
+			withCredentials: true,
+		}).then(res => {
+			this.setState({option:transformDataToSDType(res.data.data)})
+			console.log(1, s.transformData(res.data.data))
+		});
+		setTimeout(function(){console.log(s.state.option)}, 5000)
+	},
+	componentWillUnmount: function() {
+	},
+  createOpt: function(_){
     let date = []
     let baseData = [80000, 90000, 70000, 75000, 85000,
                 100000, 90000, 100000, 90000, 85000,
@@ -138,15 +245,15 @@ class SongChart extends Component {
       }
       ]
     }
-  }
-  _changeDate(_){
+  },
+  _changeDate: function(_){
     var result = this.createOpt(_)
     this.setState({
       whichButton: _,
       option: result
     })
-  }
-  render() {
+  },
+  render: function() {
     let arr = [7, 14, 30]
     let buttons = arr.map((val) =>
       <button key={val} type="button"
@@ -156,7 +263,7 @@ class SongChart extends Component {
     )
     return (
       <div style={{position:'relative',fontFamily: 'Roboto Condensed',fontWeight: 400}}>
-        <BaseChart option={this.state.option} style={this.props.style} />
+        <BaseChart option={this.state.option} style={{width:'100%',height:'400px'}}/>
         {/* <div
           className="btn-group"
           role="group"
@@ -168,10 +275,8 @@ class SongChart extends Component {
 
     )
   }
-}
+})
 
-SongChart.defaultProps = {
-  style: {width:'100%',height:'400px'},
-}
+
 
 export default SongChart

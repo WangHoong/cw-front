@@ -90,10 +90,10 @@ var Detail = React.createClass({
             {this.renderCopyright(data)}
           </div>*/}
           <div className='card'>
-            <SongChart />
+            <SongChart url={'tracks/'+ this.state.song.data.id +'/play_total'} />
           </div>
           <div className='card mt20'>
-            <SongChannelChart />
+            <SongChannelChart url={'tracks/'+ this.state.song.data.id +'/play_total_sp'} />
           </div>
           <div className='card mt20'>
             <div>

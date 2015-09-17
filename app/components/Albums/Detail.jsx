@@ -84,10 +84,10 @@ var Detail = React.createClass({
         </div>
         <div className='has-top-bar'>
           <div className='card'>
-            <SongChart />
+            <SongChart url={'albums/'+ this.state.album.data.id +'/play_total'} />
           </div>
           <div className='card mt20'>
-            <SongChannelChart />
+            <SongChannelChart url={'albums/'+ this.state.album.data.id +'/play_total_sp'}/>
           </div>
 
           <div className='card mt20'>

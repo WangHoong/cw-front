@@ -36,10 +36,10 @@ var Main = React.createClass({
           <div className='row'>
             <div className='col-sm-12'>
               <div className='card'>
-                <SongChart />
+                <SongChart url={'play_total'} />
               </div>
               <div className='card mt20'>
-                <SongChannelChart />
+                <SongChannelChart url={'play_total_sp'} />
               </div>
             </div>
           </div>

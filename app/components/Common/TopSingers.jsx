@@ -25,7 +25,7 @@ var ArtistItemWrapper = React.createClass({
         <a href={_artist.link}>
         <span className="tsr-avatar" style={_style}></span>
         <span className="tsr-name">{_artist.artist_name}</span>
-        <span className="tsr-num">{_artist.count}</span></a>
+        <span className="tsr-num">{_artist.stream_count}</span></a>
       </p>
     );
   }else {

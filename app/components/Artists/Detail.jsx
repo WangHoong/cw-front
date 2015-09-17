@@ -55,7 +55,6 @@ var Detail = React.createClass({
     };
 
     var desc = data.desc || '暂无简介';
-
     return (
       <div className='show-wrap'>
         <div className='show-top'>
@@ -70,10 +69,10 @@ var Detail = React.createClass({
         </div>
         <div className='has-top-bar'>
           <div className='card'>
-            <SongChart />
+            <SongChart url={'artists/'+ this.state.artist.data.id +'/play_total'}/>
           </div>
           <div className='card mt20'>
-            <SongChannelChart />
+            <SongChannelChart url={'artists/'+ this.state.artist.data.id +'/play_total_sp'} />
           </div>
           <div className='card mt20'>
             <h4>简介：</h4>

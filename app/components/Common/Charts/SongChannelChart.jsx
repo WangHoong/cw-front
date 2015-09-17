@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 import BaseChart from './BaseChart.jsx'
 import classNames from 'classnames'
+import axios from 'axios'
+import { APIHelper } from 'app/utils/APIHelper'
+import { transformDataToSPType } from 'app/utils/commonFn'
 
 const ISPRODMODE = location.hostname==='www.topdmc.com'
 class SongChannelChart extends Component {
@@ -8,9 +11,18 @@ class SongChannelChart extends Component {
     super(props);
     this.state = {
       whichButton : 30,
-      option : this.createOpt(30)
+      option : {}
     }
   }
+	componentDidMount() {
+		axios.get(APIHelper.getPrefix() + '/rpt/' + this.props.url, {
+			withCredentials: true,
+		}).then(res => {
+			console.log(transformDataToSPType(res.data.data))
+			this.setState({option:transformDataToSPType(res.data.data)})
+		});
+		setTimeout(()=>{console.log(this.state.option)}, 5000)
+	}
   createOpt(_){
     let date = []
     let baseData = [
