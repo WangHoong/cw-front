@@ -22,8 +22,9 @@ var TopTrackItemWrapper = React.createClass({
       classnameOfBadge = 'tps-rank-other';
       classnameOfBar = 'tps-bgl-other';
 		}
-    _track.link = `#/songs/${_track.track_id}`
-    var name = _track.artists[0].name || '暂无';
+    _track.link = `#/songs/${_track.track_id}`;
+		let artistsData = _track.artists;
+    var name = (artistsData && artistsData[0] && artistsData[0].name) || '暂无';
     return (
       <p className="tps-member">
         <span className={classnameOfBadge}><b>{rank}</b></span>
