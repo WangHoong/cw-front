@@ -8,6 +8,7 @@ var TotalCard = require('app/components/Common/TotalCard.jsx');
 var TotalCardOfData = require('app/components/Common/TotalCardOfData.jsx');
 var Process = require('app/components/Common/Process.jsx');
 var ProcessTips = require('app/components/Common/ProcessTips.jsx');
+var OrderInfo = require('app/components/OrderInfo/OrderInfo.jsx');
 var Main = React.createClass({
   render: function() {
     var _data=["4/7","6/7","3/7"];
@@ -29,6 +30,13 @@ var Main = React.createClass({
           <div className='col-sm-5'>
             <div className='percent'>
               <PercentCircle percent={_data}/>
+            </div>
+          </div>
+        </div>
+        <div className='mt20'>
+          <div className='row'>
+            <div className='col-sm-12'>
+            <OrderInfo / >
             </div>
           </div>
         </div>

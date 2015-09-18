@@ -148,12 +148,6 @@ var Sidebar = React.createClass({
           text: '歌曲授权',
           to: 'authorization',
           roleName: 'SP'
-        },
-        {
-          faIconName: 'envelope-o',
-          text: '授权处理',
-          to: 'orderinfo',
-          roleName: 'CP'
         }
       ]
     };
