@@ -47,7 +47,9 @@ var Main = React.createClass({
         <div className='mt20'>
           <div className='row'>
             <div className='col-sm-8'>
-              <div className='card'><TopSongs /></div>
+              <div className='card'>
+								<TopSongs />
+							</div>
             </div>
             <div className='col-sm-4'>
               <div className='card'>
