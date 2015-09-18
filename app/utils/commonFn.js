@@ -46,7 +46,15 @@ function transformDataToSDType(data) {
 		let year
 		let streamCountArr = [],
 			downloadCountArr = [],
+			yMin = 0,
+			yMax = 0,
 			dayArr = data.map(function(_){
+				let sc = Number(_.stream_count);
+				yMin = yMin===0 ? sc : (sc < yMin ? sc : yMin);
+				yMin = (yMin+'').split('').reverse();
+				yMin[0] = '0';
+				yMin = yMin.reverse().join('');
+				yMax = sc > yMax ? sc : yMax;
 				streamCountArr.push(_.stream_count);
 				downloadCountArr.push(_.download_count);
 				return new Date(_.day).toLocaleDateString().split('/').map(fix).slice(0,2).join('/')
@@ -63,7 +71,7 @@ function transformDataToSDType(data) {
       dataZoom : {
         show : true,
         realtime : true,
-        start : 75,
+        start : 50,
         end : 100,
       },
       xAxis : [
@@ -76,9 +84,9 @@ function transformDataToSDType(data) {
       yAxis : [
       {
         type : 'value',
-        // min: ISPRODMODE ? 0 : 0,
-//         max: ISPRODMODE ? 10000 : 100000,
-//         splitNumber: ISPRODMODE ? 5 : 5,
+        min  : yMin, 
+        max	 : yMax,
+        // splitNumber: 4,
       }
       ],
       series : [
@@ -122,6 +130,11 @@ function transformDataToSDType(data) {
     }
   
 }
+
+function generateColorLikeBlue(number) {
+	number = Number(number)
+	return `rgb(${147-number*4}, ${209-number*5}, ${244-number*6})`
+}
 function transformDataToSPType(data) {
     let fix = (_) => {
       if(Number(_)<10){
@@ -137,14 +150,23 @@ function transformDataToSPType(data) {
 		let spNameArr = data[0] && data[0].map(_ => _.sp_name);
 		let spLen = spNameArr.length;
 		data.map( (_) => {
-
+			
 			let ii = 0
 			while (ii < spLen){
 				streamCountArr[ii] = streamCountArr[ii] || [];
 				streamCountArr[ii].push(_[ii].stream_count);
-							console.log(_[ii].stream_count)
 				ii++
 			};
+		})
+		let series = spNameArr.map( (_, i) => {
+     	return {
+        name:_,
+        type:'bar',
+        stack: '国内',
+        symbol: 'emptyCircle',
+        data:streamCountArr[i],
+        itemStyle: {normal: {color: generateColorLikeBlue(i)}},
+      }
 		})
 			
 			
@@ -183,31 +205,31 @@ function transformDataToSPType(data) {
 	      markLine:{
 	        data:[{type : 'average', name : '平均值'}]
 	      },
-	      series : [
-	      {
-	        name:spNameArr[0],
-	        type:'bar',
-	        stack: '国内',
-	        symbol: 'emptyCircle',
-	        data:streamCountArr[0],
-	        itemStyle: {normal: {color: '#8BD1DE'}},
-	      },
-	      {
-	        name:spNameArr[1],
-	        type:'bar',
-	        stack: '国内',
-	        symbol: 'emptyCircle',
-	        data:streamCountArr[1],
-	        itemStyle: {normal: {color: '#88D1F2'}},
-	      },
-	      {
-	        name:spNameArr[2],
-	        type:'bar',
-	        stack: '国内',
-	        symbol: 'emptyCircle',
-	        data:streamCountArr[2],
-	        itemStyle: {normal: {color: '#92BDE1'}},
-	      }// ,
+	      series : series// [
+// 	      {
+// 	        name:spNameArr[0],
+// 	        type:'bar',
+// 	        stack: '国内',
+// 	        symbol: 'emptyCircle',
+// 	        data:streamCountArr[0],
+// 	        itemStyle: {normal: {color: '#8BD1DE'}},
+// 	      },
+// 	      {
+// 	        name:spNameArr[1],
+// 	        type:'bar',
+// 	        stack: '国内',
+// 	        symbol: 'emptyCircle',
+// 	        data:streamCountArr[1],
+// 	        itemStyle: {normal: {color: '#88D1F2'}},
+// 	      },
+// 	      {
+// 	        name:spNameArr[2],
+// 	        type:'bar',
+// 	        stack: '国内',
+// 	        symbol: 'emptyCircle',
+// 	        data:streamCountArr[2],
+// 	        itemStyle: {normal: {color: '#92BDE1'}},
+// 	      }// ,
 // 	      {
 // 	        name:'被窝音乐',
 // 	        type:'bar',
@@ -224,7 +246,7 @@ function transformDataToSPType(data) {
 // 	        data:data[4],
 // 	        itemStyle: {normal: {color: '#49BBC4'}},
 // 	      }
-	      ]
+	      // ]
 	    }  
 }
 module.exports = {

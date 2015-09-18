@@ -9,7 +9,7 @@ import { APIHelper } from 'app/utils/APIHelper'
 import { transformDataToSDType } from 'app/utils/commonFn'
 
 const ISPRODMODE = location.hostname==='www.topdmc.com'
-console.log(ChartStore)
+
 let SongChart = React.createClass({
 	
 	mixins: [Reflux.connect(ChartStore, 'chart')],
@@ -107,15 +107,12 @@ let SongChart = React.createClass({
   
 	},
 	componentDidMount: function() {
-		var s = this;
 		// ChartActions.get('play_total');
 		axios.get(APIHelper.getPrefix() + '/rpt/' + this.props.url, {
 			withCredentials: true,
 		}).then(res => {
 			this.setState({option:transformDataToSDType(res.data.data)})
-			console.log(1, s.transformData(res.data.data))
 		});
-		setTimeout(function(){console.log(s.state.option)}, 5000)
 	},
 	componentWillUnmount: function() {
 	},

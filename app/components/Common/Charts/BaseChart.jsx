@@ -3,7 +3,6 @@ class BaseChart extends React.Component{
   shouldComponentUpdate(nextProps, nextState) {
 
     setTimeout( () => {
-			console.log(nextProps.option)
         this.$self.clear()
         this.$self.resize()
         this.$self.setOption(nextProps.option)

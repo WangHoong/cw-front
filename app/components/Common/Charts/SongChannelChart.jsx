@@ -18,10 +18,10 @@ class SongChannelChart extends Component {
 		axios.get(APIHelper.getPrefix() + '/rpt/' + this.props.url, {
 			withCredentials: true,
 		}).then(res => {
-			console.log(transformDataToSPType(res.data.data))
+			// console.log(transformDataToSPType(res.data.data))
 			this.setState({option:transformDataToSPType(res.data.data)})
 		});
-		setTimeout(()=>{console.log(this.state.option)}, 5000)
+		// setTimeout(()=>{console.log(this.state.option)}, 5000)
 	}
   createOpt(_){
     let date = []
@@ -161,13 +161,13 @@ class SongChannelChart extends Component {
     return (
       <div style={{position:'relative',fontFamily: 'Roboto Condensed',fontWeight: 400}}>
         <BaseChart option={this.state.option} style={this.props.style} />
-        <div
+        {/*<div
           className="btn-group"
           role="group"
           aria-label=""
           style={{position:'absolute', top: 0, right: 0}}>
           {buttons}
-        </div>
+        </div>*/}
       </div>
 
     )

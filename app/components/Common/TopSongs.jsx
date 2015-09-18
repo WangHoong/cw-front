@@ -24,12 +24,11 @@ var TopTrackItemWrapper = React.createClass({
 		}
     _track.link = `#/songs/${_track.track_id}`
     var name = _track.artists[0].name || '暂无';
-
     return (
       <p className="tps-member">
         <span className={classnameOfBadge}><b>{rank}</b></span>
         <span className={classnameOfBar} style={_style}>
-        	<span className="tps-song"><b><a href={_track.link}>{_track.track_name}-</a></b><a href={_track.link2}><span>{name}</span></a></span>
+        	<span className="tps-song"><b><a href={_track.link} dangerouslySetInnerHTML={{__html: this.props.data.track_name+'-'}}></a></b><a href={_track.link2}><span>{name}</span></a></span>
         </span>
         <span className="tps-num">{_track.stream_count}</span>
       </p>
