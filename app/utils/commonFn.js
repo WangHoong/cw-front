@@ -37,6 +37,7 @@ function stream_index(d, i) {
 }
 
 function transformDataToSDType(data) {
+	const splitNumber = 5;
     let fix = (_) => {
       if(Number(_)<10){
         return '0'+_
@@ -51,9 +52,10 @@ function transformDataToSDType(data) {
 			dayArr = data.map(function(_){
 				let sc = Number(_.stream_count);
 				yMin = yMin===0 ? sc : (sc < yMin ? sc : yMin);
-				yMin = (yMin+'').split('').reverse();
-				yMin[0] = '0';
-				yMin = yMin.reverse().join('');
+				// yMin = (yMin+'').split('').reverse();
+// 				yMin[0] = '0';
+// 				yMin = yMin.reverse().join('');
+				yMin = yMin + (yMax-yMin) % splitNumber;
 				yMax = sc > yMax ? sc : yMax;
 				streamCountArr.push(_.stream_count);
 				downloadCountArr.push(_.download_count);
@@ -86,7 +88,7 @@ function transformDataToSDType(data) {
         type : 'value',
         min  : yMin, 
         max	 : yMax,
-        // splitNumber: 4,
+        splitNumber,
       }
       ],
       series : [
