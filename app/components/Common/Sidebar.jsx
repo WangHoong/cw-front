@@ -16,15 +16,15 @@ var NavItemLink = React.createClass({
   contextTypes: {
     router: React.PropTypes.func.isRequired
   },
-  getDefaultProps: function () {
+  getDefaultProps: function() {
     return {
       activeClassName: 'active'
     };
   },
-  getHref: function () {
+  getHref: function() {
     return this.context.router.makeHref(this.props.to, this.props.params, this.props.query);
   },
-  getClassName: function () {
+  getClassName: function() {
     var names = {};
     if (this.props.className) {
       names[this.props.className] = true;
@@ -35,7 +35,7 @@ var NavItemLink = React.createClass({
     return classNames(names);
   },
 
-  handleRouteTo: function (event) {
+  handleRouteTo: function(event) {
     var allowTransition = true;
     var clickResult;
     if (this.props.onClick) {
@@ -60,14 +60,15 @@ var NavItemLink = React.createClass({
       this.context.router.transitionTo(this.props.to, this.props.params, this.props.query);
     }
   },
-  render: function () {
-    var {to, params, query, active, icon, text} = this.props;
+  render: function() {
+    var {to, params, query, active, icon, text, fullSideBar} = this.props;
     if (this.props.active === undefined) {
       active = this.context.router.isActive(to, params, query);
     }
+    var tooltip = !fullSideBar ? {'data-tooltip': text} : '';
     return (
       <li className={this.getClassName()}>
-        <a active={active} href={this.getHref()} onClick={this.handleRouteTo} ref="linkItem">
+        <a active={active} {...tooltip} href={this.getHref()} onClick={this.handleRouteTo} ref="linkItem">
           <i className={icon}></i>
           <span>{text}</span>
         </a>
@@ -82,13 +83,13 @@ var ToggleMenuButton = React.createClass({
     handleToggleMenuClick: React.PropTypes.func
   },
 
-  getDefaultProps: function () {
+  getDefaultProps: function() {
     return {
       toggleMenuClass: 'angle-double-left'
     };
   },
 
-  render: function () {
+  render: function() {
     var toggleMenuClassName = classNames('fa', 'fa-' + this.props.toggleMenuClass);
     return (
       <a className='toggle-menu' onClick={this.props.handleToggleMenuClick}>
@@ -99,7 +100,7 @@ var ToggleMenuButton = React.createClass({
 });
 
 var Sidebar = React.createClass({
-  getInitialState: function () {
+  getInitialState: function() {
     return {
       loginUserInfo: {
         avatar: 'https://s3.cn-north-1.amazonaws.com.cn/dmc-img/avatar/40039e9c-bcdf-4dbc-8827-fa8082eda648.jpg',
@@ -108,7 +109,7 @@ var Sidebar = React.createClass({
       }
     };
   },
-  getDefaultProps: function () {
+  getDefaultProps: function() {
     return {
       logoSrc: 'images/new_logo.png',
       navItems: [
@@ -142,8 +143,7 @@ var Sidebar = React.createClass({
           text: '系统设置',
           to: 'settings',
           roleName: 'CP'
-        },
-        {
+        }, {
           faIconName: 'exchange',
           text: '歌曲授权',
           to: 'authorization',
@@ -153,7 +153,7 @@ var Sidebar = React.createClass({
     };
   },
 
-  loadLoginUserInfoFromWindow: function () {
+  loadLoginUserInfoFromWindow: function() {
     if (window.currentUser.name && window.currentUser.avatar) {
       this.setState({
         loginUserInfo: {
@@ -177,11 +177,11 @@ var Sidebar = React.createClass({
     // }.bind(this));
   },
 
-  componentDidMount: function () {
+  componentDidMount: function() {
     this.loadLoginUserInfoFromWindow();
   },
 
-  render: function () {
+  render: function() {
 
     /**
      * 根据用户过滤菜单列表 by yali
@@ -190,18 +190,18 @@ var Sidebar = React.createClass({
 
     //如果存在当前用户信息，进行菜单过滤
     if (currentUser) {
-      items = _.filter(this.props.navItems, function (item) {
+      items = _.filter(this.props.navItems, function(item) {
         return _.includes(currentUser['role_names'], item.roleName);
       });
     }
 
-    var navItems = items.map(function (item, i) {
+    var navItems = items.map(function(item, i) {
       var className = classNames('fa', 'fa-' + item.faIconName);
       var text = item.text;
       return (
-        <NavItemLink icon={className} key={i} text={text} to={item.to}/>
+        <NavItemLink fullSideBar={this.props.fullSideBar} icon={className} key={i} text={text} to={item.to}/>
       );
-    });
+    }.bind(this));
     var avatarUrl = {
       backgroundImage: 'url(' + this.state.loginUserInfo.avatar + ')',
       borderColor: this.state.loginUserInfo.borderColor
@@ -221,8 +221,7 @@ var Sidebar = React.createClass({
             <div className='whoami-img' style={avatarUrl}/>
             <p className="whoami-username ellipsis">{this.state.loginUserInfo.name}</p>
           </div>
-          <ToggleMenuButton handleToggleMenuClick={this.props.handleToggleMenuClick}
-                            toggleMenuClass={this.props.toggleMenuClass}/>
+          <ToggleMenuButton handleToggleMenuClick={this.props.handleToggleMenuClick} toggleMenuClass={this.props.toggleMenuClass}/>
         </div>
       </aside>
     );

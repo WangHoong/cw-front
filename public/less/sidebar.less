@@ -50,6 +50,37 @@
         > a {
           background-color: #111a29;
         }
+        a[data-tooltip] {
+          &::before {
+            background-color: #111a29;
+          }
+        }
+      }
+    }
+  }
+  a[data-tooltip] {
+    position: relative;
+    &::before {
+      content: attr(data-tooltip);
+      transition: all 0.3s ease-out;
+      position: absolute;
+      z-index: 999;
+      left: 0;
+      top: 0;
+      background-color: #2e394b;
+      color: #fff;
+      width: 60px;
+      height: 100%;
+      padding: 5px 10px;
+      line-height: 1.5;
+      text-align: center;
+      opacity: 0;
+      transform: translate3d(-60px, 0, 0);
+    }
+    &:hover {
+      &::before {
+        transform: translate3d(0, 0, 0);
+        opacity: 1;
       }
     }
   }

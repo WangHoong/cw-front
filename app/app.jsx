@@ -76,7 +76,7 @@ var App = React.createClass({
 
     return (
       <div className={appClassName}>
-        <Sidebar handleToggleMenuClick={this.handleToggleMenuClick} toggleMenuClass={toggleMenuClass}/>
+        <Sidebar fullSideBar={this.state.fullSideBar} handleToggleMenuClick={this.handleToggleMenuClick} toggleMenuClass={toggleMenuClass}/>
         <section className='content' style={minHeight}>
           <div className='content-inner'>
             <RouteHandler/>
