@@ -32,11 +32,11 @@ var Item = React.createClass({
     switch (this.state.value) {
       case 0:
         return(
-          <div className='col-sm-6'>
+          <div className='col-sm-4'>
             <div className='oi-item'>
               <div className='oi-img'><img src='https://s3.cn-north-1.amazonaws.com.cn/dmc-img/albpic/396809c4-61f6-4d84-8b0a-cf257b02bad3.jpg'/></div>
               <div className='oi-name'><p>{_order.company_name}</p><p className='oi-price'>￥{_order.price}元/1000次</p></div>
-              <div className='oi-choose'><i className='fa fa-exclamation-circle grayi' onClick={this.chooseCheck}></i></div>
+              <a href="javascript:void(0)"><div className='oi-choose'><i className='fa fa-exclamation-circle grayi' onClick={this.chooseCheck}></i></div></a>
             </div>
           </div>
 
@@ -44,7 +44,7 @@ var Item = React.createClass({
         break;
       case 1:
           return(
-            <div className='col-sm-6'>
+            <div className='col-sm-4'>
               <div className='oi-item'>
                 <div className='oi-img'><img src='https://s3.cn-north-1.amazonaws.com.cn/dmc-img/albpic/396809c4-61f6-4d84-8b0a-cf257b02bad3.jpg'/></div>
                 <div className='oi-name'>
@@ -59,11 +59,11 @@ var Item = React.createClass({
           break;
       case 2:
           return(
-            <div className='col-sm-6'>
+            <div className='col-sm-4'>
               <div className='oi-item'>
                 <div className='oi-img'><img src='https://s3.cn-north-1.amazonaws.com.cn/dmc-img/albpic/396809c4-61f6-4d84-8b0a-cf257b02bad3.jpg'/></div>
                 <div className='oi-name'><p>{_order.company_name}</p><p className='oi-price'>￥{_order.price}元/1000次</p></div>
-                <div className='oi-choose'><i className='fa fa-ban grayi' onClick={this.chooseCheck}></i></div>
+                <a href="javascript:void(0)"><div className='oi-choose'><i className='fa fa-ban grayi' onClick={this.chooseCheck}></i></div></a>
               </div>
             </div>
 
@@ -71,10 +71,10 @@ var Item = React.createClass({
           break;
       default:
           return(
-            <div className='col-sm-6'>
+            <div className='col-sm-4'>
               <div className='oi-item'>
-                  <div className='oi-chooseNo' onClick={this.chooseCircle}><i className='fa fa-ban redi' ></i><span>暂不售卖</span></div>
-                  <div className='oi-chooseYes' onClick={this.makeSure}><i className='fa fa-check greeni' ></i><span>通过申请</span></div>
+                  <a href="javascript:void(0)"><div className='oi-chooseNo' onClick={this.chooseCircle}><i className='fa fa-ban redi' ></i><span>暂不售卖</span></div></a>
+                  <a href="javascript:void(0)"><div className='oi-chooseYes' onClick={this.makeSure}><i className='fa fa-check greeni' ></i><span>通过申请</span></div></a>
               </div>
             </div>
 
@@ -90,7 +90,7 @@ var OrderInfo = React.createClass({
   render: function(){
     if(this.state.orderinfo.loaded){
       return(
-        <div className='OrderInfoCard col-sm-12'>
+        <div className='OrderInfoCard row'>
           { this.state.orderinfo.data.data.data.items.map(function(track,i){
             return <Item data={track}  key={i} />
           }) }
@@ -98,7 +98,7 @@ var OrderInfo = React.createClass({
       )
     }else {
       return(
-        <div className='OrderInfoCard col-sm-12'>
+        <div className='OrderInfoCard row'>
           暂无请求
         </div>
       )
