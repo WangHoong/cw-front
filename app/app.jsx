@@ -126,7 +126,7 @@ var StartPage = React.createClass({
           loaded: true
         });
       } else {
-        window.location.href = window.DMC_OPT.LOGIN_URL;
+        window.location.href = '/home';
       }
     });
   },
