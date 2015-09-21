@@ -112,8 +112,7 @@ gulp.task('bower_libs', function() {
     BOWER_COMPONENTS + 'kefir/dist/kefir.min.js',
     BOWER_COMPONENTS + 'echarts/build/dist/echarts-all.js',
     BOWER_COMPONENTS + 'moment/min/moment.min.js',
-    BOWER_COMPONENTS + 'waves/dist/waves.min.js',
-    BOWER_COMPONENTS + 'nprogress/nprogress.js'
+    BOWER_COMPONENTS + 'waves/dist/waves.min.js'
   ]).pipe(gulp.dest(BUILD + 'js'));
   gulp.src(BOWER_COMPONENTS + 'moment/locale/zh-cn.js')
     .pipe($.rename('moment.zh-cn.js'))
