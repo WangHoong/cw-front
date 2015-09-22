@@ -52,16 +52,12 @@ function transformDataToSDType(data) {
 			dayArr = data.map(function(_){
 				let sc = Number(_.stream_count);
 				yMin = yMin===0 ? sc : (sc < yMin ? sc : yMin);
-				// yMin = (yMin+'').split('').reverse();
-// 				yMin[0] = '0';
-// 				yMin = yMin.reverse().join('');
-				yMin = yMin + (yMax-yMin) % splitNumber;
 				yMax = sc > yMax ? sc : yMax;
 				streamCountArr.push(_.stream_count);
 				downloadCountArr.push(_.download_count);
 				return new Date(_.day).toLocaleDateString().split('/').map(fix).slice(0,2).join('/')
 			});
-			
+      yMin = yMin - splitNumber + (yMax-yMin) % splitNumber;
 		return {
       title : {
         text: '歌曲播放总量',
@@ -86,7 +82,7 @@ function transformDataToSDType(data) {
       yAxis : [
       {
         type : 'value',
-        min  : yMin, 
+        min  : yMin,
         max	 : yMax,
         splitNumber,
       }
@@ -107,6 +103,7 @@ function transformDataToSDType(data) {
         },
         data: streamCountArr,
         markLine : {
+          precision: 0,
           data : [{type : 'average', name : '平均值'}]
         }
       },
@@ -130,7 +127,6 @@ function transformDataToSDType(data) {
       }
       ]
     }
-  
 }
 
 function generateColorLikeBlue(number) {
@@ -147,12 +143,12 @@ function transformDataToSPType(data) {
 		let year
 		let streamCountArr = [],
 		dayArr = data.map(_ => _.day.split('/').splice(1,2).join('/'));
-		
+
 		data = data.map(_ => _.sps);
 		let spNameArr = data[0] && data[0].map(_ => _.sp_name);
 		let spLen = spNameArr.length;
 		data.map( (_) => {
-			
+
 			let ii = 0
 			while (ii < spLen){
 				streamCountArr[ii] = streamCountArr[ii] || [];
@@ -170,8 +166,6 @@ function transformDataToSPType(data) {
         itemStyle: {normal: {color: generateColorLikeBlue(i)}},
       }
 		})
-			
-			
 	    return {
 	      title : {
 	        text: '分渠道播放量',
@@ -184,8 +178,7 @@ function transformDataToSPType(data) {
 	        }
 	      },
 	      legend: {
-	        //data:['直接访问','邮件营销','联盟广告','视频广告','搜索引擎','百度','谷歌','必应','其他']
-	        data: spNameArr,// ['考拉FM', '百度音乐', '荔枝FM', '被窝音乐', '音悦台'],
+	        data: spNameArr,
 	        y: 'bottom',
 	      },
 	      //calculable : true,
@@ -199,57 +192,13 @@ function transformDataToSPType(data) {
 	      yAxis : [
 	      {
 	        type : 'value',
-	        // min: ISPRODMODE ? 0 : 0,
- // 	        max: ISPRODMODE ? 10000 : 100000,
- // 	        splitNumber: ISPRODMODE ? 5 : 5,
 	      }
 	      ],
 	      markLine:{
 	        data:[{type : 'average', name : '平均值'}]
 	      },
-	      series : series// [
-// 	      {
-// 	        name:spNameArr[0],
-// 	        type:'bar',
-// 	        stack: '国内',
-// 	        symbol: 'emptyCircle',
-// 	        data:streamCountArr[0],
-// 	        itemStyle: {normal: {color: '#8BD1DE'}},
-// 	      },
-// 	      {
-// 	        name:spNameArr[1],
-// 	        type:'bar',
-// 	        stack: '国内',
-// 	        symbol: 'emptyCircle',
-// 	        data:streamCountArr[1],
-// 	        itemStyle: {normal: {color: '#88D1F2'}},
-// 	      },
-// 	      {
-// 	        name:spNameArr[2],
-// 	        type:'bar',
-// 	        stack: '国内',
-// 	        symbol: 'emptyCircle',
-// 	        data:streamCountArr[2],
-// 	        itemStyle: {normal: {color: '#92BDE1'}},
-// 	      }// ,
-// 	      {
-// 	        name:'被窝音乐',
-// 	        type:'bar',
-// 	        stack: '国内',
-// 	        symbol: 'emptyCircle',
-// 	        data:data[3],
-// 	        itemStyle: {normal: {color: '#9BAAD2'}},
-// 	      },
-// 	      {
-// 	        name:'音悦台',
-// 	        type:'bar',
-// 	        stack: '国内',
-// 	        symbol: 'emptyCircle',
-// 	        data:data[4],
-// 	        itemStyle: {normal: {color: '#49BBC4'}},
-// 	      }
-	      // ]
-	    }  
+	      series : series
+	    }
 }
 module.exports = {
   dbDate,

@@ -2,18 +2,12 @@ import React, { Component } from 'react'
 import BaseChart from './BaseChart.jsx'
 import classNames from 'classnames'
 import Reflux from 'reflux'
-import ChartStore from 'app/stores/ChartStore'
-import ChartActions from 'app/actions/ChartActions'
 import axios from 'axios'
 import { APIHelper } from 'app/utils/APIHelper'
 import { transformDataToSDType } from 'app/utils/commonFn'
 
-const ISPRODMODE = location.hostname==='www.topdmc.com'
-
 let SongChart = React.createClass({
-	
-	mixins: [Reflux.connect(ChartStore, 'chart')],
-	
+
 	getInitialState: function (){
     return {
       whichButton : 30,
@@ -35,7 +29,7 @@ let SongChart = React.createClass({
 				downloadCountArr.push(_.download_count);
 				return new Date(_.day).toLocaleDateString().split('/').map(fix).slice(0,2).join('/')
 			});
-			
+
 		return {
       title : {
         text: '歌曲播放总量',
@@ -60,9 +54,6 @@ let SongChart = React.createClass({
       yAxis : [
       {
         type : 'value',
-        // min: ISPRODMODE ? 0 : 0,
-//         max: ISPRODMODE ? 10000 : 100000,
-//         splitNumber: ISPRODMODE ? 5 : 5,
       }
       ],
       series : [
@@ -104,18 +95,16 @@ let SongChart = React.createClass({
       }
       ]
     }
-  
+
 	},
 	componentDidMount: function() {
-		// ChartActions.get('play_total');
 		axios.get(APIHelper.getPrefix() + '/rpt/' + this.props.url, {
 			withCredentials: true,
 		}).then(res => {
 			this.setState({option:transformDataToSDType(res.data.data)})
 		});
 	},
-	componentWillUnmount: function() {
-	},
+
   createOpt: function(_){
     let date = []
     let baseData = [80000, 90000, 70000, 75000, 85000,
@@ -143,7 +132,6 @@ let SongChart = React.createClass({
                 100000, 70000, 85000, 85000, 80000,
                 90000, 70000, 75000, 90000, 85000
                 ]
-    ISPRODMODE && (baseData = baseData.map(()=>0))
     let randomArray = arr => {
       return arr.sort(() =>
         Math.random() > 0.5 ? -1 : 1
@@ -198,9 +186,6 @@ let SongChart = React.createClass({
       yAxis : [
       {
         type : 'value',
-        min: ISPRODMODE ? 0 : 0,
-        max: ISPRODMODE ? 10000 : 100000,
-        splitNumber: ISPRODMODE ? 5 : 5,
       }
       ],
       series : [
@@ -219,7 +204,7 @@ let SongChart = React.createClass({
         },
         data: streamingData,
         markLine : {
-          data : ISPRODMODE ? [] : [{type : 'average', name : '平均值'}]
+          data : [{type : 'average', name : '平均值'}]
         }
       },
       {
@@ -237,7 +222,7 @@ let SongChart = React.createClass({
         },
         data: downloadingData,
         markLine: {
-          data: ISPRODMODE ? [] : [{type : 'average', name : '平均值'}]
+          data: [{type : 'average', name : '平均值'}]
         }
       }
       ]

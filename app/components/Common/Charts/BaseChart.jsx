@@ -1,5 +1,6 @@
-var React = require('react');
-class BaseChart extends React.Component{
+import React, { Component } from 'react'
+
+class BaseChart extends Component{
   shouldComponentUpdate(nextProps, nextState) {
 
     setTimeout( () => {

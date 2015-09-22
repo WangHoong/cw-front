@@ -5,7 +5,6 @@ import axios from 'axios'
 import { APIHelper } from 'app/utils/APIHelper'
 import { transformDataToSPType } from 'app/utils/commonFn'
 
-const ISPRODMODE = location.hostname==='www.topdmc.com'
 class SongChannelChart extends Component {
   constructor(props){
     super(props);
@@ -18,10 +17,8 @@ class SongChannelChart extends Component {
 		axios.get(APIHelper.getPrefix() + '/rpt/' + this.props.url, {
 			withCredentials: true,
 		}).then(res => {
-			// console.log(transformDataToSPType(res.data.data))
 			this.setState({option:transformDataToSPType(res.data.data)})
 		});
-		// setTimeout(()=>{console.log(this.state.option)}, 5000)
 	}
   createOpt(_){
     let date = []
@@ -32,8 +29,6 @@ class SongChannelChart extends Component {
       [24000, 24000, 21000, 19000, 24000, 25000, 21000, 25000, 20000, 24000, 24000, 21000, 20000, 19000, 19000, 23000, 23000, 25000, 21000, 21000, 26000, 21000, 25000, 25000, 25000, 22000, 23000, 19000, 22000, 25000],
       [18000, 24000, 17000, 19000, 24000, 25000, 22000, 24000, 27000, 25000, 18000, 23000, 16000, 20000, 21000, 25000, 25000, 19000, 17000, 23000, 24000, 17000, 25000, 26000, 19000, 24000, 17000, 22000, 24000, 26000]
     ]
-    // ISPRODMODE && (baseData = [[null],[],[],[],[]])
-    ISPRODMODE && (baseData = baseData.map((_)=> _.map(()=>0)))
     let randomArray = arr => {
       return arr.sort(() =>
         Math.random() > 0.5 ? -1 : 1
@@ -76,7 +71,6 @@ class SongChannelChart extends Component {
         }
       },
       legend: {
-        //data:['直接访问','邮件营销','联盟广告','视频广告','搜索引擎','百度','谷歌','必应','其他']
         data: ['考拉FM', '百度音乐', '荔枝FM', '被窝音乐', '音悦台'],
         y: 'bottom',
       },
@@ -91,9 +85,6 @@ class SongChannelChart extends Component {
       yAxis : [
       {
         type : 'value',
-        min: ISPRODMODE ? 0 : 0,
-        max: ISPRODMODE ? 10000 : 100000,
-        splitNumber: ISPRODMODE ? 5 : 5,
       }
       ],
       markLine:{
