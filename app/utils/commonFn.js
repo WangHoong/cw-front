@@ -51,12 +51,11 @@ function transformDataToSDType(data) {
 			yMax = 0,
 			dayArr = data.map(function(_){
 				let sc = Number(_.stream_count);
-        const DATE = new Date(_.day);
 				yMin = yMin===0 ? sc : (sc < yMin ? sc : yMin);
 				yMax = sc > yMax ? sc : yMax;
 				streamCountArr.push(_.stream_count);
 				downloadCountArr.push(_.download_count);
-        return fix(DATE.getUTCMonth()+1) + '/' + fix(DATE.getUTCDate())
+        return _.day.split('/').splice(1,2).join('/')
 			});
       yMin = yMin - splitNumber + (yMax-yMin) % splitNumber;
 		return {
