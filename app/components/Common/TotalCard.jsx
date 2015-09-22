@@ -1,6 +1,13 @@
 var React = require('react');
+var Reflux = require('reflux');
 const dbg = require('debug')('topdmc:TotalCard/component');
+const TotalDataStore = require('app/stores/TotalDataStore');
+const TotalDataActions = require('app/actions/TotalDataActions');
+
 var TotalCard = React.createClass({
+
+  mixins: [Reflux.connect(TotalDataStore, 'totalData')],
+
   _generateMoney: function(seed){
     var d = new Date(seed);
     var x2 = d.getMonth();
@@ -67,7 +74,8 @@ var TotalCard = React.createClass({
       // this.interval = setTimeout(this.tick,2000);
       //
       // Server端模拟
-      this._subscribeSSE();
+      // this._subscribeSSE();
+      TotalDataActions.get();
     }
   },
 
@@ -81,19 +89,20 @@ var TotalCard = React.createClass({
 
   render: function(){
     var createItem;
+    let amount = this.state.totalData.amount
     if(this.props.type==0){
       createItem=
         <div className="totalcard">
           <p className="ttc-title"><b>总收入</b></p>
-          <p className="ttc-sum"><span>0</span><span className="ttc-unit">元</span></p>
+          <p className="ttc-sum"><span>{amount ? amount.amount : '--'}</span><span className="ttc-unit">元</span></p>
           <div className="ttc-class">
             <div className="ttc-first ">
               <p>已入账</p>
-              <p className="ttc-num"><span>0</span><span className="ttc-unit">元</span></p>
+              <p className="ttc-num"><span>{amount ? amount.recorded_amount : '--'}</span><span className="ttc-unit">元</span></p>
             </div>
             <div className="ttc-next">
               <p>未入账</p>
-              <p className="ttc-num"><span>0</span><span className="ttc-unit">元</span></p>
+              <p className="ttc-num"><span>{amount ? amount.unrecorded_amount : '--'}</span><span className="ttc-unit">元</span></p>
             </div>
           </div>
         </div>
