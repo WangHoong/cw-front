@@ -80,11 +80,11 @@ var TotalCard = React.createClass({
   },
 
   componentWillUnmount: function() {
-    clearInterval(this.interval);
-    if(this.props.type == 0 && !this._src.closed){
-      this._src.close();
-      this._src = null;
-    }
+    // clearInterval(this.interval);
+    // if(this.props.type == 0 && !this._src.closed){
+    //   this._src.close();
+    //   this._src = null;
+    // }
   },
 
   render: function(){
