@@ -32,7 +32,7 @@ var {Route, RouteHandler, DefaultRoute, NotFoundRoute} = Router;
 var classNames = require('classnames');
 
 var Loader = require('app/components/Common/Loader.jsx');
-var Remind = require('app/components/Common/Remind.jsx');
+var BrowserUpdate = require('app/components/Common/BrowserUpdate.jsx');
 var axios = require('axios');
 var Settings = require('./components/Settings/Main.jsx');
 var OrderInfo = require('./components/OrderInfo/OrderInfo.jsx')
@@ -131,18 +131,18 @@ var StartPage = React.createClass({
     });
   },
   render() {
-    if (navigator.userAgent.indexOf("Chrome") == -1 && navigator.userAgent.indexOf("Safari")==-1) {
+    if (!window.applicationCache) {
       return (
-        <Remind/>
+        <BrowserUpdate />
       );
     }
     if (this.state.loaded) {
       return (
-        <RouteHandler/>
+        <RouteHandler />
       );
     }
     return (
-      <Loader/>
+      <Loader />
     );
   }
 });
