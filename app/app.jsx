@@ -26,10 +26,6 @@ var SearchBox = require('./components/SearchBox/Main.jsx');
 // Whoami
 var Whoami = require('app/components/Common/Whoami.jsx');
 var Main = require('./components/Main/Main.jsx');
-
-// SongTop100
-import SongTop100 from 'app/components/SongTop100/Main.jsx'
-
 // LargeFileUploader
 var LargeFileUploader = require('app/components/Common/LargeFileUploader.jsx');
 var {Route, RouteHandler, DefaultRoute, NotFoundRoute} = Router;
@@ -40,7 +36,7 @@ var Remind = require('app/components/Common/Remind.jsx');
 var axios = require('axios');
 var Settings = require('./components/Settings/Main.jsx');
 var OrderInfo = require('./components/OrderInfo/OrderInfo.jsx')
-
+import SongTop100 from 'app/components/SongTop100/Main.jsx'
 require('./utils/HTTPLog');
 
 window._dbg = require('debug');
@@ -233,12 +229,7 @@ var routes = (
         <DefaultRoute handler={OrderInfo}/>
       </Route>
       <Route handler={Chart} name="charts"/>
-<<<<<<< dd46bb289f357a644b8d86277fb4383916fa3ef1
-
-=======
-      <Route handler={Settings} name="settings"/>
       <Route handler={SongTop100} name="songtop100" />
->>>>>>> add style
       <NotFoundRoute handler={NotFound}/>
     </Route>
   </Route>
