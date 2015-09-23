@@ -58,6 +58,8 @@ function transformDataToSDType(data) {
         return _.day.split('/').splice(1,2).join('/')
 			});
       yMin = yMin - splitNumber + (yMax-yMin) % splitNumber;
+      if(yMin < 100) { yMin = 0 }
+      if(yMax === 0) { yMax = 5 }
 		return {
       title : {
         text: '歌曲播放总量',

@@ -23,8 +23,8 @@ module.exports = Reflux.createStore({
     this.trigger(this.album);
   },
   onBuildCompleted: function (obj) {
-    console.log(obj);
-    console.log(this.album.data.items);
+    // console.log(obj);
+    // console.log(this.album.data.items);
     var id=obj.data.data.id;
     var company_id=obj.data.data.company_id;
     var company={

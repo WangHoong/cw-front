@@ -50,7 +50,7 @@ var TopSongs = React.createClass({
 		const MAXNUM = 10000000;
 		let stateTS = this.state.topsong;
 		let topTracks10 = stateTS && stateTS.data && stateTS.data.data;
-		let maxNum = (topTracks10 && topTracks10.data && Number(topTracks10.data[0].stream_count)) || MAXNUM;
+		let maxNum = (topTracks10 && topTracks10.data && topTracks10.data[0] && Number(topTracks10.data[0].stream_count)) || MAXNUM;
     if(stateTS.loaded && (maxNum!==MAXNUM)){
     return(
       <div className="topSongs">

@@ -19,7 +19,7 @@ var Main = React.createClass({
   },
   render: function(){
     if(this.state.companies.loaded){
-      console.log(this.state.companies);
+      // console.log(this.state.companies);
       return(
         <div className='changeCompany'>
           <h1 className='ce-h1'>切换公司</h1>
