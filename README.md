@@ -6,6 +6,10 @@
 
 `npm run debug`
 
+### eslint
+
+`gulp eslint`
+
 ### 打开浏览器
 
 [http://lo.topdmc.cn:3000](http://lo.topdmc.cn:3000)

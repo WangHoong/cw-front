@@ -27,6 +27,8 @@
     "co-views": "^1.0.0",
     "config": "^1.14.0",
     "debug": "^2.2.0",
+    "eslint-plugin-react": "^3.4.1",
+    "gulp-eslint": "^1.0.0",
     "koa": "^0.21.0",
     "koa-logger": "^1.2.2",
     "koa-proxy": "^0.3.0",
