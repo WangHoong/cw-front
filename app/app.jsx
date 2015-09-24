@@ -217,7 +217,7 @@ var routes = (
         <DefaultRoute handler={Songs}/>
       </Route>
       // WeekTopSongs
-      <Route handler={Empty} name='top100'>
+      <Route handler={Empty} name='songtop100'>
         <DefaultRoute handler={WeekTopSongs} />
       </Route>
       // store route

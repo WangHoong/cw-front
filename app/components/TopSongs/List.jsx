@@ -7,20 +7,19 @@ class List extends React.Component {
   }
 
   renderList() {
-    let items = this.props.data.map((item, idx) => {
-      return (
-        <Item key={idx} item={item} />
-      );
+    console.log(this.props.data);
+    var items = this.props.data.map((item, idx) => {
+      return <Item key={'track' + item.track_id} item={item} />
     });
-    return (
-      <div className='week-top-songs-list'>
-        {items}
-      </div>
-    );
+    return items;
   }
 
   render() {
-    this.renderList();
+    return (
+      <div className='week-top-songs-list'>
+        <ul className='row'>{this.renderList()}</ul>
+      </div>
+    );
   }
 };
 
