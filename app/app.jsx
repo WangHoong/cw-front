@@ -35,7 +35,8 @@ var Loader = require('app/components/Common/Loader.jsx');
 var BrowserUpdate = require('app/components/Common/BrowserUpdate.jsx');
 var axios = require('axios');
 var Settings = require('./components/Settings/Main.jsx');
-var OrderInfo = require('./components/OrderInfo/OrderInfo.jsx')
+var OrderInfo = require('./components/OrderInfo/OrderInfo.jsx');
+var WeekTopSongs = require('./components/TopSongs/Main.jsx');
 
 require('./utils/HTTPLog');
 
@@ -214,6 +215,10 @@ var routes = (
         <Route handler={SongNew} name="new_song" path="new"/>
         <Route handler={SongShow} name="show_edit_song" path=":id"/>
         <DefaultRoute handler={Songs}/>
+      </Route>
+      // WeekTopSongs
+      <Route handler={Empty} name='top100'>
+        <DefaultRoute handler={WeekTopSongs} />
       </Route>
       // store route
       <Route handler={Empty} name='store'>
