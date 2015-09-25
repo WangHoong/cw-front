@@ -52,7 +52,7 @@ var SearchBox = React.createClass({
   getDefaultProps: function () {
     return {
       type: 'Album',
-      minimalKeywordCount: 3
+      minimalKeywordCount: 1
     };
   },
 
