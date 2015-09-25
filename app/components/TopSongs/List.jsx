@@ -7,8 +7,7 @@ class List extends React.Component {
   }
 
   renderList() {
-    console.log(this.props.data);
-    var items = this.props.data.map((item, idx) => {
+    const items = this.props.data.map((item, idx) => {
       return <Item key={'track' + item.track_id} item={item} />
     });
     return items;
