@@ -1,5 +1,6 @@
 {
   "API_PREFIX": "http://api.topdmc.com/api/v1",
+  "UPLOAD_FILE_URL": "http://api.topdmc.com:8002/api/v1",
   "LOGIN_URL": "http://api.topdmc.com/api/v1/login",
   "AGREEMENT_URL": "http://api.topdmc.com/api/v1/agreement",
   "SWITCH_URL": "http://api.topdmc.com/api/v1"

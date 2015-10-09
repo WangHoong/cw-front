@@ -20,6 +20,28 @@ var Detail = React.createClass({
     SongActions.get(this.props.id);
   },
 
+  // playUrlFilter: function() {
+  //   let url = null;
+  //   const _data = this.state.song.data;
+  //   if (_data.play_url_128 != null) {
+  //     url = _data.play_url_128;
+  //     return url;
+  //   }
+  //   if (_data.play_url_320 != null) {
+  //     url = _data.play_url_320;
+  //     return url;
+  //   }
+  //   return url;
+  // },
+  //
+  // playOrPause: function() {
+  //   if (this.player.paused) {
+  // 		this.player.play();
+  // 		return;
+  // 	}
+  // 	this.player.pause();
+  // },
+
   renderAlbumMiniCards: function () {
     this.state.song.data.albums = this.state.song.data.albums || [];
     var self = this;
@@ -102,7 +124,7 @@ var Detail = React.createClass({
             </div>
           </div>
           <div className='card mt20'>
-            <p className='data' dangerouslySetInnerHTML={{__html:this.filter(data.lrc || ' 暂无 ')}}></p>
+            <p className='data mt20' dangerouslySetInnerHTML={{__html:this.filter(data.lrc || ' 暂无 ')}}></p>
           </div>
         </div>
       </div>

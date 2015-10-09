@@ -14,7 +14,7 @@ var axios = require('axios');
 
 var TextareaAutosize = require('../Common/TextareaAutosize.jsx');
 
-//var TextareaAutosize = require('../Common/TextareaAutosize/TextareaAutosize.jsx');
+var Mp3Uploader = require('app/components/Common/Mp3Uploader.jsx');
 
 var Form = React.createClass({
 
@@ -357,7 +357,28 @@ var Form = React.createClass({
             onDragLeave={this.handleDragAlbumLeave}>
             <p className='form-control-static'>专辑</p>
             {this.renderAlbumMiniCards()}
-            <div className='text-right mt20'>
+          </div>
+
+          <div className='card mt20'>
+            <p className='form-control-static'>上传歌曲</p>
+            <div className='row'>
+              <div className='col-sm-6'>
+                <Mp3Uploader
+                tips='点击或拖拽128K音乐文件上传'
+                quality='128'
+                playUrl={data.play_url_128} />
+              </div>
+              <div className='col-sm-6'>
+                <Mp3Uploader
+                  tips='点击或拖拽320K音乐文件上传'
+                  quality='320'
+                  playUrl={data.play_url_320} />
+              </div>
+            </div>
+          </div>
+
+          <div className='card mt20'>
+            <div className='text-right'>
               {this.props.children}
             </div>
           </div>
