@@ -1,0 +1,42 @@
+{
+  "apps": [
+    {
+      "name": "CW-FRONT",
+      "script": "server.js",
+      "env": {
+        "COMMON_VARIABLE": "true"
+      },
+      "env_production": {
+        "NODE_ENV": "production"
+      }
+    }
+  ],
+  "deploy": {
+    "production": {
+      "user": "ec2-user",
+      "host": "54.223.189.156",
+      "ref": "origin/master",
+      "repo": "git@deploy_production_key:topdmc/cw-front.git",
+      "path": "/srv/dmc/front",
+      "post-deploy": "npm install && bower install && npm run build && pm2 startOrRestart deploy.json --env production",
+      "pre-deploy-local": "echo 'Start deploy now.'",
+      "env": {
+        "NODE_ENV": "production",
+        "PORT": "8001"
+      }
+    },
+    "demo": {
+      "user": "ec2-user",
+      "host": "54.223.207.55",
+      "ref": "origin/develop",
+      "repo": "git@deploy_demo_key:topdmc/cw-front.git",
+      "path": "/srv/dmc/front",
+      "post-deploy": "npm install && bower install && npm run build && pm2 startOrRestart deploy.json --env demo",
+      "pre-deploy-local": "echo 'Start deploy now.'",
+      "env": {
+        "NODE_ENV": "demo",
+        "PORT": "9000"
+      }
+    }
+  }
+}
