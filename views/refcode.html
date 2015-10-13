@@ -104,11 +104,6 @@ body {
 			$content = $('.rc-content'),
 			$username = $('.username'),
 			$inBtn = $('#inBtn');
-	if (navigator.userAgent.indexOf('Chrome') === -1 || navigator.userAgent.indexOf('Safari') === -1) {
-		$failTips.text('请使用Chrome或Safari浏览器').css('display', 'block');
-		$loading.css('display', 'none');
-		return;
-	}
 	var url = '{{PROXY_PREFIX}}' + '{{API_PREFIX}}' + '/invitation/' + '{{CODE}}';
 	$.ajax({
 		url: url,
