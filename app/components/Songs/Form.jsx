@@ -14,7 +14,7 @@ var axios = require('axios');
 
 var TextareaAutosize = require('../Common/TextareaAutosize.jsx');
 
-var Mp3Uploader = require('app/components/Common/Mp3Uploader.jsx');
+// var Mp3Uploader = require('app/components/Common/Mp3Uploader.jsx');
 
 var Form = React.createClass({
 
@@ -357,9 +357,12 @@ var Form = React.createClass({
             onDragLeave={this.handleDragAlbumLeave}>
             <p className='form-control-static'>专辑</p>
             {this.renderAlbumMiniCards()}
+            <div className='text-right'>
+              {this.props.children}
+            </div>
           </div>
 
-          <div className='card mt20'>
+          {/**<div className='card mt20'>
             <p className='form-control-static'>上传歌曲</p>
             <div className='row'>
               <div className='col-sm-6'>
@@ -378,10 +381,8 @@ var Form = React.createClass({
           </div>
 
           <div className='card mt20'>
-            <div className='text-right'>
-              {this.props.children}
-            </div>
-          </div>
+
+          </div>**/}
 
         </div>
         <Assist type={SearchBoxType} selectedItems={selectedItems} onItemClick={this.handleItemClick} />
