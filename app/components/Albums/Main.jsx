@@ -46,23 +46,22 @@ var Main = React.createClass({
   },
 
   handleKeywordsSearch: function(keywords) {
-    var params={
+    var params = {
       q: keywords,
       page: 1,
       size: this.props.size
     };
-
     this.context.router.transitionTo('albums', {}, params);
     AlbumActions.find(params);
   },
 
-  handleItemSearch: function(id,name) {
-    var params={
+  handleItemSearch: function(id, name) {
+    var params = {
       artist_id: id,
       page: 1,
       size: this.props.size
     };
-
+    console.log(params);
     this.context.router.transitionTo('albums', {}, params);
     AlbumActions.find(params);
   },

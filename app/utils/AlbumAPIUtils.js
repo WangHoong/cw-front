@@ -7,13 +7,9 @@ module.exports = {
    * @param  {Object} params {page: 1, size: 5}
    * @returns {axios.Promise}
    */
-  find: function(params,q) {
-    var searchq='';
-    if(q){
-      searchq=q;
-    }
+  find: function(params) {
     return axios({
-      url: APIHelper.getPrefix() + '/albums?q='+searchq,
+      url: APIHelper.getPrefix() + '/albums',
       responseType: 'json',
       params: params,
       withCredentials: true
