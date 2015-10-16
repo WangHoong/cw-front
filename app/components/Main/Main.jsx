@@ -28,7 +28,7 @@ var Main = React.createClass({
             </div>
           </div>
           <div className='col-sm-5'>
-            <div className='percent'>
+            <div className='datum-percent-wrap'>
               <PercentCircle percent={_data}/>
             </div>
           </div>
