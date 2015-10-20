@@ -1,212 +1,405 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="zh-cn">
 <head>
-  <meta charset="utf-8">
-  <title></title>
-  <style media="screen">
-  body{
-    font-family: 'Lantinghei SC', 'Open Sans', Arial, 'Hiragino Sans GB', 'Microsoft YaHei', '微软雅黑', 'STHeiti', 'WenQuanYi Micro Hei', SimSun, sans-serif;
-    margin: 0;
+<meta charset="UTF-8">
+<title>TOPDMC</title>
+<link rel="shortcut icon" href="/images/favicon.ico">
+<link rel="icon" sizes="32x32" href="/images/favicon-32x32.png">
+<link rel="icon" sizes="96x96" href="/images/favicon-96x96.png">
+<link rel="icon" sizes="16x16" href="/images/favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="57x57" href="/images/apple-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="/images/apple-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="/images/apple-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="/images/apple-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="/images/apple-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="/images/apple-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="/images/apple-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="/images/apple-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-icon-180x180.png">
+<link rel="stylesheet" href="/css/mbs.css">
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+<link href='http://fonts.useso.com/css?family=Roboto+Condensed' rel='stylesheet' type='text/css'>
+<style>
+* {
+  margin: 0;
+  padding: 0;
+}
+body, html {
+  height: 100%;
+}
+main {
+  height: 100%;
+}
+body {
+  font-family: 'Lantinghei SC', 'Open Sans', Arial, 'Hiragino Sans GB', 'Microsoft YaHei', '微软雅黑', 'STHeiti', 'WenQuanYi Micro Hei', SimSun, sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  font-size: 14px;
+  -webkit-font-smoothing: antialiased;
+}
+.nav {
+  position: fixed;
+  width: 1100px;
+  top: 0;
+  left: 50%;
+  height: 60px;
+  margin-left: -550px;
+  background-color: #fff;
+  z-index: 9999;
+}
+.nav .logo {
+  margin: 10px 0 0 10px;
+}
+.nav .logo img {
+  height: 40px;
+}
+.nav .tab {
+  position: absolute;
+  right: 10px;
+  top: 0;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+.nav .tab li {
+  list-style: none;
+  padding: 0;
+  margin: 0 10px;
+  display: inline-block;
+  height: 60px;
+  line-height: 60px;
+}
+.header {
+  background: url('/images/topdmc-bk.jpg') no-repeat center center #1a1a1a;
+  background-size: cover;
+  color: #fff;
+  height: 100%;
+  overflow: hidden;
+  padding-top: 110px;
+  position: relative;
+}
+.header .header-inner {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 100%;
+  margin-top: -200px;
+}
+.header .primary-slogan {
+  text-align: center;
+}
+.header .primary-slogan img {
+  height: 240px;
+}
+.header .desc {
+  margin-top: 20px;
+  font-size: 18px;
+  text-align: center;
+}
+.header .login {
+  margin-top: 40px;
+  text-align: center;
+}
+.header .login a {
+  display: inline-block;
+  padding: 10px 40px;
+  border: 1px solid #fff;
+  color: #fff;
+  text-decoration: none;
+  transition: all .5s linear;
+  -webkit-transition: all .5s linear;
+  -ms-transition: all .5s linear;
+  -o-transition: all .5s linear;
+  -moz-transtion: all .5s linear;
+}
+.header .login a:hover {
+  background-color: #fff;
+  color: #000;
+}
+@keyframes arrow {
+  0% {
+    transform: translateY(0);
   }
-    .navigation {
-      position: fixed;
-      top: 0;
-      width: 80%;
-      height: 60px;
-      margin-left: 10%;
-      background-color: #fff;
-      z-index: 99;
-    }
-
-    .tab {
-      text-align: right;
-      font-size: 9px;
-      margin-right: 20px;
-      margin-top: -25px;
-      display: none;
-    }
-
-    .section {
-      margin-top: -10px;
-      width: 100%;
-      height: 350px;
-    }
-
-    .sec-one {
-      background-image: url('/images/topdmc-bk.jpg');
-      background-size: 100% 100%;
-      color: #fff;
-      height: 380px!important;
-    }
-
-    .sec-two,
-    .sec-four {
-      background-color: #ececec;
-    }
-
-    .sec-three,
-    .sec-five {
-      background-color: #ff1949;
-      color: #fff;
-    }
-
-    .title {
-      position: absolute;
-      font-size: 40px;
-      padding-top: 70px;
-      z-index: 90;
-    }
-    .f-left{
-      left: 150px;
-    }
-    .f-right{
-      right: 150px;
-      text-align: right;
-    }
-
-    .description {
-      position: absolute;
-      margin-top: 200px;
-      z-index: 90;
-      line-height: 150%;
-      color: #b1b0b0!important;
-    }
-
-    .graph {
-      position: absolute;
-      top:0px;
-      z-index: 1;
-    }
-
-    .f-description{
-      position: relative;
-      text-align: center;
-      top:90px;
-    }
-    .login{
-      background: rgba(0, 0, 0, 0);
-      border: 1px solid #fff;
-      position: relative;
-      top:125px;
-      text-align: center;
-      width: 150px;
-      padding: 10px 0 10px 0px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-    .topdmc-bg{
-      width:400px;
-      position:relative;
-      top:70px;
-    }
-    .second{
-      margin-top: 150px!important;
-    }
-    .third{
-      margin-top: 40px;
-    }
-    .f-third{
-      margin-left: 285px!important;
-    }
-    .little-left{
-      width: 30px;
-      height: 5px;
-      background-color: #ff1949;
-      margin-top: 6px;
-      margin-left: 2px;
-    }
-    .little-right{
-      width: 30px;
-      height: 5px;
-      background-color: #9c0202;
-      margin-top: 6px;
-      margin-left: 205px;
-    }
-    a{
-      color:#fff;
-      text-decoration: none;
-    }
-    .home-cp {
-      padding: 0 10px;
-    }
-  </style>
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+@-webkit-keyframes arrow {
+  0% {
+    -webkit-transform: translateY(0);
+  }
+  50% {
+    -webkit-transform: translateY(-10px);
+  }
+  100% {
+    -webkit-transform: translateY(0);
+  }
+}
+@-ms-keyframes arrow {
+  0% {
+    -ms-transform: translateY(0);
+  }
+  50% {
+    -ms-transform: translateY(-10px);
+  }
+  100% {
+    -ms-transform: translateY(0);
+  }
+}
+@-moz-keyframes arrow {
+  0% {
+    -moz-transform: translateY(0);
+  }
+  50% {
+    -moz-transform: translateY(-10px);
+  }
+  100% {
+    -moz-transform: translateY(0);
+  }
+}
+@-o-keyframes arrow {
+  0% {
+    -o-transform: translateY(0);
+  }
+  50% {
+    -o-transform: translateY(-10px);
+  }
+  100% {
+    -o-transform: translateY(0);
+  }
+}
+.header .arrow {
+  cursor: pointer;
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  font-size: 30px;
+  margin-left: -15px;
+  color: #fff;
+  animation: arrow 2s ease-in-out infinite;
+  -webkit-animation: arrow 2s ease-in-out infinite;
+  -moz-animation: arrow 2s ease-in-out infinite;
+  -o-animation: arrow 2s ease-in-out infinite;
+  -ms-animation: arrow 2s ease-in-out infinite;
+}
+.sec {
+  overflow: hidden;
+}
+.sec .sec-inner {
+  width: 1000px;
+  margin: 0 auto;
+  padding: 100px 0;
+  position: relative;
+}
+.sec .sec-inner .content h2 {
+  position: relative;
+  margin: 0;
+  padding-bottom: 15px;
+  margin-bottom: 10px;
+}
+.sec .sec-inner .content h2::after {
+  content: '';
+  width: 30px;
+  position: absolute;
+  bottom: 0;
+  height: 4px;
+}
+.sec .sec-inner .content p {
+  font-size: 16px;
+}
+.sec:nth-child(even) {
+  background-color: #ececec;
+}
+.sec:nth-child(even) .content h2 {
+  color: #000;
+}
+.sec:nth-child(even) .content h2::after {
+  left: 0;
+  background-color: #ff1949;
+}
+.sec:nth-child(even) .content p {
+  color: rgb(160, 160, 160);
+}
+.sec:nth-child(odd) {
+  background-color: #ff1949;
+}
+.sec:nth-child(odd) .content {
+  text-align: right;
+}
+.sec:nth-child(odd) .content h2 {
+  color: #fff;
+}
+.sec:nth-child(odd) .content h2::after {
+  right: 0;
+  background-color: #000;
+}
+.sec:nth-child(odd) .content p {
+  color: rgb(220, 220, 220);
+}
+.sec:nth-child(even) .sec-inner .bg-icon {
+  transform: translateX(40px);
+  -webkit-transform: translateX(40px);
+  -moz-transform: translateX(40px);
+  -o-transform: translateX(40px);
+  -ms-transform: translateX(40px);
+}
+.sec:nth-child(odd) .sec-inner .bg-icon {
+  transform: translateX(-40px);
+  -webkit-transform: translateX(-40px);
+  -moz-transform: translateX(-40px);
+  -o-transform: translateX(-40px);
+  -ms-transform: translateX(-40px);
+}
+.sec .sec-inner .bg-icon {
+  opacity: 0;
+  position: absolute;
+  z-index: 2;
+}
+.sec .sec-inner .bg-icon.ani {
+  opacity: 1;
+  transform: translateX(0);
+  -webkit-transform: translateX(0);
+  -moz-transform: translateX(0);
+  -o-transform: translateX(0);
+  -ms-transform: translateX(0);
+  transition: all 1s ease-in;
+  -webkit-transition: all 1s ease-in;
+  -moz-transition: all 1s ease-in;
+  -o-transition: all 1s ease-in;
+  -ms-transition: all 1s ease-in;
+  -webkit-transition-delay: 1s;
+  -o-transition-delay: 1s;
+  -moz-transition-delay: 1s;
+  -ms-transition-delay: 1s;
+  transition-delay: 1s;
+}
+.sec1 .sec-inner .bg-icon {
+  color: #e0e0e0;
+  right: 0;
+  top: -155px;
+  font-size: 460px;
+}
+.sec2 .sec-inner .bg-icon {
+  font-size: 440px;
+  color: #e70935;
+  left: 0;
+  top: -155px;
+}
+.sec2 .sec-inner .bg-icon .fa {
+  transform: rotate(270deg);
+  -webkit-transform: rotate(270deg);
+  -moz-transform: rotate(270deg);
+  -ms-transform: rotate(270deg);
+  -o-transform: rotate(270deg);
+}
+.sec3 .sec-inner .bg-icon {
+  font-size: 490px;
+  color: #e0e0e0;
+  right: 0;
+  top: -100px;
+}
+.sec4 .sec-inner .bg-icon {
+  font-size: 460px;
+  color: #e70935;
+  left: 0;
+  top: -150px;
+}
+.sec4 .sec-inner .bg-icon .fa {
+  transform: rotate(90deg);
+  -webkit-transform: rotate(90deg);
+  -moz-transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
+  -o-transform: rotate(90deg);
+}
+.footer {
+  padding: 0 10px;
+}
+.footer p {
+  margin: 0;
+  padding: 10px 0;
+}
+</style>
 </head>
-
 <body>
-  <div class="navigation">
-    <img src="/images/logo9.png" alt="" style="position:relative;width:80px;margin-top:10px;margin-left:10px;"/>
-    <div class="tab">
-      <span>关于我们|</span>
-      <span>DMC平台|</span>
-      <span>工作机会|</span>
-      <span>联系我们</span>
+<nav class="nav">
+  <div class="logo"><img src="/images/logo9.png"></div>
+  <ul class="tab">
+    <li>关于我们</li>
+    <li>DMC平台</li>
+    <li>工作机会</li>
+    <li>联系我们</li>
+  </ul>
+</nav>
+<main>
+  <header class="header">
+    <div class="header-inner">
+      <div class="primary-slogan"><img src="/images/topdmc-bg.png"></div>
+      <p class="desc">DMC依托先进的技术平台，为音乐权利人提供内容自主授权、数据监测、盗版排查、法务合作和企划推广一站式服务</p>
+      <div class="login"><a href={{LOGIN_URL}}>平台登录</a></div>
     </div>
-  </div>
-  <div class="">
-    <section class="section sec-one">
-      <div style="position:relative">
-        <div style="position:relative;text-align:center;margin-left:auto;margin-right:auto;">
-          <img src="/images/topdmc-bg.png" class="topdmc-bg"alt="" />
-        </div>
-        <div class="f-description">DMC依托先进的技术平台，为音乐权利人提供内容自主授权、数据监测、盗版排查、法务合作和企划推广一站式服务</div>
-        <a href={{LOGIN_URL}}><div class="login">平台登录</div></a>
+    <a class="arrow"><i class="fa fa-chevron-down"></i></a>
+  </header>
+  <section class="sec sec1">
+    <div class="sec-inner">
+      <div class="content">
+        <h2>轻松实现<br>歌曲版权价值</h2>
+        <p>DMC将歌曲全面直观地展现给海量的音乐服务商，权利人通过自主授权、 <br>全面奋发，真正实现每一次在线播放都得到及时合理的支付</p>
       </div>
-
-    </section>
-    <section class="section sec-two">
-      <div style="position:relative">
-        <div class="title f-left"><b>轻松实现<br>歌曲版权价值</b><div class="little-left"></div></div>
-        <div class="description f-left">DMC将歌曲全面直观地展现给海量的音乐服务商，权利人通过自主授权、
-          <br>全面奋发，真正实现每一次在线播放都得到及时合理的支付</div>
-        <div class="graph f-right ">
-          <svg width="400" height="340" xmlns="http://www.w3.org/2000/svg">
-            <g>
-              <ellipse ry="175" rx="175" id="svg_1" cy="170" cx="200" stroke-width="35" stroke="#e0e0e0" fill="#ececec" />
-            </g>
-          </svg>
-        </div>
+      <div class="bg-icon"><i class="fa fa-circle-o"></i></div>
+    </div>
+  </section>
+  <section class="sec sec2">
+    <div class="sec-inner">
+      <div class="content">
+        <h2>省时、省钱、省力</h2>
+        <p>大幅度减少重复而反锁的商务合作，降低不确定性，音乐人和唱片<br>公司将更多的经历和资源投入在音乐之中</p>
       </div>
-    </section>
-    <section class="section sec-three">
-      <div style="position:relative">
-        <div class="title f-right"><b>省时、省钱、省力</b><div class="little-right f-third"></div></div>
-        <div class="description f-right second">大幅度减少重复而反锁的商务合作，降低不确定性，音乐人和唱片
-          <br>公司将更多的经历和资源投入在音乐之中</div>
-        <div class="graph f-left ">
-          <svg width="400" height="340" xmlns="http://www.w3.org/2000/svg">
-            <path d="M200 0 L0 400 L 400 400 L200 0 " fill="#ff1949" stroke-width="35" stroke="#f81844"></path>
-          </svg>
-        </div>
+      <div class="bg-icon"><i class="fa fa-play"></i></div>
+    </div>
+  </section>
+  <section class="sec sec3">
+    <div class="sec-inner">
+      <div class="content">
+        <h2>实时、透明的<br>数据监测</h2>
+        <p>支持随时查阅各歌曲各渠道播放数据，让音乐权利人对歌曲播放情况<br>了然于心，收益更透明、可靠</p>
       </div>
-    </section>
-    <section class="section sec-four">
-      <div style="position:relative">
-        <div class="title f-left"><b>实时、透明的<br>数据监测</b><div class="little-left"></div></div>
-        <div class="description f-left ">支持随时查阅各歌曲各渠道播放数据，让音乐权利人对歌曲播放情况
-          <br>了然于心，收益更透明、可靠</div>
-        <div class="graph f-right third">
-          <svg width="400" height="300" xmlns="http://www.w3.org/2000/svg">
-            <rect x="60" y="20" width="300" height="300" style="fill:#ececec;stroke-width:35; stroke:#e0e0e0;" />
-          </svg>
-        </div>
+      <div class="bg-icon"><i class="fa fa-square-o"></i></div>
+    </div>
+  </section>
+  <section class="sec sec4">
+    <div class="sec-inner">
+      <div class="content">
+        <h2>和盗版游击战<br>说再见</h2>
+        <p>对线上音乐实施盗版排查，同专业的版权法务团队合作。让盗<br>版维权有据可依，有理可依</p>
       </div>
-
-    </section>
-    <section class="section sec-five">
-      <div style="position:relative">
-        <div class="title f-right"><b>和盗版游击战<br>说再见</b><div class="little-right"></div></div>
-        <div class="description f-right">对线上音乐实施盗版排查，同专业的版权法务团队合作。让盗
-          <br>版维权有据可依，有理可依</div>
-        <div class="graph f-left ">
-          <svg width="400" height="350" xmlns="http://www.w3.org/2000/svg">
-            <path d="M200 350 L400 -40 L 0 -40 L200 350 " fill="#ff1949" stroke-width="35" stroke="#f81844"></path>
-          </svg>
-        </div>
-      </div>
-    </section>
-    <p class="home-cp">Copyright © 2015 北京成为科技有限公司 京ICP备15018286号</p>
-  </div>
+      <div class="bg-icon"><i class="fa fa-play"></i></div>
+    </div>
+  </section>
+  <footer class="footer">
+    <p>Copyright © 2015 北京成为科技有限公司 京ICP备15018286号</p>
+  </footer>
+</main>
+<script src="/js/jquery.min.js"></script>
+<script>
+$(function() {
+  $('.arrow').on('click', function(evt) {
+    evt.preventDefault();
+    $('body, html').animate({
+      scrollTop: $(window).height()
+    }, 500, 'swing');
+  });
+  $(window).on('scroll', function() {
+    $('.sec').each(function() {
+      var top = $(this).offset().top;
+      if (top >= $(window).scrollTop() && top < ($(window).scrollTop() + $(window).height())) {
+        $(this).find('.bg-icon').addClass('ani');
+      }
+    });
+  });
+});
+</script>
 </body>
-
 </html>

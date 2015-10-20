@@ -38,7 +38,6 @@ var OrderInfo = require('./components/OrderInfo/OrderInfo.jsx');
 var WeekTopSongs = require('./components/TopSongs/Main.jsx');
 
 require('./utils/HTTPLog');
-
 window._dbg = require('debug');
 let CleanDebugForProdModeUrl = 'www.topdmc.com'
 CleanDebugForProdModeUrl === location.hostname ? _dbg.disable() : _dbg.enable("topdmc:*")
