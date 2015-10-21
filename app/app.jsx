@@ -108,6 +108,7 @@ var StartPage = React.createClass({
     var self = this;
     var APIHelper = require('./utils/APIHelper').APIHelper;
     var onlineURL = APIHelper.getPrefix().replace(/api$/, '') + '/online';
+
     /**
     * 进行登录验证，如果没有登录，有统一的拦截器进行跳转
     */
