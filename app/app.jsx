@@ -113,9 +113,8 @@ var StartPage = React.createClass({
     */
     axios({
       url: onlineURL,
-      responseType: 'json',
-      params: {},
-      withCredentials: true
+      withCredentials: true,
+      method: 'GET'
     }).then(function (response) {
       if (response.data.data.online) {
         window.currentUser = response.data.data.user || {};
