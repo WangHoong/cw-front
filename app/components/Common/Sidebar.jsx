@@ -183,7 +183,7 @@ var Sidebar = React.createClass({
 
   logout: function(evt) {
     evt.preventDefault();
-    var logoutUrl = APIHelper.getPrefix() + '/logout';
+    var logoutUrl = APIHelper.getPrefix().replace(/api$/, '') + '/logout';
     axios.get(logoutUrl, {withCredentials: true}).then(function(res) {
       if (res.data.status == 200) {
         window.location.href = '/';
