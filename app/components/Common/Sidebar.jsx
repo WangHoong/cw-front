@@ -181,6 +181,16 @@ var Sidebar = React.createClass({
     this.loadLoginUserInfoFromWindow();
   },
 
+  logout: function(evt) {
+    evt.preventDefault();
+    var logoutUrl = APIHelper.getPrefix() + '/logout';
+    axios.get(logoutUrl, {withCredentials: true}).then(function(res) {
+      if (res.data.status == 200) {
+        window.location.href = '/';
+      }
+    });
+  },
+
   render: function() {
 
     /**
@@ -222,6 +232,7 @@ var Sidebar = React.createClass({
             <p className="whoami-username ellipsis">{this.state.loginUserInfo.name}</p>
           </div>
           <ToggleMenuButton handleToggleMenuClick={this.props.handleToggleMenuClick} toggleMenuClass={this.props.toggleMenuClass}/>
+          <a href='#' onClick={this.logout} style={{display: 'block', height: '30px', lineHeight: '30px', textAlign: 'center'}}>退出</a>
         </div>
       </aside>
     );
