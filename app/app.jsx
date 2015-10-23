@@ -107,17 +107,13 @@ var StartPage = React.createClass({
 
     var self = this;
     var APIHelper = require('./utils/APIHelper').APIHelper;
-    var onlineURL = APIHelper.getPrefix().replace(/api$/, '') + '/online';
+    var onlineURL = APIHelper.getPrefix() + '/online';
 
     /**
     * 进行登录验证，如果没有登录，有统一的拦截器进行跳转
     */
-    axios({
-      url: onlineURL,
-      withCredentials: true,
-      method: 'GET'
-    }).then(function (response) {
-      if (response.data.data.online) {
+    axios.get(onlineURL + '?t=' + Math.random()).then(function(response) {
+      if (response.data.data.online===true) {
         window.currentUser = response.data.data.user || {};
         window.account_type = window.currentUser.account_type;
         window.status = window.currentUser.status;
@@ -127,6 +123,8 @@ var StartPage = React.createClass({
       } else {
         window.location.href = '/home';
       }
+    }).catch((error)=>{
+      alert(JSON.stringify(error));
     });
   },
   render() {

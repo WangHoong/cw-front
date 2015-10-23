@@ -12,51 +12,24 @@ html, body{
   height: 100%;
   overflow: hidden;
 }
-.btn-center {
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-flow: row wrap;
-}
-.btn-center > a {
-  display: block;
-  width: 70px;
+.btn-center li {
   text-align: center;
-  margin: 5px;
+  margin-top: 20px;
 }
-
-.btn-center > a > img {
+.j-user img {
   width: 50px;
   height: 50px;
   border-radius: 50%;
 }
-.btn-center > a > p {
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  overflow: hidden;
-  color: #eb8282;
+.j-user p {
   margin-top: 5px;
-}
-.loading {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  display: none;
-}
-.loading > div {
-  background-color: #5bc0de;
-}
-.btn {
-  font-weight: bold;
 }
 </style>
 </head>
 <body>
-<section class="btn-center">
+<ul class="btn-center row">
 
-</section>
+</ul>
 <div class='loading'>
   <div class='bounce1'></div>
   <div class='bounce2'></div>
@@ -80,7 +53,7 @@ html, body{
       if (res.length > 0) {
         var __htmlArr = [];
         $(res).each(function(idx, item) {
-          __htmlArr.push('<a class="j-user" href="' + PROXY_PREFIX + '/test/users/' + item.id + '"><img src="' + item.avatar + '"><br><p>' + item.username + '</p></a>');
+          __htmlArr.push('<li class="col-xs-1"><a class="j-user" href="' + PROXY_PREFIX + '/test/users/' + item.id + '"><img src="' + item.avatar + '"><br><p>' + item.username + '</p></a></li>');
         });
         $('.btn-center').append(__htmlArr.join(''));
         $('.loading').css('display', 'none');
