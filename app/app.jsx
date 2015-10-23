@@ -41,6 +41,10 @@ require('./utils/HTTPLog');
 window._dbg = require('debug');
 let CleanDebugForProdModeUrl = 'www.topdmc.com'
 CleanDebugForProdModeUrl === location.hostname ? _dbg.disable() : _dbg.enable("topdmc:*")
+axios.interceptors.request.use(function(config) {
+  config.url = config.url + '?t=' + (+new Date());
+  return config;
+});
 
 var App = React.createClass({
   contextTypes: {
@@ -107,12 +111,12 @@ var StartPage = React.createClass({
 
     var self = this;
     var APIHelper = require('./utils/APIHelper').APIHelper;
-    var onlineURL = APIHelper.getPrefix() + '/online';
+    var onlineURL = APIHelper.getPrefix().replace(/api$/, '') + '/online';
 
     /**
     * 进行登录验证，如果没有登录，有统一的拦截器进行跳转
     */
-    axios.get(onlineURL + '?t=' + Math.random()).then(function(response) {
+    axios.get(onlineURL).then(function(response) {
       if (response.data.data.online===true) {
         window.currentUser = response.data.data.user || {};
         window.account_type = window.currentUser.account_type;
