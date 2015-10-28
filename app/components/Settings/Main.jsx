@@ -1,17 +1,21 @@
 var React = require('react');
 var Reflux = require('reflux');
-var SettingsStore = require('../../stores/SettingsStore')
-var SettingsActions = require('../../actions/SettingsActions')
+var SettingsStore = require('../../stores/SettingsStore');
+var SettingsActions = require('../../actions/SettingsActions');
+var config = require('config');
+
 var Item = React.createClass({
   onClick: function(){
   },
   render: function(){
-    var url='http://dev.api.topdmc.cn/api/v1/companies/'+this.props.data.id+'/inspect';
+    //var url='http://dev.api.topdmc.cn/api/v1/companies/'+this.props.data.id+'/inspect';
+    var url = `${config['API_PREFIX']}/${this.props.data.id}/inspect`;
     return(
       <li className='ce-p'><div className='ce-name'>{this.props.data.name}</div><a href={url}><div className='ce-bt'><button type='button' onClick={this.onClick}>切换</button></div></a></li>
     )
   }
 })
+
 var Main = React.createClass({
   mixins: [Reflux.connect(SettingsStore, 'companies')],
   componentDidMount: function () {
