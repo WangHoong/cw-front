@@ -12,6 +12,8 @@ var SongChannelChart = require('../Common/Charts/SongChannelChart.jsx');
 
 var Loader = require('../Common/Loader.jsx');
 
+var Player = require('../Common/Player/Player.jsx');
+
 var Detail = React.createClass({
 
   mixins: [Reflux.connect(SongStore, 'song')],
@@ -19,28 +21,6 @@ var Detail = React.createClass({
   componentDidMount: function () {
     SongActions.get(this.props.id);
   },
-
-  // playUrlFilter: function() {
-  //   let url = null;
-  //   const _data = this.state.song.data;
-  //   if (_data.play_url_128 != null) {
-  //     url = _data.play_url_128;
-  //     return url;
-  //   }
-  //   if (_data.play_url_320 != null) {
-  //     url = _data.play_url_320;
-  //     return url;
-  //   }
-  //   return url;
-  // },
-  //
-  // playOrPause: function() {
-  //   if (this.player.paused) {
-  // 		this.player.play();
-  // 		return;
-  // 	}
-  // 	this.player.pause();
-  // },
 
   renderAlbumMiniCards: function () {
     this.state.song.data.albums = this.state.song.data.albums || [];
@@ -108,8 +88,8 @@ var Detail = React.createClass({
         </div>
         <div className='has-top-bar'>
           {/*<div className='card'>
-            <p>版权信息：</p>
-            {this.renderCopyright(data)}
+            <p>试听：</p>
+            <Player url={this.state.song.data.play_url_128} />
           </div>*/}
           <div className='card'>
             <SongChart url={'tracks/'+ this.state.song.data.id +'/play_total'} />
