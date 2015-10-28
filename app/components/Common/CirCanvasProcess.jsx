@@ -11,38 +11,45 @@ class CirCanvasProcess extends React.Component {
   }
 
   draw() {
-    const ctx = React.findDOMNode(this.refs['pro-canvas']).getContext('2d');
+    const canvas = React.findDOMNode(this.refs['pro-canvas']);
+    const ctx = canvas.getContext('2d');
+
+    // retina
+    canvas.width = this.props.width * 2;
+    canvas.height = this.props.height * 2;
+    canvas.style.width = this.props.width + 'px';
+    canvas.style.height = this.props.height + 'px';
 
     ctx.beginPath();
-    ctx.arc(60, 60, 50, 0, Math.PI * 2);
+    ctx.arc(120, 120, 100, 0, Math.PI * 2);
     ctx.closePath();
     ctx.fillStyle = '#F6F6F6';
     ctx.fill();
 
     ctx.beginPath();
-    ctx.moveTo(60, 60);
-    ctx.arc(60, 60, 50, Math.PI * 1.5, Math.PI * (1.5 + 2 * this.props.process / 100));
+    ctx.moveTo(120, 120);
+    ctx.arc(120, 120, 100, Math.PI * 1.5, Math.PI * (1.5 + 2 * this.props.process / 100));
     ctx.closePath();
     ctx.fillStyle = this.props.color;
     ctx.fill();
 
     ctx.beginPath();
-    ctx.arc(60, 60, 40, 0, Math.PI * 2);
+    ctx.arc(120, 120, 80, 0, Math.PI * 2);
     ctx.closePath();
     ctx.fillStyle = '#fff';
     ctx.fill();
 
     ctx.fillStyle = '#333';
     ctx.textAlign = 'center';
-    ctx.font = '18px sans-serif';
+    ctx.font = '36px sans-serif';
     ctx.textBaseline = 'middle';
-    ctx.moveTo(60, 60);
-    ctx.fillText(this.props.process + '%', 60, 60);
+    ctx.moveTo(120, 120);
+    ctx.fillText(this.props.process + '%', 120, 120);
   }
 
   render() {
     return (
-      <canvas ref='pro-canvas' width={this.props.width} height={this.props.height}></canvas>
+      <canvas ref='pro-canvas'></canvas>
     );
   }
 
