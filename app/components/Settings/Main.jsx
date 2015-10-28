@@ -8,7 +8,7 @@ var Item = React.createClass({
   },
   render: function(){
     //var url='http://dev.api.topdmc.cn/api/v1/companies/'+this.props.data.id+'/inspect';
-    var url = `${Window.DMC_OPT.API_PREFIX}/companies/${this.props.data.id}/inspect`;
+    var url = `${window.DMC_OPT.API_PREFIX}/companies/${this.props.data.id}/inspect`;
     return(
       <li className='ce-p'><div className='ce-name'>{this.props.data.name}</div><a href={url}><div className='ce-bt'><button type='button' onClick={this.onClick}>切换</button></div></a></li>
     )
