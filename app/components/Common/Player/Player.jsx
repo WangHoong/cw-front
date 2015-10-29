@@ -43,6 +43,8 @@ class Player extends React.Component {
 
   clearSoundObject() {
     if (this.sound) {
+      this.sound.removeEventListener('canplay', this.canplayHandle.bind(this), false);
+      this.sound.removeEventListener('timeupdate', this.timeupdateHandle.bind(this), false);
       this.sound.pause();
       this.sound = null;
     }
@@ -61,6 +63,9 @@ class Player extends React.Component {
   }
 
   canplayHandle() {
+    if (!this.sound) {
+      return;
+    }
     this.setState({
       isLoading: false
     });
@@ -68,6 +73,9 @@ class Player extends React.Component {
   }
 
   timeupdateHandle() {
+    if (!this.sound) {
+      return;
+    }
     const percent = this.sound.currentTime / this.sound.duration * 100;
     this.setState({
       percent: percent
