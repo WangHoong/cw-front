@@ -20,6 +20,7 @@ var Detail = React.createClass({
 
   componentDidMount: function () {
     SongActions.get(this.props.id);
+    this.getTrackUrl();
   },
 
   renderAlbumMiniCards: function () {
@@ -61,6 +62,31 @@ var Detail = React.createClass({
       </div>
     );
   },
+  getTrackUrl: function() {
+    var url = null;
+    if (this.state.song.data.play_url_128) {
+      url = this.state.song.data.play_url_128;
+      return url;
+    }
+    if (this.state.song.data.play_url_320) {
+      url = this.state.song.data.play_url_320;
+      return url;
+    }
+    return url;
+  },
+  renderPlayer: function() {
+    var trackUrl = this.getTrackUrl();
+    if (trackUrl == null) {
+      return (
+        <div className='player-panel'>
+          <p className='no-data'>词曲暂不支持试听</p>
+        </div>
+      );
+    }
+    return (
+      <Player url={trackUrl} bg={this.state.song.data.album.photo} />
+    );
+  },
   render: function () {
     if (!this.state.song.loaded) {
       return <Loader />;
@@ -87,10 +113,10 @@ var Detail = React.createClass({
           </div>
         </div>
         <div className='has-top-bar'>
-          {/*<div className='card'>
+          <div className='card'>
             <p>试听：</p>
-            <Player url={this.state.song.data.play_url_128} />
-          </div>*/}
+            {this.renderPlayer()}
+          </div>
           <div className='card'>
             <SongChart url={'tracks/'+ this.state.song.data.id +'/play_total'} />
           </div>
