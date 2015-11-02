@@ -59,7 +59,8 @@ function transformDataToSDType(data) {
 			});
       yMin = yMin - splitNumber + (yMax-yMin) % splitNumber;
       if(yMin < 100) { yMin = 0 }
-      if(yMax === 0) { yMax = 5 }
+      if(yMax < 5) { yMax = 5 }
+			if(yMax > 5) { yMax = yMax + (splitNumber - (yMax % splitNumber)) }
 		return {
       title : {
         text: '歌曲播放总量',
