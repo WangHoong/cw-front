@@ -12,9 +12,11 @@ var _ = require('lodash');
 var APIHelper = require('app/utils/APIHelper').APIHelper;
 var axios = require('axios');
 
+var Role = require('app/components/Common/Role.jsx');
+
 var TextareaAutosize = require('../Common/TextareaAutosize.jsx');
 
-// var Mp3Uploader = require('app/components/Common/Mp3Uploader.jsx');
+var Mp3Uploader = require('app/components/Common/Mp3Uploader.jsx');
 
 var Form = React.createClass({
 
@@ -23,21 +25,12 @@ var Form = React.createClass({
       isDropArtistActive: false,
       isDropAlbumActive: false,
       SearchBoxType: 'Artist',
-      clients: null,
       lrc: ''
     }, this.props.data);
     return defaultState;
   },
 
   componentDidMount: function() {
-    var clientsUrl = APIHelper.getPrefix() + '/clients/';
-    var self = this;
-    axios.get(clientsUrl).then(function(res) {
-      if (self.isMounted()) {
-        self.state.clients = res.data.data;
-        self.setState(self.state);
-      }
-    });
     this.isDropArtistActiveState = false;
     this.isDropAlbumActiveState = false;
   },
@@ -119,7 +112,6 @@ var Form = React.createClass({
     delete this.state.isDropArtistActive;
     delete this.state.isDropAlbumActive;
     delete this.state.SearchBoxType;
-    delete this.state.clients;
     this.state.lrc = this.state.lrc.split('\n').join('\\n');
     return this.state;
   },
@@ -147,11 +139,6 @@ var Form = React.createClass({
 
   handleChange: function(evt) {
     this.state[evt.target.name] = evt.target.value;
-    this.setState(this.state);
-  },
-
-  handleCopyrightChangeF: function(evt) {
-    this.state.copyRight[evt.target.name] = evt.target.value;
     this.setState(this.state);
   },
 
@@ -233,33 +220,32 @@ var Form = React.createClass({
     }
   },
 
-  handleClientsChange: function(evt) {
-    this.state.copyRight.client_id = evt.target.value;
-    this.setState(this.state);
+  upload128Complete: function(data) {
+    if (data.Filedata.fullpath) {
+      this.state.play_url_128 = data.Filedata.fullpath;
+    }
   },
 
-  renderClients: function() {
-    if (this.state.clients === null) {
-      return (
-        <select>
-          <option value="0">暂无信息</option>
-        </select>
-      );
+  upload320Complete: function(data) {
+    if (data.Filedata.fullpath) {
+      this.state.play_url_320 = data.Filedata.fullpath;
     }
-    var client_id = this.state.copyRight.client_id;
-    var items = [];
-    var selectValue = 0;
-    this.state.clients.items.map(function(item) {
-      if (item.id == client_id) selectValue = item.id;
-      items.push(
-        <option key={item.id} value={item.id}>{item.name}</option>
-      );
-    });
+  },
+
+  renderUpload: function() {
+    let data = this.state;
     return (
-      <select className='form-control' onChange={this.handleClientsChange} value={selectValue}>
-        <option value="0">请选择</option>
-        {items}
-      </select>
+      <Role component='div' className='card mt20' roleName='ADMIN'>
+        <p className='form-control-static'>上传歌曲</p>
+        <div className='row'>
+          <div className='col-sm-6'>
+            <Mp3Uploader tips='点击上传128K' uploadComplete={this.upload128Complete} />
+          </div>
+          <div className='col-sm-6'>
+            <Mp3Uploader tips='点击上传320K' uploadComplete={this.upload320Complete} />
+          </div>
+        </div>
+      </Role>
     );
   },
 
@@ -282,26 +268,6 @@ var Form = React.createClass({
     return (
       <div className='show-wrap'>
         <div className='edit-wrap has-assist-box'>
-
-          {/*<div className='card'>
-            <div className='row'>
-              <div className='col-sm-3'>
-                <p>独家授权：</p>
-                {this.renderClients()}
-              </div>
-              <div className='col-sm-3'>
-                <p>授权有效期：</p>
-                <div>
-                  <input
-                    className='form-control'
-                    type='date'
-                    value={this.state.copyRight && this.state.copyRight.client_expired && moment(this.state.copyRight.client_expired).format('YYYY-MM-DD') || ''}
-                    name='client_expired'
-                    onChange={this.handleCopyrightChangeF} />
-                </div>
-              </div>
-            </div>
-          </div>*/}
 
           <div className='edit-form card'>
             <div className='form-group'>
@@ -362,27 +328,7 @@ var Form = React.createClass({
             </div>
           </div>
 
-          {/**<div className='card mt20'>
-            <p className='form-control-static'>上传歌曲</p>
-            <div className='row'>
-              <div className='col-sm-6'>
-                <Mp3Uploader
-                tips='点击或拖拽128K音乐文件上传'
-                quality='128'
-                playUrl={data.play_url_128} />
-              </div>
-              <div className='col-sm-6'>
-                <Mp3Uploader
-                  tips='点击或拖拽320K音乐文件上传'
-                  quality='320'
-                  playUrl={data.play_url_320} />
-              </div>
-            </div>
-          </div>
-
-          <div className='card mt20'>
-
-          </div>**/}
+          {this.renderUpload()}
 
         </div>
         <Assist type={SearchBoxType} selectedItems={selectedItems} onItemClick={this.handleItemClick} />
