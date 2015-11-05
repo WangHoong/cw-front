@@ -17,46 +17,61 @@
 <link rel="apple-touch-icon" sizes="152x152" href="/images/apple-icon-152x152.png">
 <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-icon-180x180.png">
 <link rel="stylesheet" href="/css/mbs.css">
+<link rel="stylesheet" href="/css/font-awesome.min.css">
 <link rel="stylesheet" href="/css/main.css">
+<link href='http://fonts.useso.com/css?family=Roboto+Condensed' rel='stylesheet' type='text/css'>
 <style>
 body {
-  background: #fff;
-}
-.wrap {
-
-}
-.main {
-
+  background: #f8f6f2;
 }
 .single-panel {
-  margin: 5% auto 2% auto;
-  background: 0 0;
-  border: none;
-  box-shadow: none;
+  width: 400px;
+  margin: 5% auto 0;
 }
 .single-panel-header {
-
+  text-align: center;
+}
+.single-panel-header .single-panel-logo img {
+  width: 200px;
 }
 .single-panel-body {
-
+  margin-top: 30px;
+  overflow: hidden;
+}
+.wechat-single {
+  text-align: center;
+  overflow: hidden;
+}
+.wechat-single iframe {
+  margin: -50px auto 0 auto;
+}
+.signin-type {
+  font-size: 18px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+.signin-type .wechat-icon .fa {
+  color: #86cda1;
+  margin-right: 5px;
 }
 </style>
 </head>
 
 <body>
 
-<div class="wrap">
-  <div class="main">
-    <div class="single-panel">
-      <div class="single-panel-header">
-
-      </div>
-      <div class="single-panel-body">
-        <iframe src="{{LOGIN_URL}}" width="400" height="400" frameborder="0" scrolling="no"></iframe>
-      </div>
+<main class="single-panel">
+  <div class="single-panel-header">
+    <a href="/" class="single-panel-logo"><img src="/images/logo2-new.png"></a>
+  </div>
+  <div class="single-panel-body">
+    <div class="signin-type">
+      <span class="wechat-icon"><i class="fa fa-weixin"></i>微信登录</span>
+    </div>
+    <div class="wechat-single">
+      <iframe src="{{LOGIN_URL}}" width="300" height="400" frameborder="0" scrolling="no"></iframe>
     </div>
   </div>
-</div>
+</main>
 
 <script src="/js/jquery.min.js"></script>
 <script>
