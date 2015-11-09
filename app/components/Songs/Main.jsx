@@ -7,6 +7,7 @@ var SongActions = require('../../actions/SongActions');
 var Pager = require('../Common/Pager.jsx');
 var ListSearch = require('../ListSearch/Main.jsx');
 let dbg = require('debug')('topdmc:Songs/new');
+var Role = require('../Common/Role.jsx');
 
 
 var Main = React.createClass({
@@ -82,9 +83,7 @@ var Main = React.createClass({
             type='Song' />
           <div className='has-top-bar'>
             <div className='btn-group'>
-              <button
-                className='btn btn-default'
-                onClick={this.handleCreate}>新建歌曲</button>
+               <Role component='button' roleName='ADMIN' onClick={this.handleCreate} className="btn btn-default">新建歌曲</Role>
             </div>
             <SongList
               items={this.state.tracks.items}

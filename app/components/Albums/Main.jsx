@@ -5,6 +5,7 @@ var AlbumListStore = require('../../stores/AlbumListStore');
 var AlbumActions = require('../../actions/AlbumActions');
 
 var Pager = require('../Common/Pager.jsx');
+var Role = require('../Common/Role.jsx');
 
 var ListSearch = require('../ListSearch/Main.jsx');
 
@@ -80,9 +81,7 @@ var Main = React.createClass({
           type='Album' />
         <div className='has-top-bar'>
           <div className='btn-group'>
-            <button
-              className='btn btn-default'
-              onClick={this.handleRedirectNew}>新建专辑</button>
+            <Role component='button' roleName='ADMIN' onClick={this.handleRedirectNew} className="btn btn-default">新建专辑</Role>
           </div>
           <AlbumList
             items={this.state.album.items}

@@ -14,7 +14,7 @@ class Role extends React.Component {
     if (hasRole) {
       return React.createElement(this.props.component || 'div', this.props, this.props.children);
     }
-    return React.createElement(this.props.component || 'div');
+    return React.createElement('span');
   }
 
 };
