@@ -25,7 +25,8 @@ var Store = require('./components/Store/Main.jsx');
 var SearchBox = require('./components/SearchBox/Main.jsx');
 // Whoami
 var Whoami = require('app/components/Common/Whoami.jsx');
-var Main = require('./components/Main/Main.jsx');
+var CP = require('./components/Main/CP.jsx');
+var SP = require('./components/Main/SP.jsx');
 // LargeFileUploader
 var LargeFileUploader = require('app/components/Common/LargeFileUploader.jsx');
 var {Route, RouteHandler, DefaultRoute, NotFoundRoute} = Router;
@@ -190,8 +191,8 @@ var Empty = React.createClass({
 var routes = (
   <Route handler={StartPage} path="/">
     <Route handler={App}>
-      <DefaultRoute handler={Main}/>
-      <Route handler={Main} name="base"/>
+      <DefaultRoute handler={CP}/>
+      <Route handler={CP} name="base"/>
       <Route handler={Empty} name="artists">
         <Route handler={ArtistNew} name="new_artist" path="new"/>
         <Route handler={ArtistShow} name="show_edit_artist" path=":id"/>
@@ -227,6 +228,8 @@ var routes = (
         <DefaultRoute handler={OrderInfo}/>
       </Route>
       <Route handler={Chart} name="charts"/>
+
+      <Route handler={SP} name="sp"/>
 
       <NotFoundRoute handler={NotFound}/>
     </Route>
