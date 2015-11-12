@@ -2,6 +2,7 @@
 var React = require('react');
 var debug = require('debug')('topdmc:SearchBox/Component/ArtistCard');
 var classNames = require('classnames');
+var Role = require('../Common/Role.jsx');
 
 var ArtistCard = React.createClass({
 
@@ -51,6 +52,8 @@ var ArtistCard = React.createClass({
           <div className='txt'>
             <p>{this.props.data.name}</p>
             <p>{this.props.data.country}</p>
+            {/* 为ADMIN显示ID */}
+            <Role component='span' roleName='ADMIN' style={{position: 'absolute', fontSize: '16px', color: 'red', bottom: '-12px', left: '5px', zIndex: '10', fontWeight: 'bold'}}>{this.props.data.id}</Role>
           </div>
         </div>
         <a type='button' className='btn btn-success' onClick={this.handleItemClick}
