@@ -15,7 +15,7 @@ let getSearchType = function(type) {
     return 'tracks';
   }
   if (type == 'Artist') {
-    return 'artists';
+    return 'artists/searchall';
   }
   return '';
 };
