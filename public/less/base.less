@@ -29,6 +29,10 @@
   margin-top: 20px;
 }
 
+.mb10 {
+  margin-bottom: 10px;
+}
+
 .app-container {
   width: 1200px;
   margin: 0 auto;
@@ -737,4 +741,55 @@
   text-align: center;
   margin-top: 150px;
   font-size: 30px;
+}
+
+.sp-container {
+  padding: 20px;
+}
+
+.m-ibox {
+  color: #555;
+  .m-ibox-header {
+    background-color: #ffffff;
+    border-top: 3px solid #e7eaec;
+    padding: 14px 15px 7px;
+    height: 48px;
+    h5 {
+      float: left;
+      text-overflow: ellipsis;
+      margin: 2px 7px 0 0;
+      padding: 0;
+    }
+    .tools {
+      float: right;
+    }
+  }
+  .m-ibox-content {
+    background-color: #ffffff;
+    padding: 15px 20px 20px 20px;
+    border-top: 1px solid #e7eaec;
+  }
+  .table {
+    thead {
+      > tr {
+        > th {
+          border-bottom: 1px solid #DDDDDD;
+        }
+      }
+    }
+    tbody {
+      > tr {
+        > td {
+          border-top: 1px solid #e7eaec;
+          vertical-align: middle;
+        }
+        &.success {
+          > td {
+            background-color: #7accbe;
+          }
+          color: #fff;
+        }
+      }
+    }
+  }
 }

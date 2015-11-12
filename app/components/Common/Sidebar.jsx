@@ -149,8 +149,8 @@ var Sidebar = React.createClass({
           to: 'authorization',
           roleName: 'SP'
         }, {
-          faIconName: 'clone',
-          text: 'SP首页',
+          faIconName: 'home',
+          text: '基本信息',
           to: 'sp',
           roleName: 'SP'
         }
