@@ -101,7 +101,7 @@ let SongChart = React.createClass({
 		axios.get(APIHelper.getPrefix() + '/rpt/' + this.props.url, {
 			withCredentials: true,
 		}).then(res => {
-			this.setState({option:transformDataToSDType(res.data.data)})
+			res.data.data.length && this.setState({option:transformDataToSDType(res.data.data)})
 		});
 	},
 
