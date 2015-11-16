@@ -27,7 +27,8 @@ var VENDORS = [
   'reflux',
   'react-router',
   'axios',
-  'lodash'
+  'lodash',
+  'numeral'
 ];
 
 // https://github.com/ai/autoprefixer

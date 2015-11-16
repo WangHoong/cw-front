@@ -36,6 +36,7 @@
     "koa-router": "^5.1.2",
     "koa-static": "^1.4.9",
     "lodash": "^3.10.0",
+    "numeral": "^1.5.3",
     "object-assign": "^3.0.0",
     "react": "^0.13.3",
     "react-router": "^0.13.3",

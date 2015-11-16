@@ -38,6 +38,30 @@ var Settings = require('./components/Settings/Main.jsx');
 var OrderInfo = require('./components/OrderInfo/OrderInfo.jsx');
 var WeekTopSongs = require('./components/TopSongs/Main.jsx');
 
+import numeral from 'numeral';
+
+const language = {
+  delimiters: {
+    thousands: ',',
+    decimal: '.'
+  },
+  abbreviations: {
+    thousand: '千',
+    million: '百万',
+    billion: '十亿',
+    trillion: '兆'
+  },
+  ordinal: function (number) {
+    return '.';
+  },
+  currency: {
+    symbol: '¥'
+  }
+};
+
+numeral.language('chs', language);
+numeral.language('chs');
+
 require('./utils/HTTPLog');
 window._dbg = require('debug');
 let CleanDebugForProdModeUrl = 'www.topdmc.com'

@@ -3,6 +3,7 @@ import axios from 'axios';
 import Loader from '../Common/Loader.jsx';
 import {APIHelper} from 'app/utils/APIHelper';
 import classNames from 'classnames';
+import numeral from 'numeral';
 
 class BillingHistory extends React.Component {
 
@@ -19,16 +20,17 @@ class BillingHistory extends React.Component {
     return (
       <thead>
         <tr>
-          <th style={{width: '40%'}}>日期</th>
-          <th style={{width: '30%'}}>播放量</th>
-          <th>金额</th>
+          <th style={{width: '25%'}}>日期</th>
+          <th style={{width: '25%'}}>下载量</th>
+          <th style={{width: '25%'}}>播放量</th>
+          <th>消费额</th>
         </tr>
       </thead>
     );
   }
 
   componentDidMount() {
-    axios.get(APIHelper.getPrefix() + '/authorization').then((res) => {
+    axios.get(APIHelper.getPrefix() + '/sp/data_count_month', {withCredentials: true}).then((res) => {
       const res_data = res.data;
       if (res_data.status === 200) {
         this.setState({
@@ -44,18 +46,18 @@ class BillingHistory extends React.Component {
       return (
         <tbody>
           <tr>
-            <td align='center' colSpan='3'>
+            <td align='center' colSpan='4'>
               <Loader />
             </td>
           </tr>
         </tbody>
       );
     }
-    if (this.state.res_data.data.replies.length <= 0) {
+    if (this.state.res_data.data.length <= 0) {
       return (
         <tbody>
           <tr>
-            <td align='center' colSpan='3' className='text-center'>
+            <td align='center' colSpan='4' className='text-center'>
               暂无相关信息
             </td>
           </tr>
@@ -63,12 +65,13 @@ class BillingHistory extends React.Component {
       );
     }
     let items = [];
-    this.state.res_data.data.replies.map((item, idx) => {
+    this.state.res_data.data.map((item, idx) => {
       items.push(
         <tr key={idx}>
-          <td>{item.created_at ? moment(item.created_at).format('YYYY年MM月') : '--'}</td>
-          <td>{parseInt(10000 * Math.random())}次</td>
-          <td>&yen; {parseInt(40 * Math.random())}</td>
+          <td>{item.year + '年' + item.month + '月'}</td>
+          <td>{numeral(item.download_count).format('0,0')}</td>
+          <td>{numeral(item.stream_count).format('0,0')}</td>
+          <td>{numeral(item.price).format('$0,0.00')}</td>
         </tr>
       );
     });
