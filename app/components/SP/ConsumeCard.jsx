@@ -1,5 +1,4 @@
 import React from 'react';
-import TotalCard from '../SP/TotalCard.jsx';
 
 class ConsumeCard extends React.Component {
   constructor() {
