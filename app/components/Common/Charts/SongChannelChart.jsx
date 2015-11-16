@@ -17,7 +17,7 @@ class SongChannelChart extends Component {
 		axios.get(APIHelper.getPrefix() + '/rpt/' + this.props.url, {
 			withCredentials: true,
 		}).then(res => {
-			this.setState({option:transformDataToSPType(res.data.data)})
+			res.data.data.length && this.setState({option:transformDataToSPType(res.data.data)})
 		});
 	}
   createOpt(_){
