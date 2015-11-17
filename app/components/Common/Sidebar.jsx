@@ -5,6 +5,8 @@ var APIHelper = require('app/utils/APIHelper').APIHelper;
 var axios = require('axios');
 var _ = require('lodash');
 
+const isSP = /sp$/.test(location.hash)
+
 var NavItemLink = React.createClass({
   propTypes: {
     activeClassName: React.PropTypes.string.isRequired,
@@ -110,51 +112,64 @@ var Sidebar = React.createClass({
     };
   },
   getDefaultProps: function() {
+    let _default  = [
+      {
+        faIconName: 'street-view',
+        text: '艺人管理',
+        to: 'artists',
+        roleName: ['CP','SP']
+      }, {
+        faIconName: 'edit',
+        text: '专辑管理',
+        to: 'albums',
+        roleName: ['CP','SP']
+      }, {
+        faIconName: 'music',
+        text: '曲库管理',
+        to: 'songs',
+        roleName: ['CP','SP']
+      }, {
+        faIconName: 'bar-chart',
+        text: '图表统计',
+        to: 'charts',
+        roleName: ['CP','SP']
+      }, {
+        faIconName: 'cogs',
+        text: '系统设置',
+        to: 'settings',
+        roleName: ['CP','SP']
+      }
+    ];
+    const _cpHome = {
+      faIconName: 'home',
+      text: '基本信息',
+      to: 'base',
+      roleName: ['CP']
+    };
+    const _spHome = {
+      faIconName: 'home',
+      text: '基本信息',
+      to: 'sp',
+      roleName: ['SP']
+    };
+    const _spAuth = {
+      faIconName: 'exchange',
+      text: '歌曲授权',
+      to: 'authorization',
+      roleName: ['SP']
+    }
+    if (isSP){
+      _default.unshift(_spHome)
+      _default.push(_spAuth)
+    } else {
+      _default.unshift(_cpHome)
+    }
+
+    let result =  _default
+
     return {
       logoSrc: 'images/new_logo.png',
-      navItems: [
-        {
-          faIconName: 'home',
-          text: '基本信息',
-          to: 'base',
-          roleName: 'CP'
-        }, {
-          faIconName: 'street-view',
-          text: '艺人管理',
-          to: 'artists',
-          roleName: 'CP'
-        }, {
-          faIconName: 'edit',
-          text: '专辑管理',
-          to: 'albums',
-          roleName: 'CP'
-        }, {
-          faIconName: 'music',
-          text: '曲库管理',
-          to: 'songs',
-          roleName: 'CP'
-        }, {
-          faIconName: 'bar-chart',
-          text: '图表统计',
-          to: 'charts',
-          roleName: 'CP'
-        }, {
-          faIconName: 'cogs',
-          text: '系统设置',
-          to: 'settings',
-          roleName: 'CP'
-        }, {
-          faIconName: 'exchange',
-          text: '歌曲授权',
-          to: 'authorization',
-          roleName: 'SP'
-        }, {
-          faIconName: 'home',
-          text: '基本信息',
-          to: 'sp',
-          roleName: 'SP'
-        }
-      ]
+      navItems: result,
     };
   },
 
@@ -206,10 +221,10 @@ var Sidebar = React.createClass({
     //如果存在当前用户信息，进行菜单过滤
     if (currentUser) {
       items = _.filter(this.props.navItems, function(item) {
-        return _.includes(currentUser['role_names'], item.roleName);
+        return _.includes(currentUser['role_names'], item.roleName[0]) || _.includes(currentUser['role_names'], item.roleName[1]);
       });
     }
-
+    console.log(items)
     var navItems = items.map(function(item, i) {
       var className = classNames('fa', 'fa-' + item.faIconName);
       var text = item.text;
@@ -221,11 +236,12 @@ var Sidebar = React.createClass({
       backgroundImage: 'url(' + this.state.loginUserInfo.avatar + ')',
       borderColor: this.state.loginUserInfo.borderColor
     };
+    const HOMELINK = isSP ? '/#/sp' : '/'
     return (
       <aside className='sidebar'>
         <div className='sidebar-wrap'>
           <div className='logo'>
-            <a href='/'>
+            <a href={HOMELINK}>
               <img src={this.props.logoSrc}/>
             </a>
           </div>
