@@ -5,7 +5,7 @@ var APIHelper = require('app/utils/APIHelper').APIHelper;
 var axios = require('axios');
 var _ = require('lodash');
 
-const isSP = /sp$/.test(location.hash)
+const isSP = localStorage.getItem('isSP') === 'true'
 
 var NavItemLink = React.createClass({
   propTypes: {
@@ -224,7 +224,7 @@ var Sidebar = React.createClass({
         return _.includes(currentUser['role_names'], item.roleName[0]) || _.includes(currentUser['role_names'], item.roleName[1]);
       });
     }
-    console.log(items)
+    
     var navItems = items.map(function(item, i) {
       var className = classNames('fa', 'fa-' + item.faIconName);
       var text = item.text;
