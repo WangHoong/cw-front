@@ -6,6 +6,7 @@ import ConsumeCard from '../SP/ConsumeCard.jsx';
 import {APIHelper} from 'app/utils/APIHelper';
 import axios from 'axios';
 import AppKey from '../SP/AppKey.jsx';
+import TopSongs from '../TopSongs/Main.jsx';
 
 class SP extends React.Component {
 
@@ -46,6 +47,9 @@ class SP extends React.Component {
           <div className='col-xs-6'>
             <BillingHistory />
           </div>
+        </div>
+        <div className='mt10'>
+          <TopSongs />
         </div>
       </div>
     );
