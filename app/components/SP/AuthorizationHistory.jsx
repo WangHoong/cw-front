@@ -28,7 +28,7 @@ class AuthorizationHistory extends React.Component {
   }
 
   componentDidMount() {
-    axios.get(APIHelper.getPrefix() + '/authorization').then((res) => {
+    axios.get(APIHelper.getPrefix() + '/authorization', {withCredentials: true}).then((res) => {
       const res_data = res.data;
       if (res_data.status === 200) {
         this.setState({

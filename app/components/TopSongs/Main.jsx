@@ -15,7 +15,7 @@ class Main extends React.Component {
 
   componentDidMount() {
     const url = APIHelper.getPrefix() + '/rpt/top_week';
-    axios.get(url).then((response) => {
+    axios.get(url, {withCredentials: true}).then((response) => {
       if (response.data.status === 200) {
         this.state.data = response.data.data;
         this.state.loaded = true;
