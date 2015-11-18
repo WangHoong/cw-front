@@ -143,7 +143,11 @@ var StartPage = React.createClass({
     */
     axios.get(onlineURL, {withCredentials: true}).then(function(response) {
       if (response.data.data.online===true) {
-        window.currentUser = response.data.data.user || {};
+        window.currentUser = response.data.data.user || {role_names:[]};
+        localStorage.setItem('isSP', 'false');
+        if ((window.currentUser.role_names.length ===1) && (window.currentUser.role_names[0] === 'SP')) {
+          localStorage.setItem('isSP', 'true');
+        }
         window.account_type = window.currentUser.account_type;
         window.status = window.currentUser.status;
         self.setState({
