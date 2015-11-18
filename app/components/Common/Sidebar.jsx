@@ -112,6 +112,20 @@ var Sidebar = React.createClass({
     };
   },
   getDefaultProps: function() {
+    var onlineURL = APIHelper.getPrefix().replace(/api$/, '') + '/online';
+
+    /**
+    * 进行登录验证，如果没有登录，有统一的拦截器进行跳转
+    */
+    axios.get(onlineURL, {withCredentials: true}).then(function(response) {
+      if (response.data.data.online===true) {
+        window.currentUser = response.data.data.user || {role_names:[]};
+        localStorage.setItem('isSP', 'false');
+        if ((window.currentUser.role_names.length ===1) && (window.currentUser.role_names[0] === 'SP')) {
+          localStorage.setItem('isSP', 'true');
+        }
+      }
+    });
     let _default  = [
       {
         faIconName: 'street-view',
@@ -199,6 +213,7 @@ var Sidebar = React.createClass({
 
   componentDidMount: function() {
     this.loadLoginUserInfoFromWindow();
+
   },
 
   logout: function(evt) {
@@ -224,7 +239,7 @@ var Sidebar = React.createClass({
         return _.includes(currentUser['role_names'], item.roleName[0]) || _.includes(currentUser['role_names'], item.roleName[1]);
       });
     }
-    
+
     var navItems = items.map(function(item, i) {
       var className = classNames('fa', 'fa-' + item.faIconName);
       var text = item.text;
