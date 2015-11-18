@@ -142,12 +142,15 @@ var StartPage = React.createClass({
     * 进行登录验证，如果没有登录，有统一的拦截器进行跳转
     */
     axios.get(onlineURL, {withCredentials: true}).then(function(response) {
-      
+
       if (response.data.data.online===true) {
         window.currentUser = response.data.data.user || {role_names:[]};
-        localStorage.setItem('isSP', 'false');
+
         if ((window.currentUser.role_names.length ===1) && (window.currentUser.role_names[0] === 'SP')) {
           localStorage.setItem('isSP', 'true');
+        }
+        if ((window.currentUser.role_names.length ===1) && (window.currentUser.role_names[0] === 'CP')) {
+          localStorage.setItem('isSP', 'false');
         }
         window.account_type = window.currentUser.account_type;
         window.status = window.currentUser.status;
