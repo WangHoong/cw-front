@@ -5,8 +5,6 @@ var APIHelper = require('app/utils/APIHelper').APIHelper;
 var axios = require('axios');
 var _ = require('lodash');
 
-const isSP = localStorage.getItem('isSP') === 'true'
-
 var NavItemLink = React.createClass({
   propTypes: {
     activeClassName: React.PropTypes.string.isRequired,
@@ -112,20 +110,9 @@ var Sidebar = React.createClass({
     };
   },
   getDefaultProps: function() {
-    var onlineURL = APIHelper.getPrefix().replace(/api$/, '') + '/online';
 
-    /**
-    * 进行登录验证，如果没有登录，有统一的拦截器进行跳转
-    */
-    axios.get(onlineURL, {withCredentials: true}).then(function(response) {
-      if (response.data.data.online===true) {
-        window.currentUser = response.data.data.user || {role_names:[]};
-        localStorage.setItem('isSP', 'false');
-        if ((window.currentUser.role_names.length ===1) && (window.currentUser.role_names[0] === 'SP')) {
-          localStorage.setItem('isSP', 'true');
-        }
-      }
-    });
+    const isSP = localStorage.getItem('isSP') === 'true'
+
     let _default  = [
       {
         faIconName: 'street-view',
@@ -228,6 +215,9 @@ var Sidebar = React.createClass({
 
   render: function() {
 
+    const isSP = localStorage.getItem('isSP') === 'true'
+
+    console.log(`isSP:${isSP}`);
     /**
      * 根据用户过滤菜单列表 by yali
      */

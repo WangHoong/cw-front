@@ -151,7 +151,7 @@ var StartPage = React.createClass({
         window.account_type = window.currentUser.account_type;
         window.status = window.currentUser.status;
         self.setState({
-          loaded: true
+          loaded: false
         });
       } else {
         window.location.href = '/home';
@@ -264,7 +264,7 @@ var routes = (
   </Route>
 );
 
-Router.run(routes, function (Handler, state) {
-  React.render(<Handler/>, document.body);
-  analytics(state);
-});
+  Router.run(routes, function (Handler, state) {
+    React.render(<Handler/>, document.body);
+    analytics(state);
+  });
