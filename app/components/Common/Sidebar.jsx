@@ -110,67 +110,8 @@ var Sidebar = React.createClass({
     };
   },
   getDefaultProps: function() {
-
-    const isSP = localStorage.getItem('isSP') === 'true'
-
-    let _default  = [
-      {
-        faIconName: 'street-view',
-        text: '艺人管理',
-        to: 'artists',
-        roleName: ['CP','SP']
-      }, {
-        faIconName: 'edit',
-        text: '专辑管理',
-        to: 'albums',
-        roleName: ['CP','SP']
-      }, {
-        faIconName: 'music',
-        text: '曲库管理',
-        to: 'songs',
-        roleName: ['CP','SP']
-      }, {
-        faIconName: 'bar-chart',
-        text: '图表统计',
-        to: 'charts',
-        roleName: ['CP','SP']
-      }, {
-        faIconName: 'cogs',
-        text: '系统设置',
-        to: 'settings',
-        roleName: ['CP','SP']
-      }
-    ];
-    const _cpHome = {
-      faIconName: 'home',
-      text: '基本信息',
-      to: 'base',
-      roleName: ['CP']
-    };
-    const _spHome = {
-      faIconName: 'home',
-      text: '基本信息',
-      to: 'sp',
-      roleName: ['SP']
-    };
-    const _spAuth = {
-      faIconName: 'exchange',
-      text: '歌曲授权',
-      to: 'authorization',
-      roleName: ['SP']
-    }
-    if (isSP){
-      _default.unshift(_spHome)
-      _default.push(_spAuth)
-    } else {
-      _default.unshift(_cpHome)
-    }
-
-    let result =  _default
-
     return {
       logoSrc: 'images/new_logo.png',
-      navItems: result,
     };
   },
 
@@ -216,8 +157,60 @@ var Sidebar = React.createClass({
   render: function() {
 
     const isSP = localStorage.getItem('isSP') === 'true'
-
-    console.log(`isSP:${isSP}`);
+    let _default  = [
+      {
+        faIconName: 'street-view',
+        text: '艺人管理',
+        to: 'artists',
+        roleName: ['CP','SP']
+      }, {
+        faIconName: 'edit',
+        text: '专辑管理',
+        to: 'albums',
+        roleName: ['CP','SP']
+      }, {
+        faIconName: 'music',
+        text: '曲库管理',
+        to: 'songs',
+        roleName: ['CP','SP']
+      }, {
+        faIconName: 'bar-chart',
+        text: '图表统计',
+        to: 'charts',
+        roleName: ['CP','SP']
+      }, {
+        faIconName: 'cogs',
+        text: '系统设置',
+        to: 'settings',
+        roleName: ['CP','SP']
+      }
+    ];
+    const _cpHome = {
+      faIconName: 'home',
+      text: '基本信息',
+      to: 'base',
+      roleName: ['CP']
+    };
+    const _spHome = {
+      faIconName: 'home',
+      text: '基本信息',
+      to: 'sp',
+      roleName: ['SP']
+    };
+    const _spAuth = {
+      faIconName: 'exchange',
+      text: '歌曲授权',
+      to: 'authorization',
+      roleName: ['SP']
+    };
+    if (isSP){
+      _default.unshift(_spHome)
+      _default.push(_spAuth)
+    } else {
+      _default.unshift(_cpHome)
+    }
+    let navItems = _default
+    // console.log(`isSP:${isSP}`);
     /**
      * 根据用户过滤菜单列表 by yali
      */
@@ -225,7 +218,7 @@ var Sidebar = React.createClass({
 
     //如果存在当前用户信息，进行菜单过滤
     if (currentUser) {
-      items = _.filter(this.props.navItems, function(item) {
+      items = _.filter(navItems, function(item) {
         return _.includes(currentUser['role_names'], item.roleName[0]) || _.includes(currentUser['role_names'], item.roleName[1]);
       });
     }
