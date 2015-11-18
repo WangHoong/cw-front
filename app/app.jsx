@@ -142,6 +142,7 @@ var StartPage = React.createClass({
     * 进行登录验证，如果没有登录，有统一的拦截器进行跳转
     */
     axios.get(onlineURL, {withCredentials: true}).then(function(response) {
+      
       if (response.data.data.online===true) {
         window.currentUser = response.data.data.user || {role_names:[]};
         localStorage.setItem('isSP', 'false');
@@ -151,7 +152,7 @@ var StartPage = React.createClass({
         window.account_type = window.currentUser.account_type;
         window.status = window.currentUser.status;
         self.setState({
-          loaded: false
+          loaded: true
         });
       } else {
         window.location.href = '/home';
