@@ -200,26 +200,6 @@ var Sidebar = React.createClass({
         roleName: ['SP']
       },
       {
-        faIconName: 'street-view',
-        text: '艺人管理',
-        to: 'artists',
-        roleName: ['CP','SP']
-      }, {
-        faIconName: 'edit',
-        text: '专辑管理',
-        to: 'albums',
-        roleName: ['CP','SP']
-      }, {
-        faIconName: 'music',
-        text: '曲库管理',
-        to: 'songs',
-        roleName: ['CP','SP']
-      }, {
-        faIconName: 'bar-chart',
-        text: '图表统计',
-        to: 'charts',
-        roleName: ['CP','SP']
-      }, {
         faIconName: 'cogs',
         text: '系统设置',
         to: 'settings',
