@@ -21,24 +21,30 @@ class Main extends React.Component {
         this.state.loaded = true;
         this.setState(this.state);
       }
-    }).catch(function(response) {
-      this.state.loaded = true;
-      this.setState(this.state);
+    }).catch((error) => {
+      this.setState({
+        loaded: true
+      });
     });
   }
 
-  render() {
+  renderResults() {
     const {loaded, data} = this.state;
     if (!loaded) {
-      return (
-        <Loader />
-      );
+      return <Loader />;
+    }
+    if (data.length <= 1) {
+      return <span />;
     }
     return (
       <div className='week-top-songs'>
         <List data={data} />
       </div>
     );
+  }
+
+  render() {
+    return this.renderResults();
   }
 };
 

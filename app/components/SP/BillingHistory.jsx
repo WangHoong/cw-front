@@ -11,7 +11,9 @@ class BillingHistory extends React.Component {
     super();
     this.state = {
       loaded: false,
-      res_data: {},
+      res_data: {
+        data: null
+      },
       contentShow: true
     };
   }
@@ -38,6 +40,10 @@ class BillingHistory extends React.Component {
           res_data: res_data
         });
       }
+    }).catch((err) => {
+      this.setState({
+        loaded: true
+      });
     });
   }
 
@@ -48,6 +54,17 @@ class BillingHistory extends React.Component {
           <tr>
             <td align='center' colSpan='4'>
               <Loader />
+            </td>
+          </tr>
+        </tbody>
+      );
+    }
+    if (!this.state.res_data.data) {
+      return (
+        <tbody>
+          <tr>
+            <td align='center' colSpan='4' className='text-center'>
+              请求异常
             </td>
           </tr>
         </tbody>
