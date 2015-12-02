@@ -102,13 +102,13 @@ class Main extends Component {
 
     return this.state.data.authorization['replies'].map(function (reply) {
       let classes = Classnames('label', {
-        'label-success': reply.status === 1,
-        'label-danger': reply.status!== 1
+        'label-success': reply.status === 0,
+        'label-danger': reply.status!== 0
       });
       return (
         <tr key={reply.company.id}>
           <td>{reply.company.name}</td>
-          <td><span className={classes}>{reply.status === 1 ? "已授权" : "未通过"}</span></td>
+          <td><span className={classes}>{reply.status === 0 ? "已授权" : "未通过"}</span></td>
           <td>{reply.created_at?moment(reply.created_at).fromNow():'--'}</td>
         </tr>
       );
@@ -128,7 +128,7 @@ class Main extends Component {
       <div style={{paddingTop:"30px"}}>
         <div>
           <div>
-            {this.renderForm()}
+            {false && this.renderForm()}
           </div>
           <div style={{marginTop:"20px",overflow:"hidden"}}>
             <table className='table table-hover'>
