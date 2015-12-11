@@ -198,17 +198,17 @@ var Sidebar = React.createClass({
         text: '基本信息',
         to: 'sp',
         roleName: ['SP']
+      }, {
+        faIconName: 'exchange',
+        text: '歌曲授权',
+        to: 'authorization',
+        roleName: ['SP']
       },
       {
         faIconName: 'cogs',
         text: '系统设置',
         to: 'settings',
         roleName: ['CP','SP']
-      }, {
-        faIconName: 'exchange',
-        text: '歌曲授权',
-        to: 'authorization',
-        roleName: ['SP']
       }
     ];
 
