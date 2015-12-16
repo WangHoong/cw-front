@@ -9,7 +9,28 @@ var router = require('./lib/route');
 
 var app = koa();
 
+var defaultLocale = 'zh-cn';
+
 app.use(_static(path.join(__dirname, '/build'), {}));
+
+app.use(function *(next) {
+  var languages = this.acceptsLanguages();
+  if (languages) {
+    if (Array.isArray(languages)) {
+      if (languages.length > 0) {
+        languages = languages[0];
+      } else {
+        languages = defaultLocale;
+      }
+    } else {
+      languages = defaultLocale;
+    }
+  } else {
+    languages = defaultLocale;
+  }
+  this.__language = languages.toLowerCase();
+  yield next;
+});
 
 if (app.env != 'production') {
   app.use(logger());
