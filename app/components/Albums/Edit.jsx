@@ -30,7 +30,7 @@ var Edit = React.createClass({
       <Form ref='editForm' data={data}>
         <button
           className='btn btn-warning mr10'
-          onClick={this.handleUpdate}>保存
+          onClick={this.handleUpdate}>{window.lang.save}
         </button>
         <button
           className='btn btn-default'
