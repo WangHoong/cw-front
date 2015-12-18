@@ -2,12 +2,12 @@ var React = require('react');
 var BASE_SHIFT = 0,
 	  TITLE_SHIFT = 1,
 	  TITLES = {
-	    first: '第一页',
+	    first: window.lang.tfp,
 	    prev: '\u00AB',
 	    prevSet: '...',
 	    nextSet: '...',
 	    next: '\u00BB',
-	    last: '最后一页'
+	    last: window.lang.tlp
 	  };
 
 /**

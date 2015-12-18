@@ -58,11 +58,11 @@ var TopSingers = React.createClass({
     if(this.state.topsinger.loaded&&this.state.topsinger.data.data.data[0]){
     return(
       <div className="topSingers">
-        <p className="tsr-title"><b>艺人Top5</b></p>
+        <p className="tsr-title"><b>{window.lang.at5}</b></p>
         <p className="tsr-head">
-          <span className="tsr-rank"><b>排名</b></span>
-          <span className="tsr-singer"><b>艺人</b></span>
-          <span className="tsr-total"><b>总播放量</b></span>
+          <span className="tsr-rank"><b>{window.lang.rank}</b></span>
+          <span className="tsr-singer"><b>{window.lang.artist}</b></span>
+          <span className="tsr-total"><b>{window.lang.at5tp}</b></span>
         </p>
         <div className="tsr-body">
           {this.state.topsinger.data.data.data.map(function(artist,i){
@@ -73,13 +73,13 @@ var TopSingers = React.createClass({
     )}else {
       return(
         <div className="topSingers">
-          <p className="tsr-title"><b>艺人Top5</b></p>
+          <p className="tsr-title"><b>{window.lang.at5}</b></p>
           <p className="tsr-head">
-            <span className="tsr-rank"><b>排名</b></span>
-            <span className="tsr-singer"><b>艺人</b></span>
-            <span className="tsr-total"><b>总播放量</b></span>
+            <span className="tsr-rank"><b>{window.lang.rank}</b></span>
+            <span className="tsr-singer"><b>{window.lang.artist}</b></span>
+            <span className="tsr-total"><b>{window.lang.at5tp}</b></span>
           </p>
-          <div className='nodata'>暂无数据</div>
+          <div className='nodata'>{window.lang.nodata}</div>
         </div>
 
       )

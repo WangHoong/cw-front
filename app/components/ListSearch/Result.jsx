@@ -49,7 +49,7 @@ var Result = React.createClass({
     // 查询完毕, 无结果
     if (data.state === 'DONE' && data.results.length == 0) {
       return (
-        <p className='text-center'>未搜索到相关内容，按回车进行模糊查询</p>
+        <p className='text-center'>{window.lang.nsrpe}</p>
       );
     }
 
@@ -74,7 +74,7 @@ var Result = React.createClass({
 
     // 其他错误
     return (
-      <p className='text-center'>未知错误</p>
+      <p className='text-center'>{window.lang.unknownError}</p>
     );
   },
 

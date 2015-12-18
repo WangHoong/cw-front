@@ -54,7 +54,7 @@ var TopSongs = React.createClass({
     if(stateTS.loaded && (maxNum!==MAXNUM)){
     return(
       <div className="topSongs">
-        <p className="tps-title"><b>歌曲TOP10</b></p>
+        <p className="tps-title"><b>{window.lang.tt10}</b></p>
         <div className="tps-body">
           { topTracks10.data.map(function(track,i){
             return <TopTrackItemWrapper data={track} key={track.track_id} maxNum={maxNum} rank={i}/>
@@ -64,8 +64,8 @@ var TopSongs = React.createClass({
     );}else {
       return(
         <div className="topSongs">
-          <p className="tps-title"><b>歌曲TOP10</b></p>
-          <div className='nodata'>暂无数据</div>
+          <p className="tps-title"><b>{window.lang.tt10}</b></p>
+          <div className='nodata'>{window.lang.nodata}</div>
         </div>
 
       )

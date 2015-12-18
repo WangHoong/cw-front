@@ -83,7 +83,7 @@ var Main = React.createClass({
             type='Song' />
           <div className='has-top-bar'>
             <div className='btn-group'>
-               <Role component='button' roleName='ADMIN' onClick={this.handleCreate} className="btn btn-default">新建歌曲</Role>
+               <Role component='button' roleName='ADMIN' onClick={this.handleCreate} className="btn btn-default">{window.lang.add_tr}</Role>
             </div>
             <SongList
               items={this.state.tracks.items}
@@ -95,12 +95,12 @@ var Main = React.createClass({
               total={this.state.tracks.totalPage}
               visiblePages={this.props.visiblePages}
               titles={{
-                first: '第一页',
-                prev: '上一页',
+                first: window.lang.tfp,
+                prev: window.lang.pp,
                 prevSet: '...',
                 nextSet: '...',
-                next: '下一页',
-                last: '最后一页'
+                next: window.lang.np,
+                last: window.lang.tlp
               }}
               onPageChanged={this.handlePageChanged}/>
           </div>

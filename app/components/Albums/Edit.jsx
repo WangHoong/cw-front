@@ -34,7 +34,7 @@ var Edit = React.createClass({
         </button>
         <button
           className='btn btn-default'
-          onClick={this.props.handleToDetail}>放弃
+          onClick={this.props.handleToDetail}>{window.lang.cancel}
         </button>
       </Form>
     );

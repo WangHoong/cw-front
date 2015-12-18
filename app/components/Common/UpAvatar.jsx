@@ -202,7 +202,7 @@ var UpAvatar = React.createClass({
           <div className='photo' style={photoStyles}></div>
           <div className='tips'>
             <span></span>
-            <span>点击或将头像拖拽至此上传</span>
+            <span>{window.lang.upload}</span>
           </div>
           <input type='file' ref='upInput' onChange={this.handleDrop} />
           {this.showProgress()}

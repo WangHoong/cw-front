@@ -10,7 +10,7 @@ var Item = React.createClass({
     //var url='http://dev.api.topdmc.cn/api/v1/companies/'+this.props.data.id+'/inspect';
     var url = `${window.DMC_OPT.API_PREFIX}/companies/${this.props.data.id}/inspect`;
     return(
-      <li className='ce-p'><div className='ce-name'>{this.props.data.name}</div><a href={url}><div className='ce-bt'><button type='button' onClick={this.onClick}>切换</button></div></a></li>
+      <li className='ce-p'><div className='ce-name'>{this.props.data.name}</div><a href={url}><div className='ce-bt'><button type='button' onClick={this.onClick}>{window.lang.sw}</button></div></a></li>
     )
   }
 })
@@ -25,7 +25,7 @@ var Main = React.createClass({
       // console.log(this.state.companies);
       return(
         <div className='changeCompany'>
-          <h1 className='ce-h1'>切换公司</h1>
+          <h1 className='ce-h1'>{window.lang.us}</h1>
           { this.state.companies.data.data.data.map(function(track,i){
             return <Item data={track}  key={i}/>
           }) }
@@ -34,7 +34,7 @@ var Main = React.createClass({
     }else {
       return(
         <div className='changeCompany'>
-          暂无数据
+          {window.lang.nodata}
         </div>
       )
     }

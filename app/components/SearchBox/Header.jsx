@@ -2,9 +2,9 @@ var React = require('react');
 var dbg = require('debug')('topdmc:SearchBox/Components/Header');
 
 var SEARCH_BUTTON_STATE = {
-  ENABLE: "搜索",
-  DISABLE: "等待输入",
-  SEARCHING: "正在搜索"
+  ENABLE: window.lang.search,
+  DISABLE: window.lang.al_swait,
+  SEARCHING: window.lang.searching
 }
 
 /*
@@ -91,12 +91,12 @@ var Header = React.createClass({
   render: function(){
     return (
       <div id="search_box_header" className='search-box-header'>
-        <h4 className='title'>搜索类型：<b>{this.props.type}</b></h4>
+        <h4 className='title'>{window.lang.al_stype}<b>{this.props.type}</b></h4>
         <div className='input-group'>
           <input
             id="searchbox_input"
             className="form-control"
-            placeholder="输入搜索的内容"
+            placeholder={window.lang.al_scontent}
             type="text"
             value={this.state.text}
             onChange={this._handleSearchTextChange} />

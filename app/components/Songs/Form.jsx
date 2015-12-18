@@ -173,7 +173,7 @@ var Form = React.createClass({
             data-type='Artist'
             onClick={this.changeSearchBoxType.bind(null, 'Artist')}
             iconClassName='user'
-            title='添加歌手' />
+            title={window.lang.al_addar} />
         </ul>
       );
     } else {
@@ -193,7 +193,7 @@ var Form = React.createClass({
             data-type='Artist'
             onClick={this.changeSearchBoxType.bind(null, 'Artist')}
             iconClassName='user'
-            title='添加歌手' />
+            title={window.lang.al_addar} />
         </ul>
       );
     }
@@ -208,7 +208,7 @@ var Form = React.createClass({
             data-type='Album'
             onClick={this.changeSearchBoxType.bind(null, 'Album')}
             iconClassName='edit'
-            title='添加专辑' />
+            title={window.lang.tr_addal} />
         </ul>
       );
     } else {
@@ -236,13 +236,13 @@ var Form = React.createClass({
     let data = this.state;
     return (
       <Role component='div' className='card mt20' roleName='ADMIN'>
-        <p className='form-control-static'>上传歌曲</p>
+        <p className='form-control-static'>{window.lang.tr_upload}</p>
         <div className='row'>
           <div className='col-sm-6'>
-            <Mp3Uploader tips='点击上传128K' uploadComplete={this.upload128Complete} />
+            <Mp3Uploader tips={window.lang.tr_upload128} uploadComplete={this.upload128Complete} />
           </div>
           <div className='col-sm-6'>
-            <Mp3Uploader tips='点击上传320K' uploadComplete={this.upload320Complete} />
+            <Mp3Uploader tips={window.lang.tr_upload320} uploadComplete={this.upload320Complete} />
           </div>
         </div>
       </Role>
@@ -271,7 +271,7 @@ var Form = React.createClass({
 
           <div className='edit-form card'>
             <div className='form-group'>
-              <p className='form-control-static'>歌曲名称</p>
+              <p className='form-control-static'>{window.lang.tr_name}</p>
               <input
                 name='name'
                 type='text'
@@ -280,7 +280,7 @@ var Form = React.createClass({
                 onChange={this.handleChange}/>
             </div>
             <div className='form-group'>
-              <p className='form-control-static'>作词</p>
+              <p className='form-control-static'>{window.lang.tr_ly}</p>
               <input
                 name='lyricist'
                 className='form-control'
@@ -288,7 +288,7 @@ var Form = React.createClass({
                 onChange={this.handleChange}/>
             </div>
             <div className='form-group'>
-              <p className='form-control-static'>作曲</p>
+              <p className='form-control-static'>{window.lang.tr_co}</p>
               <input
                 name='composer'
                 className='form-control'
@@ -296,7 +296,7 @@ var Form = React.createClass({
                 onChange={this.handleChange}/>
             </div>
             <div className='form-group'>
-              <p className='form-control-static'>歌词</p>
+              <p className='form-control-static'>{window.lang.lyrics}</p>
               <TextareaAutosize
                 name='lrc'
                 className='form-control'
@@ -311,7 +311,7 @@ var Form = React.createClass({
             onDragOver={this.allowArtistDrop}
             onDragEnter={this.handleDragArtistEnter}
             onDragLeave={this.handleDragArtistLeave}>
-            <p className='form-control-static'>歌手</p>
+            <p className='form-control-static'>{window.lang.tr_ar}</p>
             {this.renderArtistMiniCards()}
           </div>
 
@@ -321,7 +321,7 @@ var Form = React.createClass({
             onDragOver={this.allowAlbumDrop}
             onDragEnter={this.handleDragAlbumEnter}
             onDragLeave={this.handleDragAlbumLeave}>
-            <p className='form-control-static'>专辑</p>
+            <p className='form-control-static'>{window.lang.tr_al}</p>
             {this.renderAlbumMiniCards()}
             <div className='text-right'>
               {this.props.children}

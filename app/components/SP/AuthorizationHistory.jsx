@@ -111,7 +111,7 @@ class AuthorizationHistory extends React.Component {
     return (
       <div className='row mb10'>
         <div className='col-xs-6'>申请日期：{_data.created_at ? moment(_data.created_at).format('YYYY-MM-DD') : ''}</div>
-        <div className='col-xs-6'>价格：{_data.price}元/1000次</div>
+        <div className='col-xs-6'>价格：{_data.price}{window.lang.rmb}/1000{window.lang.times}</div>
       </div>
     );
   }

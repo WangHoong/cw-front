@@ -9,7 +9,7 @@ var router = require('./lib/route');
 
 var app = koa();
 
-var defaultLocale = 'zh-cn';
+var defaultLocale = 'en-us';
 
 app.use(_static(path.join(__dirname, '/build'), {}));
 

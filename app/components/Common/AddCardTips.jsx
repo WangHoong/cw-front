@@ -10,7 +10,7 @@ var AddCardTips = React.createClass({
 
   getDefaultProps: function() {
     return {
-      title: '添加歌曲',
+      title: window.lang.al_addtr,
       iconClassName: 'music'
     };
   },

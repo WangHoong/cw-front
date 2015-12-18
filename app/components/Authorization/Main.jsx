@@ -73,7 +73,7 @@ class Main extends Component {
                 <input onChange={this.priceChange} type="text" className="form-control" value={this.state.price}
                        id="exampleInputAmount" placeholder="0.00"/>
 
-                <div className="input-group-addon">元/1000次</div>
+                     <div className="input-group-addon">{window.lang.rmb}/1000{window.lang.times}</div>
               </div>
             </div>
             <button type="button" onClick={this.create} disabled={this.state.disabled} style={{marginLeft:"10px"}}
@@ -88,7 +88,7 @@ class Main extends Component {
     return (
       <h3 style={{marginTop:"0px"}}>
       <span className="label label-success">
-       提示： {moment(this.state.data.authorization.created_at).fromNow()}您已经以{this.state.data.authorization.price}元/1000次的价格向所有歌曲CP(音乐提供商)申请授权,请耐心等待各CP的授权回复。
+       {window.lang.tips} {moment(this.state.data.authorization.created_at).fromNow()}{window.lang.tips0}{this.state.data.authorization.price}{window.lang.tips1}
       </span>
       </h3>
     );

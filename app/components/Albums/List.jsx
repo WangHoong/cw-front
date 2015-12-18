@@ -24,7 +24,7 @@ var List = React.createClass({
     }
     if (this.props.items <= 0) {
       return (
-        <li className='text-center'>未搜索到相关内容</li>
+        <li className='text-center'>{window.lang.cnfrc}</li>
       );
     } else {
       return this.props.items.map(function(item, idx) {
@@ -40,7 +40,7 @@ var List = React.createClass({
               <p className='name'>{item['name']}</p>
               <div className='info row'>
                 <p className='col-md-8 ellipsis'>{_.collect(item.artists,'name').join(',')}</p>
-                <p className='col-md-4 ellipsis text-right'>{item['track_nums']}首</p>
+                <p className='col-md-4 ellipsis text-right'>{item['track_nums']}{window.lang.ar_0}</p>
               </div>
 
             </div>

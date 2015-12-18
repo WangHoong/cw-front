@@ -93,32 +93,32 @@ var TotalCard = React.createClass({
     if(this.props.type==0){
       createItem=
         <div className="totalcard">
-          <p className="ttc-title"><b>总收入</b></p>
-          <p className="ttc-sum"><span>{amount ? amount.amount : '--'}</span><span className="ttc-unit">元</span></p>
+          <p className="ttc-title"><b>{window.lang.r0}</b></p>
+          <p className="ttc-sum"><span>{amount ? amount.amount : '--'}</span><span className="ttc-unit">{window.lang.rmb}</span></p>
           <div className="ttc-class">
             <div className="ttc-first ">
-              <p>已入账</p>
-              <p className="ttc-num"><span>{amount ? amount.recorded_amount : '--'}</span><span className="ttc-unit">元</span></p>
+              <p>{window.lang.r1}</p>
+              <p className="ttc-num"><span>{amount ? amount.recorded_amount : '--'}</span><span className="ttc-unit">{window.lang.rmb}</span></p>
             </div>
             <div className="ttc-next">
-              <p>未入账</p>
-              <p className="ttc-num"><span>{amount ? amount.unrecorded_amount : '--'}</span><span className="ttc-unit">元</span></p>
+              <p>{window.lang.r2}</p>
+              <p className="ttc-num"><span>{amount ? amount.unrecorded_amount : '--'}</span><span className="ttc-unit">{window.lang.rmb}</span></p>
             </div>
           </div>
         </div>
     }else if(this.props.type==1){
       createItem=
       <div className="totalcard">
-        <p className="ttc-title"><b>总歌曲数</b></p>
-        <p className="ttc-sum"><span>1263</span><span className="ttc-unit">首</span></p>
+        <p className="ttc-title"><b>{window.lang.t0}</b></p>
+        <p className="ttc-sum"><span>1263</span><span className="ttc-unit">{window.lang.t0_0}</span></p>
         <div className="ttc-class">
           <div className="ttc-first ">
-            <p>专辑数</p>
-            <p className="ttc-num"><span>24</span><span className="ttc-unit">张</span></p>
+            <p>{window.lang.t1}</p>
+            <p className="ttc-num"><span>24</span><span className="ttc-unit">{window.lang.t0_1}</span></p>
           </div>
           <div className="ttc-next">
-            <p>艺人数</p>
-            <p className="ttc-num"><span>6</span><span className="ttc-unit">人</span></p>
+            <p>{window.lang.t2}</p>
+            <p className="ttc-num"><span>6</span><span className="ttc-unit">{window.lang.t0_2}</span></p>
           </div>
         </div>
       </div>

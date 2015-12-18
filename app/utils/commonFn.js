@@ -63,7 +63,7 @@ function transformDataToSDType(data) {
 			if(yMax > 5) { yMax = yMax + (splitNumber - (yMax % splitNumber)) }
 		return {
       title : {
-        text: '歌曲播放总量',
+        text: window.lang.tp0,
         subtext: '2015'
       },
       tooltip : {
@@ -92,7 +92,7 @@ function transformDataToSDType(data) {
       ],
       series : [
       {
-        name: '流媒体播放量',
+        name: window.lang.tp1,
         type: 'line',
         smooth: true,
         symbol: 'emptyCircle',
@@ -111,7 +111,7 @@ function transformDataToSDType(data) {
         }
       },
       {
-        name: '下载量',
+        name: window.lang.tp2,
         type: 'line',
         smooth: true,
         symbol: 'emptyCircle',
@@ -171,7 +171,7 @@ function transformDataToSPType(data) {
 		})
 	    return {
 	      title : {
-	        text: '分渠道播放量',
+	        text: window.lang.pb0,
 	        subtext: '2015'
 	      },
 	      tooltip : {

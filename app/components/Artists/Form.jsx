@@ -63,27 +63,27 @@ var Form = React.createClass({
             </div>
             <div className='edit-right'>
               <div className='form-group'>
-                <p className='form-control-static'>姓名</p>
-                <input className='form-control' name='name' onChange={this.handleChange} placeholder='请填写姓名' type='text' value={data.name}/>
+                <p className='form-control-static'>{window.lang.ar_name}</p>
+                <input className='form-control' name='name' onChange={this.handleChange} placeholder={window.lang.ar_editname} type='text' value={data.name}/>
               </div>
               <div className='form-group'>
-                <p className='form-control-static'>姓别</p>
+                <p className='form-control-static'>{window.lang.ar_gender}</p>
                 <span className='radio'>
                   <label>
-                    <input checked={data.gender == '1'} name={'gender'} onChange={this.handleChange} type='radio' value={'1'}/>男</label>
+                    <input checked={data.gender == '1'} name={'gender'} onChange={this.handleChange} type='radio' value={'1'}/>{window.lang.ar_male}</label>
                 </span>
                 <span className='radio'>
                   <label>
-                    <input checked={data.gender == '2'} name='gender' onChange={this.handleChange} type='radio' value={'2'}/>女</label>
+                    <input checked={data.gender == '2'} name='gender' onChange={this.handleChange} type='radio' value={'2'}/>{window.lang.ar_female}</label>
                 </span>
               </div>
               <div className='form-group'>
-                <p className='form-control-static'>国籍</p>
-                <input className='form-control' name="country" onChange={this.handleChange} placeholder='填写国籍' type='text' value={data.country}/>
+                <p className='form-control-static'>{window.lang.ar_country}</p>
+                <input className='form-control' name="country" onChange={this.handleChange} placeholder={window.lang.ar_editcountry} type='text' value={data.country}/>
               </div>
               <div className='form-group'>
-                <p className='form-control-static'>简介</p>
-                <TextareaAutosize className='form-control' name="desc" onChange={this.handleChange} placeholder='填写简介' type='text' value={(data.desc || '').split(/\\n|\\r/).join('\n')}></TextareaAutosize>
+                <p className='form-control-static'>{window.lang.ar_intro}</p>
+                <TextareaAutosize className='form-control' name="desc" onChange={this.handleChange} placeholder={window.lang.ar_editintro} type='text' value={(data.desc || '').split(/\\n|\\r/).join('\n')}></TextareaAutosize>
               </div>
               <div className='text-right'>
                 {this.props.children}

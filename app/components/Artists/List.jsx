@@ -21,7 +21,7 @@ var ArtistList = React.createClass({
     }
     if (this.props.items <= 0) {
       return (
-        <li className='text-center'>未搜索到相关内容</li>
+        <li className='text-center'>{window.lang.cnfrc}</li>
       );
     } else {
       return this.props.items.map(function (item, idx) {
@@ -32,17 +32,17 @@ var ArtistList = React.createClass({
                 <ImagePreloader data-id={item['id']} onClick={this.props.onShowDetailAction} src={item['photo']}/>
               </div>
               <div className='name text-center'>
-                <p className='ellipsis'>{item['name'] || '未知'}</p>
-                <p className='ellipsis'>{item['country'] || '未知'}</p>
+                <p className='ellipsis'>{item['name'] || window.lang.unknown}</p>
+                <p className='ellipsis'>{item['country'] || window.lang.unknown}</p>
               </div>
               <div className='info row'>
                 <div className='number first col-md-6 text-center'>
                   <p>{item['track_nums']}</p>
-                  <p>歌曲数</p>
+                  <p>{window.lang.ar_tracks}</p>
                 </div>
                 <div className='number col-md-6 text-center'>
                   <p>{item['album_nums']}</p>
-                  <p>专辑数</p>
+                  <p>{window.lang.ar_albums}</p>
                 </div>
               </div>
             </div>

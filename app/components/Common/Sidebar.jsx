@@ -155,38 +155,37 @@ var Sidebar = React.createClass({
   },
 
   render: function() {
-
     const isSP = localStorage.getItem('isSP') === 'true'
     let cpItems  = [
       {
         faIconName: 'home',
-        text: '基本信息',
+        text: window.lang.bi,
         to: 'base',
         roleName: ['CP']
       },
       {
         faIconName: 'street-view',
-        text: '艺人管理',
+        text: window.lang.ar,
         to: 'artists',
         roleName: ['CP','SP']
       }, {
         faIconName: 'edit',
-        text: '专辑管理',
+        text: window.lang.al,
         to: 'albums',
         roleName: ['CP','SP']
       }, {
         faIconName: 'music',
-        text: '曲库管理',
+        text: window.lang.tr,
         to: 'songs',
         roleName: ['CP','SP']
       }, {
         faIconName: 'bar-chart',
-        text: '图表统计',
+        text: window.lang.re,
         to: 'charts',
         roleName: ['CP','SP']
       }, {
         faIconName: 'cogs',
-        text: '系统设置',
+        text: window.lang.se,
         to: 'settings',
         roleName: ['CP','SP']
       }
@@ -195,7 +194,7 @@ var Sidebar = React.createClass({
     let spItems  = [
       {
         faIconName: 'home',
-        text: '基本信息',
+        text: window.lang.bi,
         to: 'sp',
         roleName: ['SP']
       }, {
@@ -206,7 +205,7 @@ var Sidebar = React.createClass({
       },
       {
         faIconName: 'cogs',
-        text: '系统设置',
+        text: window.lang.se,
         to: 'settings',
         roleName: ['CP','SP']
       }
@@ -249,7 +248,7 @@ var Sidebar = React.createClass({
             <p className="whoami-username ellipsis">{this.state.loginUserInfo.name}</p>
           </div>
           <ToggleMenuButton handleToggleMenuClick={this.props.handleToggleMenuClick} toggleMenuClass={this.props.toggleMenuClass}/>
-          <a href='#' onClick={this.logout} style={{display: 'block', height: '30px', lineHeight: '30px', textAlign: 'center'}}>退出</a>
+          <a href='#' onClick={this.logout} style={{display: 'block', height: '30px', lineHeight: '30px', textAlign: 'center'}}>{window.lang.logout}</a>
         </div>
       </aside>
     );

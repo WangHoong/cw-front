@@ -73,10 +73,10 @@ var Detail = React.createClass({
           <div className='ctrl-btn pull-right'>
             <button
               className='btn btn-warning mr10'
-              onClick={this.props.handleToEdit}>编辑</button>
+              onClick={this.props.handleToEdit}>{window.lang.edit}</button>
             <button
               className='btn btn-default'
-              onClick={this.handleBack}>返回</button>
+              onClick={this.handleBack}>{window.lang.back}</button>
           </div>
           <div className='info'>
             <p>{this.filter(data.name)} - {_.collect(data.artists,'name').join(',')}</p>
@@ -91,7 +91,7 @@ var Detail = React.createClass({
           </div>
 
           <div className='card mt20'>
-            <h4>简介：</h4>
+            <h4>{window.lang.intro}:</h4>
             <p>{this.filter(data.desc)}</p>
           </div>
           <div className='card mt20'>

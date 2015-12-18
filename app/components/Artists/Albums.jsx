@@ -58,12 +58,12 @@ module.exports = exports = React.createClass({
           current={this.state.albums.page}
           onPageChanged={this.renderList}
           titles={{
-            first: '第一页',
-            prev: '上一页',
+            first: window.lang.tfp,
+            prev: window.lang.pp,
             prevSet: '...',
             nextSet: '...',
-            next: '下一页',
-            last: '最后一页'}}
+            next: window.lang.np,
+            last: window.lang.tlp}}
           total={this.state.albums.totalPage}
           visiblePages={this.props.visiblePages}></Pager>
       </div>

@@ -30,12 +30,14 @@
 <link rel="stylesheet" href="/css/main.css?version={{version}}">
 </head>
 <body>
+  <div id="mountNode"></div>
 <script type="text/javascript">
 window.DMC_OPT = {
   API_PREFIX: '{{API_PREFIX}}',
   LOGIN_URL:'{{LOGIN_URL}}',
   UPLOAD_FILE_URL: '{{UPLOAD_FILE_URL}}'
 };
+window.lang = JSON.parse('{{lang}}'.replace(/&quot;/g, "\""));
 </script>
 <script src="/js/jquery.min.js"></script>
 <script src="/js/kefir.min.js"></script>

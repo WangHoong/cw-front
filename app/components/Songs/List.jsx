@@ -11,16 +11,16 @@ var SongList = React.createClass({
     return (
       <thead>
         <tr>
-          <th>封面</th>
-          <th>歌曲名称</th>
-          <th>所属艺人</th>
-          <th>所属专辑</th>
-          <th>标准品质</th>
-          <th>高品质</th>
-          <th>作词</th>
-          <th>作曲</th>
-          <th>MV</th>
-          <th>操作</th>
+          <th>{window.lang.tr_cover}</th>
+          <th>{window.lang.tr_track}</th>
+          <th>{window.lang.tr_artist}</th>
+          <th>{window.lang.tr_album}</th>
+          <th>{window.lang.tr_sq}</th>
+          <th>{window.lang.tr_hq}</th>
+          <th>{window.lang.tr_ly}</th>
+          <th>{window.lang.tr_co}</th>
+          <th>{window.lang.tr_MV}</th>
+          <th>{window.lang.tr_op}</th>
         </tr>
       </thead>
     );
@@ -41,7 +41,7 @@ var SongList = React.createClass({
     if (this.props.items.length <= 0) {
       return (
         <tr>
-          <td align='center' colSpan='10' className='text-center'>未搜索到相关内容</td>
+          <td align='center' colSpan='10' className='text-center'>{window.lang.cnfrc}</td>
         </tr>
       );
     } else {
@@ -65,7 +65,7 @@ var SongList = React.createClass({
             <td>{item.composer}</td>
             <td>{hasMV}</td>
             <td>
-              <a className='btn btn-link' data-id={item.id} onClick={this.props.onShowDetailAction}>查看</a>
+              <a className='btn btn-link' data-id={item.id} onClick={this.props.onShowDetailAction}>{window.lang.tr_view}</a>
             </td>
           </tr>
         );

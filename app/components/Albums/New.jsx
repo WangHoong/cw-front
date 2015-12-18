@@ -38,8 +38,8 @@ var New = React.createClass({
       <div className='show-box'>
         <div className='edit-main'>
           <Form ref='form' data={{}}>
-            <button className='btn btn-warning mr10' onClick={this.handleSubmit}>新建</button>
-            <button className='btn btn-default' onClick={this.handleCancel}>放弃</button>
+            <button className='btn btn-warning mr10' onClick={this.handleSubmit}>{window.lang.add}</button>
+            <button className='btn btn-default' onClick={this.handleCancel}>{window.lang.cancel}</button>
           </Form>
         </div>
       </div>

@@ -14,19 +14,19 @@ var PercentCircle = React.createClass({
 
     return(
       <div className='datum-percent'>
-        <p>资料完成度</p>
+        <p>{window.lang.pr0}</p>
         <ul className='row'>
           <li className='col-xs-4'>
             <CirCanvasProcess process={songPercent} color='#f48daf' height='120' width='120' />
-            <p>歌曲资料</p>
+            <p>{window.lang.pr1}</p>
           </li>
           <li className='col-xs-4'>
             <CirCanvasProcess process={singerPercent} color='#62a1d5' height='120' width='120' />
-            <p>歌手资料</p>
+            <p>{window.lang.pr2}</p>
           </li>
           <li className='col-xs-4'>
             <CirCanvasProcess process={specialPercent} color='#2ed0d7' height='120' width='120' />
-            <p>专辑资料</p>
+            <p>{window.lang.pr3}</p>
           </li>
         </ul>
       </div>

@@ -197,7 +197,7 @@ var Base = React.createClass({
 var Chart = React.createClass({
   render: function () {
     return (
-      <span>图表统计</span>
+      <span>{window.lang.re}</span>
     );
   }
 });
@@ -269,6 +269,6 @@ var routes = (
 );
 
   Router.run(routes, function (Handler, state) {
-    React.render(<Handler/>, document.body);
+    React.render(<Handler/>, document.querySelector('#mountNode'));
     analytics(state);
   });

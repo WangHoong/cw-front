@@ -50,8 +50,8 @@ var Edit = React.createClass({
 
     return (
         <Form ref="form" data={this.state.song.data}>
-          <button className='btn btn-warning mr10' onClick={this.handleSubmit}>保存</button>
-          <button className='btn btn-default' onClick={this.props.onCancelClick}>放弃</button>
+          <button className='btn btn-warning mr10' onClick={this.handleSubmit}>{window.lang.save}</button>
+          <button className='btn btn-default' onClick={this.props.onCancelClick}>{window.lang.cancel}</button>
         </Form>
     );
   }

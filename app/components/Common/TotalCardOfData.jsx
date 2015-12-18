@@ -17,16 +17,16 @@ var TotalCardOfData = React.createClass({
     return(
       <div>
         <div className="totalcard">
-          <p className="ttc-title"><b>总歌曲数</b></p>
-          <p className="ttc-sum"><span>{this.state.totalData.track_total}</span><span className="ttc-unit">首</span></p>
+          <p className="ttc-title"><b>{window.lang.t0}</b></p>
+          <p className="ttc-sum"><span>{this.state.totalData.track_total}</span><span className="ttc-unit">{window.lang.t0_0}</span></p>
           <div className="ttc-class">
             <div className="ttc-first ">
-              <p>专辑数</p>
-              <p className="ttc-num"><span>{this.state.totalData.album_total}</span><span className="ttc-unit">张</span></p>
+              <p>{window.lang.t1}</p>
+              <p className="ttc-num"><span>{this.state.totalData.album_total}</span><span className="ttc-unit">{window.lang.t0_1}</span></p>
             </div>
             <div className="ttc-next">
-              <p>艺人数</p>
-              <p className="ttc-num"><span>{this.state.totalData.artist_total}</span><span className="ttc-unit">人</span></p>
+              <p>{window.lang.t2}</p>
+              <p className="ttc-num"><span>{this.state.totalData.artist_total}</span><span className="ttc-unit">{window.lang.t0_2}</span></p>
             </div>
           </div>
         </div>

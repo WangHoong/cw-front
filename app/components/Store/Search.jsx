@@ -8,7 +8,7 @@ var ListSearch = React.createClass({
 
   getDefaultProps: function() {
     return {
-      placeholder: '输入搜索关键字'
+      placeholder: window.lang.pesk
     };
   },
 

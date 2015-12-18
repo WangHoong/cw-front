@@ -156,10 +156,10 @@ var Main = React.createClass({
   render: function() {
     return (
       <div className='list-wrap'>
-        <ListSearch ref='searchBar' placeholder='搜索歌手' handleSearch={this.handleSearch}/>
+        <ListSearch ref='searchBar' placeholder={window.lang.serachArtist} handleSearch={this.handleSearch}/>
         <div className='has-top-bar'>
           <div className='btn-group'>
-            <Role component='button' roleName='ADMIN' onClick={this.handleRedirectNew} className="btn btn-default">添加艺人</Role>
+            <Role component='button' roleName='ADMIN' onClick={this.handleRedirectNew} className="btn btn-default">{window.lang.add_ar}</Role>
           </div>
           <ArtistList items={this.state.artists.items} loaded={this.state.artists.loaded} onShowDetailAction={this.handleShowDetailAction}/>
         </div>

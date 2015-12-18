@@ -43,7 +43,7 @@ var Item = React.createClass({
           <div className='oi-img'><img src='/images/sp_default_logo.jpg'/></div>
           <div className='oi-name'>
             <p>{_order.company_name}</p>
-            <p className='oi-price'>￥{_order.price}元/1000次</p>
+            <p className='oi-price'>￥{_order.price}{window.lang.rmb}/1000{window.lang.times}</p>
           </div>
           <a href="javascript:void(0)">
             <div className='oi-choose'>
@@ -62,7 +62,7 @@ var Item = React.createClass({
           <div className='oi-img'><img src='/images/sp_default_logo.jpg'/></div>
           <div className='oi-name'>
             <p>{_order.company_name}</p>
-            <p className='oi-price'>￥{_order.price}元/1000次</p>
+            <p className='oi-price'>￥{_order.price}{window.lang.rmb}/1000{window.lang.times}</p>
           </div>
           <div className='oi-choose'>
             <i className='fa fa-check grayi'></i>
@@ -79,7 +79,7 @@ var Item = React.createClass({
           <div className='oi-img'><img src='/images/sp_default_logo.jpg'/></div>
           <div className='oi-name'>
             <p>{_order.company_name}</p>
-            <p className='oi-price'>￥{_order.price}元/1000次</p>
+            <p className='oi-price'>￥{_order.price}{window.lang.rmb}/1000{window.lang.times}</p>
           </div>
           <a href="javascript:void(0)">
             <div className='oi-choose'>

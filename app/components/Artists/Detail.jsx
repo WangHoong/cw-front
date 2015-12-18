@@ -60,8 +60,8 @@ var Detail = React.createClass({
         <div className='show-top'>
           <div className='photo pull-left' style={photoStyles}></div>
           <div className='ctrl-btn pull-right'>
-            <button className='btn btn-warning mr10' onClick={this.props.onEditClick}>编辑</button>
-            <button className='btn btn-default' onClick={this.handleBack}>返回</button>
+            <button className='btn btn-warning mr10' onClick={this.props.onEditClick}>{window.lang.edit}</button>
+            <button className='btn btn-default' onClick={this.handleBack}>{window.lang.back}</button>
           </div>
           <div className='info'>
             <p>{data.name}- {data.country}</p>
@@ -75,7 +75,7 @@ var Detail = React.createClass({
             <SongChannelChart url={'artists/'+ this.state.artist.data.id +'/play_total_sp'} />
           </div>
           <div className='card mt20'>
-            <h4>简介：</h4>
+            <h4>{window.lang.intro}:</h4>
             <p className='data' dangerouslySetInnerHTML={{__html:this.filter(desc)}}></p>
           </div>
           <Albums artist_id={this.context.router.getCurrentParams().id} />

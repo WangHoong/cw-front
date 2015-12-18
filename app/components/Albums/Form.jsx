@@ -181,7 +181,7 @@ var Form = React.createClass({
             data-type='Song'
             onClick={this.changeSearchBoxType.bind(null, 'Song')}
             iconClassName='music'
-            title='添加歌曲' />
+            title={window.lang.al_addtr} />
         </ul>
       );
     } else {
@@ -202,7 +202,7 @@ var Form = React.createClass({
             data-type='Song'
             onClick={this.changeSearchBoxType.bind(null, 'Song')}
             iconClassName='music'
-            title='添加歌曲' />
+            title={window.lang.al_addtr} />
         </ul>
       );
     }
@@ -217,7 +217,7 @@ var Form = React.createClass({
             data-type='Artist'
             onClick={this.changeSearchBoxType.bind(null, 'Artist')}
             iconClassName='user'
-            title='添加歌手' />
+            title={window.lang.al_addar} />
         </ul>
       );
     } else {
@@ -237,7 +237,7 @@ var Form = React.createClass({
             data-type='Artist'
             onClick={this.changeSearchBoxType.bind(null, 'Artist')}
             iconClassName='user'
-            title='添加歌手' />
+            title={window.lang.al_addar} />
         </ul>
       );
     }
@@ -274,7 +274,7 @@ var Form = React.createClass({
 
             <div className='edit-right'>
               <div className='form-group'>
-                <p className='form-control-static'>名称</p>
+                <p className='form-control-static'>{window.lang.al_name}</p>
                 <input
                   name='name'
                   type='text'
@@ -283,7 +283,7 @@ var Form = React.createClass({
                   onChange={this.handleChange} />
               </div>
               <div className='form-group'>
-                <p className='form-control-static'>简介</p>
+                <p className='form-control-static'>{window.lang.al_intro}</p>
                 <TextareaAutosize
                   name='desc'
                   className='form-control'
@@ -301,7 +301,7 @@ var Form = React.createClass({
             onDragOver={this.allowArtistDrop}
             onDragEnter={this.handleDragArtistEnter}
             onDragLeave={this.handleDragArtistLeave}>
-            <p className='form-control-static'>歌手</p>
+            <p className='form-control-static'>{window.lang.al_artist}</p>
             {this.renderArtistMiniCards()}
           </div>
 
@@ -311,7 +311,7 @@ var Form = React.createClass({
             onDragOver={this.allowSongDrop}
             onDragEnter={this.handleDragSongEnter}
             onDragLeave={this.handleDragSongLeave}>
-            <p className='form-control-static'>歌曲</p>
+            <p className='form-control-static'>{window.lang.al_track}</p>
             {this.renderSongMiniCards()}
             <div className='text-right mt20'>
               {this.props.children}

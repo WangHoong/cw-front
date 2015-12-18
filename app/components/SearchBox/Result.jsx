@@ -33,7 +33,7 @@ var Result = React.createClass({
     var results = this.props.data;
     if (this.props.state === 'DONE' && results.length === 0) {
       return (
-        <li className='no-result'>对不起，没有搜索到相关的内容</li>
+        <li className='no-result'>{window.lang.noresults}</li>
       );
     }
 

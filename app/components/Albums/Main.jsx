@@ -81,7 +81,7 @@ var Main = React.createClass({
           type='Album' />
         <div className='has-top-bar'>
           <div className='btn-group'>
-            <Role component='button' roleName='ADMIN' onClick={this.handleRedirectNew} className="btn btn-default">新建专辑</Role>
+            <Role component='button' roleName='ADMIN' onClick={this.handleRedirectNew} className="btn btn-default">{window.lang.add_al}</Role>
           </div>
           <AlbumList
             items={this.state.album.items}
@@ -93,12 +93,12 @@ var Main = React.createClass({
             visiblePages={this.props.visiblePages}
             onPageChanged={this.renderList}
             titles={{
-              first: '第一页',
-              prev: '上一页',
+              first: window.lang.tfp,
+              prev: window.lang.pp,
               prevSet: '...',
               nextSet: '...',
-              next: '下一页',
-              last: '最后一页'}}></Pager>
+              next: window.lang.np,
+              last: window.lang.tlp}}></Pager>
         </div>
       </div>
     );

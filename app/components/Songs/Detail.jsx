@@ -103,10 +103,10 @@ var Detail = React.createClass({
           <div className='ctrl-btn pull-right'>
             <button
                 className='btn btn-warning mr10'
-                onClick={this.props.onEditClick}>编辑</button>
+                onClick={this.props.onEditClick}>{window.lang.edit}</button>
             <button
               className='btn btn-default'
-              onClick={this.handleBack}>返回</button>
+              onClick={this.handleBack}>{window.lang.back}</button>
           </div>
           <div className='info'>
             <p className='data'>{data.name} - {(data.album||{}).name}</p>
