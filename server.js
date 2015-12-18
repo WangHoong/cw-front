@@ -9,7 +9,7 @@ var router = require('./lib/route');
 
 var app = koa();
 
-var defaultLocale = 'en-us';
+var defaultLocale = 'zh';
 
 app.use(_static(path.join(__dirname, '/build'), {}));
 
@@ -28,7 +28,12 @@ app.use(function *(next) {
   } else {
     languages = defaultLocale;
   }
-  this.__language = languages.toLowerCase();
+  languages = languages.toLowerCase().split('-')[0];
+  if (languages != 'zh' && languages != 'en') {
+    this.__language = defaultLocale;
+  } else {
+    this.__language = languages.toLowerCase().split('-')[0];
+  }
   yield next;
 });
 
