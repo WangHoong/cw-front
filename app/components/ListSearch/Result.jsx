@@ -35,7 +35,7 @@ var Result = React.createClass({
     // 初始化提示
     if (data.state === 'DISABLED') {
       return (
-        <p className='text-center'>输入关键词根据艺人查询，或按回车模糊查询</p>
+        <p className='text-center'>{window.lang.kors}</p>
       );
     }
 

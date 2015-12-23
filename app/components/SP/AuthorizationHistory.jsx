@@ -21,9 +21,9 @@ class AuthorizationHistory extends React.Component {
     return (
       <thead>
         <tr>
-          <th style={{width: '50%'}}>音乐供应商</th>
-          <th style={{width: '20%'}}>状态</th>
-          <th>授权日期</th>
+          <th style={{width: '50%'}}>{window.lang.sp_comp}</th>
+          <th style={{width: '20%'}}>{window.lang.sp_st}</th>
+          <th>{window.lang.sp_date}</th>
         </tr>
       </thead>
     );
@@ -62,7 +62,7 @@ class AuthorizationHistory extends React.Component {
         <tbody>
           <tr>
             <td align='center' colSpan='3' className='text-center'>
-              请求异常
+              {window.lang.sp_reqErr}
             </td>
           </tr>
         </tbody>
@@ -73,7 +73,7 @@ class AuthorizationHistory extends React.Component {
         <tbody>
           <tr>
             <td align='center' colSpan='3' className='text-center'>
-              暂无相关信息
+              {window.lang.sp_nodata}
             </td>
           </tr>
         </tbody>
@@ -139,7 +139,7 @@ class AuthorizationHistory extends React.Component {
           <div className='tools'>
             <a onClick={() => {this.toggle()}}><i className={ctrlClass} /></a>
           </div>
-          <h5>授权记录</h5>
+          <h5>{window.lang.sp_licens}</h5>
         </div>
         <div className='m-ibox-content' ref='content'>
           {this.renderPrimaryInfo()}

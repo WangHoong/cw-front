@@ -22,10 +22,10 @@ class BillingHistory extends React.Component {
     return (
       <thead>
         <tr>
-          <th style={{width: '25%'}}>日期</th>
-          <th style={{width: '25%'}}>下载量</th>
-          <th style={{width: '25%'}}>播放量</th>
-          <th>消费额</th>
+          <th style={{width: '25%'}}>{window.lang.sp_da}</th>
+          <th style={{width: '25%'}}>{window.lang.sp_dl}</th>
+          <th style={{width: '25%'}}>{window.lang.sp_str}</th>
+          <th>{window.lang.sp_tp}</th>
         </tr>
       </thead>
     );
@@ -64,7 +64,7 @@ class BillingHistory extends React.Component {
         <tbody>
           <tr>
             <td align='center' colSpan='4' className='text-center'>
-              请求异常
+              {window.lang.sp_reqErr}
             </td>
           </tr>
         </tbody>
@@ -75,7 +75,7 @@ class BillingHistory extends React.Component {
         <tbody>
           <tr>
             <td align='center' colSpan='4' className='text-center'>
-              暂无相关信息
+              {window.lang.sp_nodata}
             </td>
           </tr>
         </tbody>
@@ -122,7 +122,7 @@ class BillingHistory extends React.Component {
           <div className='tools'>
             <a onClick={() => {this.toggle()}}><i className={ctrlClass} /></a>
           </div>
-          <h5>历史账单</h5>
+          <h5>{window.lang.sp_tr}</h5>
         </div>
         <div className='m-ibox-content' ref='content'>
           <table className='table table-hover'>

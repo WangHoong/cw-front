@@ -199,7 +199,7 @@ var Sidebar = React.createClass({
         roleName: ['SP']
       }, {
         faIconName: 'exchange',
-        text: '歌曲授权',
+        text: window.lang.licensing,
         to: 'authorization',
         roleName: ['SP']
       },
