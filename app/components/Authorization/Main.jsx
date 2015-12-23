@@ -134,9 +134,9 @@ class Main extends Component {
             <table className='table table-hover'>
               <thead>
               <tr>
-                <th>CP(音乐提供商)</th>
-                <th width="100">回复状态</th>
-                <th width="150">回复时间</th>
+                <th>{window.lang.sp_cp}</th>
+                <th width="100">{window.lang.sp_cpst}</th>
+                <th width="150">{window.lang.sp_cptime}</th>
               </tr>
               </thead>
               <tbody>

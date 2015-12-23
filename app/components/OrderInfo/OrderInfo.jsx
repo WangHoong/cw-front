@@ -98,13 +98,13 @@ var Item = React.createClass({
             <a href="javascript:void(0)">
               <div className='oi-chooseNo' onClick={this.chooseCircle}>
                 <i className='fa fa-ban redi'></i>
-                <span>暂不售卖</span>
+                <span>{window.lang.dontlic}</span>
               </div>
             </a>
             <a href="javascript:void(0)">
               <div className='oi-chooseYes' onClick={this.makeSure}>
                 <i className='fa fa-check greeni'></i>
-                <span>通过申请</span>
+                <span>{window.lang.lic}</span>
               </div>
             </a>
           </div>

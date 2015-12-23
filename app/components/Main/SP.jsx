@@ -34,9 +34,9 @@ class SP extends React.Component {
       <div className='sp-container'>
         <div className='card'>
           <p className='clearfix'>
-            <span className='mr10'><span style={{fontWeight: '400'}}>公司名称：</span>{companyName.name || ''}</span>
+            <span className='mr10'><span style={{fontWeight: '400'}}>{window.lang.sp_coName}</span>{companyName.name || ''}</span>
             <span className='mr10'><span style={{fontWeight: '400'}}>APP_KEY：</span><AppKey /></span>
-            <span><span style={{fontWeight: '400'}}>开发者文档：</span><a href='http://openapi.topdmc.cn/' target='_blank' className='mr10'>http://openapi.topdmc.cn/</a></span>
+            <span><span style={{fontWeight: '400'}}>{window.lang.sp_doc}</span><a href='http://openapi.topdmc.cn/' target='_blank' className='mr10'>http://openapi.topdmc.cn/</a></span>
           </p>
         </div>
         {/*<div className='row mt10'>

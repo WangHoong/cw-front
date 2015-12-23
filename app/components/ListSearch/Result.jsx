@@ -12,9 +12,9 @@ var Result = React.createClass({
 
   componentDidMount: function() {
     if (this.props.type == 'Album') {
-      this.type = '专辑';
+      this.type = window.lang.s_album;
     } else if (this.props.type == 'Song') {
-      this.type = '歌曲';
+      this.type = window.lang.s_track;
     }
   },
 
@@ -35,7 +35,7 @@ var Result = React.createClass({
     // 初始化提示
     if (data.state === 'DISABLED') {
       return (
-        <p className='text-center'>输入关键词根据艺人查询，或按回车模糊查询</p>
+        <p className='text-center'>{window.lang.kors}</p>
       );
     }
 
@@ -61,7 +61,7 @@ var Result = React.createClass({
             <a
               data-id={item.id}
               data-name={item.name}
-              onClick={this.handleItemClick}>查看<span className='name'>{item.name}</span>的所有{this.type}</a>
+              onClick={this.handleItemClick}>{window.lang.s_view}<span className='name'>{item.name}</span>{window.lang.s_all}{this.type}</a>
           </li>
         );
       }.bind(this));
