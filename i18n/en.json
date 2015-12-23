@@ -136,9 +136,16 @@
     "tips": "Tips：",
     "tips0": "You have applied to purchase the license at a price of ",
     "tips1": " rmb/1000 times. Please waiting for the reply from the rights owners.",
+    "licensing": "License",
+    "dontlic": "Don’t license",
+    "lic": "License",
+    "s_album": "albums",
+    "s_track": "tracks",
+    "s_all": " ",
+    "s_view": "View all of ",
     "sp_coName": "Company",
     "sp_doc": "API Docs: ",
-    "sp_licens": "License",
+    "sp_licens": "Licensing",
     "sp_comp": "Content provider",
     "sp_st": "Status",
     "sp_date": "Date",
@@ -155,7 +162,6 @@
     "sp_lw_woc": "Weeks on chart",
     "sp_cp": "CP",
     "sp_cpst": "Status",
-    "sp_cptime": "Time",
-    "licensing": "Licensing"
+    "sp_cptime": "Time"
   }
 }

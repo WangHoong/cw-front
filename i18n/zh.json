@@ -136,6 +136,13 @@
     "tips": "提示：",
     "tips0": "您已经以",
     "tips1": "元/1000次的价格向所有歌曲CP(音乐提供商)申请授权,请耐心等待各CP的授权回复。",
+    "licensing": "歌曲授权",
+    "dontlic": "暂不售卖",
+    "lic": "通过申请",
+    "s_album": "专辑",
+    "s_track": "歌曲",
+    "s_all": "的所有",
+    "s_view": "查看",
     "sp_coName": "公司名称：",
     "sp_doc": "开发者文档：",
     "sp_licens": "授权记录",
@@ -155,7 +162,6 @@
     "sp_lw_woc": "进榜周数",
     "sp_cp": "CP(音乐提供商)",
     "sp_cpst": "回复状态",
-    "sp_cptime": "回复时间",
-    "licensing": "歌曲授权"
+    "sp_cptime": "回复时间"
   }
 }
