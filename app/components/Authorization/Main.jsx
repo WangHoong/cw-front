@@ -108,7 +108,7 @@ class Main extends Component {
       return (
         <tr key={reply.company.id}>
           <td>{reply.company.name}</td>
-          <td><span className={classes}>{reply.status === 0 ? "已授权" : "未通过"}</span></td>
+          <td><span className={classes}>{reply.status === 1 ? "已授权" : "未通过"}</span></td>
           <td>{reply.created_at?moment(reply.created_at).fromNow():'--'}</td>
         </tr>
       );
