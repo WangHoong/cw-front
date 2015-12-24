@@ -102,8 +102,8 @@ class Main extends Component {
 
     return this.state.data.authorization['replies'].map(function (reply) {
       let classes = Classnames('label', {
-        'label-success': reply.status === 0,
-        'label-danger': reply.status!== 0
+        'label-success': reply.status !== 0,
+        'label-danger': reply.status === 0
       });
       return (
         <tr key={reply.company.id}>
