@@ -132,7 +132,7 @@ var Main = React.createClass({
 
   getDefaultProps: function() {
     return {
-      size: 100
+      size: 1000
     };
   },
 
