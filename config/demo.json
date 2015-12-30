@@ -1,8 +1,8 @@
 {
   "API_PREFIX": "/api/v1",
-  "UPLOAD_FILE_URL": "http://demo.topdmc.com:9200/api/v1",
-  "PROXY_PREFIX": "http://demo.topdmc.com:9200",
+  "UPLOAD_FILE_URL": "https://demo.topdmc.com/api/v1",
+  "PROXY_PREFIX": "https://demo.topdmc.com",
   "LOGIN_URL": "https://demo.topdmc.com/api/v1/login",
-  "AGREEMENT_URL": "http://demo.topdmc.com:9200/api/v1/agreement",
-  "SWITCH_URL": "http://demo.topdmc.com:9200/api/v1"
+  "AGREEMENT_URL": "https://demo.topdmc.com/api/v1/agreement",
+  "SWITCH_URL": "https://demo.topdmc.com/api/v1"
 }
