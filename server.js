@@ -14,25 +14,33 @@ var defaultLocale = 'zh';
 app.use(_static(path.join(__dirname, '/build'), {}));
 
 app.use(function *(next) {
-  var languages = this.acceptsLanguages();
-  if (languages) {
-    if (Array.isArray(languages)) {
-      if (languages.length > 0) {
-        languages = languages[0];
+  var cookie_l = this.cookies.get('_l');
+  if (cookie_l != undefined) {
+    this.__language = cookie_l;
+    if (this.__language != 'zh' && this.__language != 'en') {
+      this.__language = defaultLocale;
+    }
+  } else {
+    var languages = this.acceptsLanguages();
+    if (languages) {
+      if (Array.isArray(languages)) {
+        if (languages.length > 0) {
+          languages = languages[0];
+        } else {
+          languages = defaultLocale;
+        }
       } else {
         languages = defaultLocale;
       }
     } else {
       languages = defaultLocale;
     }
-  } else {
-    languages = defaultLocale;
-  }
-  languages = languages.toLowerCase().split('-')[0];
-  if (languages != 'zh' && languages != 'en') {
-    this.__language = defaultLocale;
-  } else {
-    this.__language = languages.toLowerCase().split('-')[0];
+    languages = languages.toLowerCase().split('-')[0];
+    if (languages != 'zh' && languages != 'en') {
+      this.__language = defaultLocale;
+    } else {
+      this.__language = languages.toLowerCase().split('-')[0];
+    }
   }
   yield next;
 });

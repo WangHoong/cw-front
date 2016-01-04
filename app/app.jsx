@@ -38,6 +38,8 @@ var Settings = require('./components/Settings/Main.jsx');
 var OrderInfo = require('./components/OrderInfo/OrderInfo.jsx');
 var WeekTopSongs = require('./components/TopSongs/Main.jsx');
 
+var Cookies = require('js-cookie');
+
 import numeral from 'numeral';
 
 const language = {
@@ -67,7 +69,8 @@ window._dbg = require('debug');
 let CleanDebugForProdModeUrl = 'www.topdmc.com'
 CleanDebugForProdModeUrl === location.hostname ? _dbg.disable() : _dbg.enable("topdmc:*")
 axios.interceptors.request.use(function(config) {
-  config.url = config.url + '?t=' + (+new Date());
+  config.params = config.params || {};
+  config.params['_t'] = new Date().getTime();
   return config;
 });
 
@@ -91,6 +94,11 @@ var App = React.createClass({
     this.setState(this.state);
   },
 
+  setLanguage: function(language) {
+    Cookies.set('_l', language, {expires: 365});
+    location.reload();
+  },
+
   render: function () {
     var routes = this.context.router.getCurrentRoutes();
 
@@ -110,6 +118,13 @@ var App = React.createClass({
             <RouteHandler/>
           </div>
           <footer className='footer'>
+            <div className='pull-right'>
+              <p style={{paddingTop: 10}}>
+                <span className='mr10'>{window.lang.Language}:</span>
+                <a className='mr10' onClick={this.setLanguage.bind(this, 'en')}>English</a>
+                <a onClick={this.setLanguage.bind(this, 'zh')}>中文</a>
+              </p>
+            </div>
             <p className='copyright'>
               Copyright &copy; 2015 北京成为科技有限公司 京ICP备15018286号
             </p>
