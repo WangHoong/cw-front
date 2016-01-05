@@ -40,7 +40,7 @@
     "numeral": "^1.5.3",
     "object-assign": "^3.0.0",
     "react": "^0.13.3",
-    "react-router": "^0.13.3",
+    "react-router": "^1.0.3",
     "reflux": "^0.2.8",
     "swig": "^1.4.2"
   },
