@@ -1,6 +1,8 @@
 //rr1.x var Router = require('react-router');
 import { Router, Route, Routecomponent, IndexRoute } from 'react-router';
+console.log(Routecomponent)
 var React = require('react');
+import { render } from 'react-dom'
 var analytics = require('app/utils/GoogleAnalytics');
 
 // authorization
@@ -68,7 +70,7 @@ numeral.language('chs');
 require('./utils/HTTPLog');
 window._dbg = require('debug');
 let CleanDebugForProdModeUrl = 'www.topdmc.com'
-CleanDebugForProdModeUrl === location.hostpath ? _dbg.disable() : _dbg.enable("topdmc:*")
+CleanDebugForProdModeUrl === location.hostname ? _dbg.disable() : _dbg.enable("topdmc:*")
 axios.interceptors.request.use(function(config) {
   config.params = config.params || {};
   config.params['_t'] = new Date().getTime();
@@ -154,18 +156,19 @@ var StartPage = React.createClass({
     * 进行登录验证，如果没有登录，有统一的拦截器进行跳转
     */
     axios.get(onlineURL, {withCredentials: true}).then(function(response) {
-
+console.log(response.data.data)
       if (response.data.data.online===true) {
-        window.currentUser = response.data.data.user || {role_paths:[]};
+        window.currentUser = response.data.data.user || {role_names:[]};
 
-        if ((window.currentUser.role_paths.length ===1) && (window.currentUser.role_paths[0] === 'SP')) {
+        if ((window.currentUser.role_names.length ===1) && (window.currentUser.role_names[0] === 'SP')) {
           localStorage.setItem('isSP', 'true');
         }
-        if ((window.currentUser.role_paths.length ===1) && (window.currentUser.role_paths[0] === 'CP')) {
+        if ((window.currentUser.role_names.length ===1) && (window.currentUser.role_names[0] === 'CP')) {
           localStorage.setItem('isSP', 'false');
         }
         window.account_type = window.currentUser.account_type;
         window.status = window.currentUser.status;
+        console.log(self.state)
         self.setState({
           loaded: true
         });
