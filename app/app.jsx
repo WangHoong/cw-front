@@ -118,16 +118,12 @@ var App = React.createClass({
             <RouteHandler/>
           </div>
           <footer className='footer'>
-            <div className='pull-right'>
-              <p style={{paddingTop: 10}}>
-                <span className='mr10'>{window.lang.Language}:</span>
-                <a className='mr10' onClick={this.setLanguage.bind(this, 'en')}>English</a>
-                <a onClick={this.setLanguage.bind(this, 'zh')}>中文</a>
-              </p>
-            </div>
-            <p className='copyright'>
-              Copyright &copy; 2015 北京成为科技有限公司 京ICP备15018286号
+            <p className='pull-right'>
+              <span className='mr10'>{window.lang.Language}:</span>
+              <a className='mr10' onClick={this.setLanguage.bind(this, 'en')}>English</a>
+              <a onClick={this.setLanguage.bind(this, 'zh')}>中文</a>
             </p>
+            <p className='copyright'>Copyright &copy; 2015 北京成为科技有限公司 京ICP备15018286号</p>
           </footer>
         </section>
       </div>
