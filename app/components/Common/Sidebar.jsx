@@ -4,6 +4,7 @@ var dbg = require('debug')('topdmc:Sidebar/component');
 var APIHelper = require('app/utils/APIHelper').APIHelper;
 var axios = require('axios');
 var _ = require('lodash');
+import { Link } from 'react-router'
 
 var NavItemLink = React.createClass({
   propTypes: {
@@ -14,7 +15,9 @@ var NavItemLink = React.createClass({
     onClick: React.PropTypes.func
   },
   contextTypes: {
-    router: React.PropTypes.func.isRequired
+    router: React.PropTypes.func.isRequired,
+    history: React.PropTypes.object,
+    location: React.PropTypes.object,
   },
   getDefaultProps: function() {
     return {
@@ -29,7 +32,7 @@ var NavItemLink = React.createClass({
     if (this.props.className) {
       names[this.props.className] = true;
     }
-    if (this.context.router.isActive(this.props.to, this.props.params, this.props.query)) {
+    if (this.context.history.isActive(this.context.location.pathname, this.context.location.query)) {
       names[this.props.activeClassName] = true;
     }
     return classNames(names);
@@ -57,21 +60,30 @@ var NavItemLink = React.createClass({
     }
     event.preventDefault();
     if (allowTransition) {
-      this.context.router.transitionTo(this.props.to, this.props.params, this.props.query);
+      this.context.history.pushState(null, `${this.props.to}`, this.context.location.query);
     }
   },
   render: function() {
+    console.log(this)
     var {to, params, query, active, icon, text, fullSideBar} = this.props;
     if (this.props.active === undefined) {
-      active = this.context.router.isActive(to, params, query);
+      active = false
     }
     var tooltip = !fullSideBar ? {'data-tooltip': text} : '';
+    // return (
+    //   <li className={this.getClassName()}>
+    //     <a active={active} {...tooltip} href={this.getHref()} onClick={this.handleRouteTo} ref="linkItem">
+    //       <i className={icon}></i>
+    //       <span>{text}</span>
+    //     </a>
+    //   </li>
+    // );
     return (
       <li className={this.getClassName()}>
-        <a active={active} {...tooltip} href={this.getHref()} onClick={this.handleRouteTo} ref="linkItem">
+        <Link active={active} {...tooltip} to={`/${this.props.to}`} onClick={this.handleRouteTo}>
           <i className={icon}></i>
           <span>{text}</span>
-        </a>
+        </Link>
       </li>
     );
   }

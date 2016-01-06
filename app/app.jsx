@@ -1,8 +1,9 @@
 //rr1.x var Router = require('react-router');
-import { Router, Route, Routecomponent, IndexRoute } from 'react-router';
-console.log(Routecomponent)
+import { Router, Route, IndexRoute } from 'react-router'
 var React = require('react');
 import { render } from 'react-dom'
+import createBrowserHistory from 'history/lib/createBrowserHistory'
+let history = createBrowserHistory()
 var analytics = require('app/utils/GoogleAnalytics');
 
 // authorization
@@ -30,10 +31,11 @@ var SearchBox = require('./components/SearchBox/Main.jsx');
 var Whoami = require('app/components/Common/Whoami.jsx');
 var CP = require('./components/Main/CP.jsx');
 var SP = require('./components/Main/SP.jsx');
+
 // LargeFileUploader
 var LargeFileUploader = require('app/components/Common/LargeFileUploader.jsx');
-//rr1.x var {Route, Routecomponent, DefaultRoute, NotFoundRoute} = Router;
-var classnames = require('classnames');
+
+var classNames = require('classnames');
 
 var Loader = require('app/components/Common/Loader.jsx');
 var axios = require('axios');
@@ -103,10 +105,10 @@ var App = React.createClass({
   },
 
   render: function () {
-    var routes = this.context.router.getCurrentRoutes();
-
+    //var routes = this.context.router.getCurrentRoutes();
+    console.log(this)
     var toggleMenuClass = this.state.fullSideBar ? 'angle-double-left' : 'angle-double-right';
-    var appclassname = classnames('app-container', {
+    var appclassname = classNames('app-container', {
       'show-sidebar': this.state.fullSideBar
     });
     var minHeight = {
@@ -114,11 +116,11 @@ var App = React.createClass({
     };
 
     return (
-      <div classname={appclassname}>
+      <div className={appclassname}>
         <Sidebar fullSideBar={this.state.fullSideBar} handleToggleMenuClick={this.handleToggleMenuClick} toggleMenuClass={toggleMenuClass}/>
-        <section classname='content' style={minHeight}>
-          <div classname='content-inner'>
-            <Routecomponent/>
+        <section className='content' style={minHeight}>
+          <div className='content-inner'>
+            {this.props.children}
           </div>
           <footer className='footer'>
             <p className='pull-right'>
@@ -156,7 +158,6 @@ var StartPage = React.createClass({
     * 进行登录验证，如果没有登录，有统一的拦截器进行跳转
     */
     axios.get(onlineURL, {withCredentials: true}).then(function(response) {
-console.log(response.data.data)
       if (response.data.data.online===true) {
         window.currentUser = response.data.data.user || {role_names:[]};
 
@@ -168,7 +169,6 @@ console.log(response.data.data)
         }
         window.account_type = window.currentUser.account_type;
         window.status = window.currentUser.status;
-        console.log(self.state)
         self.setState({
           loaded: true
         });
@@ -180,7 +180,7 @@ console.log(response.data.data)
   render() {
     if (this.state.loaded) {
       return (
-        <Routecomponent />
+        <div>{this.props.children}</div>
       );
     }
     return (
@@ -217,8 +217,6 @@ var Chart = React.createClass({
   }
 });
 
-
-
 var NotFound = React.createClass({
   render: function () {
     return (
@@ -230,7 +228,7 @@ var NotFound = React.createClass({
 var Empty = React.createClass({
   render: function () {
     return (
-      <Routecomponent/>
+      <div>{this.props.children}</div>
     );
   }
 });
@@ -241,50 +239,50 @@ var routes = (
       <IndexRoute component={CP}/>
       <Route component={CP} path="base"/>
       <Route component={Empty} path="artists">
-        <Route component={ArtistNew} path="new_artist" path="new"/>
-        <Route component={ArtistShow} path="show_edit_artist" path=":id"/>
+        <Route component={ArtistNew} path="new"/>
+        <Route component={ArtistShow} path=":id"/>
         <IndexRoute component={Artists}/>
       </Route>
       // album route
       <Route component={Empty} path="albums">
-        <Route component={AlbumNew} path="new_album" path="new"/>
-        <Route component={AlbumShow} path="show_edit_album" path=":id"/>
+        <Route component={AlbumNew} path="new"/>
+        <Route component={AlbumShow} path=":id"/>
         <IndexRoute component={Albums}/>
       </Route>
       // song route
       <Route component={Empty} path="songs">
-        <Route component={SongNew} path="new_song" path="new"/>
-        <Route component={SongShow} path="show_edit_song" path=":id"/>
+        <Route component={SongNew} path="new"/>
+        <Route component={SongShow} path=":id"/>
         <IndexRoute component={Songs}/>
       </Route>
       // WeekTopSongs
-      <Route component={Empty} path='songtop100'>
+      <Route component={Empty} path="songtop100">
         <IndexRoute component={WeekTopSongs} />
       </Route>
       // store route
-      <Route component={Empty} path='store'>
+      <Route component={Empty} path="store">
         <IndexRoute component={Store}/>
       </Route>
-      <Route component={Empty} path='authorization'>
+      <Route component={Empty} path="authorization">
         <IndexRoute component={Authorization}/>
       </Route>
-      <Route component={Empty} path='settings'>
+      <Route component={Empty} path="settings">
         <IndexRoute component={Settings}/>
       </Route>
-      <Route component={Empty} path='orderinfo'>
+      <Route component={Empty} path="orderinfo">
         <IndexRoute component={OrderInfo}/>
       </Route>
       <Route component={Chart} path="charts"/>
 
       <Route component={SP} path="sp"/>
 
-      <Route path='*' component={NotFound}/>
+      <Route path="*" component={NotFound}/>
     </Route>
   </Route>
 );
 
 //rr1.x TODO: analytics(state);
-React.render(<Router routes={routes} />, document.querySelector('#mountNode'))
+render(<Router history={history} routes={routes} />, document.querySelector('#mountNode'))
   //rr1.x Router.run(routes, function (component, state) {
   //   React.render(<component/>, document.querySelector('#mountNode'));
   //   analytics(state);
