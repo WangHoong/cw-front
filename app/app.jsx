@@ -1,4 +1,5 @@
-var Router = require('react-router');
+//rr1.x var Router = require('react-router');
+import { Router, Route, Routecomponent, IndexRoute } from 'react-router';
 var React = require('react');
 var analytics = require('app/utils/GoogleAnalytics');
 
@@ -29,8 +30,8 @@ var CP = require('./components/Main/CP.jsx');
 var SP = require('./components/Main/SP.jsx');
 // LargeFileUploader
 var LargeFileUploader = require('app/components/Common/LargeFileUploader.jsx');
-var {Route, RouteHandler, DefaultRoute, NotFoundRoute} = Router;
-var classNames = require('classnames');
+//rr1.x var {Route, Routecomponent, DefaultRoute, NotFoundRoute} = Router;
+var classnames = require('classnames');
 
 var Loader = require('app/components/Common/Loader.jsx');
 var axios = require('axios');
@@ -67,7 +68,7 @@ numeral.language('chs');
 require('./utils/HTTPLog');
 window._dbg = require('debug');
 let CleanDebugForProdModeUrl = 'www.topdmc.com'
-CleanDebugForProdModeUrl === location.hostname ? _dbg.disable() : _dbg.enable("topdmc:*")
+CleanDebugForProdModeUrl === location.hostpath ? _dbg.disable() : _dbg.enable("topdmc:*")
 axios.interceptors.request.use(function(config) {
   config.params = config.params || {};
   config.params['_t'] = new Date().getTime();
@@ -103,7 +104,7 @@ var App = React.createClass({
     var routes = this.context.router.getCurrentRoutes();
 
     var toggleMenuClass = this.state.fullSideBar ? 'angle-double-left' : 'angle-double-right';
-    var appClassName = classNames('app-container', {
+    var appclassname = classnames('app-container', {
       'show-sidebar': this.state.fullSideBar
     });
     var minHeight = {
@@ -111,11 +112,11 @@ var App = React.createClass({
     };
 
     return (
-      <div className={appClassName}>
+      <div classname={appclassname}>
         <Sidebar fullSideBar={this.state.fullSideBar} handleToggleMenuClick={this.handleToggleMenuClick} toggleMenuClass={toggleMenuClass}/>
-        <section className='content' style={minHeight}>
-          <div className='content-inner'>
-            <RouteHandler/>
+        <section classname='content' style={minHeight}>
+          <div classname='content-inner'>
+            <Routecomponent/>
           </div>
           <footer className='footer'>
             <p className='pull-right'>
@@ -155,12 +156,12 @@ var StartPage = React.createClass({
     axios.get(onlineURL, {withCredentials: true}).then(function(response) {
 
       if (response.data.data.online===true) {
-        window.currentUser = response.data.data.user || {role_names:[]};
+        window.currentUser = response.data.data.user || {role_paths:[]};
 
-        if ((window.currentUser.role_names.length ===1) && (window.currentUser.role_names[0] === 'SP')) {
+        if ((window.currentUser.role_paths.length ===1) && (window.currentUser.role_paths[0] === 'SP')) {
           localStorage.setItem('isSP', 'true');
         }
-        if ((window.currentUser.role_names.length ===1) && (window.currentUser.role_names[0] === 'CP')) {
+        if ((window.currentUser.role_paths.length ===1) && (window.currentUser.role_paths[0] === 'CP')) {
           localStorage.setItem('isSP', 'false');
         }
         window.account_type = window.currentUser.account_type;
@@ -176,7 +177,7 @@ var StartPage = React.createClass({
   render() {
     if (this.state.loaded) {
       return (
-        <RouteHandler />
+        <Routecomponent />
       );
     }
     return (
@@ -226,60 +227,62 @@ var NotFound = React.createClass({
 var Empty = React.createClass({
   render: function () {
     return (
-      <RouteHandler/>
+      <Routecomponent/>
     );
   }
 });
 
 var routes = (
-  <Route handler={StartPage} path="/">
-    <Route handler={App}>
-      <DefaultRoute handler={CP}/>
-      <Route handler={CP} name="base"/>
-      <Route handler={Empty} name="artists">
-        <Route handler={ArtistNew} name="new_artist" path="new"/>
-        <Route handler={ArtistShow} name="show_edit_artist" path=":id"/>
-        <DefaultRoute handler={Artists}/>
+  <Route component={StartPage} path="/">
+    <Route component={App}>
+      <IndexRoute component={CP}/>
+      <Route component={CP} path="base"/>
+      <Route component={Empty} path="artists">
+        <Route component={ArtistNew} path="new_artist" path="new"/>
+        <Route component={ArtistShow} path="show_edit_artist" path=":id"/>
+        <IndexRoute component={Artists}/>
       </Route>
       // album route
-      <Route handler={Empty} name="albums">
-        <Route handler={AlbumNew} name="new_album" path="new"/>
-        <Route handler={AlbumShow} name="show_edit_album" path=":id"/>
-        <DefaultRoute handler={Albums}/>
+      <Route component={Empty} path="albums">
+        <Route component={AlbumNew} path="new_album" path="new"/>
+        <Route component={AlbumShow} path="show_edit_album" path=":id"/>
+        <IndexRoute component={Albums}/>
       </Route>
       // song route
-      <Route handler={Empty} name="songs">
-        <Route handler={SongNew} name="new_song" path="new"/>
-        <Route handler={SongShow} name="show_edit_song" path=":id"/>
-        <DefaultRoute handler={Songs}/>
+      <Route component={Empty} path="songs">
+        <Route component={SongNew} path="new_song" path="new"/>
+        <Route component={SongShow} path="show_edit_song" path=":id"/>
+        <IndexRoute component={Songs}/>
       </Route>
       // WeekTopSongs
-      <Route handler={Empty} name='songtop100'>
-        <DefaultRoute handler={WeekTopSongs} />
+      <Route component={Empty} path='songtop100'>
+        <IndexRoute component={WeekTopSongs} />
       </Route>
       // store route
-      <Route handler={Empty} name='store'>
-        <DefaultRoute handler={Store}/>
+      <Route component={Empty} path='store'>
+        <IndexRoute component={Store}/>
       </Route>
-      <Route handler={Empty} name='authorization'>
-        <DefaultRoute handler={Authorization}/>
+      <Route component={Empty} path='authorization'>
+        <IndexRoute component={Authorization}/>
       </Route>
-      <Route handler={Empty} name='settings'>
-        <DefaultRoute handler={Settings}/>
+      <Route component={Empty} path='settings'>
+        <IndexRoute component={Settings}/>
       </Route>
-      <Route handler={Empty} name='orderinfo'>
-        <DefaultRoute handler={OrderInfo}/>
+      <Route component={Empty} path='orderinfo'>
+        <IndexRoute component={OrderInfo}/>
       </Route>
-      <Route handler={Chart} name="charts"/>
+      <Route component={Chart} path="charts"/>
 
-      <Route handler={SP} name="sp"/>
+      <Route component={SP} path="sp"/>
 
-      <NotFoundRoute handler={NotFound}/>
+      <Route path='*' component={NotFound}/>
     </Route>
   </Route>
 );
 
-  Router.run(routes, function (Handler, state) {
-    React.render(<Handler/>, document.querySelector('#mountNode'));
-    analytics(state);
-  });
+//rr1.x TODO: analytics(state);
+React.render(<Router routes={routes} />, document.querySelector('#mountNode'))
+  //rr1.x Router.run(routes, function (component, state) {
+  //   React.render(<component/>, document.querySelector('#mountNode'));
+  //   analytics(state);
+  // });
