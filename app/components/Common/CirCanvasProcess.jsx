@@ -2,8 +2,8 @@ import React from 'react';
 
 class CirCanvasProcess extends React.Component {
 
-  constructor(props) {
-    super(props);
+  constructor(props, context) {
+    super(props, context);
   }
 
   componentDidMount() {
@@ -11,7 +11,7 @@ class CirCanvasProcess extends React.Component {
   }
 
   draw() {
-    const canvas = React.findDOMNode(this.refs['pro-canvas']);
+    const canvas = this._proCanvas
     const ctx = canvas.getContext('2d');
 
     // retina
@@ -49,7 +49,7 @@ class CirCanvasProcess extends React.Component {
 
   render() {
     return (
-      <canvas ref='pro-canvas'></canvas>
+      <canvas ref={ _ => this._proCanvas = _ }></canvas>
     );
   }
 

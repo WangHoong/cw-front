@@ -15,7 +15,6 @@ var NavItemLink = React.createClass({
     onClick: React.PropTypes.func
   },
   contextTypes: {
-    router: React.PropTypes.func.isRequired,
     history: React.PropTypes.object,
     location: React.PropTypes.object,
   },
@@ -32,7 +31,7 @@ var NavItemLink = React.createClass({
     if (this.props.className) {
       names[this.props.className] = true;
     }
-    if (this.context.history.isActive(this.context.location.pathname, this.context.location.query)) {
+    if (this.context.history.isActive(this.props.to, this.context.location.query)) {
       names[this.props.activeClassName] = true;
     }
     return classNames(names);
@@ -67,7 +66,7 @@ var NavItemLink = React.createClass({
     console.log(this)
     var {to, params, query, active, icon, text, fullSideBar} = this.props;
     if (this.props.active === undefined) {
-      active = false
+      active = this.context.history.isActive(this.context.location.pathname, this.context.location.query)
     }
     var tooltip = !fullSideBar ? {'data-tooltip': text} : '';
     // return (
@@ -80,7 +79,7 @@ var NavItemLink = React.createClass({
     // );
     return (
       <li className={this.getClassName()}>
-        <Link active={active} {...tooltip} to={`/${this.props.to}`} onClick={this.handleRouteTo}>
+        <Link {...tooltip} to={`/${this.props.to}`} onClick={this.handleRouteTo}>
           <i className={icon}></i>
           <span>{text}</span>
         </Link>
