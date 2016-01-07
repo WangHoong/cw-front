@@ -16,7 +16,7 @@ module.exports = exports = React.createClass({
   handleShowDetailAction: function (evt) {
     evt.preventDefault();
     var id = evt.target.getAttribute('data-id');
-    this.context.history.pushState(null, `albums/${id}`, {});
+    this.context.history.pushState(null, `/albums/${id}`, {});
   },
 
   getDefaultProps: function () {

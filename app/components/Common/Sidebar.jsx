@@ -59,7 +59,7 @@ var NavItemLink = React.createClass({
     }
     event.preventDefault();
     if (allowTransition) {
-      this.context.history.pushState(null, `${this.props.to}`, this.context.location.query);
+      this.context.history.pushState(null, `/${this.props.to}`);
     }
   },
   render: function() {

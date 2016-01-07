@@ -21,7 +21,7 @@ var Main = React.createClass({
   handleShowDetailAction: function(evt) {
     evt.preventDefault();
     var id = evt.target.getAttribute('data-id');
-    this.context.history.pushState(null, `albums/${id}`, {});
+    this.context.history.pushState(null, `/albums/${id}`, {});
   },
 
   getDefaultProps: function() {
@@ -42,7 +42,7 @@ var Main = React.createClass({
     var params = this.context.location.query;
     params.page = pageIndex + 1;
     params.size = this.props.size;
-    this.context.history.pushState(null, 'albums', params);
+    this.context.history.pushState(null, '/albums', params);
     AlbumActions.find(params);
 
   },
@@ -53,7 +53,7 @@ var Main = React.createClass({
       page: 1,
       size: this.props.size
     };
-    this.context.history.pushState(null, 'albums', params);
+    this.context.history.pushState(null, '/albums', params);
     AlbumActions.find(params);
   },
 
@@ -64,12 +64,12 @@ var Main = React.createClass({
       size: this.props.size
     };
     console.log(params);
-    this.context.history.pushState(null, 'albums', params);
+    this.context.history.pushState(null, '/albums', params);
     AlbumActions.find(params);
   },
 
   handleRedirectNew: function() {
-    this.context.history.pushState(null, 'albums/new', params);
+    this.context.history.pushState(null, '/albums/new', params);
   },
 
   render: function() {

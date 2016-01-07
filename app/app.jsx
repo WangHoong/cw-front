@@ -282,7 +282,7 @@ var routes = (
 );
 
 //rr1.x TODO: analytics(state);
-render(<Router history={history} routes={routes} />, document.querySelector('#mountNode'))
+render(<Router history={history}>{routes}</Router>, document.querySelector('#mountNode'))
   //rr1.x Router.run(routes, function (component, state) {
   //   React.render(<component/>, document.querySelector('#mountNode'));
   //   analytics(state);

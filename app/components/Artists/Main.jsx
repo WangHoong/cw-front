@@ -140,19 +140,19 @@ var Main = React.createClass({
 
   handleShowDetailAction: function(e) {
     var id = e.target.getAttribute('data-id');
-    this.context.history.pushState(null, `artists/${id}`, {});
+    this.context.history.pushState(null, `/artists/${id}`, {});
   },
 
   handleSearch: function() {
     var params = {
       q: this._searchBar.value
     };
-    this.context.history.pushState(null, `artists`, params);
+    this.context.history.pushState(null, `/artists`, params);
     ArtistActions.find(params);
   },
 
   handleRedirectNew: function() {
-    this.context.history.pushState(null, `artists/new`, {});
+    this.context.history.pushState(null, `/artists/new`, {});
   },
 
   render: function() {

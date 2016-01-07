@@ -33,14 +33,14 @@ var Main = React.createClass({
       page: 1,
       size: this.props.size,
     };
-    this.context.history.pushState(null,'store', params);
+    this.context.history.pushState(null, '/store', params);
     StoreActions.find(params);
   },
 
   handlePageChanged: function(pageIndex) {
     var params = this.context.location.query;
     params.page = pageIndex + 1;
-    this.context.history.pushState(null,'store', params);
+    this.context.history.pushState(null, '/store', params);
 
     StoreActions.find(params);
   },

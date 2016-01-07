@@ -35,7 +35,7 @@ var Main = React.createClass({
     var params = this.context.location.query;
     params.page = pageIndex + 1;
     params.size = this.props.size;
-    this.context.history.pushState(null, 'songs', params);
+    this.context.history.pushState(null, '/songs', params);
 
     SongActions.find({
       size: this.props.size,
@@ -45,11 +45,11 @@ var Main = React.createClass({
 
   handleShowDetailAction: function (e) {
     var id = e.target.getAttribute('data-id');
-    this.context.history.pushState(null, `songs/${id}`, {});
+    this.context.history.pushState(null, `/songs/${id}`, {});
   },
   handleCreate: function () {
     //debug(`new song`);
-    this.context.history.pushState(null, 'songs/new', {});
+    this.context.history.pushState(null, '/songs/new', {});
   },
   handleKeywordsSearch: function (keywords) {
     var params = {
@@ -58,7 +58,7 @@ var Main = React.createClass({
       size: this.props.size
     };
 
-    this.context.history.pushState(null, 'songs', params);
+    this.context.history.pushState(null, '/songs', params);
     SongActions.find(params);
   },
 
@@ -69,7 +69,7 @@ var Main = React.createClass({
       size: this.props.size
     };
 
-    this.context.history.pushState(null, 'songs', params);
+    this.context.history.pushState(null, '/songs', params);
     SongActions.find(params);
   },
 

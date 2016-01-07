@@ -32,7 +32,7 @@ var Detail = React.createClass({
 
   handleSongsClick: function(evt) {
     var id = evt.target.getAttribute('data-id');
-    this.context.history.pushState(null, `songs/${id}`, {});
+    this.context.history.pushState(null, `/songs/${id}`, {});
   },
 
   renderList: function() {
