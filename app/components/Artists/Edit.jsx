@@ -38,7 +38,7 @@ var Edit = React.createClass({
    * @param e
    */
   handleSubmit: function () {
-    var data = this.refs.form.getValue();
+    var data = this._form.value
     ArtistActions.update(this.props.id, data);
   },
 
@@ -48,7 +48,7 @@ var Edit = React.createClass({
     }
 
     return (
-      <Form ref="form" data={this.state.artist.data}>
+      <Form ref={ _ => this._form = _ } data={this.state.artist.data}>
         <button className='btn btn-warning mr10' onClick={this.handleSubmit}>{window.lang.save}</button>
         <button className='btn btn-default' onClick={this.props.onCancelClick}>{window.lang.cancel}</button>
       </Form>

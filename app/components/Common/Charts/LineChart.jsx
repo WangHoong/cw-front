@@ -81,7 +81,7 @@ var LineChart = React.createClass({
   },
   componentDidMount: function() {
 
-    var $self = echarts.init(React.findDOMNode(this.refs.renderDOMNode))
+    var $self = echarts.init(this._renderDOMNode)
 
     var option = this.props.option
 
@@ -93,7 +93,7 @@ var LineChart = React.createClass({
     var style = this.props.style;
 
     return (
-      <div ref='renderDOMNode' style={style}/>
+      <div ref={ _ => this._renderDOMNode = _ } style={style}/>
     );
   }
 });

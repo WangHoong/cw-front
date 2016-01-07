@@ -12,7 +12,8 @@ var Main = React.createClass({
   mixins: [Reflux.connect(StoreStore, 'store')],
 
   contextTypes: {
-    router: React.PropTypes.func
+    location: React.PropTypes.object,
+    history: React.PropTypes.object,
   },
 
   componentDidMount: function () {
@@ -22,24 +23,24 @@ var Main = React.createClass({
   getDefaultProps: function () {
     return {
       size: 20,
-      visiblePages: 5
+      visiblePages: 5,
     };
   },
 
   handleSearch: function() {
     var params = {
-      q: this.refs.searchBar.getValue(),
+      q: this._searchBar.value,
       page: 1,
-      size: this.props.size
+      size: this.props.size,
     };
-    this.context.router.transitionTo('store', {}, params);
+    this.context.history.pushState(null,'store', params);
     StoreActions.find(params);
   },
 
   handlePageChanged: function(pageIndex) {
-    var params = this.context.router.getCurrentQuery();
+    var params = this.context.location.query;
     params.page = pageIndex + 1;
-    this.context.router.transitionTo('store', {}, params);
+    this.context.history.pushState(null,'store', params);
 
     StoreActions.find(params);
   },
@@ -57,7 +58,7 @@ var Main = React.createClass({
   render: function() {
     return (
       <div>
-        <ListSearch handleSearch={this.handleSearch} placeholder='歌手/专辑/歌曲' ref='searchBar'/>
+        <ListSearch handleSearch={this.handleSearch} placeholder='歌手/专辑/歌曲' ref={ _ => this._searchBar = _}/>
         {this.renderResult()}
         <Pager
           current={this.state.store.data.page || 0}

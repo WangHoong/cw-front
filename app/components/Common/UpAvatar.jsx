@@ -39,7 +39,7 @@ var UpAvatar = React.createClass({
   },
 
   handleClick: function() {
-    this.refs['upInput'].getDOMNode().click();
+    this._upInput.click();
   },
 
   /**
@@ -204,7 +204,7 @@ var UpAvatar = React.createClass({
             <span></span>
             <span>{window.lang.upload}</span>
           </div>
-          <input type='file' ref='upInput' onChange={this.handleDrop} />
+          <input type='file' ref={ _ => this._upInput = _ } onChange={this.handleDrop} />
           {this.showProgress()}
       </div>
     );

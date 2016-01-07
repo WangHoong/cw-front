@@ -26,7 +26,7 @@ var Form = React.createClass({
    * 处理图片上传后设置State中得Photo
    */
   handlePhotoUpload: function () {
-    var photo = this.refs.photo.getValue();
+    var photo = this._photo.value
     this.state['photo'] = photo.src;
     this.state['resource_id'] = photo.resource_id;
     this.setState(this.state);
@@ -59,7 +59,7 @@ var Form = React.createClass({
         <div className='edit-wrap'>
           <div className='edit-form card clearfix'>
             <div className='edit-left'>
-              <UpAvatar ref="photo" src={data['photo']} type="artist_photo" uploadComplete={this.handlePhotoUpload}/>
+              <UpAvatar ref={ _ => this._photo = _ } src={data['photo']} type="artist_photo" uploadComplete={this.handlePhotoUpload}/>
             </div>
             <div className='edit-right'>
               <div className='form-group'>

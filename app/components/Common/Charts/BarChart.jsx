@@ -1,7 +1,7 @@
 var React = require('react');
 var BarChart = React.createClass({
   componentDidMount: function() {
-    var $self = echarts.init(React.findDOMNode(this.refs.renderDOMNode))
+    var $self = echarts.init(this._renderDOMNode)
 
     var option = this.props.option ||  {
       title : {
@@ -79,7 +79,7 @@ var BarChart = React.createClass({
   },
   render: function() {
     return (
-      <div ref='renderDOMNode' width={this.props.width} height={this.props.height}/>
+      <div ref={ _ => this._renderDOMNode = _ } width={this.props.width} height={this.props.height}/>
     );
   }
 });

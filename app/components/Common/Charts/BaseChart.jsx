@@ -12,7 +12,7 @@ class BaseChart extends Component{
   }
   componentDidMount() {
 
-    var $self = echarts.init(React.findDOMNode(this.refs.renderDOMNode))
+    var $self = echarts.init(this._renderDOMNode)
 
     var option = this.props.option
 
@@ -26,7 +26,7 @@ class BaseChart extends Component{
     var style = this.props.style
 
     return (
-      <div ref='renderDOMNode' style={style}/>
+      <div ref={ _ => this._renderDOMNode = _ } style={style}/>
     );
   }
 }

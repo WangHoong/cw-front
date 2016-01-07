@@ -63,7 +63,7 @@ var NavItemLink = React.createClass({
     }
   },
   render: function() {
-    console.log(this)
+    // console.log(this)
     var {to, params, query, active, icon, text, fullSideBar} = this.props;
     if (this.props.active === undefined) {
       active = this.context.history.isActive(this.context.location.pathname, this.context.location.query)

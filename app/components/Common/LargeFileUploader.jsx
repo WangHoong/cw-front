@@ -36,7 +36,7 @@ const LargeFileUploader = React.createClass({
     for(var i = 0, len = e.target.files.length; i < len; i++){
       fileArray.push(e.target.files[i]);
     }
-    var frm = this.refs.uploaderForm.getDOMNode();
+    var frm = this._uploaderForm
     //dbg(frm.reset());
     LargeFileUploaderActions.uploadFiles({
       fileList: fileArray,
@@ -48,7 +48,7 @@ const LargeFileUploader = React.createClass({
     dbg('render states', this.state.uploadState.progress);
     return (
       <div>
-        <form ref="uploaderForm">
+        <form ref={ _ => this._uploaderForm = _ }>
           <input type="file" onChange={this._inputFileOnChange} />
           <progress min="0" max="100" value={this.state.uploadState.progress}>0% complete</progress>
         </form>

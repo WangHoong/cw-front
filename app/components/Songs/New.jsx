@@ -33,7 +33,7 @@ var New = React.createClass({
    * @param e
    */
   handleSubmit: function () {
-    var data = this.refs.form.getValue();
+    var data = this._form.value
     SongActions.create(data);
   },
 
@@ -46,7 +46,7 @@ var New = React.createClass({
     return (
       <div className='show-box'>
         <div className='edit-main'>
-          <Form ref="form" data={{}}>
+          <Form ref={ _ => this._form = _ } data={{}}>
             <button className='btn btn-warning mr10' onClick={this.handleSubmit}>{window.lang.add}</button>
             <button className='btn btn-default' onClick={this.handleCancel}>{window.lang.cancel}</button>
           </Form>

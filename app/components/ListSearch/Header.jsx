@@ -5,17 +5,17 @@ var Header = React.createClass({
     var value = evt.target.value;
     if (evt.keyCode === 13) {
       this.props.handleKeywordsSearch(value);
-      this.refs.input.getDOMNode().value = '';
+      this._input.value = '';
       this.props.hideElement();
-      this.refs.input.getDOMNode().blur();
+      this._input.blur();
       return;
     }
     this.props.handleSearch(value);
   },
 
   setText:function(text){
-    this.refs.input.getDOMNode().value = '';
-    this.refs.input.getDOMNode().placeholder = text;
+    this._input.value = '';
+    this._input.placeholder = text;
   },
 
   handleFocus: function() {
@@ -26,7 +26,7 @@ var Header = React.createClass({
     return (
       <div className='t-sb-header'>
         <input
-          ref='input'
+          ref={ _ => this._input = _ }
           type='text'
           className='form-control'
           placeholder={window.lang.search}

@@ -14,7 +14,7 @@ var Edit = React.createClass({
   },
 
   handleUpdate: function () {
-    var data = this.refs['editForm'].getValue();
+    var data = this._editForm.value
     AlbumActions.update(this.props.id, data);
   },
 
@@ -27,7 +27,7 @@ var Edit = React.createClass({
   render: function () {
     var data = this.state.album.data;
     return (
-      <Form ref='editForm' data={data}>
+      <Form ref={ _ => this._editForm = _ } data={data}>
         <button
           className='btn btn-warning mr10'
           onClick={this.handleUpdate}>{window.lang.save}

@@ -132,7 +132,7 @@ var Form = React.createClass({
   },
 
   handlePhotoUploaded: function() {
-    var photo = this.refs.photo.getValue();
+    var photo = this._photo
     this.state['photo'] = photo.src;
     this.state['resource_id'] = photo.resource_id;
     this.setState(this.state);
@@ -267,7 +267,7 @@ var Form = React.createClass({
             <div className='edit-left'>
               <UpAvatar
                 src={data.photo}
-                ref='photo'
+                ref={ _ => this._photo = _ }
                 type='album_photo'
                 uploadComplete={this.handlePhotoUploaded}/>
             </div>

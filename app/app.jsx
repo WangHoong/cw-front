@@ -106,7 +106,7 @@ var App = React.createClass({
 
   render: function () {
     //var routes = this.context.router.getCurrentRoutes();
-    console.log(this)
+    // console.log(this)
     var toggleMenuClass = this.state.fullSideBar ? 'angle-double-left' : 'angle-double-right';
     var appclassname = classNames('app-container', {
       'show-sidebar': this.state.fullSideBar

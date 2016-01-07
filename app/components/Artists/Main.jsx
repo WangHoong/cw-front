@@ -121,11 +121,13 @@ var Main = React.createClass({
   mixins: [Reflux.connect(ArtistStore, 'artists')],
 
   contextTypes: {
-    router: React.PropTypes.func
+    location: React.PropTypes.object,
+    history: React.PropTypes.object,
   },
 
   componentDidMount: function() {
-    var params = this.context.router.getCurrentQuery();
+    console.log(this)
+    var params = this.context.location.query;
     params.size = this.props.size;
     ArtistActions.find(params);
   },
@@ -138,25 +140,25 @@ var Main = React.createClass({
 
   handleShowDetailAction: function(e) {
     var id = e.target.getAttribute('data-id');
-    this.context.router.transitionTo('show_edit_artist', {id: id}, {});
+    this.context.history.pushState(null, `show_edit_artist/${id}`, {});
   },
 
   handleSearch: function() {
     var params = {
-      q: this.refs.searchBar.getValue()
+      q: this._searchBar.value
     };
-    this.context.router.transitionTo('artists', {}, params);
+    this.context.history.pushState(null, `artists`, params);
     ArtistActions.find(params);
   },
 
   handleRedirectNew: function() {
-    this.context.router.transitionTo('new_artist', {}, {});
+    this.context.history.pushState(null, `new_artist`, {});
   },
 
   render: function() {
     return (
       <div className='list-wrap'>
-        <ListSearch ref='searchBar' placeholder={window.lang.serachArtist} handleSearch={this.handleSearch}/>
+        <ListSearch ref={ _ => this._searchBar = _} placeholder={window.lang.serachArtist} handleSearch={this.handleSearch}/>
         <div className='has-top-bar'>
           <div className='btn-group'>
             <Role component='button' roleName='ADMIN' onClick={this.handleRedirectNew} className="btn btn-default">{window.lang.add_ar}</Role>

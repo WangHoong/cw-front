@@ -100,7 +100,7 @@ class BillingHistory extends React.Component {
   }
 
   toggle() {
-    const contentElement = React.findDOMNode(this.refs.content);
+    const contentElement = this._content;
     if (this.state.contentShow) {
       $(contentElement).slideUp(200);
     } else {
@@ -124,7 +124,7 @@ class BillingHistory extends React.Component {
           </div>
           <h5>{window.lang.sp_tr}</h5>
         </div>
-        <div className='m-ibox-content' ref='content'>
+        <div className='m-ibox-content' ref={ _ => this._content = _ }>
           <table className='table table-hover'>
             {this.renderTableHeader()}
             {this.renderList()}

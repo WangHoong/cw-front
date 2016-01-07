@@ -13,7 +13,7 @@ class Uploader extends React.Component {
   }
 
   upload() {
-    let fileInput = React.findDOMNode(this.refs['upload-input']);
+    let fileInput = this._uploadInput
     fileInput.click();
   }
 
@@ -71,7 +71,7 @@ class Uploader extends React.Component {
 
   render() {
     return (
-      <input type='file' style={{display: 'none'}} ref='upload-input' onChange={this._upload.bind(this)}/>
+      <input type='file' style={{display: 'none'}} ref={ _ => this._uploadInput = _ } onChange={this._upload.bind(this)}/>
     );
   }
 }
