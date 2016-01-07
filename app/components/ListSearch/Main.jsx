@@ -45,7 +45,7 @@ var Main = React.createClass({
 
   handleItemSearch:function(id, name){
     var name = this.props.placeholderPattern.replace(/\$\{name\}/g, name);
-    this.refs.header.setText(name);
+    this._header.setText(name);
     this.props.handleItemSearch && this.props.handleItemSearch.call({}, id, name);
   },
 
@@ -72,7 +72,7 @@ var Main = React.createClass({
     return (
       <div className='t-sb' onClick={this.stopPropagation}>
         <Header
-          ref='header'
+          ref={ _ => this._header = _ }
           handleSearch={this.handleSearch}
           handleKeywordsSearch={this.props.handleKeywordsSearch}
           showElement={this.showElement}

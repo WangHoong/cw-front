@@ -25,7 +25,7 @@ var New = React.createClass({
    * @param event
    */
   handleSubmit: function() {
-    var data = this._form
+    var data = this._form.value
     AlbumActions.create(data);
   },
 

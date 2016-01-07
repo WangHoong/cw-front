@@ -10,15 +10,13 @@ module.exports = exports = React.createClass({
   mixins: [Reflux.connect(AlbumListStore, 'albums')],
 
   contextTypes: {
-    router: React.PropTypes.func
+    history: React.PropTypes.object,
   },
 
   handleShowDetailAction: function (evt) {
     evt.preventDefault();
     var id = evt.target.getAttribute('data-id');
-    this.context.router.transitionTo('show_edit_album', {
-      id: id
-    }, {});
+    this.context.history.pushState(null, `albums/${id}`, {});
   },
 
   getDefaultProps: function () {

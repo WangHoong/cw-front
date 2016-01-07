@@ -140,7 +140,7 @@ var Main = React.createClass({
 
   handleShowDetailAction: function(e) {
     var id = e.target.getAttribute('data-id');
-    this.context.history.pushState(null, `show_edit_artist/${id}`, {});
+    this.context.history.pushState(null, `artists/${id}`, {});
   },
 
   handleSearch: function() {
@@ -152,7 +152,7 @@ var Main = React.createClass({
   },
 
   handleRedirectNew: function() {
-    this.context.history.pushState(null, `new_artist`, {});
+    this.context.history.pushState(null, `artists/new`, {});
   },
 
   render: function() {

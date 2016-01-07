@@ -15,7 +15,7 @@ var Detail = React.createClass({
   mixins: [Reflux.connect(AlbumStore, 'album')],
 
   contextTypes: {
-    router: React.PropTypes.func
+    history: React.PropTypes.object,
   },
 
   componentDidMount: function () {
@@ -32,7 +32,7 @@ var Detail = React.createClass({
 
   handleSongsClick: function(evt) {
     var id = evt.target.getAttribute('data-id');
-    this.context.router.transitionTo('show_edit_song', {id: id}, {});
+    this.context.history.pushState(null, `songs/${id}`, {});
   },
 
   renderList: function() {

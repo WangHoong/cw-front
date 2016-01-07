@@ -14,13 +14,14 @@ var Main = React.createClass({
   mixins: [Reflux.connect(AlbumListStore, 'album')],
 
   contextTypes: {
-      router: React.PropTypes.func
+    history: React.PropTypes.object,
+    location: React.PropTypes.object,
   },
 
   handleShowDetailAction: function(evt) {
     evt.preventDefault();
     var id = evt.target.getAttribute('data-id');
-    this.context.router.transitionTo('show_edit_album', {id: id}, {});
+    this.context.history.pushState(null, `albums/${id}`, {});
   },
 
   getDefaultProps: function() {
@@ -31,17 +32,17 @@ var Main = React.createClass({
   },
 
   componentDidMount: function () {
-    var params = this.context.router.getCurrentQuery();
+    var params = this.context.location.query;
     params.size = this.props.size;
     AlbumActions.find(params);
 
   },
 
   renderList: function(pageIndex) {
-    var params = this.context.router.getCurrentQuery();
+    var params = this.context.location.query;
     params.page = pageIndex + 1;
     params.size = this.props.size;
-    this.context.router.transitionTo('albums', {}, params);
+    this.context.history.pushState(null, 'albums', params);
     AlbumActions.find(params);
 
   },
@@ -52,7 +53,7 @@ var Main = React.createClass({
       page: 1,
       size: this.props.size
     };
-    this.context.router.transitionTo('albums', {}, params);
+    this.context.history.pushState(null, 'albums', params);
     AlbumActions.find(params);
   },
 
@@ -63,12 +64,12 @@ var Main = React.createClass({
       size: this.props.size
     };
     console.log(params);
-    this.context.router.transitionTo('albums', {}, params);
+    this.context.history.pushState(null, 'albums', params);
     AlbumActions.find(params);
   },
 
   handleRedirectNew: function() {
-    this.context.router.transitionTo('new_album', {}, {});
+    this.context.history.pushState(null, 'albums/new', params);
   },
 
   render: function() {

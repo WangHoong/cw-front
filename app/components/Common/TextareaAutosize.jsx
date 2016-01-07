@@ -1,4 +1,5 @@
 var React = require('react');
+import ReactDOM from 'react-dom'
 var assign = require('object-assign');
 
 var TextareaAutosize = React.createClass({
@@ -24,7 +25,7 @@ var TextareaAutosize = React.createClass({
 
   recalculateSize: function () {
     var diff;
-    var node = this.getDOMNode();
+    var node = ReactDOM.findDOMNode(this)
 
     if (window.getComputedStyle) {
       var styles = window.getComputedStyle(node);
@@ -37,7 +38,7 @@ var TextareaAutosize = React.createClass({
       diff = 0;
     }
 
-    var node = this.getDOMNode();
+    node = ReactDOM.findDOMNode(this)
     node.style.height = 'auto';
     node.style.height = (node.scrollHeight - diff) + 'px';
   },

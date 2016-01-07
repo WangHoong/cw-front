@@ -79,7 +79,7 @@ var NavItemLink = React.createClass({
     // );
     return (
       <li className={this.getClassName()}>
-        <Link {...tooltip} to={`/${this.props.to}`} onClick={this.handleRouteTo}>
+        <Link {...tooltip} to={`${this.props.to}`} onClick={this.handleRouteTo}>
           <i className={icon}></i>
           <span>{text}</span>
         </Link>

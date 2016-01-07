@@ -17,7 +17,8 @@ var Detail = React.createClass({
   mixins: [Reflux.connect(ArtistStore, 'artist')],
 
   contextTypes: {
-    router: React.PropTypes.func
+    location: React.PropTypes.object,
+    history: React.PropTypes.object,
   },
 
   propTypes: {
@@ -38,7 +39,7 @@ var Detail = React.createClass({
   },
 
   render: function () {
-
+console.log(this)
     if (!this.state.artist.loaded) {
       return <Loader/>
     }
@@ -78,7 +79,7 @@ var Detail = React.createClass({
             <h4>{window.lang.intro}:</h4>
             <p className='data' dangerouslySetInnerHTML={{__html:this.filter(desc)}}></p>
           </div>
-          <Albums artist_id={this.context.router.getCurrentParams().id} />
+          <Albums artist_id={this.props.id} />
         </div>
       </div>
     );

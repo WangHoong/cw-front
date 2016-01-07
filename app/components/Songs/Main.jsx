@@ -14,11 +14,12 @@ var Main = React.createClass({
   mixins: [Reflux.connect(SongStore, 'tracks')],
 
   contextTypes: {
-    router: React.PropTypes.func
+    history: React.PropTypes.object,
+    location: React.PropTypes.object,
   },
 
   componentDidMount: function () {
-    var params = this.context.router.getCurrentQuery();
+    var params = this.context.location.query;
     params.size = this.props.size;
     SongActions.find(params);
   },
@@ -31,10 +32,10 @@ var Main = React.createClass({
   },
 
   handlePageChanged: function (pageIndex) {
-    var params = this.context.router.getCurrentQuery();
+    var params = this.context.location.query;
     params.page = pageIndex + 1;
     params.size = this.props.size;
-    this.context.router.transitionTo('songs', {}, params);
+    this.context.history.pushState(null, 'songs', params);
 
     SongActions.find({
       size: this.props.size,
@@ -44,11 +45,11 @@ var Main = React.createClass({
 
   handleShowDetailAction: function (e) {
     var id = e.target.getAttribute('data-id');
-    this.context.router.transitionTo('show_edit_song', {id: id}, {});
+    this.context.history.pushState(null, `songs/${id}`, {});
   },
   handleCreate: function () {
     //debug(`new song`);
-    this.context.router.transitionTo('new_song', {}, {});
+    this.context.history.pushState(null, 'songs/new', {});
   },
   handleKeywordsSearch: function (keywords) {
     var params = {
@@ -57,7 +58,7 @@ var Main = React.createClass({
       size: this.props.size
     };
 
-    this.context.router.transitionTo('songs', {}, params);
+    this.context.history.pushState(null, 'songs', params);
     SongActions.find(params);
   },
 
@@ -68,7 +69,7 @@ var Main = React.createClass({
       size: this.props.size
     };
 
-    this.context.router.transitionTo('songs', {}, params);
+    this.context.history.pushState(null, 'songs', params);
     SongActions.find(params);
   },
 

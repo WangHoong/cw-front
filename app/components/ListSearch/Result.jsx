@@ -84,7 +84,7 @@ var Result = React.createClass({
       'show': isShow
     });
     return (
-      <div className={className} ref='result'>
+      <div className={className}>
         {this.renderList()}
       </div>
     );

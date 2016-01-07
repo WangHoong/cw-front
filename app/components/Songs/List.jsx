@@ -71,7 +71,7 @@ var SongList = React.createClass({
         );
       }.bind(this));
       return (
-        <tbody>{trs}</tbody>
+        trs
       );
     }
   },
@@ -80,7 +80,7 @@ var SongList = React.createClass({
     var tableInstance = (
       <table className='table table-bordered table-striped'>
         {this.renderTableHeader()}
-        {this.renderItems()}
+        <tbody>{this.renderItems()}</tbody>
       </table>
     );
     return (

@@ -6,7 +6,8 @@ var Edit = require('./Edit.jsx');
 var List = React.createClass({
 
   contextTypes: {
-    router: React.PropTypes.func
+    history: React.PropTypes.object,
+    location: React.PropTypes.object,
   },
 
   getInitialState: function () {
@@ -30,7 +31,7 @@ var List = React.createClass({
       return (
         <Detail
           onEditClick={this.handleEditClick}
-          id={this.context.router.getCurrentParams().id} />
+          id={this.props.params.id} />
       );
     }
 
@@ -39,7 +40,7 @@ var List = React.createClass({
         <Edit
           onUpdated={this.handleUpdated}
           onCancelClick={this.handleUpdated}
-          id={this.context.router.getCurrentParams().id} />
+          id={this.props.params.id} />
       );
     }
 

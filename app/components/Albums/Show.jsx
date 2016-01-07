@@ -32,7 +32,7 @@ var Show = React.createClass({
       return (
         <Detail
           handleToEdit={this.handleToEdit}
-          id={this.context.router.getCurrentParams().id} />
+          id={this.props.params.id} />
       );
     }
 
@@ -40,7 +40,7 @@ var Show = React.createClass({
       return (
         <Edit
           handleToDetail={this.handleToDetail}
-          id={this.context.router.getCurrentParams().id} />
+          id={this.props.params.id} />
       );
     }
 
@@ -50,6 +50,7 @@ var Show = React.createClass({
   },
 
   render: function() {
+    console.log('-----------',this)
     return this.renderChildren();
   }
 
