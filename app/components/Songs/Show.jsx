@@ -16,6 +16,7 @@ var List = React.createClass({
   },
 
   handleUpdated: function () {
+    console.log(this)
     this.state.status = 'detail';
     this.setState(this.state);
   },

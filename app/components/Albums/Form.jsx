@@ -132,7 +132,7 @@ var Form = React.createClass({
   },
 
   handlePhotoUploaded: function() {
-    var photo = this._photo
+    var photo = this._photo.getValue()
     this.state['photo'] = photo.src;
     this.state['resource_id'] = photo.resource_id;
     this.setState(this.state);

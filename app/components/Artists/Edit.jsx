@@ -38,7 +38,7 @@ var Edit = React.createClass({
    * @param e
    */
   handleSubmit: function () {
-    var data = this._form.value
+    var data = this._form.getValue()
     ArtistActions.update(this.props.id, data);
   },
 

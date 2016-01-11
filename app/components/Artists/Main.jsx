@@ -145,7 +145,7 @@ var Main = React.createClass({
 
   handleSearch: function() {
     var params = {
-      q: this._searchBar.value
+      q: this._searchBar.getValue()
     };
     this.context.history.pushState(null, `/artists`, params);
     ArtistActions.find(params);

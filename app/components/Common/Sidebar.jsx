@@ -122,7 +122,7 @@ var Sidebar = React.createClass({
   },
   getDefaultProps: function() {
     return {
-      logoSrc: 'images/new_logo.png',
+      logoSrc: '/images/new_logo.png',
     };
   },
 

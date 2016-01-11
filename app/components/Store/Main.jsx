@@ -29,7 +29,7 @@ var Main = React.createClass({
 
   handleSearch: function() {
     var params = {
-      q: this._searchBar.value,
+      q: this._searchBar.getValue(),
       page: 1,
       size: this.props.size,
     };
@@ -58,7 +58,7 @@ var Main = React.createClass({
   render: function() {
     return (
       <div>
-        <ListSearch handleSearch={this.handleSearch} placeholder='歌手/专辑/歌曲' ref={ _ => this._searchBar = _}/>
+        <ListSearch handleSearch={this.handleSearch} placeholder='歌手/专辑/歌曲' ref={ _ => this._searchBar = _ }/>
         {this.renderResult()}
         <Pager
           current={this.state.store.data.page || 0}

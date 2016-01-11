@@ -33,7 +33,7 @@ var New = React.createClass({
      * @param e
      */
     handleSubmit: function () {
-        var data = this._form.value
+        var data = this._form.getValue()
         ArtistActions.create(data);
     },
 

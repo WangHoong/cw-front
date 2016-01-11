@@ -14,7 +14,7 @@ var Edit = React.createClass({
   },
 
   handleUpdate: function () {
-    var data = this._editForm.value
+    var data = this._editForm.getValue()
     AlbumActions.update(this.props.id, data);
   },
 
