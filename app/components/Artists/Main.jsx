@@ -126,7 +126,6 @@ var Main = React.createClass({
   },
 
   componentDidMount: function() {
-    console.log(this)
     var params = this.context.location.query;
     params.size = this.props.size;
     ArtistActions.find(params);

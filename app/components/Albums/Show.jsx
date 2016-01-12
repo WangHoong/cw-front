@@ -50,7 +50,6 @@ var Show = React.createClass({
   },
 
   render: function() {
-    console.log('-----------',this)
     return this.renderChildren();
   }
 

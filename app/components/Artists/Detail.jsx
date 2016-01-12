@@ -39,7 +39,6 @@ var Detail = React.createClass({
   },
 
   render: function () {
-console.log(this)
     if (!this.state.artist.loaded) {
       return <Loader/>
     }

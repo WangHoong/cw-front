@@ -63,7 +63,7 @@ var Main = React.createClass({
       page: 1,
       size: this.props.size
     };
-    console.log(params);
+    //console.log(params);
     this.context.history.pushState(null, '/albums', params);
     AlbumActions.find(params);
   },

@@ -39,7 +39,6 @@ var Edit = React.createClass({
    */
   handleSubmit: function () {
     var data = this._form.getValue()
-    console.log(data)
     SongActions.update(this.props.id, data);
   },
 
