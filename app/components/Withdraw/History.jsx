@@ -25,6 +25,13 @@ class History extends React.Component {
     });
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (!$.isEmptyObject(nextProps.successData)) {
+      this.state.data.items.unshift(nextProps.successData);
+      this.setState(this.state);
+    }
+  }
+
   getHistory() {
     return axios({
       method: 'GET',
@@ -48,6 +55,7 @@ class History extends React.Component {
           <td>{item.account_name}</td>
           <td>{item.account_number}</td>
           <td>{status_tips[item.status]}</td>
+          <td>&yen;{item.money}</td>
           <td>{moment(item.created_at).format('ll')}</td>
         </tr>
       );
@@ -60,6 +68,7 @@ class History extends React.Component {
             <th>开户名</th>
             <th>账号</th>
             <th>提现状态</th>
+            <th>提现金额</th>
             <th>申请日期</th>
           </tr>
         </thead>

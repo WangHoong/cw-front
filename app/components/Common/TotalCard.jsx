@@ -86,7 +86,14 @@ var TotalCard = React.createClass({
     //   this._src = null;
     // }
   },
-
+  // <div className="ttc-first ">
+  //   <p>{window.lang.r1}</p>
+  //   <p className="ttc-num"><span>{amount ? amount.recorded_amount : '--'}</span><span className="ttc-unit">{window.lang.rmb}</span></p>
+  // </div>
+  // <div className="ttc-next">
+  //   <p>{window.lang.r2}</p>
+  //   <p className="ttc-num"><span>{amount ? amount.unrecorded_amount : '--'}</span><span className="ttc-unit">{window.lang.rmb}</span></p>
+  // </div>
   render: function(){
     var createItem;
     let amount = this.state.totalData.amount
@@ -95,14 +102,24 @@ var TotalCard = React.createClass({
         <div className="totalcard">
           <p className="ttc-title"><b>{window.lang.r0}</b></p>
           <p className="ttc-sum"><span>{amount ? amount.amount : '--'}</span><span className="ttc-unit">{window.lang.rmb}</span></p>
-          <div className="ttc-class">
-            <div className="ttc-first ">
+          <div className='row mt10'>
+            <div className='col-sm-6'>
               <p>{window.lang.r1}</p>
-              <p className="ttc-num"><span>{amount ? amount.recorded_amount : '--'}</span><span className="ttc-unit">{window.lang.rmb}</span></p>
+              <p><span>{amount ? amount.recorded_amount : '--'}</span><span>{window.lang.rmb}</span></p>
             </div>
-            <div className="ttc-next">
+            <div className='col-sm-6'>
               <p>{window.lang.r2}</p>
-              <p className="ttc-num"><span>{amount ? amount.unrecorded_amount : '--'}</span><span className="ttc-unit">{window.lang.rmb}</span></p>
+              <p><span>{amount ? amount.unrecorded_amount : '--'}</span><span>{window.lang.rmb}</span></p>
+            </div>
+          </div>
+          <div className='row mt10'>
+            <div className='col-sm-6'>
+              <p>{window.lang.r3}</p>
+              <p><span>{amount ? amount.withdraw_amount : '--'}</span><span>{window.lang.rmb}</span></p>
+            </div>
+            <div className='col-sm-6'>
+              <p>{window.lang.r4}</p>
+              <p><span>{amount ? amount.blocked_amount : '--'}</span><span>{window.lang.rmb}</span></p>
             </div>
           </div>
         </div>

@@ -10,7 +10,8 @@ class Main extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      loaded: false
+      loaded: false,
+      successData: {}
     };
   }
 
@@ -52,15 +53,20 @@ class Main extends React.Component {
     });
   }
 
+  setSuccessData(data) {
+    this.state.successData = data.data;
+    this.setState(this.state);
+  }
+
   renderForm() {
     if (this.state.loaded === false) {
       return <Loader />;
     }
     if (this.state.bankInfo['account_type'] == 1) {
-      return <Personal send={this.send} bankInfo={this.state.bankInfo} statisticsInfo={this.state.statisticsInfo} />;
+      return <Personal setSuccessData={this.setSuccessData.bind(this)} send={this.send} bankInfo={this.state.bankInfo} statisticsInfo={this.state.statisticsInfo} />;
     }
     if (this.state.bankInfo['account_type'] == 2) {
-      return <Company send={this.send} bankInfo={this.state.bankInfo} statisticsInfo={this.state.statisticsInfo} />;
+      return <Company setSuccessData={this.setSuccessData.bind(this)} send={this.send} bankInfo={this.state.bankInfo} statisticsInfo={this.state.statisticsInfo} />;
     }
     return <p>账户类型错误</p>;
   }
@@ -91,7 +97,7 @@ class Main extends React.Component {
           <div className='panel'>
             <div className='panel-body container-fluid'>
               <div className='row'>
-                <History />
+                <History successData={this.state.successData} />
               </div>
             </div>
           </div>

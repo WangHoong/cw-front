@@ -180,7 +180,7 @@ var Sidebar = React.createClass({
         roleName: ['CP','SP']
       }, {
         faIconName: 'jpy',
-        text: '提现申请',
+        text: window.lang.withdraw,
         to: 'withdraw',
         roleName: ['CP']
       }, {

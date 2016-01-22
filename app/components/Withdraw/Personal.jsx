@@ -30,6 +30,7 @@ class Personal extends React.Component {
       });
       if (_data.status === 200) {
         alert('申请成功，您可以在提现历史中查看进度');
+        this.props.setSuccessData(_data);
         return;
       }
       if (_data.errorcode === 200100) {
@@ -63,7 +64,7 @@ class Personal extends React.Component {
             <label>帐号：</label>{this.props.bankInfo['account_number']}
           </div>
           <div className='form-group'>
-            <label>提现金额（可提现金额为 {this.props.statisticsInfo.amount['recorded_amount']} 元）：</label>
+            <label>提现金额（可提现金额为&yen; {this.props.statisticsInfo.amount['recorded_amount']}）：</label>
             <input type="text" name='money' className='form-control' placeholder='输入申请提现金额' required onChange={this.changeHandle.bind(this)} />
           </div>
           <button type='submit' className='btn btn-primary' disabled={this.state.sending}>{stateTxt}</button>
