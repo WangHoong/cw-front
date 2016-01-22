@@ -179,6 +179,11 @@ var Sidebar = React.createClass({
         to: 'songs',
         roleName: ['CP','SP']
       }, {
+        faIconName: 'jpy',
+        text: '提现申请',
+        to: 'withdraw',
+        roleName: ['CP']
+      }, {
         faIconName: 'bar-chart',
         text: window.lang.re,
         to: 'charts',

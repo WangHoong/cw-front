@@ -133,6 +133,33 @@ var OrderInfo = React.createClass({
             .map(function (track, i) {
               return <Item data={track} key={i}/>
             })}
+            <div className='col-sm-4'>
+              <div className='oi-item'>
+                <div className='oi-img'><img src='/images/sp_default_logo.jpg'/></div>
+                <div className='oi-name' style={{width: '70%', borderRight: '0'}}>
+                  <p>吉他大师（暂未授权）</p>
+                  <p className='oi-price'>￥2.77{window.lang.rmb}/1000{window.lang.times}</p>
+                </div>
+              </div>
+            </div>
+            <div className='col-sm-4'>
+              <div className='oi-item'>
+                <div className='oi-img'><img src='/images/sp_default_logo.jpg'/></div>
+                <div className='oi-name' style={{width: '70%', borderRight: '0'}}>
+                  <p>喜马拉雅FM（暂未授权）</p>
+                  <p className='oi-price'>￥2.77{window.lang.rmb}/1000{window.lang.times}</p>
+                </div>
+              </div>
+            </div>
+            <div className='col-sm-4'>
+              <div className='oi-item'>
+                <div className='oi-img'><img src='/images/sp_default_logo.jpg'/></div>
+                <div className='oi-name' style={{width: '70%', borderRight: '0'}}>
+                  <p>蜻蜓FM收音机（暂未授权）</p>
+                  <p className='oi-price'>￥2.77{window.lang.rmb}/1000{window.lang.times}</p>
+                </div>
+              </div>
+            </div>
         </div>
       )
     } else {
@@ -146,3 +173,4 @@ var OrderInfo = React.createClass({
   }
 })
 module.exports = OrderInfo;
+export default OrderInfo;

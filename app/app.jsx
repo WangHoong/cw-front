@@ -37,6 +37,7 @@ var axios = require('axios');
 var Settings = require('./components/Settings/Main.jsx');
 var OrderInfo = require('./components/OrderInfo/OrderInfo.jsx');
 var WeekTopSongs = require('./components/TopSongs/Main.jsx');
+var Withdraw = require('./components/Withdraw/Main.jsx');
 
 var Cookies = require('js-cookie');
 
@@ -269,6 +270,9 @@ var routes = (
       </Route>
       <Route handler={Empty} name='orderinfo'>
         <DefaultRoute handler={OrderInfo}/>
+      </Route>
+      <Route handler={Empty} name='withdraw'>
+        <DefaultRoute handler={Withdraw} />
       </Route>
       <Route handler={Chart} name="charts"/>
 
