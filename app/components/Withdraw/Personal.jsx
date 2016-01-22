@@ -7,6 +7,7 @@ class Personal extends React.Component {
       formData: {
         money: ''
       },
+      recorded: this.props.statisticsInfo.amount['recorded_amount'] || 0,
       sending: false
     };
   }
@@ -30,6 +31,8 @@ class Personal extends React.Component {
       });
       if (_data.status === 200) {
         alert('申请成功，您可以在提现历史中查看进度');
+        this.state.recorded = parseInt(this.state.recorded) - parseInt(_data.data.money) || 0;
+        this.setState(this.state);
         this.props.setSuccessData(_data);
         return;
       }
@@ -38,7 +41,7 @@ class Personal extends React.Component {
         return;
       }
       if (_data.errorcode === 200400 || _data.errorcode === 200300) {
-        alert(`提现金额不能大于已入账金额，已入账金额为：${this.props.statisticsInfo.amount['recorded_amount']}`);
+        alert(`提现金额不能大于已入账金额，已入账金额为：${this.state.recorded}`);
         return;
       }
       alert(_data.message);
