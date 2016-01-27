@@ -53,14 +53,17 @@ var SongList = React.createClass({
           hasMV = <i className='fa fa-2x fa-ban nocheck'/>;
         }
 
+        var has128 = item.play_url_128 != null ? <i className='fa fa-2x fa-check check' /> : <i className='fa fa-2x fa-ban nocheck' />;
+        var has320 = item.play_url_320 != null ? <i className='fa fa-2x fa-check check' /> : <i className='fa fa-2x fa-ban nocheck' />;
+
         return (
           <tr key={item.id}>
             <td><ImagePreloader className='img-circle' src={(item.album || {}).photo} /></td>
             <td>{item.name}</td>
             <td>{_.map(item.artists, 'name').join(',')}</td>
             <td>{(item.album || {}).name}</td>
-            <td>{item.size_128}</td>
-            <td>{item.size_320}</td>
+            <td>{has128}</td>
+            <td>{has320}</td>
             <td>{item.lyricist}</td>
             <td>{item.composer}</td>
             <td>{hasMV}</td>
