@@ -1,7 +1,7 @@
 {
   "apps": [
     {
-      "name": "CW-FRONT",
+      "name": "cw-front",
       "script": "server.js",
       "env": {
         "COMMON_VARIABLE": "true"
@@ -14,7 +14,7 @@
   "deploy": {
     "production": {
       "user": "ec2-user",
-      "host": ["54.222.132.107", "54.222.130.220"],
+      "host": ["54.222.146.203"],
       "ref": "origin/master",
       "repo": "git@cw-front-github:topdmc/cw-front.git",
       "path": "/srv/www/cw-front",
