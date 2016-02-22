@@ -3,7 +3,7 @@ import axios from 'axios';
 import {APIHelper} from '../../utils/APIHelper';
 import Loader from '../Common/Loader.jsx';
 
-const status_tips = ['待审核', '审核通过', '审核失败'];
+const status_tips = ['审核中', '审核通过', '审核失败', '付款成功'];
 
 class History extends React.Component {
   constructor(props) {
