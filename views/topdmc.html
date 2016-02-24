@@ -45,16 +45,7 @@ body {
   font-size: 14px;
   -webkit-font-smoothing: antialiased;
 }
-.nav {
-  position: fixed;
-  width: 1100px;
-  top: 0;
-  left: 50%;
-  height: 60px;
-  margin-left: -550px;
-  background-color: #fff;
-  z-index: 9999;
-}
+.nav{position: fixed; width: 100%; top: 0; left: 0; height: 60px; background-color: #fff; z-index: 9999;}
 .nav .logo {
   margin: 10px 0 0 10px;
 }
@@ -334,12 +325,11 @@ body {
 <body>
   <h1 style="position: absolute;left: -99999px;">音乐版权云服务</h1>
 <nav class="nav">
-  <div class="logo"><img src="/images/logo9.png"></div>
+  <div class="logo"><a href="/"><img src="/images/logo9.png"></a></div>
   <ul class="tab">
-    <li>{{lang.Aboutus}}</li>
-    <li>{{lang.DMCApp}}</li>
-    <li>{{lang.DMCCareers}}</li>
-    <li>{{lang.Contactus}}</li>
+    <li><a href="/about">{{lang.Aboutus}}</a></li>
+    <li><a href="/careers">{{lang.DMCCareers}}</a></li>
+    <li><a href="/contactus">{{lang.Contactus}}</a></li>
   </ul>
 </nav>
 <main>
