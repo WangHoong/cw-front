@@ -837,4 +837,42 @@
       text-align: right;
     }
   }
+  .wd-f-tip {
+    margin-left: 5px;
+    position: relative;
+    .fa {
+      cursor: pointer;
+      font-size: 16px;
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background-color: #eea236;
+      line-height: 20px;
+      text-align: center;
+      color: #fff;
+    }
+    .t-i {
+      display: none;
+      position: absolute;
+      right: -140px;
+      top: 0;
+      max-width: 200px;
+      border-radius: 3px;
+      background-color: #2e394b;
+      color: #fff;
+      padding: 5px 10px;
+      &::before {
+        content: '';
+        position: absolute;
+        left: -9px;
+        top: 5px;
+        width: 0;
+        height: 0;
+        border-top: 5px solid transparent;
+        border-right: 10px solid #2e394b;
+        border-bottom: 5px solid transparent;
+      }
+    }
+  }
 }
