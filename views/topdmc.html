@@ -28,298 +28,87 @@
 <link rel="stylesheet" href="/css/mbs.css">
 <link rel="stylesheet" href="/css/font-awesome.min.css">
 <style>
-* {
-  margin: 0;
-  padding: 0;
-}
-body, html {
-  height: 100%;
-}
-main {
-  height: 100%;
-}
-body {
-  font-family: 'Lantinghei SC', 'Open Sans', Arial, 'Hiragino Sans GB', 'Microsoft YaHei', '微软雅黑', 'STHeiti', 'WenQuanYi Micro Hei', SimSun, sans-serif;
-  font-size: 14px;
-  line-height: 1.5;
-  font-size: 14px;
-  -webkit-font-smoothing: antialiased;
-}
-.nav{position: fixed; width: 100%; top: 0; left: 0; height: 60px; background-color: #fff; z-index: 9999; box-shadow: 0 1px 2px rgba(0, 0, 0, .2);}
-.nav .logo {
-  margin: 10px 0 0 10px;
-}
-.nav .logo img {
-  height: 40px;
-}
-.nav .tab {
-  position: absolute;
-  right: 10px;
-  top: 0;
-  padding: 0;
-  margin: 0;
-  list-style: none;
-}
-.nav .tab li {
-  list-style: none;
-  padding: 0;
-  margin: 0 10px;
-  display: inline-block;
-  height: 60px;
-  line-height: 60px;
-}
-.header {
-  background: url('/images/topdmc-bk.jpg') no-repeat center center #1a1a1a;
-  background-size: cover;
-  color: #fff;
-  height: 100%;
-  overflow: hidden;
-  padding-top: 110px;
-  position: relative;
-}
-.header .header-inner {
-  position: absolute;
-  left: 0;
-  top: 50%;
-  width: 100%;
-  margin-top: -200px;
-}
-.header .primary-slogan {
-  text-align: center;
-}
-.header .primary-slogan img {
-  height: 240px;
-}
-.header .desc {
-  margin-top: 20px;
-  font-size: 18px;
-  text-align: center;
-}
-.header .login {
-  margin-top: 40px;
-  text-align: center;
-}
-.header .login a {
-  display: inline-block;
-  padding: 10px 40px;
-  border: 1px solid #fff;
-  color: #fff;
-  text-decoration: none;
-  transition: all .5s linear;
-  -webkit-transition: all .5s linear;
-  -ms-transition: all .5s linear;
-  -o-transition: all .5s linear;
-  -moz-transtion: all .5s linear;
-}
-.header .login a:hover {
-  background-color: #fff;
-  color: #000;
-}
-@keyframes arrow {
-  0% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-10px);
-  }
-  100% {
-    transform: translateY(0);
-  }
-}
-@-webkit-keyframes arrow {
-  0% {
-    -webkit-transform: translateY(0);
-  }
-  50% {
-    -webkit-transform: translateY(-10px);
-  }
-  100% {
-    -webkit-transform: translateY(0);
-  }
-}
-@-ms-keyframes arrow {
-  0% {
-    -ms-transform: translateY(0);
-  }
-  50% {
-    -ms-transform: translateY(-10px);
-  }
-  100% {
-    -ms-transform: translateY(0);
-  }
-}
-@-moz-keyframes arrow {
-  0% {
-    -moz-transform: translateY(0);
-  }
-  50% {
-    -moz-transform: translateY(-10px);
-  }
-  100% {
-    -moz-transform: translateY(0);
-  }
-}
-@-o-keyframes arrow {
-  0% {
-    -o-transform: translateY(0);
-  }
-  50% {
-    -o-transform: translateY(-10px);
-  }
-  100% {
-    -o-transform: translateY(0);
-  }
-}
-.header .arrow {
-  cursor: pointer;
-  position: absolute;
-  bottom: 20px;
-  left: 50%;
-  font-size: 30px;
-  margin-left: -15px;
-  color: #fff;
-  animation: arrow 2s ease-in-out infinite;
-  -webkit-animation: arrow 2s ease-in-out infinite;
-  -moz-animation: arrow 2s ease-in-out infinite;
-  -o-animation: arrow 2s ease-in-out infinite;
-  -ms-animation: arrow 2s ease-in-out infinite;
-}
-.sec {
-  overflow: hidden;
-}
-.sec .sec-inner {
-  width: 1000px;
-  margin: 0 auto;
-  padding: 100px 0;
-  position: relative;
-}
-.sec .sec-inner .content h2 {
-  position: relative;
-  margin: 0;
-  padding-bottom: 15px;
-  margin-bottom: 10px;
-}
-.sec .sec-inner .content h2::after {
-  content: '';
-  width: 30px;
-  position: absolute;
-  bottom: 0;
-  height: 4px;
-}
-.sec .sec-inner .content p {
-  font-size: 16px;
-}
-.sec:nth-child(even) {
-  background-color: #ececec;
-}
-.sec:nth-child(even) .content h2 {
-  color: #000;
-}
-.sec:nth-child(even) .content h2::after {
-  left: 0;
-  background-color: #ff1949;
-}
-.sec:nth-child(even) .content p {
-  color: rgb(160, 160, 160);
-}
-.sec:nth-child(odd) {
-  background-color: #ff1949;
-}
-.sec:nth-child(odd) .content {
-  text-align: right;
-}
-.sec:nth-child(odd) .content h2 {
-  color: #fff;
-}
-.sec:nth-child(odd) .content h2::after {
-  right: 0;
-  background-color: #000;
-}
-.sec:nth-child(odd) .content p {
-  color: rgb(220, 220, 220);
-}
-.sec:nth-child(even) .sec-inner .bg-icon {
-  transform: translateX(40px);
-  -webkit-transform: translateX(40px);
-  -moz-transform: translateX(40px);
-  -o-transform: translateX(40px);
-  -ms-transform: translateX(40px);
-}
-.sec:nth-child(odd) .sec-inner .bg-icon {
-  transform: translateX(-40px);
-  -webkit-transform: translateX(-40px);
-  -moz-transform: translateX(-40px);
-  -o-transform: translateX(-40px);
-  -ms-transform: translateX(-40px);
-}
-.sec .sec-inner .bg-icon {
-  opacity: 0;
-  position: absolute;
-  z-index: 2;
-}
-.sec .sec-inner .bg-icon.ani {
-  opacity: 1;
-  transform: translateX(0);
-  -webkit-transform: translateX(0);
-  -moz-transform: translateX(0);
-  -o-transform: translateX(0);
-  -ms-transform: translateX(0);
-  transition: all 1s ease-in;
-  -webkit-transition: all 1s ease-in;
-  -moz-transition: all 1s ease-in;
-  -o-transition: all 1s ease-in;
-  -ms-transition: all 1s ease-in;
-  -webkit-transition-delay: 1s;
-  -o-transition-delay: 1s;
-  -moz-transition-delay: 1s;
-  -ms-transition-delay: 1s;
-  transition-delay: 1s;
-}
-.sec1 .sec-inner .bg-icon {
-  color: #e0e0e0;
-  right: 0;
-  top: -155px;
-  font-size: 460px;
-}
-.sec2 .sec-inner .bg-icon {
-  font-size: 440px;
-  color: #e70935;
-  left: 0;
-  top: -155px;
-}
-.sec2 .sec-inner .bg-icon .fa {
-  transform: rotate(270deg);
-  -webkit-transform: rotate(270deg);
-  -moz-transform: rotate(270deg);
-  -ms-transform: rotate(270deg);
-  -o-transform: rotate(270deg);
-}
-.sec3 .sec-inner .bg-icon {
-  font-size: 490px;
-  color: #e0e0e0;
-  right: 0;
-  top: -100px;
-}
-.sec4 .sec-inner .bg-icon {
-  font-size: 460px;
-  color: #e70935;
-  left: 0;
-  top: -150px;
-}
-.sec4 .sec-inner .bg-icon .fa {
-  transform: rotate(90deg);
-  -webkit-transform: rotate(90deg);
-  -moz-transform: rotate(90deg);
-  -ms-transform: rotate(90deg);
-  -o-transform: rotate(90deg);
-}
-.footer {
-  padding: 0 10px;
-}
-.footer p {
-  margin: 0;
-  padding: 10px 0;
-}
+*{margin: 0;padding: 0;}
+ol, ul {list-style: none;}
+body, html{height: 100%;}
+main{height: 100%;}
+body{font-family: 'Lantinghei SC', 'Open Sans', Arial, 'Hiragino Sans GB', 'Microsoft YaHei', '微软雅黑', 'STHeiti', 'WenQuanYi Micro Hei', SimSun, sans-serif;font-size: 14px;line-height: 1.5;font-size: 14px;-webkit-font-smoothing: antialiased;}
+.nav{position: fixed;width: 100%;top: 0;left: 0;height: 60px;background-color: #fff;z-index: 9999;box-shadow: 0 1px 2px rgba(0, 0, 0, .2);}
+.nav .logo{margin: 10px 0 0 10px;}
+.nav .logo img{height: 40px;}
+.nav .tab{position: absolute;right: 10px;top: 0;padding: 0;margin: 0;list-style: none;}
+.nav .tab li{list-style: none;padding: 0;margin: 0 10px;display: inline-block;height: 60px;line-height: 60px;}
+.header{background: url('/images/topdmc-bk.jpg') no-repeat center center #1a1a1a;background-size: cover;color: #fff;height: 100%;overflow: hidden;padding-top: 110px;position: relative;}
+.header .header-inner{position: absolute;left: 0;top: 50%;width: 100%;margin-top: -200px;}
+.header .primary-slogan{text-align: center;}
+.header .primary-slogan img{height: 240px;}
+.header .desc{margin-top: 20px;font-size: 18px;text-align: center;}
+.header .login{margin-top: 40px;text-align: center;}
+.header .login a{display: inline-block;padding: 10px 40px;border: 1px solid #fff;color: #fff;text-decoration: none;transition: all .5s linear;-webkit-transition: all .5s linear;-ms-transition: all .5s linear;-o-transition: all .5s linear;-moz-transtion: all .5s linear;}
+.header .login a:hover{background-color: #fff;color: #000;}
+@keyframes arrow{0%{transform: translateY(0);}
+50%{transform: translateY(-10px);}
+100%{transform: translateY(0);}}
+@-webkit-keyframes arrow{0%{-webkit-transform: translateY(0);}
+50%{-webkit-transform: translateY(-10px);}
+100%{-webkit-transform: translateY(0);}}
+@-ms-keyframes arrow{0%{-ms-transform: translateY(0);}
+50%{-ms-transform: translateY(-10px);}
+100%{-ms-transform: translateY(0);}}
+@-moz-keyframes arrow{0%{-moz-transform: translateY(0);}
+50%{-moz-transform: translateY(-10px);}
+100%{-moz-transform: translateY(0);}}
+@-o-keyframes arrow{0%{-o-transform: translateY(0);}
+50%{-o-transform: translateY(-10px);}
+100%{-o-transform: translateY(0);}}
+.header .arrow{cursor: pointer;position: absolute;bottom: 20px;left: 50%;font-size: 30px;margin-left: -15px;color: #fff;animation: arrow 2s ease-in-out infinite;-webkit-animation: arrow 2s ease-in-out infinite;-moz-animation: arrow 2s ease-in-out infinite;-o-animation: arrow 2s ease-in-out infinite;-ms-animation: arrow 2s ease-in-out infinite;}
+.sec{overflow: hidden;}
+.sec .sec-inner{width: 1000px;margin: 0 auto;padding: 100px 0;position: relative;}
+.sec .sec-inner .content h2{position: relative;margin: 0;padding-bottom: 15px;margin-bottom: 10px;}
+.sec .sec-inner .content h2::after{content: '';width: 30px;position: absolute;bottom: 0;height: 4px;}
+.sec .sec-inner .content p{font-size: 16px;}
+.sec:nth-child(even){background-color: #ececec;}
+.sec:nth-child(even) .content h2{color: #000;}
+.sec:nth-child(even) .content h2::after{left: 0;background-color: #ff1949;}
+.sec:nth-child(even) .content p{color: rgb(160, 160, 160);}
+.sec:nth-child(odd){background-color: #ff1949;}
+.sec:nth-child(odd) .content{text-align: right;}
+.sec:nth-child(odd) .content h2{color: #fff;}
+.sec:nth-child(odd) .content h2::after{right: 0;background-color: #000;}
+.sec:nth-child(odd) .content p{color: rgb(220, 220, 220);}
+.sec:nth-child(even) .sec-inner .bg-icon{transform: translateX(40px);-webkit-transform: translateX(40px);-moz-transform: translateX(40px);-o-transform: translateX(40px);-ms-transform: translateX(40px);}
+.sec:nth-child(odd) .sec-inner .bg-icon{transform: translateX(-40px);-webkit-transform: translateX(-40px);-moz-transform: translateX(-40px);-o-transform: translateX(-40px);-ms-transform: translateX(-40px);}
+.sec .sec-inner .bg-icon{opacity: 0;position: absolute;z-index: 2;}
+.sec .sec-inner .bg-icon.ani{opacity: 1;transform: translateX(0);-webkit-transform: translateX(0);-moz-transform: translateX(0);-o-transform: translateX(0);-ms-transform: translateX(0);transition: all 1s ease-in;-webkit-transition: all 1s ease-in;-moz-transition: all 1s ease-in;-o-transition: all 1s ease-in;-ms-transition: all 1s ease-in;-webkit-transition-delay: 1s;-o-transition-delay: 1s;-moz-transition-delay: 1s;-ms-transition-delay: 1s;transition-delay: 1s;}
+.sec1 .sec-inner .bg-icon{color: #e0e0e0;right: 0;top: -155px;font-size: 460px;}
+.sec2 .sec-inner .bg-icon{font-size: 440px;color: #e70935;left: 0;top: -155px;}
+.sec2 .sec-inner .bg-icon .fa{transform: rotate(270deg);-webkit-transform: rotate(270deg);-moz-transform: rotate(270deg);-ms-transform: rotate(270deg);-o-transform: rotate(270deg);}
+.sec3 .sec-inner .bg-icon{font-size: 490px;color: #e0e0e0;right: 0;top: -100px;}
+.sec4 .sec-inner .bg-icon{font-size: 460px;color: #e70935;left: 0;top: -150px;}
+.sec4 .sec-inner .bg-icon .fa{transform: rotate(90deg);-webkit-transform: rotate(90deg);-moz-transform: rotate(90deg);-ms-transform: rotate(90deg);-o-transform: rotate(90deg);}
+.pe-thumbs{width: 910px;height: 410px;margin: 20px auto;position: relative;background: transparent url(../images/thumbs_bg.jpg) center center;border: 5px solid #fff;box-shadow: 3px 3px 3px rgba(0,0,0,0.2);}
+.pe-thumbs:before{content: "";position: absolute;top: 0px;left: 0px;width: 100%;height: 100%;background: rgba(53,125,176, 0.2);}
+.pe-thumbs li{float:left;position: relative;}
+.pe-thumbs li a {cursor: pointer;}
+.pe-thumbs li a, .pe-thumbs li a img{display: block;position: relative;}
+.pe-thumbs li a img{width: 100px; height: 100px;opacity: 0.4;}
+.pe-thumbs li a div.pe-description{width: 200px;height: 100px;background: rgba(0,0,0,0.8);position: absolute;top: 0px;left: -200px;color: white;display: none;z-index: 1001;}
+.footer{padding: 0 10px; width: 1000px; margin: 20px auto;}
+.footer .f-i {background-color: #ececec; position: relative; height: 161px;}
+.footer .f-i::after {content: ''; position: absolute; display: block; border: 30px solid transparent; border-top: 30px solid #fefefe; box-shadow: 0px -7px 6px -9px black; right: -30px; top: -30px; transform: rotate(225deg);}
+.footer .f-i .f-i-i {float: left;}
+.footer .f-i .f-logo {background-color: #e7161a;}
+.footer .f-i .f-logo img {width: 150px; margin: 40px 20px;}
+.footer .f-i .f-about {width: 550px; padding: 10px 10px 0; border-right: 1px solid #fff; line-height: 1.8; height: 161px;}
+.footer .f-i .f-contact {padding: 15px 10px 0;}
+.footer .f-i .f-contact p {color: #333; margin: 0;}
+.footer .f-i .f-contact h4 {color: #e7161a;}
+.footer .f-cr {margin-top: 10px; padding-top: 10px; border-top: 1px solid #eee; color: #aaa;}
+.sec.h-info {background-color: #ff1949;}
+.sec.h-info .sec-inner {width: 700px;}
+.h-info {font-size: 20px; color: #fff;}
+.h-info .h-info-s .fa {width: 40px;}
+.sec6 h2 {width: 910px; margin: 0 auto; margin-top: 20px; padding-left: 10px; border-left: 4px solid #ff1949;}
 </style>
 </head>
 <body>
@@ -336,52 +125,95 @@ body {
   <header class="header">
     <div class="header-inner">
       <div class="primary-slogan"><img src="/images/topdmc-bg.png"></div>
-      <p class="desc" style="padding-left:180px;padding-right:180px;line-height:30px;letter-spacing:1px">{{lang.preLogin}}</p>
+      <p class="desc" style="padding-left:180px;padding-right:180px;line-height:30px;letter-spacing:1px">多样化发行 作品所有权认证 播放=收入 更多合作机会</p>
       <div class="login"><a href="/signin">{{lang.Login}}</a></div>
     </div>
     <a class="arrow"><i class="fa fa-chevron-down"></i></a>
   </header>
+  <section class="sec h-info">
+    <div class="sec-inner">
+      <div class="row">
+        <div class="col-xs-6">
+          <p class="h-info-s"><i class="fa fa-hand-lizard-o"></i>自主自由，最慢七天上架</p>
+          <p class="h-info-s"><i class="fa fa-reddit-alien"></i>多平台，信息更新一次完成</p>
+          <p class="h-info-s"><i class="fa fa-venus-mars"></i>更精准的宣传平台</p>
+        </div>
+        <div class="col-xs-6">
+          <p class="h-info-s"><i class="fa fa-jpy"></i>收益不依赖广告，依靠音乐内容</p>
+          <p class="h-info-s"><i class="fa fa-rocket"></i>已结算收入随时提现</p>
+          <p class="h-info-s"><i class="fa fa-reddit-alien"></i>非独家授权 随心所欲</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="sec"></section>
   <section class="sec sec1">
     <div class="sec-inner">
       <div class="content">
-        <h2>{{lang.Mon0}}<br>{{lang.Mon1}}</h2>
-        <p style="max-width:600px">{{lang.MonDesc0}}<br>{{lang.MonDesc1}}</p>
+        <h2>让你懂你的人找到你</h2>
+        <p>兜兜转转，寻寻觅觅，懂你的人不是离得太远<br>远在国外，远在火星，而是你把自己埋在了汪洋大海里</p>
+        <br>
+        <p>我们发现更能展示音乐人个性的终端并不为大多数音乐人所知<br>通过DMC音乐人能更贴近懂得自己的听众，让多样的音乐在属于自己的舞台上绽放光彩</p>
       </div>
-      <div class="bg-icon"><i class="fa fa-circle-o"></i></div>
+      <div class="bg-icon ani"><i class="fa fa-circle-o"></i></div>
     </div>
   </section>
   <section class="sec sec2">
     <div class="sec-inner">
       <div class="content">
-        <h2>{{lang.Mini}}</h2>
-        <p>{{lang.MiniDesc0}}<br>{{lang.MiniDesc1}}</p>
+        <h2>把名字深刻地印在自己的作品上</h2>
+        <p>拒绝挪用、拒绝盗版</p>
+        <p>音乐行业的蓬勃发展依赖从词曲创作、编曲，到录音、后期的每一位参与者</p>
+        <p>通过DMC记录每一位的付出是每一份投入获得合理回报的前提</p>
       </div>
-      <div class="bg-icon"><i class="fa fa-play"></i></div>
+      <div class="bg-icon ani"><i class="fa fa-play"></i></div>
     </div>
   </section>
   <section class="sec sec3">
     <div class="sec-inner">
       <div class="content">
-        <h2>{{lang.Real0}}<br>{{lang.Real1}}</h2>
-        <p style="max-width:600px">{{lang.RealDesc0}}<br>{{lang.RealDesc1}}</p>
+        <h2>播放=收入</h2>
+        <p>DMC将简单、透明还给音乐人和听众</p>
+        <p>作品播放收益由终端直接进行支付</p>
+        <p>因为每一次的播放都给听众带来了价值，无论主流或是小众</p>
       </div>
-      <div class="bg-icon"><i class="fa fa-square-o"></i></div>
+      <div class="bg-icon ani"><i class="fa fa-square-o"></i></div>
     </div>
   </section>
   <section class="sec sec4">
     <div class="sec-inner">
       <div class="content">
-        <h2>{{lang.CR0}}<br>{{lang.CR1}}</h2>
-        <p>{{lang.CRDesc0}}<br>{{lang.CRDesc1}}</p>
+        <h2>有效、透明的数据</h2>
+        <p>不仅仅是播放数据，DMC希望能为音乐人提供</p>
+        <p>更精准的上下游合作以及巡演分析，演出策划等信息为音乐人提供更多机会</p>
       </div>
-      <div class="bg-icon"><i class="fa fa-play"></i></div>
+      <div class="bg-icon ani"><i class="fa fa-play"></i></div>
     </div>
   </section>
+  <section class="sec sec6">
+    <h2>推荐艺人</h2>
+    <ul class="pe-thumbs" id="pe-thumbs"></ul>
+  </section>
   <footer class="footer">
-    <p>Copyright © 2015 北京成为科技有限公司 京ICP备15018286号</p>
+    <div class="f-i">
+      <div class="f-i-i f-logo"><img src="/images/logo_red.png"></div>
+      <div class="f-i-i f-about">
+        <h4>关于我们</h4>
+        <p>DMC通过先进的技术平台将歌曲全面直观的展现给海量的音乐服务商，并且实现音乐人可以直接通过平台进行自主授权，达到每一次播放都能够得到及时支付的目的。</p>
+      </div>
+      <div class="f-i-i f-contact">
+        <p>联系地址</p>
+        <h4>cuiyabo@topdmc.com</h4>
+        <p>微信公众号</p>
+        <h4>DMCBQPT</h4>
+      </div>
+    </div>
+    <p class="f-cr">© DMC 2016 COPYRIGHT RESERVED.</p>
   </footer>
 </main>
+
 <script src="/js/jquery.min.js"></script>
+<script src="/js/common.js"></script>
 <script>
 $(function() {
   $('.arrow').on('click', function(evt) {
@@ -390,13 +222,69 @@ $(function() {
       scrollTop: $(window).height()
     }, 500, 'swing');
   });
-  $(window).on('scroll', function() {
-    $('.sec').each(function() {
-      var top = $(this).offset().top;
-      if (top >= $(window).scrollTop() && top < ($(window).scrollTop() + $(window).height())) {
-        $(this).find('.bg-icon').addClass('ani');
-      }
-    });
+  var _url = '{{API_PREFIX}}/users/random';
+  var _users = $.get(_url, {size: 36});
+  _users.done(function(res) {
+    if (res.data && !res.data.length <= 0) {
+      var _domArray = [];
+      $.each(res.data, function(idx, item) {
+        var _li = '<li><a><img src="' + item.avatar + '" /></a></li>';
+        _domArray.push(_li);
+      });
+      $('#pe-thumbs').append(_domArray.join(''));
+      var Photo = (function() {
+        var $list = $('#pe-thumbs'),
+          $elems = $list.find('img'),
+          settings = {
+            maxScale: 1.4,
+            maxOpacity: 0.9,
+            minOpacity: Number($elems.css('opacity'))
+          },
+          init = function() {
+            settings.minScale = _getScaleVal() || 1;
+            _initEvents();
+          },
+          _getScaleVal = function() {
+            var st = window.getComputedStyle($elems.get(0), null),
+              tr = st.getPropertyValue("-webkit-transform") || st.getPropertyValue("-moz-transform") || st.getPropertyValue("-ms-transform") || st.getPropertyValue("-o-transform") || st.getPropertyValue("transform") || "fail...";
+            if (tr !== 'none') {
+              var values = tr.split('(')[1].split(')')[0].split(','),
+                a = values[0],
+                b = values[1],
+                c = values[2],
+                d = values[3];
+              return Math.sqrt(a * a + b * b);
+            }
+          },
+          _initEvents = function() {
+            $elems.on('proximity.Photo', {
+              max: 80,
+              throttle: 10,
+              fireOutOfBounds: true
+            }, function(event, proximity, distance) {
+              var $el = $(this),
+                $li = $el.closest('li'),
+                scaleVal = proximity * (settings.maxScale - settings.minScale) + settings.minScale,
+                scaleExp = 'scale(' + scaleVal + ')';
+              (scaleVal === settings.maxScale)
+                ? $li.css('z-index', 1000)
+                : $li.css('z-index', 1);
+              $el.css({
+                '-webkit-transform': scaleExp,
+                '-moz-transform': scaleExp,
+                '-o-transform': scaleExp,
+                '-ms-transform': scaleExp,
+                'transform': scaleExp,
+                'opacity': (proximity * (settings.maxOpacity - settings.minOpacity) + settings.minOpacity)
+              });
+            });
+          }
+        return {init: init};
+      })();
+      Photo.init();
+    }
+  }).fail(function(err) {
+    console.log(err);
   });
 });
 </script>
