@@ -108,6 +108,9 @@ body {
         method: 'POST',
         url: SMS_URL,
         dataType: 'json',
+        xhrFields: {
+          withCredentials: true
+        },
         headers: {
           'Content-Type':'application/json'
         },
