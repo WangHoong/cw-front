@@ -164,7 +164,7 @@ body {
     evt.preventDefault();
     var data = $form.serializeJson();
     if (data.number.match(phoneReg) == null || '' == $.trim(data.code) || '' == $.trim(data.nickname) || '' == $.trim(data.team_name)) {
-      alert('信息填写有误');
+      alert('请填写完整信息');
       return;
     }
     $.ajax({
