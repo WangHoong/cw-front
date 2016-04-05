@@ -69,10 +69,10 @@ body {
     <div class="form-group">
       <label>您是通过何种途径了解到DMC？</label>
       <select class="form-control" name="knew_way">
+        <option value="0">请选择</option>
         <option value="DMC小伙伴主动向您介绍">DMC小伙伴主动向您介绍</option>
         <option value="您的朋友已加入DMC，并向您推荐">您的朋友已加入DMC，并向您推荐</option>
         <option value="您的乐队队友向您推荐">您的乐队队友向您推荐</option>
-        <option value="其它">其它</option>
       </select>
     </div>
     <input type="submit" value="提交" class="sub btn primary-bg btn-block" />
@@ -141,7 +141,6 @@ body {
             $getCodeBtn.attr('disabled', 'disabled');
             $getCodeBtn.text(curCount + '秒后重发');
             msgTimer = setInterval(setRemainTime, 1000);
-            alert('发送成功，请在60秒内输入');
           } else if (res.status === 201 || res.status === 400) {
             $getCodeBtn.removeAttr('disabled');
             alert(res.message);
@@ -163,7 +162,7 @@ body {
   $submitBtn.click(function(evt) {
     evt.preventDefault();
     var data = $form.serializeJson();
-    if (data.number.match(phoneReg) == null || '' == $.trim(data.code) || '' == $.trim(data.nickname) || '' == $.trim(data.team_name)) {
+    if (data.number.match(phoneReg) == null || '' == $.trim(data.code) || '' == $.trim(data.nickname) || '' == $.trim(data.team_name) || data.knew_way == 0) {
       alert('请填写完整信息');
       return;
     }
@@ -195,10 +194,10 @@ body {
     if (curCount == 0) {
       clearInterval(msgTimer);
       $getCodeBtn.removeAttr('disabled');
-      $getCodeBtn.text('重发验证码');
+      $getCodeBtn.val('重发验证码');
     } else {
       curCount--;
-      $getCodeBtn.text(curCount + '秒后重发');
+      $getCodeBtn.val(curCount + '秒后重发');
     }
   }
 })(jQuery);
