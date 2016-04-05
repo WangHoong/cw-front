@@ -35,14 +35,14 @@ var Header = React.createClass({
   componentDidMount: function(){
     // dbg(this.getDOMNode());
     var searchTextInputStream = Kefir
-      .fromEvents(document.getElementById('searchbox_input'), 'keyup')
+      .fromEvent(document.getElementById('searchbox_input'), 'keyup')
       .map(function(e){ return e.target.value; })
       .skipDuplicates()
       .toProperty('');
     // searchTextInputStream.log('_searchTextInputStream');
 
     var searchButtonClickStream = Kefir
-      .fromEvents(document.getElementById('searchbox_btn'), 'click')
+      .fromEvent(document.getElementById('searchbox_btn'), 'click')
       .map(function(e){ return 1; })
       .skipDuplicates()
       .toProperty('');
