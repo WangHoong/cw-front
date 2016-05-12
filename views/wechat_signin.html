@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta charset="UTF-8">
+<title>DMC - 数字版权云服务</title>
+<meta name="keywords" content="DMC,topdmc,成为科技,音乐,版权,数字音乐,音乐版权云,数字音乐版权云服务,CaaS,Copyright As a Service" />
+<meta name="description" content="DMC依托先进技术构建音乐版权云服务，为音乐权利人提供内容自主授权、数据监测、盗版排查、法务合作和企划推广一站式服务" />
+<meta property="og:title" content="DMC - 数字版权云服务" />
+<meta property="og:type" content="Digital Music Cloud.Platform" />
+<meta property="og:url" content="http://www.topdmc.com" />
+<meta property="og:image" content="http://www.topdmc.com/images/logo2-new.png" />
+<meta property="og:description" content="DMC依托先进技术构建音乐版权云服务，为音乐权利人提供内容自主授权、数据监测、盗版排查、法务合作和企划推广一站式服务" />
+<meta property="og:locale" content="zh-CN" />
+<meta property="og:site_name" content="topdmc" />
+<link rel="shortcut icon" href="/images/favicon.ico">
+<link rel="icon" sizes="32x32" href="/images/favicon-32x32.png">
+<link rel="icon" sizes="96x96" href="/images/favicon-96x96.png">
+<link rel="icon" sizes="16x16" href="/images/favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="57x57" href="/images/apple-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="/images/apple-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="/images/apple-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="/images/apple-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="/images/apple-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="/images/apple-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="/images/apple-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="/images/apple-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-icon-180x180.png">
+<link rel="stylesheet" href="/css/mbs.css">
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+<link rel="stylesheet" href="/css/main.css">
+<style>
+body {
+  background: #f8f6f2;
+}
+.single-panel {
+  width: 400px;
+  margin: 5% auto 0;
+}
+.single-panel-header {
+  text-align: center;
+}
+.single-panel-header .single-panel-logo img {
+  width: 200px;
+}
+.single-panel-body {
+  margin-top: 30px;
+  overflow: hidden;
+}
+.wechat-single {
+  text-align: center;
+  overflow: hidden;
+}
+.wechat-single #qrcode {
+  margin: 0px auto 0 auto;
+  padding: 0px 50px 0 50px;
+  width: 80%;
+  height: 80%;
+}
+.signin-type {
+  font-size: 18px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+.signin-type .wechat-icon .fa {
+  color: #86cda1;
+  margin-right: 5px;
+}
+p {
+  color: #000;
+}
+
+</style>
+</head>
+
+<body>
+
+<main class="single-panel">
+  <div class="single-panel-header">
+    <a href="/" class="single-panel-logo"><img src="/images/logo2-new.png"></a>
+  </div>
+  <div class="single-panel-body">
+    <div class="signin-type">
+      <span class="wechat-icon"><i class="fa fa-weixin"></i>微信登录</span>
+    </div>
+    <div class="wechat-single">
+      <div id="qrcode"></div>
+      <p>请使用微信扫描二维码登录</p>
+      <p>"TopDMC"</p>
+    </div>
+  </div>
+</main>
+
+<script>
+(function(){'{{LOGIN_URL}}'.indexOf('login_demo') !== -1 && function(){window.location.href = '/login_demo'}()})();
+</script>
+<script src="http://cdn.bootcss.com/socket.io/1.4.6/socket.io.js"></script>
+<script>
+  window.onload = function() {
+    var socket = io.connect('');
+    socket.on('uid', function (data) {
+      console.log(data);
+      socket.emit('my other event', { my: 'data' });
+    });
+    var xhr = new XMLHttpRequest();
+    xhr.open('get', '{{LOGIN_URL}}', true);
+    xhr.onreadystatechange = function(event) {
+      if (xhr.readyState === 4) {
+        var qr = document.getElementById('qrcode');
+        qr.innerHTML = JSON.parse(xhr.responseText).svg;
+      }
+    }
+  xhr.send(null);
+}
+</script>
+</body>
+</html>
