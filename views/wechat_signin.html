@@ -98,13 +98,21 @@ p {
   window.onload = function() {
     var socket = io.connect('');
     socket.on('uid', function (data) {
-      console.log(data);
       socket.emit('my other event', { my: 'data' });
     });
-    var xhr = new XMLHttpRequest();
-    xhr.open('get', '{{LOGIN_URL}}', true);
+    var xhr;
+    try{xhr = new XMLHttpRequest();}
+    catch(e) {
+      var IEXHRVers =["Msxml3.XMLHTTP","Msxml2.XMLHTTP","Microsoft.XMLHTTP"];
+			for (var i=0,len=IEXHRVers.length;i< len;i++) {
+				try {xhr = new ActiveXObject(IEXHRVers[i]);}
+				catch(e) {continue;}
+			}
+    }
+    xhr.open('get', '{{QRCODE_URL}}', true);
     xhr.onreadystatechange = function(event) {
       if (xhr.readyState === 4) {
+        console.log(xhr.responseText);
         var qr = document.getElementById('qrcode');
         qr.innerHTML = JSON.parse(xhr.responseText).svg;
       }

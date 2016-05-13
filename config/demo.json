@@ -3,6 +3,7 @@
   "UPLOAD_FILE_URL": "https://demo.topdmc.com/api/v1",
   "PROXY_PREFIX": "https://demo.topdmc.com",
   "LOGIN_URL": "https://demo.topdmc.com/api/v1/login",
+  "QRCODE_URL": "http://localhost:4000/oauth/qrcode",
   "AGREEMENT_URL": "https://demo.topdmc.com/api/v1/agreement",
   "SWITCH_URL": "https://demo.topdmc.com/api/v1"
 }
