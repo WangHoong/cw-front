@@ -96,10 +96,6 @@ p {
 <script src="http://cdn.bootcss.com/socket.io/1.4.6/socket.io.js"></script>
 <script>
   window.onload = function() {
-    var socket = io.connect('');
-    socket.on('uid', function (data) {
-      socket.emit('my other event', { my: 'data' });
-    });
     var xhr;
     try{xhr = new XMLHttpRequest();}
     catch(e) {
@@ -112,12 +108,19 @@ p {
     xhr.open('get', '{{QRCODE_URL}}', true);
     xhr.onreadystatechange = function(event) {
       if (xhr.readyState === 4) {
-        console.log(xhr.responseText);
+        var response = JSON.parse(xhr.responseText);
         var qr = document.getElementById('qrcode');
-        qr.innerHTML = JSON.parse(xhr.responseText).svg;
+        qr.innerHTML = response.svg;
+
+        console.log("resp: ", response);
+        var socket = io(response.domain);
+        socket.on([response.uuid], function (data) {
+          console.log('socket data: ', data);
+          location.href = `${data.url}` + '?redirect_uri=http://baidu.com';
+        });
       }
     }
-  xhr.send(null);
+    xhr.send(null);
 }
 </script>
 </body>
