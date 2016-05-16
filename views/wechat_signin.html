@@ -91,11 +91,12 @@ p {
 </main>
 
 <script>
-(function(){'{{LOGIN_URL}}'.indexOf('login_demo') !== -1 && function(){window.location.href = '/login_demo'}()})();
+// (function(){'{{LOGIN_URL}}'.indexOf('login_demo') !== -1 && function(){window.location.href = '/login_demo'}()})();
 </script>
 <script src="http://cdn.bootcss.com/socket.io/1.4.6/socket.io.js"></script>
 <script>
   window.onload = function() {
+    var login_url = "{{LOGIN_URL}}";
     var xhr;
     try{xhr = new XMLHttpRequest();}
     catch(e) {
@@ -116,7 +117,7 @@ p {
         var socket = io(response.domain);
         socket.on([response.uuid], function (data) {
           console.log('socket data: ', data);
-          location.href = `${data.url}` + '?redirect_uri=http://baidu.com';
+          location.href = `${data.url}` + '?redirect_uri=' + login_url;
         });
       }
     }
