@@ -36,10 +36,7 @@ var Main = React.createClass({
     params.size = this.props.size;
     this.context.router.transitionTo('songs', {}, params);
 
-    SongActions.find({
-      size: this.props.size,
-      page: pageIndex + 1
-    });
+    SongActions.find(params)
   },
 
   handleShowDetailAction: function (e) {
