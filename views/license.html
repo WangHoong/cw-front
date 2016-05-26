@@ -209,11 +209,22 @@
         </li>
       </ol>
       <div class="authorize_action">
-        <a href="{{AGREEMENT_URL}}">同意</a>
+        <a id="agreement_btn" href="#">同意</a>
       </div>
     </div>
   </div>
-
+  <script>
+    var agreementBtn = document.getElementById('agreement_btn');
+    var clicked = false;
+    var agreementUrl = '{{AGREEMENT_URL}}';
+    agreementBtn.onclick = function(evt) {
+      evt.preventDefault();
+      if (clicked == false) {
+        clicked = true;
+        document.location.href = agreementUrl;
+      }
+    };
+  </script>
 </body>
 
 </html>
