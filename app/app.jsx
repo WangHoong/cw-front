@@ -29,12 +29,14 @@ var CP = require('./components/Main/CP.jsx');
 var SP = require('./components/Main/SP.jsx');
 // LargeFileUploader
 var LargeFileUploader = require('app/components/Common/LargeFileUploader.jsx');
-var {Route, RouteHandler, DefaultRoute, NotFoundRoute} = Router;
+var {Route, RouteHandler, DefaultRoute, NotFoundRoute, Redirect} = Router;
 var classNames = require('classnames');
 
 var Loader = require('app/components/Common/Loader.jsx');
 var axios = require('axios');
 var Settings = require('./components/Settings/Main.jsx');
+var UserSwitch = require('./components/Settings/UserSwitch.jsx')
+var CreateInviteLink = require('./components/Settings/CreateInviteLink.jsx')
 var OrderInfo = require('./components/OrderInfo/OrderInfo.jsx');
 var WeekTopSongs = require('./components/TopSongs/Main.jsx');
 var Withdraw = require('./components/Withdraw/Main.jsx');
