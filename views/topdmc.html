@@ -347,7 +347,7 @@ $(function() {
     lang = lang.substr(0, 2);
     if (lang !== 'zh') {
       var _r = confirm('The language of your browser is Chinese, would u like to switch to the EN Version?');
-      if (r === true) {
+      if (_r === true) {
         Cookies.set('_l', 'en', 365);
         document.location.href = protocal + 'global.topdmc.com';
       }
