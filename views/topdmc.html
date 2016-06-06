@@ -216,6 +216,7 @@ body{font-family: 'Lantinghei SC', 'Open Sans', Arial, 'Hiragino Sans GB', 'Micr
 </main>
 
 <script src="/js/jquery.min.js"></script>
+<script src="http://cdn.bootcss.com/js-cookie/2.1.2/js.cookie.min.js"></script>
 <script src="/js/common.js"></script>
 <script>
 $(function() {
@@ -339,6 +340,19 @@ $(function() {
   }).fail(function(err) {
     console.log(err);
   });
+
+  var _host = document.location.host;
+  if (_host.indexOf('global') == -1) {
+    var lang = navigator.browserLanguage ? navigator.browserLanguage : navigator.language;
+    lang = lang.substr(0, 2);
+    if (lang !== 'zh') {
+      var _r = confirm('The language of your browser is Chinese, would u like to switch to the EN Version?');
+      if (r === true) {
+        Cookies.set('_l', 'en', 365);
+        document.location.href = protocal + 'global.topdmc.com';
+      }
+    }
+  }
 });
 </script>
 <script>

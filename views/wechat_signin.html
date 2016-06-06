@@ -101,7 +101,7 @@ p {
     try{xhr = new XMLHttpRequest();}
     catch(e) {
       var IEXHRVers =["Msxml3.XMLHTTP","Msxml2.XMLHTTP","Microsoft.XMLHTTP"];
-			for (var i=0,len=IEXHRVers.length;i< len;i++) {
+			for (var i = 0,len = IEXHRVers.length;i < len;i++) {
 				try {xhr = new ActiveXObject(IEXHRVers[i]);}
 				catch(e) {continue;}
 			}
@@ -112,12 +112,9 @@ p {
         var response = JSON.parse(xhr.responseText);
         var qr = document.getElementById('qrcode');
         qr.innerHTML = response.svg;
-
-        console.log("resp: ", response);
         var socket = io(response.domain);
         socket.on([response.uuid], function (data) {
-          console.log('socket data: ', data);
-          location.href = `${data.url}` + '?redirect_uri=' + login_url;
+          location.href = data.url + '?redirect_uri=' + login_url;
         });
       }
     }
