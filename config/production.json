@@ -4,5 +4,5 @@
   "LOGIN_URL": "https://api.topdmc.com/api/v1/login",
   "AGREEMENT_URL": "https://api.topdmc.com/api/v1/agreement",
   "SWITCH_URL": "https://api.topdmc.com/api/v1",
-  "QRCODE_URL": "https://oauth.topdmc.com/oauth/qrcode",
+  "QRCODE_URL": "https://oauth.topdmc.com/oauth/qrcode"
 }
