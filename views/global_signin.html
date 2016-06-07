@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="zh-cn">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>DMC - 数字版权云服务</title>
+<title>DMC - Digital Music Cloud</title>
 <meta name="keywords" content="DMC,topdmc,成为科技,音乐,版权,数字音乐,音乐版权云,数字音乐版权云服务,CaaS,Copyright As a Service" />
 <meta name="description" content="DMC依托先进技术构建音乐版权云服务，为音乐权利人提供内容自主授权、数据监测、盗版排查、法务合作和企划推广一站式服务" />
 <meta property="og:title" content="DMC - 数字版权云服务" />
@@ -10,7 +10,7 @@
 <meta property="og:url" content="http://www.topdmc.com" />
 <meta property="og:image" content="http://www.topdmc.com/images/logo2-new.png" />
 <meta property="og:description" content="DMC依托先进技术构建音乐版权云服务，为音乐权利人提供内容自主授权、数据监测、盗版排查、法务合作和企划推广一站式服务" />
-<meta property="og:locale" content="zh-CN" />
+<meta property="og:locale" content="en" />
 <meta property="og:site_name" content="topdmc" />
 <link rel="shortcut icon" href="/images/favicon.ico">
 <link rel="icon" sizes="32x32" href="/images/favicon-32x32.png">
@@ -28,44 +28,90 @@
 <link rel="stylesheet" href="/css/mbs.css">
 <link rel="stylesheet" href="/css/main.css">
 <style>
+html, body {
+  height: 100%;
+}
 body {
-  background: #fff;
+  background: none;
 }
 </style>
 </head>
 <body>
-<section>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>#</th>
-        <th>名字</th>
-        <th>添加时间</th>
-        <th>操作</th>
-      </tr>
-    </thead>
-    <tbody id="cp_list"></tbody>
-  </table>
+<div id="particles-js"></div>
+<section class="doorbell-wrap">
+  <div class="header-logo">
+    <img src="/images/logo.png" />
+  </div>
+  <form id="visitor_form">
+    <div class="form-group">
+      <label>Account name</label>
+      <input name="accountName" type="tel" class="form-control" placeholder="Account name">
+    </div>
+    <div class="form-group">
+      <label>Password</label>
+      <input name="password" type="password" class="form-control" placeholder="Password">
+    </div>
+    <input type="submit" value="Log In" class="login btn primary-bg btn-block" />
+    <div class="tips">or</div>
+    <a href="/signup" class="btn primary-bg btn-block">Sign Up</a>
+  </form>
 </section>
 <script src="/js/jquery.min.js"></script>
+<script src="/js/common.js"></script>
 <script>
-var _url = '{{API_PREFIX}}' + '/companies';
-$.ajax({
-  url: _url,
-  method: 'GET',
-  xhrFields: {
-    withCredentials: true
-  },
-  success: function(res) {
-    if (res.data.length != 0) {
-      var arr = [];
-      $(res.data).each(function(idx, item) {
-        arr.push('<tr><td>' + item.id + '</td><td>' + item.name + '</td><td>' + item.added_time + '</td><td><a class="btn btn-default" href="{{SWITCH_URL}}/companies/' + item.id + '/transformers">切换</a></td></tr>');
-      });
-      $('#cp_list').append(arr.join(''));
+(function($, undefined) {
+  particlesJS.load('particles-js', '/config/doorbell_pConfig.json');
+
+  $.fn.serializeJson = function() {
+    var serializeObj = {};
+    $(this.serializeArray()).each(function () {
+      serializeObj[this.name]= this.value;
+    });
+    return serializeObj;
+  };
+
+  var $loginBtn = $('.login'),
+      $form = $('#visitor_form');
+
+  var API_URL = '{{API_PREFIX}}',
+      // login url
+      VERIFY_URL = API_URL + '/sms/verify';
+
+  $loginBtn.click(function(e) {
+    e.preventDefault();
+    var data = $form.serializeJson();
+    if ( '' === $.trim(data.accountName) ) {
+      alert('Enter your account name');
+      return;
     }
-  }
-});
+    if ( '' === $.trim(data.password) ) {
+      alert('Enter your password');
+      return;
+    }
+    $.ajax({
+      method: 'POST',
+      url: VERIFY_URL,
+      dataType: 'json',
+      headers: {
+        'Content-Type':'application/json'
+      },
+      xhrFields: {
+        withCredentials: true
+      },
+      data: JSON.stringify(data),
+      success: function(res) {
+        if (res.status === 200) {
+          // redirect login success url
+        } else {
+          // some error message
+        }
+      },
+      error: function() {
+        alert('Server error. Please try again.');
+      }
+    });
+  });
+})(jQuery);
 </script>
 </body>
 </html>

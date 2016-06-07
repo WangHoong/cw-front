@@ -2,43 +2,71 @@ var React = require('react');
 var Reflux = require('reflux');
 var SettingsStore = require('../../stores/SettingsStore');
 var SettingsActions = require('../../actions/SettingsActions');
+var UserSwitch = require('./UserSwitch.jsx')
+var CreateInviteLink = require('./CreateInviteLink.jsx')
 
-var Item = React.createClass({
-  onClick: function(){
-  },
-  render: function(){
-    //var url='http://dev.api.topdmc.cn/api/v1/companies/'+this.props.data.id+'/inspect';
-    var url = `${window.DMC_OPT.API_PREFIX}/companies/${this.props.data.id}/inspect`;
-    return(
-      <li className='ce-p'><div className='ce-name'>{this.props.data.name}</div><a href={url}><div className='ce-bt'><button type='button' onClick={this.onClick}>{window.lang.sw}</button></div></a></li>
-    )
-  }
-})
+var NAVSWITCH = 'switch'
+var NAVCILINK = 'cilink'
+
+// var Nav = React.createClass({
+//
+//   render: function () {
+//     return (
+//       <div>
+//         <ul>
+//           <li><a href='javascript:void(0)' >User Switch</a></li>
+//           <li><a href='javascript:void(0)' >Create Invite Link</a></li>
+//         </ul>
+//       </div>
+//     )
+//   }
+// })
 
 var Main = React.createClass({
   mixins: [Reflux.connect(SettingsStore, 'companies')],
+  getInitialState: function() {
+    return {
+      navAt: NAVSWITCH
+    };
+  },
   componentDidMount: function () {
-    SettingsActions.find()
+    // SettingsActions.find()
+  },
+  navAction: function (nav) {
+    var that = this
+    return function () {
+      that.setState({
+        navAt: nav
+      })
+    }
   },
   render: function(){
-    if(this.state.companies.loaded){
-      // console.log(this.state.companies);
-      return(
-        <div className='changeCompany'>
-          <h1 className='ce-h1'>{window.lang.us}</h1>
-          { this.state.companies.data.data.data.map(function(track,i){
-            return <Item data={track}  key={i}/>
-          }) }
-        </div>
-      )
-    }else {
-      return(
-        <div className='changeCompany'>
-          {window.lang.nodata}
-        </div>
-      )
+    var nav = (
+      <nav className="nav navbar navbar-default">
+      <div className="collapse navbar-collapse" style={{background: "white"}}>
+        <ul className="nav navbar-nav">
+          <li style={this.state.navAt === NAVSWITCH ? {fontWeight:"bold"} : {}}><a href='javascript:void(0)' onClick={this.navAction(NAVSWITCH)} >User Switch</a></li>
+          <li style={this.state.navAt === NAVCILINK ? {fontWeight:"bold"} : {}}><a href='javascript:void(0)' onClick={this.navAction(NAVCILINK)} >Create Invite Link</a></li>
+        </ul>
+      </div>
+      </nav>
+    )
+    var hasPower = true
+    var settingBody;
+    if ( this.state.navAt === NAVSWITCH ) {
+      settingBody = <UserSwitch />
+    } else if ( this.state.navAt === NAVCILINK ) {
+      settingBody = <CreateInviteLink />
+    } else {
+      settingBody = <UserSwitch />
     }
 
+    return (
+      <div>
+        { hasPower && nav }
+        { settingBody }
+      </div>
+    )
   }
 })
 module.exports = Main;

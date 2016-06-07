@@ -1,16 +1,5 @@
-.doorbell-bg {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  top: 0;
-  background-image: url('../images/door_bg.jpg');
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
 #particles-js {
-  position: absolute;
+  position: fixed;
   width: 100%;
   height: 100%;
   background-color: #2472b4;
@@ -18,88 +7,50 @@
   background-repeat: no-repeat;
   background-size: cover;
   background-position: 50% 50%;
+  z-index: -1;
+  left: 0;
+  top: 0;
 }
 
 .doorbell-wrap {
-  z-index: 2;
-  width: 380px;
-  height: 480px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  margin: -240px 0 0 -190px;
+  width: 400px;
+  margin: 100px auto;
+  padding: 20px;
   background-color: #fff;
   border-radius: 3px;
-  box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.2);
-  .header {
-    margin-top: 10px;
+  box-shadow: 0 2px 3px rgba(0, 0, 0, .4);
+  .header-logo {
     margin-bottom: 10px;
-    h1 {
+    text-align: center;
+    img {
       width: 100px;
-      height: 100px;
-      margin-left: auto;
-      margin-right: auto;
-      background-image: url('../images/logo.png');
-      background-repeat: no-repeat;
-      background-size: cover;
-      text-indent: -9999em;
     }
   }
-  .main {
-    margin-left: 25px;
-    margin-right: 25px;
-    label {
-      span {
-        color: #d54f38;
-      }
+  .input-group-addon {
+    padding: 0;
+    border: 0;
+    .btn {
+      height: 34px;
+      border-bottom-left-radius: 0;
+      border-top-left-radius: 0;
     }
-    input {
-      transition: none !important;
-      box-shadow: none !important;
-      border: 1px solid #dfe1e8;
-      height: 40px;
-      &:focus {
-        border-color: #dfe1e8;
-        box-shadow: none !important;
-      }
+  }
+  .form-control {
+    box-shadow: none;
+  }
+  .code-input-wrap {
+    .form-control {
+      border-right: 0;
     }
-    .input-flex {
-      border: 1px solid #dfe1e8;
-      border-radius: 4px;
-      display: flex;
-      input {
-        border: 0;
-        flex: 1;
-      }
-      button {
-        display: block;
-        width: 100px;
-        height: 40px;
-        background-color: #01BCFF;
-        color: #fff;
-        border-radius: 0;
-        padding: 0;
-        line-height: 40px;
-        &:disabled {
-          cursor: default;
-          background-color: #cecece;
-        }
-      }
-    }
-    .submit-btn {
-      display: block;
-      margin-top: 20px;
-      background-color: #01BCFF;
-      color: #fff;
-      height: 40px;
-      border: 0;
-      padding: 0;
-      line-height: 40px;
-    }
-    .tips {
-      margin-top: 20px;
-      text-align: center;
-      color: #d54f38;
-    }
+  }
+  .primary-bg {
+    background-color: #01BCFF;
+    color: #fff;
+  }
+  .sub {
+    border-color: #01BCFF;
+  }
+  .tips {
+    margin-top: 10px;
   }
 }
