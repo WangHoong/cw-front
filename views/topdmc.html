@@ -33,11 +33,11 @@ ol, ul {list-style: none;}
 body, html{height: 100%;}
 main{height: 100%;}
 body{font-family: 'Lantinghei SC', 'Open Sans', Arial, 'Hiragino Sans GB', 'Microsoft YaHei', '微软雅黑', 'STHeiti', 'WenQuanYi Micro Hei', SimSun, sans-serif;font-size: 14px;line-height: 1.5;font-size: 14px;-webkit-font-smoothing: antialiased;}
-.nav{position: fixed;width: 100%;top: 0;left: 0;height: 60px;background-color: #fff;z-index: 9999;box-shadow: 0 1px 2px rgba(0, 0, 0, .2);}
-.nav .logo{margin: 10px 0 0 10px;}
-.nav .logo img{height: 40px;}
-.nav .tab{position: absolute;right: 10px;top: 0;padding: 0;margin: 0;list-style: none;}
-.nav .tab li{list-style: none;padding: 0;margin: 0 10px;display: inline-block;height: 60px;line-height: 60px;}
+.navi{position: fixed;width: 100%;top: 0;left: 0;height: 60px;background-color: #fff;z-index: 9999;box-shadow: 0 1px 2px rgba(0, 0, 0, .2);}
+.navi .logo{margin: 10px 0 0 10px;}
+.navi .logo img{height: 40px;}
+.navi .tab{position: absolute;right: 10px;top: 0;padding: 0;margin: 0;list-style: none;}
+.navi .tab li{list-style: none;padding: 0;margin: 0 10px;display: inline-block;height: 60px;line-height: 60px;}
 .header{background: url('/images/topdmc-bk.jpg') no-repeat center center #1a1a1a;background-size: cover;color: #fff;height: 100%;overflow: hidden;padding-top: 110px;position: relative;}
 .header .header-inner{position: absolute;left: 0;top: 50%;width: 100%;margin-top: -200px;}
 .header .primary-slogan{text-align: center;}
@@ -110,18 +110,32 @@ body{font-family: 'Lantinghei SC', 'Open Sans', Arial, 'Hiragino Sans GB', 'Micr
 .h-info .h-info-s {margin-right: 20px;}
 .h-info .h-info-s .fa {width: 30px;}
 .sec6 h2 {width: 910px; margin: 0 auto; margin-top: 20px; padding-left: 10px; border-left: 4px solid #000; color: #fff;}
+.language {display: none}
 </style>
 </head>
 <body>
 <h1 style="position: absolute;left: -99999px;">音乐版权云服务</h1>
-<nav class="nav">
-  <div class="logo"><a href="/"><img src="/images/logo9.png"></a></div>
-  <ul class="tab">
-    <li><a href="/about">{{lang.Aboutus}}</a></li>
-    <li><a href="/careers">{{lang.DMCCareers}}</a></li>
-    <li><a href="/contactus">{{lang.Contactus}}</a></li>
-  </ul>
+<nav class="navi">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <div class="logo"><a href="/"><img src="/images/logo9.png"></a></div>
+    </div>
+    <ul class="nav navbar-nav navbar-right">
+      <li class="dropdown">
+        <a class="dropdown-toggle"></a>
+        <ul class="language">
+          <li><a class="cn" href="https://www.topdmc.com">简体中文</a></li>
+          <li><a class="us" href="https://global.topdmc.com">English</a></li>
+        </ul>
+      </li>
+      <li><a href="/about">{{lang.Aboutus}}</a></li>
+      <li><a href="/careers">{{lang.DMCCareers}}</a></li>
+      <li><a href="/contactus">{{lang.Contactus}}</a></li>
+    </ul>
+  </div>
 </nav>
+
 <main>
   <header class="header">
     <div class="header-inner">
@@ -341,21 +355,57 @@ $(function() {
     console.log(err);
   });
 
-  var _host = document.location.host;
-  if (_host.indexOf('global') == -1) {
-    if ( Cookies.get('_l') !== 'zh' ) {
-      var lang = navigator.browserLanguage ? navigator.browserLanguage : navigator.language;
-      lang = lang.substr(0, 2);
-      if (lang !== 'zh') {
-        var _r = confirm('The language of your browser is Chinese, would u like to switch to the EN Version?');
-        if (_r === true) {
-          Cookies.set('_l', 'en', 365);
-          document.location.href = document.location.protocol + '//global.topdmc.com';
-        }
-      }
-    }
+  if(Cookies.get('_l') === undefined) {
+    $('.dropdown-toggle').text('Language');
+  } else if (Cookies.get('_l') === 'zh') {
+    $('.dropdown-toggle').text('选择语言');
+  } else {
+    $('.dropdown-toggle').text('Language');
+  }
+  $('.dropdown-toggle').append(' <span class="caret"></span>');
+
+  // var _host = document.location.host;
+  // if (_host.indexOf('global') == -1) {
+  //   if ( Cookies.get('_l') !== 'zh' ) {
+  //     var lang = navigator.browserLanguage ? navigator.browserLanguage : navigator.language;
+  //     lang = lang.substr(0, 2);
+  //     if (lang !== 'zh') {
+  //       var _r = confirm('The language of your browser is Chinese, would u like to switch to the EN Version?');
+  //       if (_r === true) {
+  //         Cookies.set('_l', 'en', 365);
+  //         document.location.href = document.location.protocol + '//global.topdmc.com';
+  //       }
+  //     }
+  //   }
+  // }
+
+});
+
+$('.dropdown-toggle').on('click', function(event) {
+  event.preventDefault();
+  /* Act on the event */
+  if($('.language').is(":hidden")){
+    $(".language").show();
+  } else {
+    $(".language").hide();
   }
 });
+
+$('.cn').on('click', function(event) {
+  event.preventDefault();
+  /* Act on the event */
+  Cookies.set('_l', 'zh', 365);
+  document.location.href = $(this).attr('href');
+});
+
+$('.us').on('click', function(event) {
+  event.preventDefault();
+  /* Act on the event */
+  Cookies.set('_l', 'en', 365);
+  document.location.href = $(this).attr('href');
+});
+
+
 </script>
 <script>
 (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
