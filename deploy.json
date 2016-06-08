@@ -28,7 +28,7 @@
     "global": {
       "user": "ec2-user",
       "host": ["52.58.125.207"],
-      "ref": "origin/master",
+      "ref": "origin/develop",
       "repo": "git@deploy_production_key:topdmc/cw-front.git",
       "path": "/srv/dmc/front",
       "post-deploy": "npm install && bower install && npm run build && pm2 startOrRestart deploy.json --env production",
