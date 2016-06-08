@@ -168,6 +168,7 @@ var StartPage = React.createClass({
         }
         window.account_type = window.currentUser.account_type;
         window.status = window.currentUser.status;
+        window.has_invitation = window.currentUser.has_invitation;
         self.setState({
           loaded: true
         });

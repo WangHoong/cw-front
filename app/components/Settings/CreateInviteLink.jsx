@@ -2,6 +2,7 @@ var React = require('react');
 var Reflux = require('reflux');
 var axios = require('axios');
 var Pager = require('../Common/Pager.jsx');
+var APIHelper = require('./utils/APIHelper').APIHelper;
 var CreateInviteLink = React.createClass({
   contextTypes: {
       router: React.PropTypes.func
@@ -20,7 +21,7 @@ var CreateInviteLink = React.createClass({
   },
   getInviteLinks: function (PAGE) {
     var that = this
-    axios.get('http://54.223.222.214/api/v1/invitation/list/1?page=' + PAGE)
+    axios.get(`${APIHelper.getPrefix()}/api/v1/invitation/list?page=${PAGE}`, {withCredentials: true})
       .then(function (response) {
         that.setState({
           links: response.data.data.items,
@@ -44,10 +45,12 @@ var CreateInviteLink = React.createClass({
   },
   getInvitationLink: function () {
     var that = this
-    axios.post('http://54.223.222.214/api/v1/invitation', {
+    var APIHelper = require('./utils/APIHelper').APIHelper;
+    axios.post(`${APIHelper.getPrefix()}/api/v1/invitation`, {
       company_name: "testname",
       company_id: 1,
-    }).then(function (response) {
+
+    }, { withCredentials: true }).then(function (response) {
       console.log(response.data);
       that.setState({
         links: that.state.links,

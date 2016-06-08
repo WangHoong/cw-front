@@ -44,12 +44,16 @@ body {
   </div>
   <form id="visitor_form">
     <div class="form-group">
-      <label>Email</label>
-      <input name="email" type="email" class="tel-input form-control" placeholder="Email">
+      <label>Company name</label>
+      <input name="company_name" type="text" class="form-control" placeholder="Company name">
     </div>
     <div class="form-group">
       <label>Account name</label>
-      <input name="accountName" type="text" class="form-control" placeholder="Account name">
+      <input name="name" type="text" class="form-control" placeholder="Account name">
+    </div>
+    <div class="form-group">
+      <label>Email</label>
+      <input name="email" type="email" class="tel-input form-control" placeholder="Email">
     </div>
     <div class="form-group">
       <label>Password</label>
@@ -57,7 +61,7 @@ body {
     </div>
     <div class="form-group">
       <label>Invitation code</label>
-      <input name="invitationCode" type="text" class="tel-input form-control" placeholder="Invitation code">
+      <input name="code" type="text" class="tel-input form-control" placeholder="Invitation code">
     </div>
     <input type="submit" value="Sign Up" class="signup btn primary-bg btn-block" />
   </form>
@@ -80,18 +84,21 @@ body {
       $form = $('#visitor_form');
 
   var API_URL = '{{API_PREFIX}}',
-      // signup url
-      SIGNUP_URL = API_URL + '/sms/verify';
+      SIGNUP_URL = `${API_URL}/api/v1/globalsignup`;
 
   $signupBtn.click(function(e) {
     e.preventDefault();
     var data = $form.serializeJson();
 
+    if ( '' === $.trim(data.company_name) ) {
+      alert('Enter your company name');
+      return;
+    }
     if ( '' === $.trim(data.email) ) {
       alert('Enter your email');
       return;
     }
-    if ( '' === $.trim(data.accountName) ) {
+    if ( '' === $.trim(data.name) ) {
       alert('Enter your account name');
       return;
     }
@@ -99,7 +106,7 @@ body {
       alert('Enter your password');
       return;
     }
-    if ( '' === $.trim(data.invitationCode) ) {
+    if ( '' === $.trim(data.code) ) {
       alert('Enter your invitation code');
       return;
     }
@@ -117,7 +124,7 @@ body {
       data: JSON.stringify(data),
       success: function(res) {
         if (res.status === 200) {
-          // redirect login url
+          location.href = res.data.redirect_url
         } else {
           // handle error message
         }
