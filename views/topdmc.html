@@ -110,15 +110,36 @@ body{font-family: 'Lantinghei SC', 'Open Sans', Arial, 'Hiragino Sans GB', 'Micr
 .h-info .h-info-s {margin-right: 20px;}
 .h-info .h-info-s .fa {width: 30px;}
 .sec6 h2 {width: 910px; margin: 0 auto; margin-top: 20px; padding-left: 10px; border-left: 4px solid #000; color: #fff;}
-.language {display: none}
+.flag-icon {
+  position: relative;
+  display: inline-block;
+  width: 25px;
+  line-height: 20px;
+  background-repeat: no-repeat;
+  background-position: 50%;
+  -webkit-background-size: contain;
+  background-size: contain;
+}
+.dropdown-menu .flag-icon {
+  margin-right: 10px;
+}
+.flag-icon-cn {
+  background-image: url("../images/cn.svg");
+}
+.flag-icon-gb {
+  background-image: url("../images/gb.svg");
+}
+.flag-icon:before {
+  content: "\00a0"
+}
 </style>
 </head>
 <body>
 <h1 style="position: absolute;left: -99999px;">音乐版权云服务</h1>
-<nav class="navi">
-  <div class="container-fluid">
+<!-- <nav class="navi">
+  <div class="container-fluid"> -->
     <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
+    <!-- <div class="navbar-header">
       <div class="logo"><a href="/"><img src="/images/logo9.png"></a></div>
     </div>
     <ul class="nav navbar-nav navbar-right">
@@ -133,6 +154,29 @@ body{font-family: 'Lantinghei SC', 'Open Sans', Arial, 'Hiragino Sans GB', 'Micr
       <li><a href="/careers">{{lang.DMCCareers}}</a></li>
       <li><a href="/contactus">{{lang.Contactus}}</a></li>
     </ul>
+  </div>
+</nav> -->
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">
+        <img alt="Topdmc" src="/images/logo9.png" height="26">
+      </a>
+    </div>
+    <div class="collapse navbar-collapse">
+      <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle language-text"></a>
+          <ul class="dropdown-menu">
+            <li><a href="https://www.topdmc.com"><span class="flag-icon flag-icon-cn"></span>简体中文</a></li>
+            <li><a href="https://global.topdmc.com"><span class="flag-icon flag-icon-gb"></span>English</a></li>
+          </ul>
+        </li>
+        <li><a href="/about">{{lang.Aboutus}}</a></li>
+        <li><a href="/careers">{{lang.DMCCareers}}</a></li>
+        <li><a href="/contactus">{{lang.Contactus}}</a></li>
+      </ul>
+    </div>
   </div>
 </nav>
 
@@ -355,56 +399,24 @@ $(function() {
     console.log(err);
   });
 
-  if(Cookies.get('_l') === undefined) {
-    $('.dropdown-toggle').text('Language');
-  } else if (Cookies.get('_l') === 'zh') {
-    $('.dropdown-toggle').text('选择语言');
+  var __host = document.location.host;
+  if (__host.indexOf('global') !== -1) {
+    $('.language-text').html('<span class="flag-icon flag-icon-gb" style="margin-right: 5px;"></span><English <span class="caret"></span>');
   } else {
-    $('.dropdown-toggle').text('Language');
+    $('.language-text').html('<span class="flag-icon flag-icon-cn" style="margin-right: 5px;"></span>简体中文 <span class="caret"></span>');
   }
-  $('.dropdown-toggle').append(' <span class="caret"></span>');
 
-  // var _host = document.location.host;
-  // if (_host.indexOf('global') == -1) {
-  //   if ( Cookies.get('_l') !== 'zh' ) {
-  //     var lang = navigator.browserLanguage ? navigator.browserLanguage : navigator.language;
-  //     lang = lang.substr(0, 2);
-  //     if (lang !== 'zh') {
-  //       var _r = confirm('The language of your browser is Chinese, would u like to switch to the EN Version?');
-  //       if (_r === true) {
-  //         Cookies.set('_l', 'en', 365);
-  //         document.location.href = document.location.protocol + '//global.topdmc.com';
-  //       }
-  //     }
-  //   }
-  // }
+  $('.dropdown-toggle').on('click', function(evt) {
+    evt.preventDefault();
+    var $dropdownMenu = $(this).siblings('.dropdown-menu');
+    if ($dropdownMenu.is(':hidden')) {
+      $dropdownMenu.show();
+    } else {
+      $dropdownMenu.hide();
+    }
+  });
 
 });
-
-$('.dropdown-toggle').on('click', function(event) {
-  event.preventDefault();
-  /* Act on the event */
-  if($('.language').is(":hidden")){
-    $(".language").show();
-  } else {
-    $(".language").hide();
-  }
-});
-
-$('.cn').on('click', function(event) {
-  event.preventDefault();
-  /* Act on the event */
-  Cookies.set('_l', 'zh', 365);
-  document.location.href = $(this).attr('href');
-});
-
-$('.us').on('click', function(event) {
-  event.preventDefault();
-  /* Act on the event */
-  Cookies.set('_l', 'en', 365);
-  document.location.href = $(this).attr('href');
-});
-
 
 </script>
 <script>
