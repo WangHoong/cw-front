@@ -15,7 +15,7 @@ app.use(_static(path.join(__dirname, '/build'), {}));
 
 app.use(function *(next) {
   var __hostname = this.request.hostname;
-  if (__hostname.indexOf('global') == -1) {
+  if (__hostname.indexOf('global') !== -1) {
     this.__language = 'en';
   } else {
     this.__language = 'zh';
