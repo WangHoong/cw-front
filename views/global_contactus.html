@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="zh-cn">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>DMC - 联系我们</title>
+<title>DMC - Contact us</title>
 <meta name="keywords" content="DMC,topdmc,成为科技,音乐,版权,数字音乐,音乐版权云,数字音乐版权云服务,CaaS,Copyright As a Service" />
 <meta name="description" content="DMC依托先进技术构建音乐版权云服务，为音乐权利人提供内容自主授权、数据监测、盗版排查、法务合作和企划推广一站式服务" />
 <meta property="og:title" content="DMC - 联系我们" />
@@ -34,6 +34,7 @@ main{height: 100%;}
 body{font-family: 'Lantinghei SC', 'Open Sans', Arial, 'Hiragino Sans GB', 'Microsoft YaHei', '微软雅黑', 'STHeiti', 'WenQuanYi Micro Hei', SimSun, sans-serif; font-size: 14px; line-height: 1.5; font-size: 14px; -webkit-font-smoothing: antialiased;}
 .footer{width: 1000px; margin: 0 auto;}
 .footer p{margin: 0;padding: 10px 0;}
+
 .o-s-c {padding-top: 60px; margin}
 .o-s-c .o-s-c-i {width: 1000px; margin: 0 auto;}
 .page-main .page-header {border-bottom: 0;}
@@ -64,6 +65,23 @@ body{font-family: 'Lantinghei SC', 'Open Sans', Arial, 'Hiragino Sans GB', 'Micr
   content: "\00a0"
 }
 </style>
+<script src="http://maps.googleapis.com/maps/api/js"></script>
+<script>
+function initialize() {
+  var mapProp = {
+    center:new google.maps.LatLng(39.914030,116.436100),
+    zoom:17,
+    mapTypeId:google.maps.MapTypeId.ROADMAP
+  };
+  var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
+  var marker=new google.maps.Marker({
+    position:mapProp.center,
+  });
+
+  marker.setMap(map);
+}
+google.maps.event.addDomListener(window, 'load', initialize);
+</script>
 </head>
 <body>
 <h1 style="position: absolute;left: -99999px;">音乐版权云服务</h1>
@@ -84,7 +102,6 @@ body{font-family: 'Lantinghei SC', 'Open Sans', Arial, 'Hiragino Sans GB', 'Micr
           </ul>
         </li>
         <li><a href="/about">{{lang.Aboutus}}</a></li>
-        <li><a href="/careers">{{lang.DMCCareers}}</a></li>
         <li><a href="/contactus">{{lang.Contactus}}</a></li>
       </ul>
     </div>
@@ -95,26 +112,29 @@ body{font-family: 'Lantinghei SC', 'Open Sans', Arial, 'Hiragino Sans GB', 'Micr
     <div class="o-s-c-i">
       <div class="page-main">
         <div class="page-header">
-          <h1 class="page-title">{{lang.Contactus}}</h1>
+          <h1 class="page-title">Contact Us</h1>
         </div>
         <div class="page-content">
           <div class="panel">
             <div class="panel-heading" style="padding-top: 15px;">
-              <h3 class="panel-title">北京成为科技有限公司</h3>
+              <h3 class="panel-title">If there’s any problem, please contact us.</h3>
             </div>
             <div class="panel-body">
               <p>
-                <div>电话：010—59306967</div>
-                <div>Email：cuiyabo@topdmc.com</div>
-                <div>网址：http：//www.topdmc.com/</div>
-                <div>地址：北京市朝阳区雅宝路12号华声国际大厦1201</div>
-                <div>微信公众号：DMCBQPT(可扫描下方二维码添加即可)</div>
+                <div>Tel: 010—59306967</div>
+                <div>Email: cairunjia@topdmc.com</div>
+                <div>China Website: www.topdmc.com</div>
+                <div>Addrss: 1201, NO12, Yabao. Rd, Chaoyang Dist, Beijing City, China.</div>
               </p>
-              <p><img src="images/w_qrcode.png" width="200" height="200"></p>
             </div>
           </div>
         </div>
       </div>
+    </div>
+  </section>
+  <section class="o-s-c">
+    <div class="o-s-c-i" style="width:500px">
+      <div id="googleMap" style="width:500px;height:380px;"></div>
     </div>
   </section>
   <footer class="footer">

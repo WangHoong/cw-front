@@ -126,7 +126,7 @@ var App = React.createClass({
               <a className='mr10' onClick={this.setLanguage.bind(this, 'en')}>English</a>
               <a onClick={this.setLanguage.bind(this, 'zh')}>中文</a>
             </p>
-            <p className='copyright'>Copyright &copy; 2015 北京成为科技有限公司 京ICP备15018286号</p>
+            <p className='copyright'>Copyright &copy; 2016 北京成为科技有限公司 京ICP备15018286号</p>
           </footer>
         </section>
       </div>
