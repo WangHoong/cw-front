@@ -41,8 +41,6 @@ var OrderInfo = require('./components/OrderInfo/OrderInfo.jsx');
 var WeekTopSongs = require('./components/TopSongs/Main.jsx');
 var Withdraw = require('./components/Withdraw/Main.jsx');
 
-var Cookies = require('js-cookie');
-
 import numeral from 'numeral';
 
 const language = {
@@ -97,11 +95,6 @@ var App = React.createClass({
     this.setState(this.state);
   },
 
-  setLanguage: function(language) {
-    Cookies.set('_l', language, {expires: 365});
-    location.reload();
-  },
-
   render: function () {
     var routes = this.context.router.getCurrentRoutes();
 
@@ -121,11 +114,6 @@ var App = React.createClass({
             <RouteHandler/>
           </div>
           <footer className='footer'>
-            <p className='pull-right'>
-              <span className='mr10'>{window.lang.Language}:</span>
-              <a className='mr10' onClick={this.setLanguage.bind(this, 'en')}>English</a>
-              <a onClick={this.setLanguage.bind(this, 'zh')}>中文</a>
-            </p>
             <p className='copyright'>Copyright &copy; 2016 北京成为科技有限公司 京ICP备15018286号</p>
           </footer>
         </section>
