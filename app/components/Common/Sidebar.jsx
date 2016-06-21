@@ -121,6 +121,8 @@ var Sidebar = React.createClass({
     }
     if ( window.currentUser.avatar ) {
       loginUserInfo.avatar = window.currentUser.avatar
+    } else {
+      loginUserInfo.avatar = this.state.loginUserInfo.avatar
     }
     if ( window.currentUser.name ) {
       loginUserInfo.name = window.currentUser.name
