@@ -116,7 +116,7 @@ var Sidebar = React.createClass({
   },
 
   loadLoginUserInfoFromWindow: function() {
-    if (window.currentUser.name && window.currentUser.avatar) {
+    if (window.currentUser.name) {
       this.setState({
         loginUserInfo: {
           avatar: window.currentUser.avatar,
