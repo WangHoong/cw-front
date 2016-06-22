@@ -32,7 +32,7 @@ var Main = React.createClass({
       <div className="collapse navbar-collapse" style={{background: "white"}}>
         <ul className="nav navbar-nav">
           <li style={this.state.navAt === NAVSWITCH ? {fontWeight:"bold"} : {}}><a href='javascript:void(0)' onClick={this.navAction(NAVSWITCH)} >User Switch</a></li>
-          <li style={this.state.navAt === NAVCILINK ? {fontWeight:"bold"} : {}}><a href='javascript:void(0)' onClick={this.navAction(NAVCILINK)} >Create Invite Link</a></li>
+          <li style={this.state.navAt === NAVCILINK ? {fontWeight:"bold"} : {}}><a href='javascript:void(0)' onClick={this.navAction(NAVCILINK)} >Create Invitation Code</a></li>
         </ul>
       </div>
       </nav>

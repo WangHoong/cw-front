@@ -62,8 +62,8 @@ var CreateInviteLink = React.createClass({
     return (
       <thead>
         <tr>
-          <th>Invite Link</th>
-          <th>Create Time</th>
+          <th>Invitation Code</th>
+          <th>Created Time</th>
           <th>Company Name</th>
           <th>Status</th>
         </tr>
@@ -97,7 +97,7 @@ var CreateInviteLink = React.createClass({
       <div>
         <div className='btn-group'>
           <input component='button' className="btn btn-default" placeholder='Enter company name' value={this.state.text} onChange={this.onChange}></input>
-          <span component='button' className="btn btn-default" onClick={this.getInvitationLink}>Get Invite Link</span>
+          <span component='button' className="btn btn-default" onClick={this.getInvitationLink}>Get Invitation Code</span>
         </div>
         <table className='table table-bordered table-striped' style={{marginTop:'12px'}}>
           {this.renderTableHeader()}
