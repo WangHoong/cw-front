@@ -74,7 +74,7 @@ axios.interceptors.request.use(function(config) {
   config.params['_t'] = new Date().getTime();
   return config;
 });
-
+window.__HASPOWER__ = (location.hostname === 'global.topdmc.com')
 var App = React.createClass({
   contextTypes: {
     router: React.PropTypes.func
@@ -135,7 +135,6 @@ var StartPage = React.createClass({
   },
 
   componentDidMount: function () {
-
     var self = this;
     var APIHelper = require('./utils/APIHelper').APIHelper;
     var onlineURL = APIHelper.getPrefix() + '/online';
