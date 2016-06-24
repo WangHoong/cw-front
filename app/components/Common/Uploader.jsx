@@ -8,7 +8,7 @@ class Uploader extends React.Component {
       file: ''
     };
     this.url = props.url || '';
-    this.method = props.method || 'POST';
+    this.method = props.method || 'PUT';
     this.params = props.params || {};
   }
 
@@ -19,59 +19,86 @@ class Uploader extends React.Component {
 
   _upload(evt) {
     const file = evt.target.files[0];
+    var file_name = file.name
     this.state.file = file;
+    var url = `${window.DMC_OPT.API_PREFIX}/resources/presigned`
+    var that = this
+    $.ajax({
+      type: "POST",
+      url: url,
+      data: JSON.stringify({
+        file_name,
+        type: 'track_audio'
+      }),
+      contentType: "application/json",
+      dataType: 'json',
+      success: function (data) {
+        // $.ajax({
+        //     type : 'PUT',
+        //     url : data.data.putpath,
+        //     data : file,
+        //     processData: false,  // tell jQuery not to convert to form data
+        //     contentType: file.type,
+        //     success: function(json) { console.log('Upload complete!') },
+        //     error: function (XMLHttpRequest, textStatus, errorThrown) {
+        //         console.log('Upload error: ' + XMLHttpRequest.responseText);
+        //     }
+        // });
 
-    const xhr = new XMLHttpRequest();
-    xhr.open(this.method, this.url, true);
+        const xhr = new XMLHttpRequest();
+        xhr.open('PUT', data.data.put_path, true);
 
-    const formData = new FormData();
-    formData.append('Filedata', this.state.file);
+        const formData = new FormData();
+        formData.append('Filedata', that.state.file);
 
-    for (let key in this.params) {
-      formData.append(key, this.params[key]);
-    }
-    var self = this;
+        for (let key in that.params) {
+          formData.append(key, that.params[key]);
+        }
+        var self = that;
 
-    // error handler
-    xhr.onerror = function() {
-      var message = this.statusText || 'upload failed';
-      if (self.props.onUploadError) {
-        self.props.onUploadError(new Error(message, this.status));
-      }
-    };
-
-    xhr.onload = function() {
-      if (this.status === 200) {
-        if (self.props.onUploaded) {
-          let data = {};
-          try {
-            data = JSON.parse(this.response);
-          } finally {
-
+        // error handler
+        xhr.onerror = function() {
+          var message = this.statusText || 'upload failed';
+          if (self.props.onUploadError) {
+            self.props.onUploadError(new Error(message, this.status));
           }
-          self.props.onUploaded(data);
-        }
-      } else {
-        if (self.props.onUploadError) {
-          self.props.onUploadError(new Error(this.response, this.status))
-        }
-      }
-    };
+        };
 
-    xhr.upload.onprogress = function(event) {
-      if (event.lengthComputable) {
-        var progress = (event.loaded / event.total * 100 | 0);
-        if (self.props.onProgress) {
-          self.props.onProgress(progress);
-        }
+        xhr.onload = function() {
+          if (this.status === 200) {
+            if (self.props.onUploaded) {
+              // let data = {};
+              try {
+                // data = JSON.parse(this.response);
+              } finally {
+
+              }
+              self.props.onUploaded(data);
+            }
+          } else {
+            if (self.props.onUploadError) {
+              self.props.onUploadError(new Error(this.response, this.status))
+            }
+          }
+        };
+
+        xhr.upload.onprogress = function(event) {
+          if (event.lengthComputable) {
+            var progress = (event.loaded / event.total * 100 | 0);
+            if (self.props.onProgress) {
+              self.props.onProgress(progress);
+            }
+          }
+        };
+        xhr.send(formData);
       }
-    };
-    xhr.send(formData);
-  }
+
+    })
+}
 
   render() {
     return (
-      <input type='file' style={{display: 'none'}} ref='upload-input' onChange={this._upload.bind(this)}/>
+      <input type='file' style={{display: 'none'}} ref='upload-input' accept="audio/mpeg" onChange={this._upload.bind(this)}/>
     );
   }
 }

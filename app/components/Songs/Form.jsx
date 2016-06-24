@@ -221,14 +221,14 @@ var Form = React.createClass({
   },
 
   upload128Complete: function(data) {
-    if (data.Filedata.fullpath) {
-      this.state.play_url_128 = data.Filedata.fullpath;
+    if (data.data.fullpath) {
+      this.state.play_url_128 = data.data.fullpath;
     }
   },
 
   upload320Complete: function(data) {
-    if (data.Filedata.fullpath) {
-      this.state.play_url_320 = data.Filedata.fullpath;
+    if (data.data.fullpath) {
+      this.state.play_url_320 = data.data.fullpath;
     }
   },
 
