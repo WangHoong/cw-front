@@ -21,14 +21,13 @@ class Uploader extends React.Component {
     const file = evt.target.files[0];
     var file_name = file.name
     this.state.file = file;
-    var url = `${window.DMC_OPT.API_PREFIX}/resources/presigned`
+    var url = `${window.DMC_OPT.API_PREFIX}/resources/presigned?type=track_audio`
     var that = this
     $.ajax({
       type: "POST",
       url: url,
       data: JSON.stringify({
-        file_name,
-        type: 'track_audio'
+        file_name
       }),
       contentType: "application/json",
       dataType: 'json',
