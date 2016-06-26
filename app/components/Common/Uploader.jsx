@@ -47,7 +47,8 @@ class Uploader extends React.Component {
 
         const xhr = new XMLHttpRequest();
         xhr.open('PUT', data.data.put_path, true);
-
+        xht.setRequestHeader('Content-Type', 'application/octet-stream');
+        
         const formData = new FormData();
         formData.append('Filedata', that.state.file);
 
