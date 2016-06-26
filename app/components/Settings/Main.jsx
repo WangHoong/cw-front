@@ -8,20 +8,6 @@ var CreateInviteLink = require('./CreateInviteLink.jsx')
 var NAVSWITCH = 'switch'
 var NAVCILINK = 'cilink'
 
-// var Nav = React.createClass({
-//
-//   render: function () {
-//     return (
-//       <div>
-//         <ul>
-//           <li><a href='javascript:void(0)' >User Switch</a></li>
-//           <li><a href='javascript:void(0)' >Create Invite Link</a></li>
-//         </ul>
-//       </div>
-//     )
-//   }
-// })
-
 var Main = React.createClass({
   mixins: [Reflux.connect(SettingsStore, 'companies')],
   getInitialState: function() {
@@ -46,12 +32,12 @@ var Main = React.createClass({
       <div className="collapse navbar-collapse" style={{background: "white"}}>
         <ul className="nav navbar-nav">
           <li style={this.state.navAt === NAVSWITCH ? {fontWeight:"bold"} : {}}><a href='javascript:void(0)' onClick={this.navAction(NAVSWITCH)} >User Switch</a></li>
-          <li style={this.state.navAt === NAVCILINK ? {fontWeight:"bold"} : {}}><a href='javascript:void(0)' onClick={this.navAction(NAVCILINK)} >Create Invite Link</a></li>
+          <li style={this.state.navAt === NAVCILINK ? {fontWeight:"bold"} : {}}><a href='javascript:void(0)' onClick={this.navAction(NAVCILINK)} >Create Invitation Code</a></li>
         </ul>
       </div>
       </nav>
     )
-    var hasPower = true
+    var hasInvitation =  window.has_invitation === 1 ? true : false
     var settingBody;
     if ( this.state.navAt === NAVSWITCH ) {
       settingBody = <UserSwitch />
@@ -63,7 +49,7 @@ var Main = React.createClass({
 
     return (
       <div>
-        { hasPower && nav }
+        { hasInvitation && nav }
         { settingBody }
       </div>
     )

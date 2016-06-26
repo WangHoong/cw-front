@@ -77,8 +77,8 @@ module.exports = Reflux.createStore({
       data: this.album.data,
       bulided: true
     });
-    console.log(this.album);
-    console.log(obj);
+    // console.log(this.album);
+    // console.log(obj);
   },
 
   updateUI: function(album) {

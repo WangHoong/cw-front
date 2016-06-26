@@ -41,8 +41,6 @@ var OrderInfo = require('./components/OrderInfo/OrderInfo.jsx');
 var WeekTopSongs = require('./components/TopSongs/Main.jsx');
 var Withdraw = require('./components/Withdraw/Main.jsx');
 
-var Cookies = require('js-cookie');
-
 import numeral from 'numeral';
 
 const language = {
@@ -76,7 +74,7 @@ axios.interceptors.request.use(function(config) {
   config.params['_t'] = new Date().getTime();
   return config;
 });
-
+window.__HASPOWER__ = (location.hostname === 'global.topdmc.com')
 var App = React.createClass({
   contextTypes: {
     router: React.PropTypes.func
@@ -95,11 +93,6 @@ var App = React.createClass({
   handleToggleMenuClick: function () {
     this.state.fullSideBar = !this.state.fullSideBar;
     this.setState(this.state);
-  },
-
-  setLanguage: function(language) {
-    Cookies.set('_l', language, {expires: 365});
-    location.reload();
   },
 
   render: function () {
@@ -121,12 +114,7 @@ var App = React.createClass({
             <RouteHandler/>
           </div>
           <footer className='footer'>
-            <p className='pull-right'>
-              <span className='mr10'>{window.lang.Language}:</span>
-              <a className='mr10' onClick={this.setLanguage.bind(this, 'en')}>English</a>
-              <a onClick={this.setLanguage.bind(this, 'zh')}>中文</a>
-            </p>
-            <p className='copyright'>Copyright &copy; 2015 北京成为科技有限公司 京ICP备15018286号</p>
+            <p className='copyright'>Copyright &copy; 2016 北京成为科技有限公司 京ICP备15018286号</p>
           </footer>
         </section>
       </div>
@@ -147,7 +135,6 @@ var StartPage = React.createClass({
   },
 
   componentDidMount: function () {
-
     var self = this;
     var APIHelper = require('./utils/APIHelper').APIHelper;
     var onlineURL = APIHelper.getPrefix() + '/online';
@@ -168,6 +155,7 @@ var StartPage = React.createClass({
         }
         window.account_type = window.currentUser.account_type;
         window.status = window.currentUser.status;
+        window.has_invitation = window.currentUser.has_invitation;
         self.setState({
           loaded: true
         });

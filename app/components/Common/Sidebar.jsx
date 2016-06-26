@@ -116,15 +116,19 @@ var Sidebar = React.createClass({
   },
 
   loadLoginUserInfoFromWindow: function() {
-    if (window.currentUser.name && window.currentUser.avatar) {
-      this.setState({
-        loginUserInfo: {
-          avatar: window.currentUser.avatar,
-          name: window.currentUser.name,
-          borderColor: 'green'
-        }
-      });
+    var loginUserInfo = {
+      borderColor: 'green'
     }
+    if ( window.currentUser.avatar ) {
+      loginUserInfo.avatar = window.currentUser.avatar
+    } else {
+      loginUserInfo.avatar = this.state.loginUserInfo.avatar
+    }
+    if ( window.currentUser.name ) {
+      loginUserInfo.name = window.currentUser.name
+      this.setState({ loginUserInfo });
+    }
+
     // var onlineURL = APIHelper.getPrefix().replace('api', '') + 'online';
     // axios.get(onlineURL, {withCredentials: true}).then(function(res) {
     //   var _data = res.data;

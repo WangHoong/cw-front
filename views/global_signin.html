@@ -45,14 +45,17 @@ body {
   <form id="visitor_form">
     <div class="form-group">
       <label>Account name</label>
-      <input name="accountName" type="tel" class="form-control" placeholder="Account name">
+      <input name="username" type="text" class="form-control" placeholder="Account name">
     </div>
     <div class="form-group">
       <label>Password</label>
       <input name="password" type="password" class="form-control" placeholder="Password">
     </div>
-    <input type="submit" value="Log In" class="login btn primary-bg btn-block" />
-    <div class="tips">or</div>
+    <div class="form-group">
+      <p class="js-msg" style="text-align:center;color:#fa3e3e"></p>
+    </div>
+    <input type="submit" value="Sign In" class="login btn primary-bg btn-block" />
+    <div class="tips" style="text-align: center; margin-bottom: 10px">or</div>
     <a href="/signup" class="btn primary-bg btn-block">Sign Up</a>
   </form>
 </section>
@@ -74,18 +77,17 @@ body {
       $form = $('#visitor_form');
 
   var API_URL = '{{API_PREFIX}}',
-      // login url
-      VERIFY_URL = API_URL + '/sms/verify';
-
+      VERIFY_URL = `${API_URL}/globallogin`;
+  var msg = $('.js-msg')
   $loginBtn.click(function(e) {
     e.preventDefault();
     var data = $form.serializeJson();
-    if ( '' === $.trim(data.accountName) ) {
-      alert('Enter your account name');
+    if ( '' === $.trim(data.username) ) {
+      msg.html('Enter your account name.');
       return;
     }
     if ( '' === $.trim(data.password) ) {
-      alert('Enter your password');
+      msg.html('Enter your password.');
       return;
     }
     $.ajax({
@@ -100,14 +102,14 @@ body {
       },
       data: JSON.stringify(data),
       success: function(res) {
-        if (res.status === 200) {
-          // redirect login success url
-        } else {
-          // some error message
+        if (res.status === 302) {
+          location.href = res.data.redirect_url
+        } else if (res.status === 400) {
+          msg.html(res.data.message)
         }
       },
       error: function() {
-        alert('Server error. Please try again.');
+        msg.html('Server error. Please try again.');
       }
     });
   });

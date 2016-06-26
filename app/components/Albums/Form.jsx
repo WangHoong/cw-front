@@ -259,6 +259,7 @@ var Form = React.createClass({
     var dropArtistClassName = classNames('card', 'mt20', 'card-dropzone', {
       'active': this.state.isDropArtistActive
     });
+    var hasPower = window.__HASPOWER__
     return (
       <div className='show-wrap'>
         <div className='edit-wrap has-assist-box'>
@@ -303,20 +304,31 @@ var Form = React.createClass({
             onDragLeave={this.handleDragArtistLeave}>
             <p className='form-control-static'>{window.lang.al_artist}</p>
             {this.renderArtistMiniCards()}
+            { hasPower
+              ? <div className='text-right mt20'>
+                  {this.props.children}
+                </div>
+              : null
+            }
           </div>
 
-          <div
-            className={dropSongClassName}
-            onDrop={this.handleDrop}
-            onDragOver={this.allowSongDrop}
-            onDragEnter={this.handleDragSongEnter}
-            onDragLeave={this.handleDragSongLeave}>
-            <p className='form-control-static'>{window.lang.al_track}</p>
-            {this.renderSongMiniCards()}
-            <div className='text-right mt20'>
-              {this.props.children}
-            </div>
-          </div>
+          { hasPower
+            ? null
+            : <div
+                className={dropSongClassName}
+                onDrop={this.handleDrop}
+                onDragOver={this.allowSongDrop}
+                onDragEnter={this.handleDragSongEnter}
+                onDragLeave={this.handleDragSongLeave}>
+                <p className='form-control-static'>{window.lang.al_track}</p>
+                {this.renderSongMiniCards()}
+                <div className='text-right mt20'>
+                  {this.props.children}
+                </div>
+              </div>
+          }
+
+
 
 
         </div>

@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="zh-cn">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>DMC - 关于我们</title>
+<title>DMC - Contact us</title>
 <meta name="keywords" content="DMC,topdmc,成为科技,音乐,版权,数字音乐,音乐版权云,数字音乐版权云服务,CaaS,Copyright As a Service" />
 <meta name="description" content="DMC依托先进技术构建音乐版权云服务，为音乐权利人提供内容自主授权、数据监测、盗版排查、法务合作和企划推广一站式服务" />
-<meta property="og:title" content="DMC - 关于我们" />
+<meta property="og:title" content="DMC - 联系我们" />
 <meta property="og:type" content="Digital Music Cloud.Platform" />
 <meta property="og:url" content="http://www.topdmc.com" />
 <meta property="og:image" content="http://www.topdmc.com/images/logo2-new.png" />
@@ -65,6 +65,23 @@ body{font-family: 'Lantinghei SC', 'Open Sans', Arial, 'Hiragino Sans GB', 'Micr
   content: "\00a0"
 }
 </style>
+<script src="https://maps.googleapis.com/maps/api/js"></script>
+<script>
+function initialize() {
+  var mapProp = {
+    center:new google.maps.LatLng(39.914030,116.436100),
+    zoom:17,
+    mapTypeId:google.maps.MapTypeId.ROADMAP
+  };
+  var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
+  var marker=new google.maps.Marker({
+    position:mapProp.center,
+  });
+
+  marker.setMap(map);
+}
+google.maps.event.addDomListener(window, 'load', initialize);
+</script>
 </head>
 <body>
 <h1 style="position: absolute;left: -99999px;">音乐版权云服务</h1>
@@ -84,9 +101,8 @@ body{font-family: 'Lantinghei SC', 'Open Sans', Arial, 'Hiragino Sans GB', 'Micr
             <li><a href="https://global.topdmc.com"><span class="flag-icon flag-icon-gb"></span>English</a></li>
           </ul>
         </li>
-        <li><a href="/about">{{lang.Aboutus}}</a></li>
-        <li><a href="/careers">{{lang.DMCCareers}}</a></li>
-        <li><a href="/contactus">{{lang.Contactus}}</a></li>
+        <li><a href="/about">About Us</a></li>
+        <li><a href="/contactus">Contact Us</a></li>
       </ul>
     </div>
   </div>
@@ -96,17 +112,29 @@ body{font-family: 'Lantinghei SC', 'Open Sans', Arial, 'Hiragino Sans GB', 'Micr
     <div class="o-s-c-i">
       <div class="page-main">
         <div class="page-header">
-          <h1 class="page-title">{{lang.Aboutus}}</h1>
+          <h1 class="page-title">Contact Us</h1>
         </div>
         <div class="page-content">
           <div class="panel">
+            <div class="panel-heading" style="padding-top: 15px;">
+              <h3 class="panel-title">If there’s any problem, please contact us.</h3>
+            </div>
             <div class="panel-body">
-              <p>DMC由公司CEO王智翔创办于2015年，是一家以技术为向导的互联网公司。DMC依靠先进的技术平台，力争为音乐人争取到最高的版权收益，并为音乐人提供内容自主授权、数据监测、法务合作和企划推广一站式服务。</p>
-              <p>DMC通过先进的技术平台将歌曲全面直观的展现给海量的音乐服务商，并且实现音乐人可以直接通过平台进行自主授权，达到每一次播放都能够得到及时支付的目的。在绝大多数互联网公司都致力于为消费者服务的时候，DMC致力于以先进的技术服务平台为音乐人省去大量繁琐事务让音乐人有更多的时间和精力去投入到音乐创作之中去，DMC的最终目标就是要将音乐正版化推向互联网的每一个角落，让每一位音乐创作者都拥有最透明的版权收益，同时通过同最专业的法务团队合作让盗版维权有理可依、有据可依。</p>
+              <p>
+                <div>Tel: 010—59306967</div>
+                <div>Email: cairunjia@topdmc.com</div>
+                <div>China Website: https://www.topdmc.com/</div>
+                <div>Addrss: 1201, NO12, Yabao. Rd, Chaoyang Dist, Beijing City, China.</div>
+              </p>
             </div>
           </div>
         </div>
       </div>
+    </div>
+  </section>
+  <section class="o-s-c">
+    <div class="o-s-c-i" style="width:500px">
+      <div id="googleMap" style="width:500px;height:380px;"></div>
     </div>
   </section>
   <footer class="footer">

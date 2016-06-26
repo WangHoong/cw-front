@@ -2,6 +2,7 @@ var React = require('react');
 var Reflux = require('reflux');
 var axios = require('axios');
 var Pager = require('../Common/Pager.jsx');
+var APIHelper = require('../../utils/APIHelper.js').APIHelper;
 var CreateInviteLink = React.createClass({
   contextTypes: {
       router: React.PropTypes.func
@@ -20,7 +21,7 @@ var CreateInviteLink = React.createClass({
   },
   getInviteLinks: function (PAGE) {
     var that = this
-    axios.get('http://54.223.222.214/api/v1/invitation/list/1?page=' + PAGE)
+    axios.get(`${APIHelper.getPrefix()}/invitation/list?page=${PAGE}`, {withCredentials: true})
       .then(function (response) {
         that.setState({
           links: response.data.data.items,
@@ -30,11 +31,11 @@ var CreateInviteLink = React.createClass({
         })
       })
       .catch(function (response) {
-        console.log(response);
+        // console.log(response);
       });
   },
-  onChange: function () {
-
+  onChange: function (e) {
+     this.setState({text: e.target.value});
   },
   getDefaultProps: function() {
     return {
@@ -44,30 +45,26 @@ var CreateInviteLink = React.createClass({
   },
   getInvitationLink: function () {
     var that = this
-    axios.post('http://54.223.222.214/api/v1/invitation', {
-      company_name: "testname",
-      company_id: 1,
-    }).then(function (response) {
-      console.log(response.data);
+    axios.post(`${APIHelper.getPrefix()}/invitation`, {
+      username: that.state.text
+    }, { withCredentials: true }).then(function (response) {
+      // console.log(response.data);
       that.setState({
-        links: that.state.links,
-        text: response.data.data.code,
-        page: that.state.page,
-        totalPage: that.state.totalPage
+        text: ''
       })
-      that.getInviteLinks(that.state.page)
+      that.getInviteLinks(1)
     })
     .catch(function (response) {
-      console.log(response);
+      // console.log(response);
     });
   },
   renderTableHeader: function () {
     return (
       <thead>
         <tr>
-          <th>Invite Link</th>
-          <th>Create Time</th>
-          <th>Note</th>
+          <th>Invitation Code</th>
+          <th>Created Time</th>
+          <th>Company Name</th>
           <th>Status</th>
         </tr>
       </thead>
@@ -80,7 +77,7 @@ var CreateInviteLink = React.createClass({
           <td>{ link.code }</td>
           <td>{ link.created }</td>
           <td>{ link.username }</td>
-          <td>{ link.status }</td>
+          <td>{ link.status === 1 ? 'used' : 'unused' }</td>
         </tr>
       )
     })
@@ -99,8 +96,8 @@ var CreateInviteLink = React.createClass({
     return (
       <div>
         <div className='btn-group'>
-          <input component='button' className="btn btn-default" placeholder="click get invite link button" value={this.state.text} onChange={this.onChange}></input>
-          <span component='button' className="btn btn-default" onClick={this.getInvitationLink}>Get Invite Link</span>
+          <input component='button' className="btn btn-default" placeholder='Enter company name' value={this.state.text} onChange={this.onChange}></input>
+          <span component='button' className="btn btn-default" onClick={this.getInvitationLink}>Get Invitation Code</span>
         </div>
         <table className='table table-bordered table-striped' style={{marginTop:'12px'}}>
           {this.renderTableHeader()}
