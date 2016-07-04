@@ -34,9 +34,7 @@ var New = React.createClass({
     var data = this.refs.form.getValue();
     var errorTips = ''
     if (window.__HASPOWER__) {
-      if (data.photo === '' || data.photo === undefined || data.resource_id === '' || data.resource_id === undefined) {
-        errorTips = 'Upload album photo.'
-      } else if (data.name === '' || data.name === undefined) {
+      if (data.name === '' || data.name === undefined) {
         errorTips = 'Enter album name.'
       } else if (data.artists.length === 0) {
         errorTips = 'Add artists.'
