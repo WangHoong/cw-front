@@ -14,13 +14,13 @@ class Mp3Uploader extends React.Component {
   }
 
   uploadComplete(data) {
-    this.state.tips = window.lang.tr_tips_success;
+    this.state.tips = '上传成功';
     this.props.uploadComplete(data);
     this.setState(this.state);
   }
 
   uploadError(err) {
-    this.state.tips = window.lang.tr_tips_error;
+    this.state.tips = '上传失败';
     this.setState(this.state);
   }
 
