@@ -91,7 +91,7 @@ var Header = React.createClass({
   render: function(){
     return (
       <div id="search_box_header" className='search-box-header'>
-        <h4 className='title'>{window.lang.al_stype}<b>{this.props.type}</b></h4>
+        <h4 className='title'>{window.lang.al_stype}:<b>{this.props.type}</b></h4>
         <div className='input-group'>
           <input
             id="searchbox_input"

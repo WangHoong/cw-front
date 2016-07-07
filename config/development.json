@@ -1,8 +1,8 @@
 {
   "API_PREFIX": "/api/v1",
-  "UPLOAD_FILE_URL": "http://dev.api.topdmc.cn:9200/api/v1",
+  "UPLOAD_FILE_URL": "http://dev.api.topdmc.cn/api/v1",
   "PROXY_PREFIX": "http://dev.api.topdmc.cn",
-  "LOGIN_URL": "https://dev.api.topdmc.com/api/v1/login",
+  "LOGIN_URL": "https://dev.api.topdmc.cn/api/v1/login",
   "AGREEMENT_URL": "http://dev.api.topdmc.cn/api/v1/agreement",
   "QRCODE_URL": "http://lo.topdmc.cn:4000/oauth/qrcode",
   "SWITCH_URL": "http://dev.api.topdmc.cn/api/v1"
