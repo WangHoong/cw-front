@@ -121,7 +121,6 @@ var Detail = React.createClass({
         </div>
         <div className='has-top-bar'>
           <div className='card'>
-            <p>试听：</p>
             {this.renderPlayer()}
           </div>
           <div className='card'>
