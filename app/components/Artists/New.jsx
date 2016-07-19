@@ -41,12 +41,8 @@ var New = React.createClass({
         var data = this.refs.form.getValue();
         var errorTips = ''
         if (window.__HASPOWER__) {
-          if (data.photo === '' || data.photo === undefined || data.resource_id === '' || data.resource_id === undefined) {
-            errorTips = 'Upload artist photo.'
-          } else if (data.name === '' || data.name === undefined) {
+          if (data.name === '' || data.name === undefined) {
             errorTips = 'Enter artist name.'
-          } else if (data.gender === '' || data.gender === undefined) {
-            errorTips = 'Choice artist gender.'
           } else if (data.country === '' || data.country === undefined) {
             errorTips = 'Enter artist country.'
           } else {

@@ -51,10 +51,6 @@ var New = React.createClass({
     if (window.__HASPOWER__) {
       if (data.name === '' || data.name === undefined) {
         errorTips = 'Enter track name.'
-      } else if (data.lyricist === '' || data.lyricist === undefined) {
-        errorTips = 'Enter track lyricist.'
-      } else if (data.composer === '' || data.composer === undefined) {
-        errorTips = 'Choice track composer.'
       } else if (data.artists.length === 0) {
         errorTips = 'Add artists.'
       } else if (_.isEmpty(data.album)) {

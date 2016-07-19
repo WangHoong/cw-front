@@ -23,6 +23,7 @@
     "CRDesc1": "you solid support to claim your music and guarantee your royalty."
   },
   "app": {
+    "Title": "DMC - Digital Music Cloud",
     "Language": "Language",
     "Welcome": "Welcome to DMC! Now you can check all the information here. Once verified your tracks can be procured by online music retailers and then royalties can be generated. ",
     "Please": "Please send following files to DMC official Wechat account:",
@@ -105,6 +106,7 @@
     "ar_editcountry": "Please fill your country of citizenship in here",
     "ar_intro": "intro",
     "ar_editintro": "Please fill your introduction in here",
+    "av_img_url": "use3.png",
     "upload": "Click or drop here to upload your image.",
     "cancel": "Cancel",
     "pesk": "Please enter some keywords",
@@ -119,7 +121,7 @@
     "al_addar": "Add Artist",
     "al_track": "Track",
     "al_addtr": "Add Track",
-    "al_stype": "Search Type",
+    "al_stype": "Search Type: ",
     "al_scontent": "Please enter some keywords",
     "al_swait": "Enter Search",
     "tr_name": "Track Name",
@@ -130,6 +132,8 @@
     "tr_upload": "Upload",
     "tr_upload128": "Click to upload 128k tracks",
     "tr_upload320": "Click to upload 320k tracks",
+    "tr_tips_success": "Upload complete",
+    "tr_tips_error": "Upload Error",
     "kors": "Please enter keywords to search by artists or press ‘Enter’ to do fuzzy search.",
     "add": "Add",
     "save": "Save",
