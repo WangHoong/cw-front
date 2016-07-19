@@ -42,6 +42,12 @@ var New = React.createClass({
   handleSubmit: function () {
     var data = this.refs.form.getValue();
     var errorTips = ''
+    // window.__UPLOADMP3__.queue.push({
+    //   fileName: 'haha.mp3',
+    //   fullPath: 'fullpath in here',
+    //   putPath: 'putpath in here'
+    // })
+    window.__UPLOADMP3__.show = true
     if (window.__HASPOWER__) {
       if (data.name === '' || data.name === undefined) {
         errorTips = 'Enter track name.'
