@@ -134,6 +134,8 @@
     "tr_upload320": "点击上传320K",
     "tr_tips_success": "上传成功",
     "tr_tips_error": "上传失败",
+    "tr_tips_uploading": "上传中...",
+    "tr_tips_queue": "等待中",
     "kors": "输入关键词根据艺人查询，或按回车模糊查询",
     "add": "新建",
     "save": "保存",

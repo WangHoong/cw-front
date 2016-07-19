@@ -51,7 +51,7 @@ class GlobalUploadTip extends React.Component {
     // error handler
     xhr.onerror = function() {
       var message = this.statusText || 'upload failed';
-      self.state.tips = data.fileName + '上传失败';
+      self.state.tips = data.fileName + window.lang.tr_tips_error;
       self.setState(self.state);
       self.uploadFile(self.state.queue[0])
       // if (self.props.onUploadError) {
@@ -61,7 +61,7 @@ class GlobalUploadTip extends React.Component {
 
     xhr.onload = function() {
       if (this.status === 200) {
-        self.state.tips = data.fileName + '上传成功';
+        self.state.tips = data.fileName + window.lang.tr_tips_success;
         self.setState(self.state);
         window.__UPLOADMP3__.queue.shift()
         if( window.__UPLOADMP3__.queue.length === 0 ) {
@@ -95,7 +95,7 @@ class GlobalUploadTip extends React.Component {
         // window.__UPLOADMP3__.queue[0].percent = progress;
         // window.__UPLOADMP3__.tips = data.fileName + '上传中...';
         self.state.queue[0].percent = progress;
-        self.state.tips = data.fileName + '上传中...';
+        self.state.tips = data.fileName + window.lang.tr_tips_uploading;
         self.setState(self.state);
         // if (self.props.onProgress) {
         //   self.props.onProgress(progress);
@@ -127,25 +127,25 @@ class GlobalUploadTip extends React.Component {
         var progressStyle
         switch (item.status) {
           case -1:
-            tips = `${fileName}  等待中`
+            tips = `${fileName}  ${window.lang.tr_tips_queue}`
             progressStyle = {
               width: '0%'
             }
             break;
           case 0:
-            tips = `${fileName}  上传失败`
+            tips = `${fileName}  ${window.lang.tr_tips_error}`
             progressStyle = {
               width: '0%'
             }
             break;
           case 1:
-            tips = `${fileName}  上传成功`
+            tips = `${fileName}  ${window.lang.tr_tips_success}`
             progressStyle = {
               width: '100%'
             }
             break;
           case 2:
-            tips = `${fileName}  上传中...`
+            tips = `${fileName}  ${window.lang.tr_tips_uploading}`
             progressStyle = {
               width: percent + '%'
             }

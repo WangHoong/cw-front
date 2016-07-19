@@ -134,6 +134,8 @@
     "tr_upload320": "Click to upload 320k tracks",
     "tr_tips_success": "Upload complete",
     "tr_tips_error": "Upload Error",
+    "tr_tips_uploading": "Uploading...",
+    "tr_tips_queue": "In Queue",
     "kors": "Please enter keywords to search by artists or press ‘Enter’ to do fuzzy search.",
     "add": "Add",
     "save": "Save",
