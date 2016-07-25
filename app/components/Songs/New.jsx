@@ -40,6 +40,7 @@ var New = React.createClass({
    * @param e
    */
   handleSubmit: function () {
+    window.__UPLOADMP3__.__temFile__ = undefined
     var data = this.refs.form.getValue();
     var errorTips = ''
     // window.__UPLOADMP3__.queue.push({
@@ -67,6 +68,7 @@ var New = React.createClass({
   },
 
   handleCancel: function () {
+    window.__UPLOADMP3__.__temFile__ = undefined
     this.props.onCanceled && this.props.onCanceled();
     history.back(-1);
   },

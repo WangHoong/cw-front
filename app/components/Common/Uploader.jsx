@@ -136,7 +136,14 @@ class Uploader extends React.Component {
         that.props.onUploaded(data);
         // TODO
         // that.props.getFullpath(data)
-        that.inUploadQueue(file, file_name, data.data.fullpath, data.data.put_path)
+        // that.inUploadQueue(file, file_name, data.data.fullpath, data.data.put_path)
+        window.__UPLOADMP3__.__temFile__ = {
+          file,
+          fileName: file_name,
+          fullPath: data.data.fullpath,
+          putPath: data.data.put_path,
+          status: -1,
+        }
 
 
       //   const xhr = new XMLHttpRequest();

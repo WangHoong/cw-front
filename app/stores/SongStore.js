@@ -61,7 +61,12 @@ module.exports = exports = Reflux.createStore({
      * 更新完成
      * @param res
      */
-    onUpdateCompleted: function () {
+    onUpdateCompleted: function (res) {
+      if(!!window.__UPLOADMP3__.__temFile__) {
+        window.__UPLOADMP3__.__temFile__.fileName = res.data.data.name
+        window.__UPLOADMP3__.queue.push(window.__UPLOADMP3__.__temFile__)
+        window.__UPLOADMP3__.show = true
+      }
         this.updateUI({
             data: this.song.data,
             updated: true
@@ -86,6 +91,11 @@ module.exports = exports = Reflux.createStore({
      */
     onCreateCompleted: function (res) {
         this.song.data.id = res.data.data.id;
+        if(!!window.__UPLOADMP3__.__temFile__) {
+          window.__UPLOADMP3__.__temFile__.fileName = res.data.data.name
+          window.__UPLOADMP3__.queue.push(window.__UPLOADMP3__.__temFile__)
+          window.__UPLOADMP3__.show = true
+        }
         this.updateUI({
             data: this.song.data,
             created: true
