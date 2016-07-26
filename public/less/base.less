@@ -60,6 +60,7 @@
   min-height: 100%;
   .toggled-transition(margin-left);
   > .content-inner {
+    position: relative;
     padding-bottom: 40px;
   }
   > .footer {
@@ -690,13 +691,15 @@
 
 // assist box
 .assist-box {
-  position: fixed;
+  // position: fixed;
+  position: absolute;
   background-color: #fff;
   top: 15px;
   height: 80%;
-  right: 50%;
+  // right: 50%;
+  right: 0;
   width: 300px;
-  margin-right: -585px;
+  // margin-right: -585px;
   padding: 15px;
   overflow-y: auto;
   .search-box-header {
