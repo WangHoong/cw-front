@@ -12,6 +12,10 @@ class Uploader extends React.Component {
     this.params = props.params || {};
   }
 
+  componentDidMount() {
+    window.__UPLOADMP3__.__temFile__ = undefined
+  }
+
   upload() {
     let fileInput = React.findDOMNode(this.refs['upload-input']);
     fileInput.click();
