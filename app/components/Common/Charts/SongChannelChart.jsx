@@ -62,7 +62,7 @@ class SongChannelChart extends Component {
     return {
       title : {
         text: '分渠道播放量',
-        subtext: '2015'
+        subtext: new Date().getFullYear()
       },
       tooltip : {
         trigger: 'axis',
