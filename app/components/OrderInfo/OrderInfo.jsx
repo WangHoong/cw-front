@@ -65,7 +65,7 @@ var Item = React.createClass({
             <p className='oi-price'>￥{_order.price}{window.lang.rmb}/1000{window.lang.times}</p>
           </div>
           <div className='oi-choose'>
-            <i className='fa fa-check grayi'></i>
+            <i className='fa fa-check grayi' style={{color: '#12bdc4'}}></i>
           </div>
         </div>
       </div>

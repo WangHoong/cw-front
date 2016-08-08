@@ -67,7 +67,8 @@ var New = React.createClass({
   },
 
   handleCancel: function () {
-    window.__UPLOADMP3__.__temFile__ = undefined
+    window.__UPLOADMP3__.__temFile__128k = undefined
+    window.__UPLOADMP3__.__temFile__320k = undefined
     this.props.onCanceled && this.props.onCanceled();
     history.back(-1);
   },

@@ -13,7 +13,8 @@ class Uploader extends React.Component {
   }
 
   componentDidMount() {
-    window.__UPLOADMP3__.__temFile__ = undefined
+    window.__UPLOADMP3__.__temFile__128k = undefined
+    window.__UPLOADMP3__.__temFile__320k = undefined
   }
 
   upload() {
@@ -137,11 +138,11 @@ class Uploader extends React.Component {
         //         console.log('Upload error: ' + XMLHttpRequest.responseText);
         //     }
         // });
-        that.props.onUploaded(data);
+        that.props.onUploaded(data, file_name);
         // TODO
         // that.props.getFullpath(data)
         // that.inUploadQueue(file, file_name, data.data.fullpath, data.data.put_path)
-        window.__UPLOADMP3__.__temFile__ = {
+        window.__UPLOADMP3__[`__temFile__${that.props.rate}`] = {
           file,
           fileName: file_name,
           fullPath: data.data.fullpath,
@@ -204,7 +205,10 @@ class Uploader extends React.Component {
 
   render() {
     return (
-      <input type='file' style={{display: 'none'}} ref='upload-input' accept="audio/mpeg" onChange={this.preregined.bind(this)}/>
+      <input type='file' style={{display: 'none'}} ref='upload-input' accept="audio/mpeg"
+        onChange={this.preregined.bind(this)}
+        rate={this.props.rate}
+      />
     );
   }
 }
