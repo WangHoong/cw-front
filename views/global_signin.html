@@ -103,7 +103,7 @@ body {
       data: JSON.stringify(data),
       success: function(res) {
         if (res.status === 302) {
-          location.href = res.data.redirect_url
+          location.href = '/';
         } else if (res.status === 400) {
           msg.html(res.data.message)
         }
