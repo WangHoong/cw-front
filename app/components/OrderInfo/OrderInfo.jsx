@@ -43,7 +43,7 @@ var Item = React.createClass({
           <div className='oi-img'><img src='/images/sp_default_logo.jpg'/></div>
           <div className='oi-name'>
             <p>{_order.company_name}</p>
-            <p className='oi-price'>￥{_order.price}{window.lang.rmb}/1000{window.lang.times}</p>
+            <p className='oi-price'>￥{_order.price}/1000{window.lang.times}</p>
           </div>
           <a href="javascript:void(0)">
             <div className='oi-choose'>
@@ -62,7 +62,7 @@ var Item = React.createClass({
           <div className='oi-img'><img src='/images/sp_default_logo.jpg'/></div>
           <div className='oi-name'>
             <p>{_order.company_name}</p>
-            <p className='oi-price'>￥{_order.price}{window.lang.rmb}/1000{window.lang.times}</p>
+            <p className='oi-price'>￥{_order.price}/1000{window.lang.times}</p>
           </div>
           <div className='oi-choose'>
             <i className='fa fa-check grayi' style={{color: '#12bdc4'}}></i>
@@ -79,7 +79,7 @@ var Item = React.createClass({
           <div className='oi-img'><img src='/images/sp_default_logo.jpg'/></div>
           <div className='oi-name'>
             <p>{_order.company_name}</p>
-            <p className='oi-price'>￥{_order.price}{window.lang.rmb}/1000{window.lang.times}</p>
+            <p className='oi-price'>￥{_order.price}/1000{window.lang.times}</p>
           </div>
           <a href="javascript:void(0)">
             <div className='oi-choose'>
@@ -138,7 +138,7 @@ var OrderInfo = React.createClass({
                 <div className='oi-img'><img src='/images/sp_default_logo.jpg'/></div>
                 <div className='oi-name' style={{width: '70%', borderRight: '0'}}>
                   <p>吉他大师（暂未授权）</p>
-                  <p className='oi-price'>￥2.77{window.lang.rmb}/1000{window.lang.times}</p>
+                  <p className='oi-price'>￥2.77/1000{window.lang.times}</p>
                 </div>
               </div>
             </div>
@@ -147,7 +147,7 @@ var OrderInfo = React.createClass({
                 <div className='oi-img'><img src='/images/sp_default_logo.jpg'/></div>
                 <div className='oi-name' style={{width: '70%', borderRight: '0'}}>
                   <p>喜马拉雅FM（暂未授权）</p>
-                  <p className='oi-price'>￥2.77{window.lang.rmb}/1000{window.lang.times}</p>
+                  <p className='oi-price'>￥2.77/1000{window.lang.times}</p>
                 </div>
               </div>
             </div>
@@ -156,7 +156,7 @@ var OrderInfo = React.createClass({
                 <div className='oi-img'><img src='/images/sp_default_logo.jpg'/></div>
                 <div className='oi-name' style={{width: '70%', borderRight: '0'}}>
                   <p>蜻蜓FM收音机（暂未授权）</p>
-                  <p className='oi-price'>￥2.77{window.lang.rmb}/1000{window.lang.times}</p>
+                  <p className='oi-price'>￥2.77/1000{window.lang.times}</p>
                 </div>
               </div>
             </div>
