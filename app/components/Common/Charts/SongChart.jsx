@@ -33,7 +33,7 @@ let SongChart = React.createClass({
 		return {
       title : {
         text: '歌曲播放总量',
-        subtext: '2015'
+        subtext: new Date().getFullYear()
       },
       tooltip : {
         trigger: 'axis',
@@ -165,7 +165,7 @@ let SongChart = React.createClass({
     return {
       title : {
         text: '歌曲播放总量',
-        subtext: '2015'
+        subtext: new Date().getFullYear()
       },
       tooltip : {
         trigger: 'axis',

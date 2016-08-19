@@ -40,7 +40,7 @@ var CreateInviteLink = require('./components/Settings/CreateInviteLink.jsx')
 var OrderInfo = require('./components/OrderInfo/OrderInfo.jsx');
 var WeekTopSongs = require('./components/TopSongs/Main.jsx');
 var Withdraw = require('./components/Withdraw/Main.jsx');
-
+var GlobalUploadTip = require('app/components/Common/GlobalUploadTip.jsx')
 import numeral from 'numeral';
 
 const language = {
@@ -75,6 +75,10 @@ axios.interceptors.request.use(function(config) {
   return config;
 });
 window.__HASPOWER__ = (location.hostname === 'global.topdmc.com')
+// window.__UPLOADMP3__ = {
+//   show: false,
+//   queue: [],
+// }
 var App = React.createClass({
   contextTypes: {
     router: React.PropTypes.func
@@ -110,6 +114,7 @@ var App = React.createClass({
       <div className={appClassName}>
         <Sidebar fullSideBar={this.state.fullSideBar} handleToggleMenuClick={this.handleToggleMenuClick} toggleMenuClass={toggleMenuClass}/>
         <section className='content' style={minHeight}>
+          <GlobalUploadTip />
           <div className='content-inner'>
             <RouteHandler/>
           </div>

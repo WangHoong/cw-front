@@ -64,7 +64,7 @@ function transformDataToSDType(data) {
 		return {
       title : {
         text: window.lang.tp0,
-        subtext: '2015'
+        subtext: new Date().getFullYear()
       },
       tooltip : {
         trigger: 'axis',
@@ -172,7 +172,7 @@ function transformDataToSPType(data) {
 	    return {
 	      title : {
 	        text: window.lang.pb0,
-	        subtext: '2015'
+	        subtext: new Date().getFullYear()
 	      },
 	      tooltip : {
 	        trigger: 'axis',

@@ -239,11 +239,14 @@ var Form = React.createClass({
         <p className='form-control-static'>{window.lang.tr_upload}</p>
         <div className='row'>
           <div className='col-sm-6'>
-            <Mp3Uploader tips={window.lang.tr_upload128} uploadComplete={this.upload128Complete} />
+            <Mp3Uploader tips={window.lang.tr_upload128} uploadComplete={this.upload128Complete} rate='128k' />
           </div>
           <div className='col-sm-6'>
-            <Mp3Uploader tips={window.lang.tr_upload320} uploadComplete={this.upload320Complete} />
+            <Mp3Uploader tips={window.lang.tr_upload320} uploadComplete={this.upload320Complete} rate='320k'/>
           </div>
+        </div>
+        <div className='text-right' style={{marginTop: '20px'}}>
+          {this.props.children}
         </div>
       </Role>
     );
@@ -296,7 +299,7 @@ var Form = React.createClass({
                 onChange={this.handleChange}/>
             </div>
             <div className='form-group'>
-              <p className='form-control-static'>{window.lang.lyrics}</p>
+              <p className='form-control-static'>{window.lang.tr_lyrics}</p>
               <TextareaAutosize
                 name='lrc'
                 className='form-control'
@@ -323,9 +326,6 @@ var Form = React.createClass({
             onDragLeave={this.handleDragAlbumLeave}>
             <p className='form-control-static'>{window.lang.tr_al}</p>
             {this.renderAlbumMiniCards()}
-            <div className='text-right'>
-              {this.props.children}
-            </div>
           </div>
 
           {this.renderUpload()}

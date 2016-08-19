@@ -13,8 +13,9 @@ class Mp3Uploader extends React.Component {
     };
   }
 
-  uploadComplete(data) {
-    this.state.tips = window.lang.tr_tips_success;
+  uploadComplete(data, fileName) {
+    // this.state.tips = window.lang.tr_tips_success;
+    this.state.tips = `${fileName} ${window.lang.tr_tips_inq}`
     this.props.uploadComplete(data);
     this.setState(this.state);
   }
@@ -46,10 +47,12 @@ class Mp3Uploader extends React.Component {
           <p className='mp3-upload-tips'>{this.state.tips}</p>
           <div className='mp3-upload-progress'><div style={progressStyle}></div></div>
           <Uploader ref='upload'
-            onUploaded={(data) => {this.uploadComplete(data)}}
+            onUploaded={(data, fileName) => {this.uploadComplete(data, fileName)}}
             onUploadError={(err) => {this.uploadError(err)}}
             onProgress={(progress) => {this.progress(progress)}}
-            url={`${window.DMC_OPT.UPLOAD_FILE_URL}/resources/upload?type=track_audio`} />
+            url={`${window.DMC_OPT.UPLOAD_FILE_URL}/resources/upload?type=track_audio`}
+            rate = {this.props.rate}
+          />
         </div>
       </div>
     );

@@ -61,7 +61,17 @@ module.exports = exports = Reflux.createStore({
      * 更新完成
      * @param res
      */
-    onUpdateCompleted: function () {
+    onUpdateCompleted: function (res) {
+        if(!!window.__UPLOADMP3__.__temFile__128k) {
+            window.__UPLOADMP3__.__temFile__128k.fileName = `${res.data.data.name}(128k)`
+            window.__UPLOADMP3__.queue.push(window.__UPLOADMP3__.__temFile__128k)
+            window.__UPLOADMP3__.show = true
+        }
+        if(!!window.__UPLOADMP3__.__temFile__320k) {
+            window.__UPLOADMP3__.__temFile__320k.fileName = `${res.data.data.name}(320k)`
+            window.__UPLOADMP3__.queue.push(window.__UPLOADMP3__.__temFile__320k)
+            window.__UPLOADMP3__.show = true
+        }
         this.updateUI({
             data: this.song.data,
             updated: true
@@ -86,6 +96,16 @@ module.exports = exports = Reflux.createStore({
      */
     onCreateCompleted: function (res) {
         this.song.data.id = res.data.data.id;
+        if(!!window.__UPLOADMP3__.__temFile__128k) {
+            window.__UPLOADMP3__.__temFile__128k.fileName = `${res.data.data.name}(128k)`
+            window.__UPLOADMP3__.queue.push(window.__UPLOADMP3__.__temFile__128k)
+            window.__UPLOADMP3__.show = true
+        }
+        if(!!window.__UPLOADMP3__.__temFile__320k) {
+            window.__UPLOADMP3__.__temFile__320k.fileName = `${res.data.data.name}(320k)`
+            window.__UPLOADMP3__.queue.push(window.__UPLOADMP3__.__temFile__320k)
+            window.__UPLOADMP3__.show = true
+        }
         this.updateUI({
             data: this.song.data,
             created: true

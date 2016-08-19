@@ -10,6 +10,7 @@ var ArtistActions = require('../../actions/ArtistActions');
 var Pager = require('../Common/Pager.jsx');
 var ListSearch = require('../Common/ListSearch.jsx');
 var Role = require('../Common/Role.jsx');
+var GlobalUploadTip = require('app/components/Common/GlobalUploadTip.jsx')
 
 /**
  * 右侧过滤

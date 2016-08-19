@@ -75,17 +75,24 @@ var Detail = React.createClass({
     return url;
   },
   renderPlayer: function() {
-    var trackUrl = this.getTrackUrl();
-    if (trackUrl == null) {
+    var _hostname = window.location.hostname;
+    if (_hostname.indexOf('global') != -1) {
+      var trackUrl = this.getTrackUrl();
+      if (trackUrl == null) {
+        return (
+          <div className='player-panel'>
+            <p className='no-data'>词曲暂不支持试听</p>
+          </div>
+        );
+      }
       return (
-        <div className='player-panel'>
-          <p className='no-data'>词曲暂不支持试听</p>
-        </div>
+        <Player url={trackUrl} bg={this.state.song.data.album.photo} />
+      );
+    } else {
+      return (
+        <span />
       );
     }
-    return (
-      <Player url={trackUrl} bg={this.state.song.data.album.photo} />
-    );
   },
   render: function () {
     if (!this.state.song.loaded) {
@@ -114,7 +121,6 @@ var Detail = React.createClass({
         </div>
         <div className='has-top-bar'>
           <div className='card'>
-            <p>试听：</p>
             {this.renderPlayer()}
           </div>
           <div className='card'>
