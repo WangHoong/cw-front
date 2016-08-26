@@ -4,10 +4,11 @@ class Process extends React.Component {
   render() {
     let txt
     let style1 = {marginLeft: '230px', width: '140px'}
+    let img = !/global\.topdmc\.com/.test(location.host) ? (<img style={style1} src={'../images/topdmc.jpg'} alt="TopDMC微信公众号二维码" />) : ''
     let a =
     (<div className='card clearfix'>
       <div style={{float: 'left'}}>
-        <h3 style={{marginTop:0}}>{window.lang.Please}</h3>
+        <h3 style={{marginTop:0}}>{window.lang.Please}{window.lang.Please1}</h3>
         <ol>
           <li>{window.lang.P1}</li>
           <li>{window.lang.P2}</li>
@@ -16,22 +17,25 @@ class Process extends React.Component {
           <li>{window.lang.P5}</li>
         </ol>
       </div>
-      <img style={style1} src={'../images/topdmc.jpg'} alt="TopDMC微信公众号二维码" />
+      {img}
     </div>)
 
     let b =
     (<div className='card clearfix'>
     <div style={{float: 'left'}}>
-      <h3 style={{marginTop:0}}>{window.lang.Please}</h3>
+      <h3 style={{marginTop:0}}>{window.lang.Please}{window.lang.Please11}</h3>
       <ol>
         <li>{window.lang.P11}</li>
         <li>{window.lang.P22}</li>
         <li>{window.lang.P33}</li>
         <li>{window.lang.P44}</li>
         <li>{window.lang.P55}</li>
+        <li>{window.lang.P66}</li>
+        <li>{window.lang.P77}</li>
+        <li>{window.lang.P88}</li>
       </ol>
       </div>
-      <img style={style1} src={'../images/topdmc.jpg'} alt="TopDMC微信公众号二维码" />
+      {img}
     </div>)
 
     switch (account_type) {
