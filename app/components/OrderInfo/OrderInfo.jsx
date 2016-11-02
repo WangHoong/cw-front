@@ -120,6 +120,7 @@ var OrderInfo = React.createClass({
     OrderInfoActions.get()
   },
   render: function() {
+    var isGlobal = window.location.hostname.indexOf('global') != -1 ? true : false
     if (this.state.orderinfo.loaded) {
       return (
         <div className='OrderInfoCard row'>
@@ -137,7 +138,8 @@ var OrderInfo = React.createClass({
               <div className='oi-item'>
                 <div className='oi-img'><img src='/images/sp_default_logo.jpg'/></div>
                 <div className='oi-name' style={{width: '70%', borderRight: '0'}}>
-                  <p>吉他大师（暂未授权）</p>
+                  <p>{isGlobal && 'Master of the Guitar'}</p>
+                  <p>{!isGlobal && '吉他大师（暂未授权）'}</p>
                   <p className='oi-price'>￥2.77/1000{window.lang.times}</p>
                 </div>
               </div>
@@ -146,7 +148,8 @@ var OrderInfo = React.createClass({
               <div className='oi-item'>
                 <div className='oi-img'><img src='/images/sp_default_logo.jpg'/></div>
                 <div className='oi-name' style={{width: '70%', borderRight: '0'}}>
-                  <p>喜马拉雅FM（暂未授权）</p>
+                  <p>{isGlobal && 'Ximalaya FM'}</p>
+                  <p>{!isGlobal && '喜马拉雅FM（暂未授权）'}</p>
                   <p className='oi-price'>￥2.77/1000{window.lang.times}</p>
                 </div>
               </div>
@@ -155,7 +158,8 @@ var OrderInfo = React.createClass({
               <div className='oi-item'>
                 <div className='oi-img'><img src='/images/sp_default_logo.jpg'/></div>
                 <div className='oi-name' style={{width: '70%', borderRight: '0'}}>
-                  <p>蜻蜓FM收音机（暂未授权）</p>
+                  <p>{isGlobal && 'Qingting FM'}</p>
+                  <p>{!isGlobal && '蜻蜓FM收音机（暂未授权）'}</p>
                   <p className='oi-price'>￥2.77/1000{window.lang.times}</p>
                 </div>
               </div>

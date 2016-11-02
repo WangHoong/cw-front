@@ -35,7 +35,7 @@ var Main = React.createClass({
           </div>
         </div>
         <div className='mt20'>
-            <OrderInfo / >
+            <OrderInfo />
         </div>
         <div className='mt20'>
           <div className='row'>
