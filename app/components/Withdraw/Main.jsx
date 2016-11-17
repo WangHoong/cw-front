@@ -76,43 +76,17 @@ class Main extends React.Component {
     if (isGlobal) {
       return (
         <div className='col-sm-6'>
-          <p>Please Note</p>
           <p>
-            How to WITHDRAW the revenue:
+            Step 1: When you would like to withdraw money from your account, please click the ‘withdraw’ button then the system will automatically sending the application to DMC.
             <br />
-            Applying withdraw online-----à sending invoice to gai@topdmc.com -----à get the payment via Paypal
             <br />
-            About the INVOICE:
+            Step 2: DMC will calculate the corresponding tax fee and actual payment after receiving your application, and then DMC will inform you above number by email.
             <br />
-            The Title of Company: TopDMC
             <br />
-            Company Address: Room 1201, HuaSheng International Building, No. 12 Yabao Road, Chaoyang District, Beijing, China
+            Step 3: You need to make an invoice to DMC according to the number of tax fee and actual payment you got from DMC.
             <br />
-            Contact person: Ms. Cai Runjia
             <br />
-            Tel: +86 10 59306967
-            <br />
-            About the TAX:
-            <br />
-            Both Individual musician and Record company should pay the relate tax as to the Chinese policy of income and tax. Please see the details as follow:
-            <br />
-            FOR INDIVIDUAL MUSICIAN:
-            <br />
-            The tax is for royalties and licence fees, usually refer to using intangible property such as right, information and service. The number of tax rate in terms of the actual income at the accounting day.
-            <br />
-            {'* <RMB800: NO NEED TO PAY TAX'}
-            <br />
-            {'* RMB800-RMB4,000: (ACTUAL IMCOME-RMB800)*20%'}
-            <br />
-            * >RMB4000: ACTUAL IMCOME*80%*20%
-            <br />
-            ** In order to protect the production cost, Chinese policy define that the production cost is RMB800 if the actual income is less than RMB4,000 but more than RMB800. What's more, if the actual income is more than RMB4,000, the production cost define to be account for 20% of the income, then the balance needs to pay the tax fee.
-            <br />
-            Once tax paid, a Tax Clearance Certificate will be provided.
-            <br />
-            FOR RECORD LABEL COMPANY:
-            <br />
-            The tax is 'value-added tax', should be paid as ACTUAL INCOME*6%*12%
+            Step 4: Once DMC get the invoice from you, DMC will transfer the payment to you via Paypal.
           </p>
         </div>
       )
