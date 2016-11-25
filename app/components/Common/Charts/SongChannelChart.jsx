@@ -5,6 +5,8 @@ import axios from 'axios'
 import { APIHelper } from 'app/utils/APIHelper'
 import { transformDataToSPType } from 'app/utils/commonFn'
 
+const isGlobal = window.location.hostname.indexOf('global') != -1 ? true : false
+
 class SongChannelChart extends Component {
   constructor(props){
     super(props);
@@ -17,7 +19,7 @@ class SongChannelChart extends Component {
 		axios.get(APIHelper.getPrefix() + '/rpt/' + this.props.url, {
 			withCredentials: true,
 		}).then(res => {
-			res.data.data.length && this.setState({option:transformDataToSPType(res.data.data)})
+			res.data.data.length && this.setState({option:transformDataToSPType(res.data.data, isGlobal)})
 		});
 	}
   createOpt(_){

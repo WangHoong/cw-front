@@ -136,7 +136,7 @@ function generateColorLikeBlue(number) {
 	number = Number(number)
 	return `rgb(${147-number*4}, ${209-number*5}, ${244-number*6})`
 }
-function transformDataToSPType(data) {
+function transformDataToSPType(data, isGlobal) {
     let fix = (_) => {
       if(Number(_)<10){
         return '0'+_
@@ -148,7 +148,7 @@ function transformDataToSPType(data) {
 		dayArr = data.map(_ => _.day.split('/').splice(1,2).join('/'));
 
 		data = data.map(_ => _.sps);
-		let spNameArr = data[0] && data[0].map(_ => _.sp_name);
+		let spNameArr = data[0] && data[0].map(_ => isGlobal ? _.sp_en_name : _.sp_name);
 		let spLen = spNameArr.length;
 		data.map( (_) => {
 
