@@ -110,7 +110,7 @@ class Main extends React.Component {
   render() {
     return (
       <div className='withdraw-wrap'>
-        <h1>提现申请</h1>
+        <h1>{window.lang.withdraw_title}</h1>
         <div className='panel'>
           <div className='panel-body container-fluid'>
             <div className='row'>
@@ -121,7 +121,7 @@ class Main extends React.Component {
             </div>
           </div>
         </div>
-        <h1>提现记录</h1>
+        <h1>{window.lang.withdraw_ra}</h1>
           <div className='panel'>
             <div className='panel-body container-fluid'>
               <div className='row'>

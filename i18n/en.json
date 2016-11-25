@@ -177,6 +177,14 @@
     "sp_lw_woc": "Weeks on chart",
     "sp_cp": "CP",
     "sp_cpst": "Status",
-    "sp_cptime": "Time"
+    "sp_cptime": "Time",
+    "withdraw_title": "Withdraw Appication",
+    "withdraw_an": "Account Name",
+    "withdraw_bn": "Bank Name",
+    "withdraw_a": "Account",
+    "withdraw_ar": "Available recorded",
+    "withdraw": "Withdraw",
+    "withdraw_ra": "Recent Activity",
+    "withdraw_none": "NONE"
   }
 }

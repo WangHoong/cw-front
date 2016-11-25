@@ -173,6 +173,14 @@
     "sp_lw_woc": "进榜周数",
     "sp_cp": "CP(音乐提供商)",
     "sp_cpst": "回复状态",
-    "sp_cptime": "回复时间"
+    "sp_cptime": "回复时间",
+    "withdraw_title": "提现申请",
+    "withdraw_an": "开户名称",
+    "withdraw_bn": "开户行",
+    "withdraw_a": "帐号",
+    "withdraw_ar": "可提现",
+    "withdraw": "提现",
+    "withdraw_ra": "提现记录",
+    "withdraw_none": "暂无"
   }
 }

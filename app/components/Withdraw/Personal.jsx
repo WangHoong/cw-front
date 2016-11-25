@@ -54,21 +54,21 @@ class Personal extends React.Component {
     });
   }
   render() {
-    const stateTxt = this.state.sending ? '正在提交...' : '提交申请';
+    const stateTxt = this.state.sending ? window.lang.withdraw + '...' : window.lang.withdraw;
     return (
       <div>
         <form onSubmit={this.submit.bind(this)}>
           <div className='form-group'>
-            <label>开户名称：</label>{this.props.bankInfo['account_name']}
+            <label>{window.lang.withdraw_an}：</label>{this.props.bankInfo['account_name']}
           </div>
           <div className='form-group'>
-            <label>开户行：</label>{this.props.bankInfo['bank_name']}
+            <label>{window.lang.withdraw_bn}：</label>{this.props.bankInfo['bank_name']}
           </div>
           <div className='form-group'>
-            <label>帐号：</label>{this.props.bankInfo['account_number']}
+            <label>{window.lang.withdraw_a}：</label>{this.props.bankInfo['account_number']}
           </div>
           <div className='form-group'>
-            <label>提现金额（可提现金额为&yen; {this.state.recorded}）：</label>
+            <label>{window.lang.withdraw_ar}（&yen; {this.state.recorded}）：</label>
             <input type="text" name='money' className='form-control' placeholder='输入申请提现金额' required onChange={this.changeHandle.bind(this)} />
           </div>
           <button type='submit' className='btn btn-primary' disabled={this.state.sending}>{stateTxt}</button>

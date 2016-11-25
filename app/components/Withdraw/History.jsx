@@ -67,7 +67,7 @@ class History extends React.Component {
       return <Loader />;
     }
     if (this.state.data.items.length <= 0) {
-      return <p className='text-center'>暂无记录</p>;
+      return <p className='text-center'>{window.lang.withdraw_none}</p>;
     }
     let items = this.state.data.items.map((item, idx) => {
       return (
