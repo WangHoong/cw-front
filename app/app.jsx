@@ -277,8 +277,7 @@ var routes = (
     </Route>
   </Route>
 );
-
-  Router.run(routes, function (Handler, state) {
-    React.render(<Handler/>, document.querySelector('#mountNode'));
-    analytics(state);
-  });
+Router.run(routes, Router.HistoryLocation, function (Handler, state) {
+  React.render(<Handler/>, document.querySelector('#mountNode'));
+  analytics(state);
+});
