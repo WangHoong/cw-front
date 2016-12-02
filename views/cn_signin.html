@@ -51,13 +51,17 @@ body {
       <label>密码</label>
       <input name="password" type="password" class="form-control" placeholder="请输入密码">
     </div>
+    <input name="code" type="text" class="hide" placeholder="请输入邀请码" value="{{CODE}}">
+    <div class="form-group">
+      <input type='checkbox' id="agree" disabled checked>
+      <a href='/license' target="_blank" style="margin-left: 5px; color: #01BCFF;">我同意TopDMC的服务条款</a>
+    </div>
     <div class="form-group">
       <p class="js-msg" style="text-align:center;color:#fa3e3e"></p>
     </div>
     <input type="submit" value="登陆" class="login btn primary-bg btn-block" />
     <div class="tips" style="text-align: center; margin-bottom: 10px">or</div>
-    <a href="/signup" class="btn primary-bg btn-block">注册账户</a>
-    <a href="/wx_signin?{{querystring}}" class="btn primary-bg btn-block">微信扫码登陆</a>
+    <a href="/wx_signin?{{CODE}}" class="btn primary-bg btn-block">微信扫码登陆</a>
   </form>
 </section>
 <script src="/js/jquery.min.js"></script>
