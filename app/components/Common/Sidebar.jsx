@@ -188,11 +188,6 @@ var Sidebar = React.createClass({
         to: 'withdraw',
         roleName: ['CP']
       }, {
-        faIconName: 'bar-chart',
-        text: window.lang.re,
-        to: 'charts',
-        roleName: ['CP','SP']
-      }, {
         faIconName: 'cogs',
         text: window.lang.se,
         to: 'settings',

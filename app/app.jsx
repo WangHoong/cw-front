@@ -201,16 +201,6 @@ var Base = React.createClass({
   }
 });
 
-var Chart = React.createClass({
-  render: function () {
-    return (
-      <span>{window.lang.re}</span>
-    );
-  }
-});
-
-
-
 var NotFound = React.createClass({
   render: function () {
     return (
@@ -269,7 +259,6 @@ var routes = (
       <Route handler={Empty} name='withdraw'>
         <DefaultRoute handler={Withdraw} />
       </Route>
-      <Route handler={Chart} name="charts"/>
 
       <Route handler={SP} name="sp"/>
 
