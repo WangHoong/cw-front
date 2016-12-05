@@ -277,7 +277,8 @@ var routes = (
     </Route>
   </Route>
 );
-Router.run(routes, Router.HistoryLocation, function (Handler, state) {
+// Router.HistoryLocation  remove hash
+Router.run(routes, function (Handler, state) {
   React.render(<Handler/>, document.querySelector('#mountNode'));
   analytics(state);
 });

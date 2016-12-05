@@ -2,6 +2,7 @@ var React = require('react');
 var Reflux = require('reflux');
 const TopsingerStore = require('app/stores/TopsingerStore');
 const TopsingerActions = require('app/actions/TopsingerActions');
+import {Link} from 'react-router'
 var ArtistItemWrapper = React.createClass({
 
   render: function(){
@@ -16,16 +17,17 @@ var ArtistItemWrapper = React.createClass({
     var imgUrl = _artist.artist_photo || 'images/loading.gif';
     var _style={ backgroundImage:'url(' + imgUrl + ')' }
     // set _artist.link
-    _artist.link = `#/artists/${_artist.artist_id}`
+    _artist.link = `/artists/${_artist.artist_id}`
 
     if(rank<=5){
     return (
       <p>
         <span className={_artist.classname}><b>{rank}</b></span>
-        <a href={_artist.link}>
-        <span className="tsr-avatar" style={_style}></span>
-        <span className="tsr-name">{_artist.artist_name}</span>
-        <span className="tsr-num">{_artist.stream_count}</span></a>
+        <Link to={_artist.link}>
+          <span className="tsr-avatar" style={_style}></span>
+          <span className="tsr-name">{_artist.artist_name}</span>
+          <span className="tsr-num">{_artist.stream_count}</span>
+        </Link>
       </p>
     );
   }else {
@@ -40,18 +42,6 @@ var TopSingers = React.createClass({
   componentDidMount: function() {
     TopsingerActions.find();
   },
-  // getInitialState: function() {
-  //   return {
-  //     data2: [
-  //       {rank: 1, avatar: "http://i.gtimg.cn/music/photo/mid_singer_500/I/o/003NThQh3ujqIo.jpg", name: "周华健", num: 62145368, id: 96},
-  //       {rank: 2, avatar: "http://i.gtimg.cn/music/photo/mid_singer_500/N/k/000GGDys0yA0Nk.jpg", name: "梁静茹", num: 61145368, id: 44},
-  //       {rank: 3, avatar: "http://i.gtimg.cn/music/photo/mid_singer_500/c/6/000cISVf2QqLc6.jpg", name: "莫文蔚", num: 59145368, id: 54},
-  //       {rank: 4, avatar: "http://i.gtimg.cn/music/photo/mid_singer_500/c/z/0000mFvh1jtLcz.jpg", name: "张信哲", num: 56145368, id: 167},
-  //       {rank: 5, avatar: "http://i.gtimg.cn/music/photo/mid_singer_500/l/q/00235pCx2tYjlq.jpg", name: "许巍", num: 48145368, id: 3376}
-  //     ]
-  //   };
-  // },
-
 
   render: function(){
 

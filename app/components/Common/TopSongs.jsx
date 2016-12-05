@@ -3,6 +3,7 @@ var Reflux = require('reflux');
 const TopsongStore = require('app/stores/TopsongStore');
 const TopsongActions = require('app/actions/TopsongActions');
 const dbg = require('debug')('topdmc:TopSongs/component');
+import {Link} from 'react-router'
 
 var TopTrackItemWrapper = React.createClass({
   render: function(){
@@ -22,14 +23,14 @@ var TopTrackItemWrapper = React.createClass({
       classnameOfBadge = 'tps-rank-other';
       classnameOfBar = 'tps-bgl-other';
 		}
-    _track.link = `#/songs/${_track.track_id}`;
+    _track.link = `/songs/${_track.track_id}`;
 		let artistsData = _track.artists;
     var name = (artistsData && artistsData[0] && artistsData[0].name) || '暂无';
     return (
       <p className="tps-member">
         <span className={classnameOfBadge}><b>{rank}</b></span>
         <span className={classnameOfBar} style={_style}>
-        	<span className="tps-song"><b><a href={_track.link} dangerouslySetInnerHTML={{__html: this.props.data.track_name+'-'}}></a></b><a href={_track.link2}><span>{name}</span></a></span>
+        	<span className="tps-song"><b><Link to={_track.link} dangerouslySetInnerHTML={{__html: this.props.data.track_name+'-'}}></Link></b><a href={_track.link2}><span>{name}</span></a></span>
         </span>
         <span className="tps-num">{_track.stream_count}</span>
       </p>
