@@ -18,10 +18,11 @@
   width: 100%;
   overflow-y: auto;
   > .logo {
-    padding: 6px 0 7px 0;
+    padding: 12px 0 7px 0;
     margin-bottom: 10px;
     background-color: #12bdc4;
     text-align: center;
+    height: 60px;
     img {
       width: 50px;
       height: auto;
@@ -37,22 +38,26 @@
         height: 50px;
         line-height: 50px;
         padding: 0 20px 0 60px;
+        color: @sideBarColor;
+        font-size: 14px;
         > i {
           position: absolute;
           left: 17px;
           font-size: 20px;
           top: 14px;
-          width: 25px;
+          width: 20px;
           text-align: center;
         }
       }
       &.active {
         > a {
           background-color: #111a29;
+          color: @linkColor;
         }
         a[data-tooltip] {
           &::before {
             background-color: #111a29;
+            color: @linkColor;
           }
         }
       }

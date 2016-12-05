@@ -14,39 +14,51 @@ var ArtistList = React.createClass({
   renderItems: function () {
     if (!this.props.loaded) {
       return (
-        <li className='col-sm-12'>
-          <Loader />
-        </li>
+        <ul className='artist-list row'>
+          <li className='col-sm-12'>
+            <Loader />
+          </li>
+        </ul>
       );
     }
     if (this.props.items <= 0) {
       return (
-        <li className='text-center'>{window.lang.cnfrc}</li>
+        <ul className='artist-list row'>
+          <li className='text-center'>{window.lang.cnfrc}</li>
+        </ul>
       );
     } else {
       return this.props.items.map(function (item, idx) {
         return (
-          <li className='col-sm-2' key={idx}>
-            <div className='artist'>
-              <div className='thumb'>
-                <ImagePreloader data-id={item['id']} onClick={this.props.onShowDetailAction} src={item['photo']}/>
-              </div>
-              <div className='name text-center'>
-                <p className='ellipsis'>{item['name'] || window.lang.unknown}</p>
-                <p className='ellipsis'>{item['country'] || window.lang.unknown}</p>
-              </div>
-              <div className='info row'>
-                <div className='number first col-md-6 text-center'>
-                  <p>{item['track_nums']}</p>
-                  <p>{window.lang.ar_tracks}</p>
+          <ul className='artist-list row'>
+            <li className='col-sm-2' key={idx}>
+              <div className='artist'>
+                <div className='thumb'>
+                  <ImagePreloader data-id={item['id']} onClick={this.props.onShowDetailAction} src={item['photo']}/>
                 </div>
-                <div className='number col-md-6 text-center'>
-                  <p>{item['album_nums']}</p>
-                  <p>{window.lang.ar_albums}</p>
+                <div className='name text-center'>
+                  <h3 className='ellipsis'>{item['name'] || window.lang.unknown}</h3>
+                  <p className='ellipsis'>{item['country'] || window.lang.unknown}</p>
+                </div>
+                <div className='detailText'>
+                  <p>张惠妹</p>
+                </div>
+                <div className='info row'>
+                  <div className='number first col-md-6 text-center'>
+                    <p>{item['track_nums']}</p>
+                    <p>{window.lang.ar_tracks}</p>
+                  </div>
+                  <div className='number col-md-6 text-center'>
+                    <p>{item['album_nums']}</p>
+                    <p>{window.lang.ar_albums}</p>
+                  </div>
                 </div>
               </div>
-            </div>
-          </li>
+            </li>
+            <li className='add col-sm-2'>
+              <p>新增艺人</p>
+            </li>
+          </ul>
         );
       }.bind(this));
     }
@@ -55,8 +67,11 @@ var ArtistList = React.createClass({
   render: function () {
 
     return (
-      <ul className='artist-list row'>
+      <div>
         {this.renderItems()}
+      </div>
+      <ul className='artist-list row'>
+
       </ul>
     );
   }

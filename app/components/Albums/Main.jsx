@@ -73,32 +73,34 @@ var Main = React.createClass({
 
   render: function() {
     return (
-      <div className='list-wrap'>
+      <div>
         <ListSearch
           placeholderPattern='${name}的所有专辑'
           handleKeywordsSearch={this.handleKeywordsSearch}
           handleItemSearch={this.handleItemSearch}
           type='Album' />
-        <div className='has-top-bar'>
-          <div className='btn-group'>
-            <Role component='button' roleName='ADMIN' onClick={this.handleRedirectNew} className="btn btn-default">{window.lang.add_al}</Role>
+        <div className='list-wrap'>
+          <div className='has-top-bar'>
+            <div className='btn-group'>
+              <Role component='button' roleName='ADMIN' onClick={this.handleRedirectNew} className="btn btn-default">{window.lang.add_al}</Role>
+            </div>
+            <AlbumList
+              items={this.state.album.items}
+              onShowDetailAction={this.handleShowDetailAction}
+              loaded={this.state.album.loaded} />
+            <Pager
+              current={this.state.album.page}
+              total={this.state.album.totalPage}
+              visiblePages={this.props.visiblePages}
+              onPageChanged={this.renderList}
+              titles={{
+                first: window.lang.tfp,
+                prev: window.lang.pp,
+                prevSet: '...',
+                nextSet: '...',
+                next: window.lang.np,
+                last: window.lang.tlp}}></Pager>
           </div>
-          <AlbumList
-            items={this.state.album.items}
-            onShowDetailAction={this.handleShowDetailAction}
-            loaded={this.state.album.loaded} />
-          <Pager
-            current={this.state.album.page}
-            total={this.state.album.totalPage}
-            visiblePages={this.props.visiblePages}
-            onPageChanged={this.renderList}
-            titles={{
-              first: window.lang.tfp,
-              prev: window.lang.pp,
-              prevSet: '...',
-              nextSet: '...',
-              next: window.lang.np,
-              last: window.lang.tlp}}></Pager>
         </div>
       </div>
     );
