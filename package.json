@@ -40,6 +40,7 @@
     "numeral": "^1.5.3",
     "object-assign": "^3.0.0",
     "random-string": "^0.1.2",
+    "rc-dialog": "^6.5.3",
     "react": "^0.13.3",
     "react-router": "^0.13.3",
     "reflux": "^0.2.8",
