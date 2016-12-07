@@ -43,6 +43,8 @@ var Withdraw = require('./components/Withdraw/Main.jsx');
 var GlobalUploadTip = require('app/components/Common/GlobalUploadTip.jsx')
 import numeral from 'numeral';
 
+import { Edit, Info } from './components/PersonalInfo/'
+
 const language = {
   delimiters: {
     thousands: ',',
@@ -160,6 +162,7 @@ var StartPage = React.createClass({
         }
         window.account_type = window.currentUser.account_type;
         window.status = window.currentUser.status;
+        window.is_verified = window.currentUser.company.is_verified
         window.has_invitation = window.currentUser.has_invitation;
         self.setState({
           loaded: true
@@ -272,6 +275,9 @@ var routes = (
       <Route handler={Chart} name="charts"/>
 
       <Route handler={SP} name="sp"/>
+
+      <Route handler={Edit} name='edit' />
+      <Route handler={Info} name='info' />
 
       <NotFoundRoute handler={NotFound}/>
     </Route>

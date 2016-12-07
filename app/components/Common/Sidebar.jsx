@@ -252,10 +252,10 @@ var Sidebar = React.createClass({
           <ul className='main-menu'>{navItems}</ul>
         </div>
         <div className='sidebar-assist'>
-          <div className='whoami-wrap'>
+          <a className='whoami-wrap' href='/#/info' style={{display:'block'}}>
             <div className='whoami-img' style={avatarUrl}/>
             <p className="whoami-username ellipsis">{this.state.loginUserInfo.name}</p>
-          </div>
+          </a>
           <ToggleMenuButton handleToggleMenuClick={this.props.handleToggleMenuClick} toggleMenuClass={this.props.toggleMenuClass}/>
           <a href='#' onClick={this.logout} style={{display: 'block', height: '30px', lineHeight: '30px', textAlign: 'center'}}>{window.lang.logout}</a>
         </div>
