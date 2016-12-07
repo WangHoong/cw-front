@@ -11,67 +11,80 @@ var ArtistList = React.createClass({
     evt.target.src = 'http://placehold.it/188&text=null'
   },
 
+  removeHtml: (str) => {
+    const r = /\\n|\&amp/g
+    return str.replace(r, '')
+  },
+
+  cutString: (str, n) => {
+    const r = /[^\x00-\xff]/g
+    if (str.replace(r, 'mm').length <= n) {
+      return str
+    }
+    const m = Math.floor(n / 2)
+    for (let i = m; i < str.length; i++) {
+      if (str.substr(0, i).replace(r, 'mm').length >= n) {
+        return `${str.substr(0, i)}...`
+      }
+    }
+    return str
+  },
+
   renderItems: function () {
     if (!this.props.loaded) {
       return (
-        <ul className='artist-list row'>
-          <li className='col-sm-12'>
-            <Loader />
-          </li>
-        </ul>
+        <li className='col-sm-12'>
+          <Loader />
+        </li>
       );
     }
     if (this.props.items <= 0) {
       return (
-        <ul className='artist-list row'>
-          <li className='text-center'>{window.lang.cnfrc}</li>
-        </ul>
+        <li className='text-center'>{window.lang.cnfrc}</li>
       );
     } else {
       return this.props.items.map(function (item, idx) {
         return (
-          <ul className='artist-list row'>
-            <li className='col-sm-2' key={idx}>
-              <div className='artist'>
-                <div className='thumb'>
-                  <ImagePreloader data-id={item['id']} onClick={this.props.onShowDetailAction} src={item['photo']}/>
+          <li className='col-sm-2' key={idx}>
+            <div className='artist'>
+              <div className='thumb'>
+                <ImagePreloader data-id={item['id']} onClick={this.props.onShowDetailAction} src={item['photo']}/>
+              </div>
+              <div className='name text-center'>
+                <h3 className='ellipsis itemName'>
+                  {item['name'] || window.lang.unknown}
+                  <span className='gender'>
+                    {item['gender'] &&
+                      item['gender'] === 1 && <i className='fa fa-mars genderMen' aria-hidden='true'></i> ||
+                      item['gender'] === 2 && <i className='fa fa-venus genderWoman' aria-hidden='true'></i>}
+                  </span>
+                </h3>
+                <p className='ellipsis'>{item['country'] || window.lang.unknown}</p>
+              </div>
+              <div className='detailText'>
+                <p>{item['desc'] && this.cutString(this.removeHtml(item['desc']), 130) || '暂无简介'}</p>
+              </div>
+              <div className='info'>
+                <div className='number first col-md-6 text-center'>
+                  <p className='info-number'>{item['track_nums']}</p>
+                  <p className='info-text'>{window.lang.ar_tracks}</p>
                 </div>
-                <div className='name text-center'>
-                  <h3 className='ellipsis'>{item['name'] || window.lang.unknown}</h3>
-                  <p className='ellipsis'>{item['country'] || window.lang.unknown}</p>
-                </div>
-                <div className='detailText'>
-                  <p>张惠妹</p>
-                </div>
-                <div className='info row'>
-                  <div className='number first col-md-6 text-center'>
-                    <p>{item['track_nums']}</p>
-                    <p>{window.lang.ar_tracks}</p>
-                  </div>
-                  <div className='number col-md-6 text-center'>
-                    <p>{item['album_nums']}</p>
-                    <p>{window.lang.ar_albums}</p>
-                  </div>
+                <div className='number col-md-6 text-center'>
+                  <p className='info-number'>{item['album_nums']}</p>
+                  <p className='info-text'>{window.lang.ar_albums}</p>
                 </div>
               </div>
-            </li>
-            <li className='add col-sm-2'>
-              <p>新增艺人</p>
-            </li>
-          </ul>
+            </div>
+          </li>
         );
       }.bind(this));
     }
   },
 
   render: function () {
-
     return (
-      <div>
-        {this.renderItems()}
-      </div>
       <ul className='artist-list row'>
-
+        {this.renderItems()}
       </ul>
     );
   }

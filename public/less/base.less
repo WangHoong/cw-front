@@ -60,7 +60,6 @@
   min-height: 100%;
   .toggled-transition(margin-left);
   > .content-inner {
-    // position: relative;
     padding-bottom: 40px;
   }
   > .footer {
@@ -69,8 +68,12 @@
     border-top: 1px solid @borderColor;
     bottom: 0;
     left: 0;
-    padding: 10px 15px;
+    padding: 10px 20px;
     right: 0;
+    p {
+      font: 12px '微软雅黑','Arial';
+      color: @artistsColor;
+    }
   }
 }
 
@@ -224,27 +227,61 @@
     }
     > .name {
       margin-top: 10px;
-      font-family: '微软雅黑';
       color: @artistsColor;
-      margin-bottom: 20px;
-      h3 {
-        font: bolder 18px;
-        margin-bottom: 5px;
+      margin-bottom: 15px;
+      > .itemName {
+        font-size: 18px;
+        font-weight: 900;
+        font-family: '微软雅黑';
+        margin: 0 -10px 5px 10px;
+        > .gender {
+          > .fa {
+            width: 14px;
+            height: 14px;
+            padding: 2px;
+            display: inline-block;
+            border-radius: 7px;
+            color: #fff;
+            font-size: 8px;
+            margin-left: 5px;
+          }
+          > .genderMen {
+            background-color: #4ebdf9;
+          }
+          > .genderWoman {
+            background-color: #ff7bb6;
+          }
+        }
+      }
+      p {
+        font-size: 12px;
       }
     }
     > .detailText {
-      background: #eee;
       padding: 0 18px;
-      text-overflow: ellipsis;
-      height: 100px;
-      // p {
-      //   color:@artistsColor;
-      //   font: 12px/20px '微软雅黑';
-      // }
+      height: 80px;
+      p {
+        color:@artistsColor;
+        font: 12px/20px '微软雅黑';
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 3;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        max-height: 40px;
+        position:relative;
+      }
+      p::after{
+        content: "...";
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        padding-left: 40px;
     }
     > .info {
-      margin-top: 10px;
-      background-color: #fbfbfb;
+      margin-top: 20px;
+      background-color: #fff;
+      height: 50px;
       > .number {
         position: relative;
         &.first {
@@ -258,6 +295,17 @@
             background-color: @borderColor;
           }
         }
+        > .info-number {
+          font-size: 24px;
+          color: @artistsColor;
+          font-family: 'Arial','Regular';
+        }
+        > .info-text {
+          font-size: 14px;
+          color: @linkColor;
+          font-weight: 900;
+          margin-top: -2px;
+        }
       }
     }
   }
@@ -265,9 +313,11 @@
 
 // album list
 .album-list {
+  margin: 0 0 0 5px;
   > li {
-    margin-top: 15px;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
+    padding: 0 20px 0 0;
+    height: 270px;
   }
   > .col-sm-2 {
     width: 20%;
@@ -276,9 +326,11 @@
     width: 100%;
     overflow: hidden;
     background-color: #fff;
+    border: 1px solid @borderColor;
+    height: 270px;
+    border-radius: 4px;
     > .thumb {
       width: 100%;
-      height: 170px;
       overflow: hidden;
       text-align: center;
       img {
@@ -287,14 +339,23 @@
       }
     }
     > .name {
-      height: 40px;
+      height: 45px;
       overflow: hidden;
-      padding: 0 5px;
+      padding: 0 10px;
       margin-top: 5px;
+      color: @artistsColor;
+      font-family: 'MicrosoftYaHei-Bold';
     }
     > .info {
-      padding: 0 5px;
-      margin-top: 5px;
+      padding: 0 30px 0 10px;
+      width: 100%;
+      font-family: 'MicrosoftYaHei';
+      position: absolute;
+      bottom: 5px;
+      p {
+        font-size: 12px;
+        padding: 0;
+      }
     }
   }
 }
@@ -530,7 +591,7 @@
 
 // pager
 .m-pager {
-  margin: 20px 0;
+  margin: 10px 0 20px 0;
   > .m-pagination {
     text-align: center;
     > li {
@@ -543,15 +604,15 @@
         border: 1px solid #e6e6e6;
         border-radius: 3px;
         background-color: #fff;
-        color: #2e4057;
+        color: #a3aab2;
         &:active {
           transform: scale(.9);
         }
       }
       &.active {
         > a {
-          background-color: #64a281;
-          border-color: #64a281;
+          background-color: #2ed0d7;
+          border-color: #2ed0d7;
           color: #ffffff;
           cursor: default;
         }
@@ -562,7 +623,7 @@
       &.btn-last-page.disabled {
         > a {
           cursor: no-drop;
-          color: rgba(46, 64, 87, 0.4);
+          color: #ced2db;
         }
       }
     }

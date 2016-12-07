@@ -14,6 +14,20 @@ var List = React.createClass({
     evt.target.src = 'http://placehold.it/188&text=null'
   },
 
+  cutString: (str, n) => {
+    const r = /[^\x00-\xff]/g
+    if (str.replace(r, 'mm').length <= n) {
+      return str
+    }
+    const m = Math.floor(n / 2)
+    for (let i = m; i < str.length; i++) {
+      if (str.substr(0, i).replace(r, 'mm').length >= n) {
+        return `${str.substr(0, i)}...`
+      }
+    }
+    return str
+  },
+
   renderItems: function() {
     if (!this.props.loaded) {
       return (
@@ -37,8 +51,9 @@ var List = React.createClass({
                   data-id={item['id']}
                   src={item['photo']} />
               </div>
-              <p className='name'>{item['name']}</p>
-              <div className='info row'>
+              {/* <p className='name'>{item['name'] && this.cutString(item['name'], 40) || '暂无内容'}</p> */}
+              <p className='name'>{item['name'] || '暂无内容'}</p>
+              <div className='info'>
                 <p className='col-md-8 ellipsis'>{_.collect(item.artists,'name').join(',')}</p>
                 <p className='col-md-4 ellipsis text-right'>{item['track_nums']}{window.lang.ar_0}</p>
               </div>
