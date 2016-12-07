@@ -18,6 +18,9 @@ var TextareaAutosize = require('../Common/TextareaAutosize.jsx');
 
 var Mp3Uploader = require('app/components/Common/Mp3Uploader.jsx');
 
+var Dialog = require('rc-dialog');
+// var ReactDOM = require('react-dom');
+
 var Form = React.createClass({
 
   getInitialState: function() {
@@ -25,7 +28,9 @@ var Form = React.createClass({
       isDropArtistActive: false,
       isDropAlbumActive: false,
       SearchBoxType: 'Artist',
-      lrc: ''
+      lrc: '',
+      visible: false,
+      // destroyOnClose: false,
     }, this.props.data);
     return defaultState;
   },
@@ -38,6 +43,23 @@ var Form = React.createClass({
   componentWillReceiveProps: function(nextProps) {
     this.setState(nextProps.data);
   },
+
+  // 弹窗相关事件处理
+  onClick() {
+    this.state.visible=true;
+  },
+
+  onClose() {
+    this.setState({
+      visible: false,
+    });
+  },
+
+  // onDestroyOnCloseChange(e) {
+  //   this.setState({
+  //     destroyOnClose: e.target.checked,
+  //   });
+  // },
 
   // 拖拽相关事件处理
   // --------------------------------------------
@@ -268,6 +290,40 @@ var Form = React.createClass({
     var dropArtistClassName = classNames('card', 'mt20', 'card-dropzone', {
       'active': this.state.isDropArtistActive
     });
+    let dialog;
+    if (this.state.visible) {
+      dialog = (
+        <Dialog
+          visible={this.state.visible}
+          animation="slide-fade"
+          maskAnimation="fade"
+          onClose={this.onClose}
+          style={{ width: 600 }}
+          title={<div>发行设置</div>}
+          footer={
+            [
+              <button
+                type="button"
+                className="btn btn-default"
+                key="close"
+                onClick={this.onClose}
+              >
+              Close
+              </button>,
+              <button
+                type="button"
+                className="btn btn-primary"
+                key="save"
+                onClick={this.onClose}
+              >
+              Save changes
+              </button>,
+            ]
+          }
+        >
+        </Dialog>
+      );
+    }
     return (
       <div className='show-wrap'>
         <div className='edit-wrap has-assist-box'>
@@ -329,6 +385,13 @@ var Form = React.createClass({
           </div>
 
           {this.renderUpload()}
+
+          <div className='card mt20'>
+            <div>发行设置:
+              <a>默认发行平台</a>
+              <button onClick={this.onClick}>高级选项</button>
+            </div>
+          </div>
 
         </div>
         <Assist type={SearchBoxType} selectedItems={selectedItems} onItemClick={this.handleItemClick} />

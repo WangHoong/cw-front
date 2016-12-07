@@ -62,7 +62,7 @@ var ArtistList = React.createClass({
                 <p className='ellipsis'>{item['country'] || window.lang.unknown}</p>
               </div>
               <div className='detailText'>
-                <p>{item['desc'] && this.cutString(this.removeHtml(item['desc']), 130) || '暂无简介'}</p>
+                <p>{item['desc'] && this.removeHtml(item['desc']) || '暂无简介'}</p>
               </div>
               <div className='info'>
                 <div className='number first col-md-6 text-center'>
