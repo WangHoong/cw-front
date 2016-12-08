@@ -190,7 +190,7 @@ var Edit = React.createClass({
                 tips={company_type=='1' ? '上传手持身份证正面照' : '上传营业执照照片'}
                 src={company_type=='1' ? handle_img : license_img}
                 ref={company_type=='1' ? 'handle_img' : 'license_img'}
-                type='album_photo'
+                type='company_photo'
                 uploadComplete={() => this.handlePhotoUploaded(`${company_type=='1' ? 'handle_img' : 'license_img'}`)}
               />
             </div>
@@ -199,7 +199,7 @@ var Edit = React.createClass({
                 tips={company_type=='1' ? '上传身份证正面照' : '上传法人身份证手持正面照片'}
                 src={id_card_img}
                 ref='id_card_img'
-                type='album_photo'
+                type='company_photo'
                 uploadComplete={() => this.handlePhotoUploaded('id_card_img')}
               />
             </div>
@@ -208,7 +208,7 @@ var Edit = React.createClass({
                 tips={company_type=='1' ? '上传身份证反面照' : '上传法人身份证反面照片'}
                 src={id_card_second_img}
                 ref='id_card_second_img'
-                type='album_photo'
+                type='company_photo'
                 uploadComplete={() => this.handlePhotoUploaded('id_card_second_img')}
               />
             </div>
