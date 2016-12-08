@@ -42,7 +42,7 @@ class ProcessTips extends React.Component {
         }
       } else {
         return (
-          <a href='javascript:;' onClick={function() {this.replaceTip()}.bind(this)}>{window.lang.Welcome}</a>
+          <a href='javascript:;' style={{color: '#6b7b8a', fontWeight: 'bold', fontFamily: '微软雅黑',}} onClick={function() {this.replaceTip()}.bind(this)}>{window.lang.Welcome}</a>
         );
       }
     }

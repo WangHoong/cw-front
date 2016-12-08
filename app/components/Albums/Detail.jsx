@@ -45,7 +45,7 @@ var Detail = React.createClass({
     } else {
       return tracks.map(function(item, idx) {
         return (
-          <li key={idx} className='col-sm-4 ellipsis'>
+          <li key={idx} className='col-sm-4 ellipsis p-l-20 p-r-0'>
             <span className='name'>{idx + 1}</span>
             <span><a data-id={item.id} onClick={this.handleSongsClick}>{item.name}</a></span>
           </li>
@@ -72,10 +72,10 @@ var Detail = React.createClass({
           <div className='photo pull-left' style={photoStyles}></div>
           <div className='ctrl-btn pull-right'>
             <button
-              className='btn btn-warning mr10'
+              className='btn btn-warning mr10 btn-w-h'
               onClick={this.props.handleToEdit}>{window.lang.edit}</button>
             <button
-              className='btn btn-default'
+              className='btn btn-default btn-w-h'
               onClick={this.handleBack}>{window.lang.back}</button>
           </div>
           <div className='info'>
@@ -83,7 +83,7 @@ var Detail = React.createClass({
           </div>
         </div>
         <div className='has-top-bar'>
-          <div className='card'>
+          <div className='card mt20'>
             <SongChart url={'albums/'+ this.state.album.data.id +'/play_total'} />
           </div>
           <div className='card mt20'>

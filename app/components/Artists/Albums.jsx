@@ -52,7 +52,7 @@ module.exports = exports = React.createClass({
       return <div/>
     }
     return (
-      <div>
+      <div className='mt20'>
         <AlbumList items={this.state.albums.items} loaded={this.state.albums.loaded} onShowDetailAction={this.handleShowDetailAction}/>
         <Pager
           current={this.state.albums.page}

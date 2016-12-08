@@ -29,11 +29,11 @@ var Edit = React.createClass({
     return (
       <Form ref='editForm' data={data}>
         <button
-          className='btn btn-warning mr10'
+          className='btn btn-warning mr10 btn-w-h'
           onClick={this.handleUpdate}>{window.lang.save}
         </button>
         <button
-          className='btn btn-default'
+          className='btn btn-default btn-w-h'
           onClick={this.props.handleToDetail}>{window.lang.cancel}
         </button>
       </Form>

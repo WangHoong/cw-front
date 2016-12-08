@@ -109,10 +109,10 @@ var Detail = React.createClass({
           <div className='photo pull-left' style={photoStyles}></div>
           <div className='ctrl-btn pull-right'>
             <button
-                className='btn btn-warning mr10'
+                className='btn btn-warning mr10 btn-w-h'
                 onClick={this.props.onEditClick}>{window.lang.edit}</button>
             <button
-              className='btn btn-default'
+              className='btn btn-default btn-w-h'
               onClick={this.handleBack}>{window.lang.back}</button>
           </div>
           <div className='info'>
@@ -120,7 +120,7 @@ var Detail = React.createClass({
           </div>
         </div>
         <div className='has-top-bar'>
-          <div className='card'>
+          <div className='card mt20'>
             {this.renderPlayer()}
           </div>
           <div className='card'>

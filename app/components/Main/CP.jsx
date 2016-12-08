@@ -15,50 +15,52 @@ var Main = React.createClass({
     var _data=["4/7","6/7","3/7"];
     let tip = status<=0 ? (<div className='card'><ProcessTips /></div>) : (<div></div>)
     return (
-      <div className='dashboard-container'>
-        {tip}
-        <div className='row dashboard-header'>
-          <div className='col-sm-4'>
-            <div className='income'>
-              <TotalCard type={'0'} />
-            </div>
-          </div>
-          <div className='col-sm-3'>
-            <div className='songsum'>
-              <TotalCardOfData />
-            </div>
-          </div>
-          <div className='col-sm-5'>
-            <div className='datum-percent-wrap'>
-              <PercentCircle percent={_data}/>
-            </div>
-          </div>
-        </div>
-        <div className='mt20'>
-            <OrderInfo />
-        </div>
-        <div className='mt20'>
-          <div className='row'>
-            <div className='col-sm-12'>
-              <div className='card'>
-                <SongChart url={'play_total'} />
+      <div>
+        <div className='dashboard-container'>
+          {tip}
+          <div className='row dashboard-header'>
+            <div className='col-sm-4 p-r-10'>
+              <div className='income'>
+                <TotalCard type={'0'} />
               </div>
-              <div className='card mt20'>
-                <SongChannelChart url={'play_total_sp'} />
+            </div>
+            <div className='col-sm-3 p-l-10 p-r-10'>
+              <div className='songsum'>
+                <TotalCardOfData />
+              </div>
+            </div>
+            <div className='col-sm-5 p-l-10'>
+              <div className='datum-percent-wrap'>
+                <PercentCircle percent={_data}/>
               </div>
             </div>
           </div>
-        </div>
-        <div className='mt20'>
-          <div className='row'>
-            <div className='col-sm-8'>
-              <div className='card'>
-								<TopSongs />
-							</div>
+          <div className='mt20'>
+              <OrderInfo />
+          </div>
+          <div className='mt20'>
+            <div className='row'>
+              <div className='col-sm-12'>
+                <div className='card'>
+                  <SongChart url={'play_total'} />
+                </div>
+                <div className='card mt20'>
+                  <SongChannelChart url={'play_total_sp'} />
+                </div>
+              </div>
             </div>
-            <div className='col-sm-4'>
-              <div className='card'>
-                <TopSingers />
+          </div>
+          <div className='mt20 mb20'>
+            <div className='row'>
+              <div className='col-sm-8'>
+                <div className='card'>
+                  <TopSongs />
+                </div>
+              </div>
+              <div className='col-sm-4'>
+                <div className='card'>
+                  <TopSingers />
+                </div>
               </div>
             </div>
           </div>

@@ -60,15 +60,15 @@ var Detail = React.createClass({
         <div className='show-top'>
           <div className='photo pull-left' style={photoStyles}></div>
           <div className='ctrl-btn pull-right'>
-            <button className='btn btn-warning mr10' onClick={this.props.onEditClick}>{window.lang.edit}</button>
-            <button className='btn btn-default' onClick={this.handleBack}>{window.lang.back}</button>
+            <button className='btn btn-warning mr10 btn-w-h' onClick={this.props.onEditClick}>{window.lang.edit}</button>
+            <button className='btn btn-default btn-w-h' onClick={this.handleBack}>{window.lang.back}</button>
           </div>
           <div className='info'>
             <p>{data.name}- {data.country}</p>
           </div>
         </div>
         <div className='has-top-bar'>
-          <div className='card'>
+          <div className='card mt20'>
             <SongChart url={'artists/'+ this.state.artist.data.id +'/play_total'}/>
           </div>
           <div className='card mt20'>

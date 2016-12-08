@@ -12,7 +12,7 @@ var ArtistList = React.createClass({
   },
 
   removeHtml: (str) => {
-    const r = /\\n|\&amp/g
+    const r = /\\n|\&amp|\"/g
     return str.replace(r, '')
   },
 

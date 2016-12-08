@@ -68,7 +68,7 @@ var SongList = React.createClass({
             <td>{item.composer}</td>
             <td>{hasMV}</td>
             <td>
-              <a className='btn btn-link' data-id={item.id} onClick={this.props.onShowDetailAction}>{window.lang.tr_view}</a>
+              <a className='btn-link' data-id={item.id} onClick={this.props.onShowDetailAction}>{window.lang.tr_view}</a>
             </td>
           </tr>
         );

@@ -1,8 +1,51 @@
 // base.less
+.p-l-0 {padding-left: 0;}
+.p-r-0 {padding-right: 0;}
+.p-l-10 {padding-left: 10px;}
+.p-r-10 {padding-right: 10px;}
+.p-l-20 {padding-left: 20px;}
+.p-r-20 {padding-right: 20px;}
+
+// 编辑、返回按钮
+.btn {
+  background-color: @submitColor;
+  border: 1px solid transparent;
+  font-weight: bold;
+  font-family: @fontFamily;
+}
+.btn-w-h {
+  width: 100px;
+  height: 40px;
+}
+.btn:hover, .btn:active, .btn-warning:active:focus{
+  background-color: @submitHoverColor;
+  border: 1px solid @borderColor;
+}
+.btn-default {
+  border: 1px solid @borderColor;
+  background-color: @backColor;
+  color: @mainColor;
+}
+.btn-default:hover, .btn-default:active, .btn-default:active:focus {
+  background-color: @backHoverColor;
+  border: 1px solid @borderColor;
+}
+
+// input
+.form-control {
+  border: 1px solid @borderColor;
+  box-shadow: none;
+}
+.form-control:focus {
+  border-color: @linkColor;
+  box-shadow: 0 0 3px rgba(46,208,215,.3);
+}
 
 .card {
   background-color: #fff;
-  padding: 15px;
+  padding: 20px 20px;
+  margin-left: -20px;
+  margin-right: -20px;
 }
 
 // ellipsis text
@@ -32,9 +75,12 @@
 .mb10 {
   margin-bottom: 10px;
 }
+.mb20 {
+  margin-bottom: 20px;
+}
 
 .app-container {
-  width: 1200px;
+  width: 1280px;
   margin: 0 auto;
   position: relative;
   box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.3);
@@ -56,11 +102,11 @@
   background-color: @bodyBgColor;
   position: relative;
   margin-left: 60px;
-  padding: 0 15px;
+  padding: 0 20px;
   min-height: 100%;
   .toggled-transition(margin-left);
   > .content-inner {
-    padding-bottom: 40px;
+    padding-bottom: 35px;
   }
   > .footer {
     position: absolute;
@@ -72,14 +118,14 @@
     right: 0;
     p {
       font: 12px '微软雅黑','Arial';
-      color: @artistsColor;
+      color: @mainColor;
     }
   }
 }
 
 // has top search bar
 .has-top-bar {
-  padding-top: 60px;
+  padding-top: 61px;
 }
 
 // top search bar
@@ -156,28 +202,30 @@
 
 // detail top
 .show-top {
-  height: 51px;
+  height: 61px;
   position: absolute;
   left: 0;
   right: 0;
   background-color: #ffffff;
   border-bottom: 1px solid @borderColor;
-  padding: 0 15px;
+  padding: 0 20px;
+  margin-bottom: 20px;
   > .photo {
     width: 40px;
     height: 40px;
     background-size: cover;
     border-radius: 50%;
-    margin-top: 3px;
+    margin-top: 10px;
   }
   > .ctrl-btn {
-    margin-top: 7px;
+    margin-top: 10px;
   }
   > .info {
     margin-left: 50px;
     margin-right: 128px;
-    line-height: 50px;
+    line-height: 60px;
     font-size: 18px;
+    color: @mainColor;
   }
 }
 
@@ -188,15 +236,14 @@
     > .name {
       display: inline-block;
       width: 25px;
-      text-align: right;
-      margin-right: 8px;
+      text-align: center;
     }
   }
 }
 
 // artist list
 .artist-list {
-  margin: 0 0 0 5px;
+  margin: 0 0 0 0;
   > li {
     margin-bottom: 20px;
     height: 360px;
@@ -227,12 +274,12 @@
     }
     > .name {
       margin-top: 10px;
-      color: @artistsColor;
+      color: @mainColor;
       margin-bottom: 15px;
       > .itemName {
         font-size: 18px;
-        font-weight: 900;
-        font-family: '微软雅黑';
+        font-weight: bold;
+        font-family: @fontFamily;
         margin: 0 -10px 5px 10px;
         > .gender {
           > .fa {
@@ -261,7 +308,7 @@
       padding: 0 18px;
       height: 80px;
       p {
-        color:@artistsColor;
+        color:@mainColor;
         font: 12px/20px '微软雅黑';
         display: -webkit-box;
         -webkit-box-orient: vertical;
@@ -291,7 +338,7 @@
         }
         > .info-number {
           font-size: 24px;
-          color: @artistsColor;
+          color: @mainColor;
           font-family: 'Arial','Regular';
         }
         > .info-text {
@@ -307,11 +354,11 @@
 
 // album list
 .album-list {
-  margin: 0 0 0 5px;
+  margin:0 0 0 0;
   > li {
     margin-bottom: 20px;
     padding: 0 20px 0 0;
-    height: 270px;
+    height: 285px;
   }
   > .col-sm-2 {
     width: 20%;
@@ -321,7 +368,7 @@
     overflow: hidden;
     background-color: #fff;
     border: 1px solid @borderColor;
-    height: 270px;
+    height: 285px;
     border-radius: 4px;
     > .thumb {
       width: 100%;
@@ -333,17 +380,22 @@
       }
     }
     > .name {
-      height: 45px;
-      overflow: hidden;
       padding: 0 10px;
       margin-top: 5px;
-      color: @artistsColor;
-      font-family: 'MicrosoftYaHei-Bold';
+      color: @mainColor;
+      font-family: @fontFamily;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      max-height: 40px;
+      position:relative;
     }
     > .info {
       padding: 0 30px 0 10px;
       width: 100%;
-      font-family: 'MicrosoftYaHei';
+      font-family: @fontFamily;
       position: absolute;
       bottom: 5px;
       p {
@@ -357,7 +409,6 @@
 // song list
 .song-list {
   background-color: #fff;
-  margin-top: 10px;
   .fa-2x {
     font-size: 22px;
   }
@@ -399,7 +450,10 @@
     }
   }
   .btn-link {
-    color: @linkColor;
+    // color: @backColor;
+    font-size: 12px;
+    color: @mainColor;
+    padding: 0 10px;
   }
 }
 
