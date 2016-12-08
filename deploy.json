@@ -44,7 +44,7 @@
       "ref": "origin/master",
       "repo": "git@deploy_demo_key:topdmc/cw-front.git",
       "path": "/srv/dmc/front",
-      "post-deploy": "npm install && bower install && npm run build && pm2 startOrRestart deploy.json --env demo",
+      "post-deploy": "npm install --registry https://registry.npm.taobao.org && bower install && npm run build && pm2 startOrRestart deploy.json --env demo",
       "pre-deploy-local": "echo 'Start deploy now.'",
       "env": {
         "NODE_ENV": "demo",
