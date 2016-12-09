@@ -9,7 +9,19 @@ var SongChart = require('../Common/Charts/SongChart.jsx');
 var SongChannelChart = require('../Common/Charts/SongChannelChart.jsx');
 
 var Loader = require('../Common/Loader.jsx');
-
+const mydata = [
+{title: 'QQ音乐', all : false,children:[{title: '试听',checked: false},{title: '下载',checked: false},{title: 'VIP',checked: false}]},
+{title: '百度音乐', all : false,children:[{title: '试听',checked: false},{title: '下载',checked: false},{title: 'VIP',checked: false}]},
+{title: '搜狐音乐', all : false,children:[{title: '试听',checked: false},{title: '下载',checked: false},{title: 'VIP',checked: false}]},
+{title: '阿里音乐1', all : false,children:[{title: '试听',checked: false},{title: '下载',checked: false},{title: 'VIP',checked: false}]},
+{title: '秀米音乐1',  all : false,children:[{title: '试听',checked: false},{title: '下载',checked: false},{title: 'VIP',checked: false}]},
+{title: '阿里音乐2', all : false,children:[{title: '试听',checked: false},{title: '下载',checked: false},{title: 'VIP',checked: false}]},
+{title: '秀米音乐2',  all : false,children:[{title: '试听',checked: false},{title: '下载',checked: false},{title: 'VIP',checked: false}]},
+{title: '阿里音乐3', all : false,children:[{title: '试听',checked: false},{title: '下载',checked: false},{title: 'VIP',checked: false}]},
+{title: 'QQ音乐4', all : false,children:[{title: '试听',checked: false},{title: '下载',checked: false},{title: 'VIP',checked: false}]},
+{title: '百度音乐4', all : false,children:[{title: '试听',checked: false},{title: '下载',checked: false},{title: 'VIP',checked: false}]},
+{title: '搜狐音乐4', all : false,children:[{title: '试听',checked: false},{title: '下载',checked: false},{title: 'VIP',checked: false}]},
+{title: '阿里音乐4', all : false,children:[{title: '试听',checked: false},{title: '下载',checked: false},{title: 'VIP',checked: false}]},]
 var Detail = React.createClass({
 
   mixins: [Reflux.connect(AlbumStore, 'album')],
@@ -34,7 +46,21 @@ var Detail = React.createClass({
     var id = evt.target.getAttribute('data-id');
     this.context.router.transitionTo('show_edit_song', {id: id}, {});
   },
-
+  renderChildren() {
+    let obj = JSON.parse(this.state.album.data.publish_info)
+    let arr = []
+    for(let i in obj){
+      if(obj[i].all){
+        arr.push(obj[i])
+      }
+    }
+    const publish_info = this.state.album.data.publish_info ? arr : mydata
+    return publish_info.map((item, key) => {
+      return (
+        <li style={{float: 'left', width: '15%'}}>{item.title}</li>
+      )
+    })
+  },
   renderList: function() {
     var data = this.state.album.data || {};
     var tracks = data.tracks || [];
@@ -99,6 +125,9 @@ var Detail = React.createClass({
               {this.renderList()}
             </ul>
           </div>
+          <ul style={{overflow: 'hidden'}}>
+            {this.renderChildren()}
+          </ul>
         </div>
       </div>
     );

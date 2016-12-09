@@ -19,8 +19,10 @@ var TextareaAutosize = require('../Common/TextareaAutosize.jsx');
 var Mp3Uploader = require('app/components/Common/Mp3Uploader.jsx');
 
 var Dialog = require('rc-dialog');
+var List = require('./Dsps/List.jsx');
+// import Dialog from '../src/DialogWrap';
 // var ReactDOM = require('react-dom');
-
+var SongActions = require('../../actions/SongActions');
 var Form = React.createClass({
 
   getInitialState: function() {
@@ -30,7 +32,7 @@ var Form = React.createClass({
       SearchBoxType: 'Artist',
       lrc: '',
       visible: false,
-      // destroyOnClose: false,
+      destroyOnClose: false,
     }, this.props.data);
     return defaultState;
   },
@@ -45,21 +47,26 @@ var Form = React.createClass({
   },
 
   // 弹窗相关事件处理
-  onClick() {
-    this.state.visible=true;
-  },
-
-  onClose() {
+  onClick(e) {
     this.setState({
-      visible: false,
+      mousePosition: {
+        x: e.pageX,
+        y: e.pageY,
+      },
+      visible: true,
     });
   },
 
-  // onDestroyOnCloseChange(e) {
-  //   this.setState({
-  //     destroyOnClose: e.target.checked,
-  //   });
-  // },
+  onClose() {
+    this.state.visible=false;
+    this.setState(this.state)
+  },
+
+  onDestroyOnCloseChange(e) {
+    this.setState({
+      destroyOnClose: e.target.checked,
+    });
+  },
 
   // 拖拽相关事件处理
   // --------------------------------------------
@@ -134,7 +141,9 @@ var Form = React.createClass({
     delete this.state.isDropArtistActive;
     delete this.state.isDropAlbumActive;
     delete this.state.SearchBoxType;
+    delete this.state.visible;
     this.state.lrc = this.state.lrc.split('\n').join('\\n');
+    this.state.publish_info = JSON.stringify(this.refs.form.getValue());
     return this.state;
   },
 
@@ -253,7 +262,6 @@ var Form = React.createClass({
       this.state.play_url_320 = data.data.fullpath;
     }
   },
-
   renderUpload: function() {
     let data = this.state;
     return (
@@ -291,6 +299,7 @@ var Form = React.createClass({
       'active': this.state.isDropArtistActive
     });
     let dialog;
+    //  || !this.state.destroyOnClose
     if (this.state.visible) {
       dialog = (
         <Dialog
@@ -298,26 +307,24 @@ var Form = React.createClass({
           animation="slide-fade"
           maskAnimation="fade"
           onClose={this.onClose}
-          style={{ width: 600 }}
-          title={<div>发行设置</div>}
+          style={{ width: 600, backgroundColor: '#ccc',zIndex:9}}
+          title={<div style={{textAlign: 'center', overflow: 'hidden'}}>发行设置<button
+            type="button"
+            className="btn btn-default"
+            key="close"
+            onClick={this.onClose}
+            style={{float: 'right'}}
+          >
+          X
+          </button></div>}
+          mousePosition={this.state.mousePosition}
           footer={
             [
-              <button
-                type="button"
-                className="btn btn-default"
-                key="close"
-                onClick={this.onClose}
-              >
-              Close
-              </button>,
-              <button
-                type="button"
-                className="btn btn-primary"
-                key="save"
-                onClick={this.onClose}
-              >
-              Save changes
-              </button>,
+              <List publish_info={this.props.data.publish_info} ref='form' style={{overflow: 'hidden'}} />,
+                <div>
+                  <button type="button" className="btn btn-default">取消</button>
+                  <button type="button" className="btn btn-default" onClick={this.onClose}>确认</button>
+                </div>
             ]
           }
         >
@@ -389,11 +396,12 @@ var Form = React.createClass({
           <div className='card mt20'>
             <div>发行设置:
               <a>默认发行平台</a>
-              <button onClick={this.onClick}>高级选项</button>
+              <button type="button" className="btn btn-default" onClick={this.onClick}>高级选项</button>
             </div>
           </div>
 
         </div>
+        {dialog}
         <Assist type={SearchBoxType} selectedItems={selectedItems} onItemClick={this.handleItemClick} />
       </div>
     );

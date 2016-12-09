@@ -12,21 +12,41 @@ var AddCardTips = require('../Common/AddCardTips.jsx');
 var assign = require('object-assign');
 var classNames = require('classnames');
 var _ = require('lodash');
-
+var Dialog = require('rc-dialog');
+var List = require('./Dsps/List.jsx');
 var Form = React.createClass({
 
   getInitialState: function () {
     var defaultState = assign({
       isDropSongActive: false,
       isDropArtistActive: false,
-      SearchBoxType: 'Artist'
+      SearchBoxType: 'Artist',
+      lrc: '',
+      visible: false,
+      destroyOnClose: false,
     }, this.props.data);
+    console.log(this.props.data)
     return defaultState;
   },
 
   componentDidMount: function() {
     this.isDropArtistActiveState = false;
     this.isDropSongActiveState = false;
+  },
+  // 弹窗相关事件处理
+  onClick(e) {
+    this.setState({
+      mousePosition: {
+        x: e.pageX,
+        y: e.pageY,
+      },
+      visible: true,
+    });
+  },
+
+  onClose() {
+    this.state.visible=false;
+    this.setState(this.state)
   },
 
   componentWillReceiveProps: function (nextProps) {
@@ -142,6 +162,8 @@ var Form = React.createClass({
     delete this.state.isDropSongActive;
     delete this.state.isDropArtistActive;
     delete this.state.SearchBoxType;
+    delete this.state.visible;
+    this.state.publish_info = JSON.stringify(this.refs.form.getValue());
     return this.state;
   },
 
@@ -259,6 +281,39 @@ var Form = React.createClass({
     var dropArtistClassName = classNames('card', 'mt20', 'card-dropzone', {
       'active': this.state.isDropArtistActive
     });
+    let dialog;
+    console.log(this.state.visible,'2222')
+    if (this.state.visible) {
+      dialog = (
+        <Dialog
+          visible={this.state.visible}
+          animation="slide-fade"
+          maskAnimation="fade"
+          onClose={this.onClose}
+          style={{ width: 600, backgroundColor: '#ccc',zIndex:9}}
+          title={<div style={{textAlign: 'center', overflow: 'hidden'}}>发行设置<button
+            type="button"
+            className="btn btn-default"
+            key="close"
+            onClick={this.onClose}
+            style={{float: 'right'}}
+          >
+          X
+          </button></div>}
+          mousePosition={this.state.mousePosition}
+          footer={
+            [
+              <List publish_info={this.props.data.publish_info} ref='form' style={{overflow: 'hidden'}} />,
+                <div>
+                  <button type="button" className="btn btn-default">取消</button>
+                  <button type="button" className="btn btn-default" onClick={this.onClose}>确认</button>
+                </div>
+            ]
+          }
+        >
+        </Dialog>
+      );
+    }
     var hasPower = window.__HASPOWER__
     return (
       <div className='show-wrap'>
@@ -329,9 +384,15 @@ var Form = React.createClass({
           }
 
 
-
+          <div className='card mt20'>
+            <div>发行设置:
+              <a>默认发行平台</a>
+              <button type="button" className="btn btn-default" onClick={this.onClick}>高级选项</button>
+            </div>
+          </div>
 
         </div>
+        {dialog}
         <Assist
           type={SearchBoxType}
           selectedItems={selectedItems || []}

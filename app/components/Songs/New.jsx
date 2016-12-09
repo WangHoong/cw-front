@@ -83,7 +83,7 @@ var New = React.createClass({
     return (
       <div className='show-box'>
         <div className='edit-main'>
-          <Form ref="form" data={{}}>
+          <Form ref="form" data={{}} handleSubmit = {this.handleSubmit}>
             { hasPower ? errorTips : null }
             <button className='btn btn-warning mr10' onClick={this.handleSubmit}>{window.lang.add}</button>
             <button className='btn btn-default' onClick={this.handleCancel}>{window.lang.cancel}</button>
