@@ -25,7 +25,6 @@ var Form = React.createClass({
       visible: false,
       destroyOnClose: false,
     }, this.props.data);
-    console.log(this.props.data)
     return defaultState;
   },
 
