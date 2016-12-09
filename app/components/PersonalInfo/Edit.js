@@ -31,8 +31,12 @@ var Edit = React.createClass({
   },
 
   handleChangeAccount(e) {
-    this.state[e.target.name] = e.target.value.replace(/(\d{4})\s*/g, '$1 ')
-    this.setState(this.state);
+    if (e.target.value.length < (this.state[e.target.name] ? this.state[e.target.name].length : 0)) {
+      this.state[e.target.name] = e.target.value
+    } else {
+      this.state[e.target.name] = e.target.value.replace(/(\d{4})\s*/g, '$1 ')
+    }
+    this.setState(this.state)
   },
 
   toggleCompanyType(company_type) {
