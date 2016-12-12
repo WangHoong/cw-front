@@ -23,19 +23,31 @@ class Item extends React.Component {
   renderChildren() {
     return this.props.dsp.children.map((item, key) => {
       return (
-        <li><input type='checkbox' onChange={() => {this.props.itemChecked(this.props.id,key)}} checked={item.checked} />{item.title}</li>
+        <li className='ablums-p' key={key}>
+          {this.props.ItemClick && <input type='checkbox' onChange={() => {this.props.itemChecked(this.props.id,key)}} checked={item.checked} />}
+          <span>
+            {item.title}
+          </span>
+        </li>
       )
     })
   }
-
   render() {
+    const backgroundColorStyle = !this.props.ItemClick ? {backgroundColor: '#fff'} : {backgroundColor: this.props.dsp.all ? '#999' : '#fff'}
     return (
       <div
-        style={{float: 'left', width: '22.2%', height: 50, margin: 5, position: 'relative'}}
+        style={this.props.ItemStyle}
         onMouseOver={this.mouseOverHandle.bind(this)}
         onMouseOut={this.mouseOutHandle.bind(this)}>
-        <div onClick={() => {this.props.ItemClick(this.props.dsp.title)}} style={{backgroundColor: this.props.dsp.all ? '#999' : '#fff', height: '100%', lineHeight: '50px', textAlign: 'center'}}>{this.props.dsp.title}</div>
-        <ul style={{display: this.state.isShow ? 'block' : 'none', position: 'absolute', top: 50, zIndex: 31, left: 0, width: '100%', backgroundColor: '#fff', height: 100, border: '1px solid red'}}>
+        <div onClick={() => {this.props.ItemClick(this.props.dsp.title)}}
+          className='ablums-div'
+          style={backgroundColorStyle}>
+          <div style={{overflow: 'hidden',marginTop:7, marginLeft: 20,width:47, height: 46, border: '1px solid #e5e7e9',float: 'left', borderRadius: '50%'}}>
+            <img style={{marginTop: -18}} src ={this.props.dsp.img} />
+          </div>
+          {this.props.dsp.title}
+        </div>
+        <ul style={{display: this.state.isShow ? 'block' : 'none'}} className='ablums-ul'>
           {this.renderChildren()}
         </ul>
       </div>

@@ -23,7 +23,7 @@ class Item extends React.Component {
   renderChildren() {
     return this.props.dsp.children.map((item, key) => {
       return (
-        <li><input type='checkbox' onChange={() => {this.props.itemChecked(this.props.id,key)}} checked={item.checked} />{item.title}</li>
+        <li key={key}><input type='checkbox' onChange={() => {this.props.itemChecked(this.props.id,key)}} checked={item.checked} />{item.title}</li>
       )
     })
   }

@@ -62,7 +62,6 @@ var Main = React.createClass({
       page: 1,
       size: this.props.size
     };
-    console.log(params);
     this.context.router.transitionTo('albums', {}, params);
     AlbumActions.find(params);
   },

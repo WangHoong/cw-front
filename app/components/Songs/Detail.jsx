@@ -13,19 +13,7 @@ var SongChannelChart = require('../Common/Charts/SongChannelChart.jsx');
 var Loader = require('../Common/Loader.jsx');
 
 var Player = require('../Common/Player/Player.jsx');
-const mydata = [
-{title: 'QQ音乐', all : false,children:[{title: '试听',checked: false},{title: '下载',checked: false},{title: 'VIP',checked: false}]},
-{title: '百度音乐', all : false,children:[{title: '试听',checked: false},{title: '下载',checked: false},{title: 'VIP',checked: false}]},
-{title: '搜狐音乐', all : false,children:[{title: '试听',checked: false},{title: '下载',checked: false},{title: 'VIP',checked: false}]},
-{title: '阿里音乐1', all : false,children:[{title: '试听',checked: false},{title: '下载',checked: false},{title: 'VIP',checked: false}]},
-{title: '秀米音乐1',  all : false,children:[{title: '试听',checked: false},{title: '下载',checked: false},{title: 'VIP',checked: false}]},
-{title: '阿里音乐2', all : false,children:[{title: '试听',checked: false},{title: '下载',checked: false},{title: 'VIP',checked: false}]},
-{title: '秀米音乐2',  all : false,children:[{title: '试听',checked: false},{title: '下载',checked: false},{title: 'VIP',checked: false}]},
-{title: '阿里音乐3', all : false,children:[{title: '试听',checked: false},{title: '下载',checked: false},{title: 'VIP',checked: false}]},
-{title: 'QQ音乐4', all : false,children:[{title: '试听',checked: false},{title: '下载',checked: false},{title: 'VIP',checked: false}]},
-{title: '百度音乐4', all : false,children:[{title: '试听',checked: false},{title: '下载',checked: false},{title: 'VIP',checked: false}]},
-{title: '搜狐音乐4', all : false,children:[{title: '试听',checked: false},{title: '下载',checked: false},{title: 'VIP',checked: false}]},
-{title: '阿里音乐4', all : false,children:[{title: '试听',checked: false},{title: '下载',checked: false},{title: 'VIP',checked: false}]},]
+var mydata = require('../Albums/Dsps/DefaultData.jsx');
 var Detail = React.createClass({
 
   mixins: [Reflux.connect(SongStore, 'song')],
@@ -117,7 +105,7 @@ var Detail = React.createClass({
     const publish_info = this.state.song.data.publish_info ? arr : mydata
     return publish_info.map((item, key) => {
       return (
-        <li style={{float: 'left', width: '15%'}}>{item.title}</li>
+        <li key={key} style={{float: 'left', width: '15%'}}>{item.title}</li>
       )
     })
   },
@@ -150,7 +138,7 @@ var Detail = React.createClass({
           <div className='card mt20'>
             {this.renderPlayer()}
           </div>
-          <div className='card'>
+          <div className='card mt20'>
             <SongChart url={'tracks/'+ this.state.song.data.id +'/play_total'} />
           </div>
           <div className='card mt20'>
@@ -165,9 +153,13 @@ var Detail = React.createClass({
           <div className='card mt20'>
             <p className='data mt20' dangerouslySetInnerHTML={{__html:this.filter(data.lrc || ' 暂无 ')}}></p>
           </div>
-          <ul style={{overflow: 'hidden'}}>
-            {this.renderChildren()}
-          </ul>
+          <div style={{}}>
+            <p>发行展示</p>
+            <ul style={{overflow: 'hidden'}}>
+              {this.renderChildren()}
+            </ul>
+          </div>
+
         </div>
       </div>
     );

@@ -162,7 +162,9 @@ var Form = React.createClass({
     delete this.state.isDropArtistActive;
     delete this.state.SearchBoxType;
     delete this.state.visible;
-    this.state.publish_info = JSON.stringify(this.refs.form.getValue());
+    if(this.refs.form) {
+      this.state.publish_info = JSON.stringify(this.refs.form.getValue());
+    };
     return this.state;
   },
 
@@ -281,7 +283,6 @@ var Form = React.createClass({
       'active': this.state.isDropArtistActive
     });
     let dialog;
-    console.log(this.state.visible,'2222')
     if (this.state.visible) {
       dialog = (
         <Dialog
@@ -289,7 +290,7 @@ var Form = React.createClass({
           animation="slide-fade"
           maskAnimation="fade"
           onClose={this.onClose}
-          style={{ width: 600, backgroundColor: '#ccc',zIndex:9}}
+          style={{ width: 600, backgroundColor: '#ccc',zIndex:9,overflow: 'hidden'}}
           title={<div style={{textAlign: 'center', overflow: 'hidden'}}>发行设置<button
             type="button"
             className="btn btn-default"
@@ -303,9 +304,10 @@ var Form = React.createClass({
           footer={
             [
               <List publish_info={this.props.data.publish_info} ref='form' style={{overflow: 'hidden'}} />,
-                <div>
+                <div style={{float:'left'}}>
                   <button type="button" className="btn btn-default">取消</button>
                   <button type="button" className="btn btn-default" onClick={this.onClose}>确认</button>
+                  <div style={{height: 200}}></div>
                 </div>
             ]
           }

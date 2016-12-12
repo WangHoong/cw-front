@@ -143,7 +143,9 @@ var Form = React.createClass({
     delete this.state.SearchBoxType;
     delete this.state.visible;
     this.state.lrc = this.state.lrc.split('\n').join('\\n');
-    this.state.publish_info = JSON.stringify(this.refs.form.getValue());
+    if(this.refs.form) {
+      this.state.publish_info = JSON.stringify(this.refs.form.getValue());
+    };
     return this.state;
   },
 

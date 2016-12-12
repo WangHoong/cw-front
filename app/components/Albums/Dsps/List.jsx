@@ -2,19 +2,9 @@ import React from 'react';
 import {APIHelper} from 'app/utils/APIHelper';
 import axios from 'axios';
 import Item from './Item.jsx';
-const data = [
-{title: 'QQ音乐', all : false,children:[{title: '试听',checked: false},{title: '下载',checked: false},{title: 'VIP',checked: false}]},
-{title: '百度音乐', all : false,children:[{title: '试听',checked: false},{title: '下载',checked: false},{title: 'VIP',checked: false}]},
-{title: '搜狐音乐', all : false,children:[{title: '试听',checked: false},{title: '下载',checked: false},{title: 'VIP',checked: false}]},
-{title: '阿里音乐1', all : false,children:[{title: '试听',checked: false},{title: '下载',checked: false},{title: 'VIP',checked: false}]},
-{title: '秀米音乐1',  all : false,children:[{title: '试听',checked: false},{title: '下载',checked: false},{title: 'VIP',checked: false}]},
-{title: '阿里音乐2', all : false,children:[{title: '试听',checked: false},{title: '下载',checked: false},{title: 'VIP',checked: false}]},
-{title: '秀米音乐2',  all : false,children:[{title: '试听',checked: false},{title: '下载',checked: false},{title: 'VIP',checked: false}]},
-{title: '阿里音乐3', all : false,children:[{title: '试听',checked: false},{title: '下载',checked: false},{title: 'VIP',checked: false}]},
-{title: 'QQ音乐4', all : false,children:[{title: '试听',checked: false},{title: '下载',checked: false},{title: 'VIP',checked: false}]},
-{title: '百度音乐4', all : false,children:[{title: '试听',checked: false},{title: '下载',checked: false},{title: 'VIP',checked: false}]},
-{title: '搜狐音乐4', all : false,children:[{title: '试听',checked: false},{title: '下载',checked: false},{title: 'VIP',checked: false}]},
-{title: '阿里音乐4', all : false,children:[{title: '试听',checked: false},{title: '下载',checked: false},{title: 'VIP',checked: false}]},]
+import data from './DefaultData.jsx';
+const ItemStyle = {float: 'left', width: '15%', height: 50, margin: 5, position: 'relative'}
+
 class List extends React.Component {
   constructor(props) {
     super();
@@ -71,7 +61,7 @@ class List extends React.Component {
     const dsps = this.state.data
     return dsps && dsps.length > 0 && dsps.map((item, idx) => {
       return (
-        <Item key={idx} dsp={item} id={idx} itemChecked={this.itemChecked} ItemClick={this.ItemClick} />
+        <Item ItemStyle={ItemStyle} key={idx} dsp={item} id={idx} itemChecked={this.itemChecked} ItemClick={this.ItemClick} />
       )
     })
   }

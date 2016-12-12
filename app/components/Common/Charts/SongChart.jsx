@@ -165,7 +165,8 @@ let SongChart = React.createClass({
     return {
       title : {
         text: '歌曲播放总量',
-        subtext: new Date().getFullYear()
+        subtext: new Date().getFullYear(),
+				start:20
       },
       tooltip : {
         trigger: 'axis',

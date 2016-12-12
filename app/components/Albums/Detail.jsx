@@ -4,24 +4,14 @@ var Reflux = require('reflux');
 var AlbumStore = require('../../stores/AlbumStore');
 var AlbumActions = require('../../actions/AlbumActions');
 var _ = require('lodash');
+const ItemStyle = {float: 'left', width: 184, height: 60, margin: 20, position: 'relative',borderRadius: 4}
 
 var SongChart = require('../Common/Charts/SongChart.jsx');
 var SongChannelChart = require('../Common/Charts/SongChannelChart.jsx');
-
+var mydata = require('./Dsps/DefaultData.jsx');
 var Loader = require('../Common/Loader.jsx');
-const mydata = [
-{title: 'QQ音乐', all : false,children:[{title: '试听',checked: false},{title: '下载',checked: false},{title: 'VIP',checked: false}]},
-{title: '百度音乐', all : false,children:[{title: '试听',checked: false},{title: '下载',checked: false},{title: 'VIP',checked: false}]},
-{title: '搜狐音乐', all : false,children:[{title: '试听',checked: false},{title: '下载',checked: false},{title: 'VIP',checked: false}]},
-{title: '阿里音乐1', all : false,children:[{title: '试听',checked: false},{title: '下载',checked: false},{title: 'VIP',checked: false}]},
-{title: '秀米音乐1',  all : false,children:[{title: '试听',checked: false},{title: '下载',checked: false},{title: 'VIP',checked: false}]},
-{title: '阿里音乐2', all : false,children:[{title: '试听',checked: false},{title: '下载',checked: false},{title: 'VIP',checked: false}]},
-{title: '秀米音乐2',  all : false,children:[{title: '试听',checked: false},{title: '下载',checked: false},{title: 'VIP',checked: false}]},
-{title: '阿里音乐3', all : false,children:[{title: '试听',checked: false},{title: '下载',checked: false},{title: 'VIP',checked: false}]},
-{title: 'QQ音乐4', all : false,children:[{title: '试听',checked: false},{title: '下载',checked: false},{title: 'VIP',checked: false}]},
-{title: '百度音乐4', all : false,children:[{title: '试听',checked: false},{title: '下载',checked: false},{title: 'VIP',checked: false}]},
-{title: '搜狐音乐4', all : false,children:[{title: '试听',checked: false},{title: '下载',checked: false},{title: 'VIP',checked: false}]},
-{title: '阿里音乐4', all : false,children:[{title: '试听',checked: false},{title: '下载',checked: false},{title: 'VIP',checked: false}]},]
+var assign = require('object-assign');
+var Item = require ('./Dsps/Item.jsx');
 var Detail = React.createClass({
 
   mixins: [Reflux.connect(AlbumStore, 'album')],
@@ -29,7 +19,12 @@ var Detail = React.createClass({
   contextTypes: {
     router: React.PropTypes.func
   },
-
+  getInitialState: function () {
+    var defaultState = assign({
+      isShow: false
+    }, this.props.data);
+    return defaultState;
+  },
   componentDidMount: function () {
     AlbumActions.get(this.props.id);
   },
@@ -46,6 +41,15 @@ var Detail = React.createClass({
     var id = evt.target.getAttribute('data-id');
     this.context.router.transitionTo('show_edit_song', {id: id}, {});
   },
+  mouseOverHandle() {
+    console.log(0)
+    this.state.isShow = true
+    this.setState(this.state)
+  },
+  mouseOutHandle() {
+    this.state.isShow = false
+    this.setState(this.state)
+  },
   renderChildren() {
     let obj = JSON.parse(this.state.album.data.publish_info)
     let arr = []
@@ -54,10 +58,12 @@ var Detail = React.createClass({
         arr.push(obj[i])
       }
     }
-    const publish_info = this.state.album.data.publish_info ? arr : mydata
+    const publish_info = arr.length > 0 ? arr : mydata
     return publish_info.map((item, key) => {
       return (
-        <li style={{float: 'left', width: '15%'}}>{item.title}</li>
+        <li key={key}>
+          <Item dsp={item} id={key} style={ItemStyle} itemChecked = {null} ItemClick = {null} />
+        </li>
       )
     })
   },
@@ -125,9 +131,18 @@ var Detail = React.createClass({
               {this.renderList()}
             </ul>
           </div>
-          <ul style={{overflow: 'hidden'}}>
-            {this.renderChildren()}
-          </ul>
+          <div className='card mt20'>
+            <p>
+              <span>
+                发行展示
+              </span>
+            </p>
+            <div>
+              <ul className='detail-dsps-ul'>
+                {this.renderChildren()}
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
     );
