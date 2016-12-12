@@ -10,10 +10,65 @@ var Process = require('app/components/Common/Process.jsx');
 var ProcessTips = require('app/components/Common/ProcessTips.jsx');
 var OrderInfo = require('app/components/OrderInfo/OrderInfo.jsx');
 var GlobalUploadTip = require('app/components/Common/GlobalUploadTip.jsx')
+
+var Dialog = require('rc-dialog');
+
 var Main = React.createClass({
+  getInitialState: function () {
+    return {
+      visible: false,
+    }
+  },
+
+  onClick (e) {
+    this.setState({
+      mousePosition: {
+        x: e.pageX,
+        y: e.pageY,
+      },
+      visible: true,
+    })
+  },
+
+  onClose() {
+    this.setState({
+      visible: false,
+    });
+  },
+
   render: function() {
     var _data=["4/7","6/7","3/7"];
     let tip = status<=0 ? (<div className='card'><ProcessTips /></div>) : (<div></div>)
+
+    // 弹框
+    let dialog;
+    if (this.state.visible) {
+      dialog = (
+        <Dialog
+          visible={this.state.visible}
+          animation="slide-fade"
+          maskAnimation="fade"
+          onClose={this.onClose}
+          style={{ width: 600, background: '#fff', }}
+          title={<div style={{lineHeight: '40px',fontSize: '18px'}}>音乐电台<a className="fa fa-times" aria-hidden="true" onClick={this.onClose} style={{float: 'right', marginRight: 5}}></a></div>}
+          mousePosition={this.state.mousePosition}
+          footer={
+            [<button
+                type="button"
+                className="btn btn-default"
+                key="close"
+                onClick={this.onClose}
+              >Close</button>,
+              <button
+                type="button"
+                className="btn btn-primary"
+                key="save"
+                onClick={this.onClose}
+              >Submit</button>,]}>
+            <p>nnnnnnnnnnnnnnnn</p>
+        </Dialog>
+      );
+    }
     return (
       <div>
         <div className='dashboard-container'>
@@ -30,10 +85,11 @@ var Main = React.createClass({
               </div>
             </div>
             <div className='col-sm-5 p-l-10'>
-              <div className='datum-percent-wrap'>
+              <div className='datum-percent-wrap' onClick={this.onClick}>
                 <PercentCircle percent={_data}/>
               </div>
             </div>
+            {dialog}
           </div>
           <div className='mt20'>
               <OrderInfo />
