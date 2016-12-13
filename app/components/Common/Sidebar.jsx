@@ -188,6 +188,11 @@ var Sidebar = React.createClass({
         to: 'withdraw',
         roleName: ['CP']
       }, {
+        faIconName: 'bar-chart',
+        text: '结算管理',
+        to: 'settlement',
+        roleName: ['CP','SP']
+      }, {
         faIconName: 'cogs',
         text: window.lang.se,
         to: 'settings',
@@ -223,7 +228,6 @@ var Sidebar = React.createClass({
     /**
      * 根据用户过滤菜单列表 by yali
      */
-
     navItems = navItems.map(function(item, i) {
       var className = classNames('fa', 'fa-' + item.faIconName);
       var text = item.text;

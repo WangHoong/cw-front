@@ -26,6 +26,61 @@
   background-color: @backColor;
   color: @mainColor;
 }
+
+.Settlement-main {
+  p {
+    padding-left: 20px;
+    height: 60px;
+    color: #a3aab2;
+    font: 12px/20px '微软雅黑';
+    font-size: 16px;
+    background-color: #ffffff;
+    span {
+      line-height: 60px;
+    }
+  };
+  table {
+    margin: 20px 0 0 20px;
+    border:1px solid #cccccc;
+    td{
+      text-align: center;
+      height: 50px;
+      border:solid #e5e7e9 1px;
+      font-size: 14px
+    };
+    thead {
+      line-height: 50px;
+      background-color: #fcfcfc;
+      tr{
+        background-color: #fcfcfc;
+        >th{
+          border:solid #e5e7e9 1px;
+          color: #6b7b8a;
+          font: 12px/20px '微软雅黑';
+          font-size: 14px;
+          text-align: center;
+          line-height: 50px;
+          font-weight: 700
+        };
+        .one{width: 138px};
+        .two{width: 168px};
+        .three{width: 138px};
+        .for{width: 148px};
+        .five{width: 148px};
+        .six{width: 150px};
+        .seven{width: 150px};
+      };
+    };
+    tbody{
+      tr:nth-child(odd) {
+        background-color: #ffffff
+      };
+      tr:nth-child(even) {
+        background-color: #fcfcfc
+      }
+    }
+  }
+}
 .detail-dsps-ul {
   overflow: hidden;
   padding-bottom: 30px;

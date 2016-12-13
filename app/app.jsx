@@ -40,6 +40,7 @@ var CreateInviteLink = require('./components/Settings/CreateInviteLink.jsx')
 var OrderInfo = require('./components/OrderInfo/OrderInfo.jsx');
 var WeekTopSongs = require('./components/TopSongs/Main.jsx');
 var Withdraw = require('./components/Withdraw/Main.jsx');
+var Settlement = require('./components/Settlement/Main.jsx');
 var GlobalUploadTip = require('app/components/Common/GlobalUploadTip.jsx')
 import numeral from 'numeral';
 
@@ -259,7 +260,9 @@ var routes = (
       <Route handler={Empty} name='withdraw'>
         <DefaultRoute handler={Withdraw} />
       </Route>
-
+      <Route handler={Empty} name='settlement'>
+        <DefaultRoute handler={Settlement} />
+      </Route>
       <Route handler={SP} name="sp"/>
 
       <NotFoundRoute handler={NotFound}/>
