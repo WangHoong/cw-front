@@ -11,7 +11,7 @@ var AddCardTips = React.createClass({
   getDefaultProps: function() {
     return {
       title: window.lang.al_addtr,
-      iconClassName: 'music'
+      iconClassName: 'plus'
     };
   },
 

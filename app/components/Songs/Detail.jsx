@@ -80,13 +80,17 @@ var Detail = React.createClass({
       var trackUrl = this.getTrackUrl();
       if (trackUrl == null) {
         return (
-          <div className='player-panel'>
-            <p className='no-data'>词曲暂不支持试听</p>
+          <div className='card mt20 margin0 border'>
+            <div className='player-panel'>
+              <p className='no-data'>词曲暂不支持试听</p>
+            </div>
           </div>
         );
       }
       return (
-        <Player url={trackUrl} bg={this.state.song.data.album.photo} />
+        <div className='card mt20 margin0 border'>
+          <Player url={trackUrl} bg={this.state.song.data.album.photo} />
+        </div>
       );
     } else {
       return (
@@ -121,7 +125,7 @@ var Detail = React.createClass({
     return (
       <div className='show-wrap'>
         <div className='show-top'>
-          <div className='photo pull-left' style={photoStyles}></div>
+          {/* <div className='photo pull-left' style={photoStyles}></div> */}
           <div className='ctrl-btn pull-right'>
             <button
                 className='btn btn-warning mr10 btn-w-h'
@@ -135,22 +139,22 @@ var Detail = React.createClass({
           </div>
         </div>
         <div className='has-top-bar'>
-          <div className='card mt20'>
+          {/* <div className='card mt20'> */}
             {this.renderPlayer()}
-          </div>
-          <div className='card mt20'>
+          {/* </div> */}
+          <div className='card margin0 border'>
             <SongChart url={'tracks/'+ this.state.song.data.id +'/play_total'} />
           </div>
-          <div className='card mt20'>
+          <div className='card mt20 margin0 border'>
             <SongChannelChart url={'tracks/'+ this.state.song.data.id +'/play_total_sp'} />
           </div>
-          <div className='card mt20'>
+          <div className='card mt20 margin0 border'>
             <div>
               <p>歌手：</p>
               <ul className="search-box-results clearfix">{this.renderArtistMiniCards()}</ul>
             </div>
           </div>
-          <div className='card mt20'>
+          <div className='card mt20 margin0 border'>
             <p className='data mt20' dangerouslySetInnerHTML={{__html:this.filter(data.lrc || ' 暂无 ')}}></p>
           </div>
           <div style={{}}>

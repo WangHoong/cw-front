@@ -24,6 +24,7 @@ var Form = React.createClass({
       lrc: '',
       visible: false,
       destroyOnClose: false,
+      checked: false,
     }, this.props.data);
     return defaultState;
   },
@@ -199,7 +200,7 @@ var Form = React.createClass({
     this.state.tracks = this.state.tracks || [];
     if (this.state.tracks.length === 0) {
       return (
-        <ul className='row'>
+        <ul className='row row_ul'>
           <AddCardTips
             data-type='Song'
             onClick={this.changeSearchBoxType.bind(null, 'Song')}
@@ -219,12 +220,12 @@ var Form = React.createClass({
         );
       });
       return (
-        <ul className='row'>
+        <ul className='row row_ul'>
           {items}
           <AddCardTips
             data-type='Song'
             onClick={this.changeSearchBoxType.bind(null, 'Song')}
-            iconClassName='music'
+            iconClassName='plus'
             title={window.lang.al_addtr} />
         </ul>
       );
@@ -235,11 +236,11 @@ var Form = React.createClass({
     this.state.artists = this.state.artists || [];
     if (this.state.artists.length === 0) {
       return (
-        <ul className='row'>
+        <ul className='row row_ul'>
           <AddCardTips
             data-type='Artist'
             onClick={this.changeSearchBoxType.bind(null, 'Artist')}
-            iconClassName='user'
+            iconClassName='plus'
             title={window.lang.al_addar} />
         </ul>
       );
@@ -254,16 +255,21 @@ var Form = React.createClass({
         );
       });
       return (
-        <ul className='row'>
+        <ul className='row row_ul'>
           {items}
           <AddCardTips
             data-type='Artist'
             onClick={this.changeSearchBoxType.bind(null, 'Artist')}
-            iconClassName='user'
+            iconClassName='plus'
             title={window.lang.al_addar} />
         </ul>
       );
     }
+  },
+
+  handleChecked: function (ev) {
+    this.state.checked = ev.target.checked
+    this.setState(this.state)
   },
 
   render: function() {
@@ -276,10 +282,10 @@ var Form = React.createClass({
     if (SearchBoxType === 'Song') {
       selectedItems = this.state.tracks;
     }
-    var dropSongClassName = classNames('card', 'mt20', 'card-dropzone', {
+    var dropSongClassName = classNames('card', 'mt20', 'border', 'card-dropzone', {
       'active': this.state.isDropSongActive
     });
-    var dropArtistClassName = classNames('card', 'mt20', 'card-dropzone', {
+    var dropArtistClassName = classNames('card', 'mt20', 'border', 'card-dropzone', {
       'active': this.state.isDropArtistActive
     });
     let dialog;
@@ -315,11 +321,14 @@ var Form = React.createClass({
         </Dialog>
       );
     }
-    var hasPower = window.__HASPOWER__
+    var hasPower = window.__HASPOWER__;
     return (
       <div className='show-wrap'>
+        <div className='t-sb h61'>
+          <h3 className='t-sb_detail p-l-20'>专辑编辑</h3>
+        </div>
         <div className='edit-wrap has-assist-box'>
-          <div className='edit-form card clearfix'>
+          <div className='edit-form card clearfix border'>
 
             <div className='edit-left'>
               <UpAvatar
@@ -351,14 +360,13 @@ var Form = React.createClass({
 
           </div>
 
-
           <div
             className={dropArtistClassName}
             onDrop={this.handleDrop}
             onDragOver={this.allowArtistDrop}
             onDragEnter={this.handleDragArtistEnter}
             onDragLeave={this.handleDragArtistLeave}>
-            <p className='form-control-static'>{window.lang.al_artist}</p>
+            <p className='form-control-static form-padding'>{window.lang.al_artist}</p>
             {this.renderArtistMiniCards()}
             { hasPower
               ? <div className='text-right mt20'>
@@ -376,28 +384,28 @@ var Form = React.createClass({
                 onDragOver={this.allowSongDrop}
                 onDragEnter={this.handleDragSongEnter}
                 onDragLeave={this.handleDragSongLeave}>
-                <p className='form-control-static'>{window.lang.al_track}</p>
+                <p className='form-control-static form-padding'>{window.lang.al_track}</p>
                 {this.renderSongMiniCards()}
-                <div className='text-right mt20'>
-                  {this.props.children}
-                </div>
               </div>
           }
 
-
-          <div className='card mt20'>
-            <div>发行设置:
-              <a>默认发行平台</a>
-              <button type="button" className="btn btn-default" onClick={this.onClick}>高级选项</button>
+          <div className='card mt20 border' style={{height: '76px', lineHeight: '34px',}}>
+            <div>发行设置：
+              <a style={{font: '12px 微软雅黑', color: '#2ed0d7'}}><input type='checkbox' onChange={this.handleChecked} style={{width: 12, height: 12, margin: '0 5px 0 10px'}} />发行到全部平台</a>
+              <button type="button" style={{display: this.state.checked ? 'none' : 'inline-block', marginLeft: 20,}} className="btn btn-warning" onClick={this.onClick}>高级选项</button>
             </div>
           </div>
 
+          <div className='text-left mt20 submit_max'>
+            {this.props.children}
+          </div>
         </div>
         {dialog}
         <Assist
           type={SearchBoxType}
           selectedItems={selectedItems || []}
-          onItemClick={this.handleItemClick} />
+          onItemClick={this.handleItemClick}
+          clsssName='assist-box-height' />
       </div>
     );
   }

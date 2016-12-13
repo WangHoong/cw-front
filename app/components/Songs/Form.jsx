@@ -33,6 +33,7 @@ var Form = React.createClass({
       lrc: '',
       visible: false,
       destroyOnClose: false,
+      checked: false,
     }, this.props.data);
     return defaultState;
   },
@@ -205,7 +206,7 @@ var Form = React.createClass({
           <AddCardTips
             data-type='Artist'
             onClick={this.changeSearchBoxType.bind(null, 'Artist')}
-            iconClassName='user'
+            iconClassName='plus'
             title={window.lang.al_addar} />
         </ul>
       );
@@ -220,12 +221,12 @@ var Form = React.createClass({
         );
       });
       return (
-        <ul className='row'>
+        <ul className='row row_ul'>
           {items}
           <AddCardTips
             data-type='Artist'
             onClick={this.changeSearchBoxType.bind(null, 'Artist')}
-            iconClassName='user'
+            iconClassName='plus'
             title={window.lang.al_addar} />
         </ul>
       );
@@ -236,7 +237,7 @@ var Form = React.createClass({
     var album = this.state.album || {};
     if (!album.id) {
       return (
-        <ul className='row'>
+        <ul className='row row_ul p-b-10'>
           <AddCardTips
             data-type='Album'
             onClick={this.changeSearchBoxType.bind(null, 'Album')}
@@ -246,7 +247,7 @@ var Form = React.createClass({
       );
     } else {
       return (
-        <ul className="row">
+        <ul className="row row_ul p-b-10">
           <AlbumMiniCard data={album} key={album.id} onRemove={this.handleRemoveAlbum} />
         </ul>
       );
@@ -267,21 +268,26 @@ var Form = React.createClass({
   renderUpload: function() {
     let data = this.state;
     return (
-      <Role component='div' className='card mt20' roleName='ADMIN'>
-        <p className='form-control-static'>{window.lang.tr_upload}</p>
-        <div className='row'>
-          <div className='col-sm-6'>
+      <Role component='div' className='card mt20 border' roleName='ADMIN'>
+        <p className='form-control-static form-padding p-b-20'>{window.lang.tr_upload}</p>
+        <div className='row margin0 p-b-10'>
+          <div className='col-sm-6  p-l-0 p-r-10'>
             <Mp3Uploader tips={window.lang.tr_upload128} uploadComplete={this.upload128Complete} rate='128k' />
           </div>
-          <div className='col-sm-6'>
+          <div className='col-sm-6 p-l-10 p-r-0'>
             <Mp3Uploader tips={window.lang.tr_upload320} uploadComplete={this.upload320Complete} rate='320k'/>
           </div>
         </div>
-        <div className='text-right' style={{marginTop: '20px'}}>
+        {/* <div className='text-right' style={{marginTop: '20px'}}>
           {this.props.children}
-        </div>
+        </div> */}
       </Role>
     );
+  },
+
+  handleChecked: function (ev) {
+    this.state.checked = ev.target.checked
+    this.setState(this.state)
   },
 
   render: function() {
@@ -294,10 +300,10 @@ var Form = React.createClass({
     if (SearchBoxType === 'Album') {
       selectedItems = [this.state.album];
     }
-    var dropAlbumClassName = classNames('card', 'mt20', 'card-dropzone', {
+    var dropAlbumClassName = classNames('card', 'mt20', 'border', 'card-dropzone', {
       'active': this.state.isDropAlbumActive
     });
-    var dropArtistClassName = classNames('card', 'mt20', 'card-dropzone', {
+    var dropArtistClassName = classNames('card', 'mt20', 'border', 'card-dropzone', {
       'active': this.state.isDropArtistActive
     });
     let dialog;
@@ -335,39 +341,41 @@ var Form = React.createClass({
     }
     return (
       <div className='show-wrap'>
+        <div className='t-sb h61'>
+          <h3 className='t-sb_detail p-l-20'>歌曲编辑</h3>
+        </div>
         <div className='edit-wrap has-assist-box'>
-
-          <div className='edit-form card'>
+          <div className='edit-form card border'>
             <div className='form-group'>
-              <p className='form-control-static'>{window.lang.tr_name}</p>
+              <p className='form-control-static p-b-20'>{window.lang.tr_name}：</p>
               <input
                 name='name'
                 type='text'
-                className='form-control'
+                className='form-control form_control-width'
                 value={data.name}
                 onChange={this.handleChange}/>
             </div>
             <div className='form-group'>
-              <p className='form-control-static'>{window.lang.tr_ly}</p>
+              <p className='form-control-static p-b-20'>{window.lang.tr_ly}：</p>
               <input
                 name='lyricist'
-                className='form-control'
+                className='form-control form_control-width'
                 value={data.lyricist}
                 onChange={this.handleChange}/>
             </div>
             <div className='form-group'>
-              <p className='form-control-static'>{window.lang.tr_co}</p>
+              <p className='form-control-static p-b-20'>{window.lang.tr_co}：</p>
               <input
                 name='composer'
-                className='form-control'
+                className='form-control form_control-width'
                 value={data.composer}
                 onChange={this.handleChange}/>
             </div>
             <div className='form-group'>
-              <p className='form-control-static'>{window.lang.tr_lyrics}</p>
+              <p className='form-control-static p-b-20'>{window.lang.tr_lyrics}：</p>
               <TextareaAutosize
                 name='lrc'
-                className='form-control'
+                className='form-control form_control-width'
                 onChange={this.handleChange}
                 value={(data.lrc || '').split('\\n').join('\n')}></TextareaAutosize>
             </div>
@@ -379,7 +387,7 @@ var Form = React.createClass({
             onDragOver={this.allowArtistDrop}
             onDragEnter={this.handleDragArtistEnter}
             onDragLeave={this.handleDragArtistLeave}>
-            <p className='form-control-static'>{window.lang.tr_ar}</p>
+            <p className='form-control-static form-padding'>{window.lang.tr_ar}</p>
             {this.renderArtistMiniCards()}
           </div>
 
@@ -389,17 +397,21 @@ var Form = React.createClass({
             onDragOver={this.allowAlbumDrop}
             onDragEnter={this.handleDragAlbumEnter}
             onDragLeave={this.handleDragAlbumLeave}>
-            <p className='form-control-static'>{window.lang.tr_al}</p>
+            <p className='form-control-static form-padding'>{window.lang.tr_al}</p>
             {this.renderAlbumMiniCards()}
           </div>
 
           {this.renderUpload()}
 
-          <div className='card mt20'>
-            <div>发行设置:
-              <a>默认发行平台</a>
-              <button type="button" className="btn btn-default" onClick={this.onClick}>高级选项</button>
+          <div className='card mt20 border' style={{height: '76px', lineHeight: '34px',}}>
+            <div>发行设置：
+              <a style={{font: '12px 微软雅黑', color: '#2ed0d7'}}><input type='checkbox' onChange={this.handleChecked} style={{width: 12, height: 12, margin: '0 5px 0 10px'}} />发行到全部平台</a>
+              <button type="button" style={{display: this.state.checked ? 'none' : 'inline-block', marginLeft: 20,}} className="btn btn-warning" onClick={this.onClick}>高级选项</button>
             </div>
+          </div>
+
+          <div className='text-left mt20 submit_max'>
+            {this.props.children}
           </div>
 
         </div>

@@ -9,20 +9,23 @@
 
 // 已经添加到容器里的卡片
 .card-added {
-  margin-bottom: 15px;
-  margin-top: 15px;
+  // margin-bottom: 10px;
+  margin-top: 20px;
+  padding: 0 0 0 20px;
   .card-added-inner {
     position: relative;
     height: 50px;
-    background-color: #f6f6f6;
+    background-color: #fff;
     overflow: hidden;
-    > .rainbow-bar {
-      position: absolute;
-      left: 0;
-      top: 0;
-      width: 4px;
-      height: 100%;
-    }
+    border: 1px solid @borderColor;
+    border-radius: 4px;
+    // > .rainbow-bar {
+    //   position: absolute;
+    //   left: 0;
+    //   top: 0;
+    //   width: 4px;
+    //   height: 100%;
+    // }
     > .btn {
       position: absolute;
       right: 0;
@@ -37,7 +40,7 @@
       .toggled-transition(transform);
     }
     > .info {
-      margin: 0 30px 0 4px;
+      margin: 0 30px 0 0px;
       height: 50px;
       overflow: hidden;
       > .thumb {
@@ -48,7 +51,10 @@
       }
       > .txt {
         margin-left: 50px;
-        padding: 7px 5px;
+        padding: 0px 20px 0;
+        line-height: 50px;
+        font: 12px/50px MicrosoftYaHei;
+        color: @mainColor;
       }
     }
   }
@@ -99,6 +105,8 @@
     > .txt {
       margin-left: 50px;
       padding: 7px 5px;
+      font: 12px MicrosoftYaHei;
+      color: @mainColor;
     }
   }
 }
@@ -110,24 +118,29 @@
 
 // card tips
 .add-card-tips {
-  margin-bottom: 15px;
-  margin-top: 15px;
+  margin-bottom: 10px;
+  margin-top: 20px;
+  padding: 0 0 0 20px;
   .add-card-tips-inner {
-    border-width: 1px;
+    border-width: 2px;
     border-style: dashed;
-    border-color: #dfe1e4;
+    border-color: @borderColor;
     text-align: center;
     height: 50px;
-    line-height: 50px;
+    line-height: 48px;
     cursor: pointer;
     background-color: #fff;
-    color: #9299a2;
+    color: @mainColor;
+    border-radius: 4px;
     > i {
-      font-size: 28px;
+      font-size: 20px;
+      position: absolute;
+      top: 17px;
+
     }
     > span {
-      font-size: 18px;
-      margin-left: 8px;
+      margin-left: 22px;
+      font: 12px MicrosoftYaHei;
     }
     &:hover,
     &.active {

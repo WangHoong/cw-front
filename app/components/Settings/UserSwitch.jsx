@@ -10,7 +10,12 @@ var Item = React.createClass({
     //var url='http://dev.api.topdmc.cn/api/v1/companies/'+this.props.data.id+'/inspect';
     var url = `${window.DMC_OPT.API_PREFIX}/companies/${this.props.data.id}/inspect?url=${window.location.origin}`;
     return(
-      <li className='ce-p'><div className='ce-name'>{this.props.data.name}</div><a href={url}><div className='ce-bt'><button type='button' onClick={this.onClick}>{window.lang.sw}</button></div></a></li>
+      <li className='ce-p'>
+        <div className='ce-name'>{this.props.data.name}</div>
+        <a href={url} onClick={this.onClick}>
+          <div className='ce-bt'>{window.lang.sw}</div>
+        </a>
+      </li>
     )
   }
 })
@@ -24,17 +29,32 @@ var UserSwitch = React.createClass({
     if(this.state.companies.loaded){
       // console.log(this.state.companies);
       return(
-        <div className='changeCompany'>
-          <h1 className='ce-h1'>{window.lang.us}</h1>
-          { this.state.companies.data.data.data.map(function(track,i){
-            return <Item data={track}  key={i}/>
-          }) }
+        <div className='show-wrap'>
+          <div className='t-sb h61'>
+            <h3 className='t-sb_detail p-l-20'>{window.lang.us}</h3>
+          </div>
+          <div className='has-top-bar'>
+            <div className='card mt20 margin0 border'>
+              <ul style={{marginBottom: '-20px'}}>
+                { this.state.companies.data.data.data.map(function(track,i){
+                  return <Item data={track}  key={i}/>
+                }) }
+              </ul>
+            </div>
+          </div>
         </div>
       )
     }else {
       return(
-        <div className='changeCompany'>
-          {window.lang.nodata}
+        <div className='show-wrap'>
+          <div className='t-sb h61'>
+            <h3 className='t-sb_detail p-l-20'>切换公司</h3>
+          </div>
+          <div className='has-top-bar'>
+            <div className='card mt20 margin0 border'>
+              <p className='ce-p ce-center'>{window.lang.nodata}</p>
+            </div>
+          </div>
         </div>
       )
     }

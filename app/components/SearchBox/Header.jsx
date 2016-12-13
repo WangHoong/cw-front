@@ -91,22 +91,24 @@ var Header = React.createClass({
   render: function(){
     return (
       <div id="search_box_header" className='search-box-header'>
-        <h4 className='title'>{window.lang.al_stype}:<b>{this.props.type}</b></h4>
+        <h4 className='title'>{window.lang.al_stype}：<b>{this.props.type}</b></h4>
+        <span className='feed-icon fa fa-search fa-search-input'></span>
         <div className='input-group'>
           <input
             id="searchbox_input"
-            className="form-control"
-            placeholder={window.lang.al_scontent}
+            className="form-control search-type"
+            // placeholder={window.lang.al_scontent}
+            placeholder='请输入艺术家名'
             type="text"
             value={this.state.text}
             onChange={this._handleSearchTextChange} />
-          <div className='input-group-btn'>
+          <div className='input-group-btn' style={{display: 'none'}}>
             <input
               id="searchbox_btn"
               className='btn btn-default'
               type="button"
               onClick={this._startSearch}
-              value={this.state.searchState} />
+              value='' />
           </div>
         </div>
       </div>

@@ -32,8 +32,13 @@ let SongChart = React.createClass({
 
 		return {
       title : {
-        text: '歌曲播放总量',
-        subtext: new Date().getFullYear()
+        text: '专辑播放总量',
+        // subtext: new Date().getFullYear()
+				textStyle: {
+					fontFamily: 'MicrosoftYaHei',
+					fontSize: 14,
+					fontWeight: 'bold',
+				}
       },
       tooltip : {
         trigger: 'axis',
@@ -164,9 +169,14 @@ let SongChart = React.createClass({
 
     return {
       title : {
-        text: '歌曲播放总量',
-        subtext: new Date().getFullYear(),
-				start:20
+        text: '专辑播放总量',
+        // subtext: new Date().getFullYear(),
+				start:20,
+				textStyle: {
+					fontFamily: 'MicrosoftYaHei',
+					fontSize: 14,
+					fontWeight: 'bold',
+				}
       },
       tooltip : {
         trigger: 'axis',
@@ -241,6 +251,7 @@ let SongChart = React.createClass({
     let buttons = arr.map((val) =>
       <button key={val} type="button"
       className={classNames('btn btn-default', this.state.whichButton==val?'active':'')}
+			style={{marginTop: '30px'}}
       onClick={function(){this._changeDate(val)}.bind(this)}
       >近{val}天</button>
     )

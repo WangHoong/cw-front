@@ -5,7 +5,7 @@ var SearchBoxMain = require('app/components/SearchBox/Main.jsx');
 var Assist = React.createClass({
   render: function(){
     return (
-      <div className='assist-box'>
+      <div className='assist-box border'>
         <SearchBoxMain type='Song' {...this.props} />
       </div>
     );

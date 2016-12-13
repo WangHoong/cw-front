@@ -58,7 +58,7 @@ var Detail = React.createClass({
     return (
       <div className='show-wrap'>
         <div className='show-top'>
-          <div className='photo pull-left' style={photoStyles}></div>
+          {/* <div className='photo pull-left' style={photoStyles}></div> */}
           <div className='ctrl-btn pull-right'>
             <button className='btn btn-warning mr10 btn-w-h' onClick={this.props.onEditClick}>{window.lang.edit}</button>
             <button className='btn btn-default btn-w-h' onClick={this.handleBack}>{window.lang.back}</button>
@@ -68,15 +68,15 @@ var Detail = React.createClass({
           </div>
         </div>
         <div className='has-top-bar'>
-          <div className='card mt20'>
+          <div className='card margin0 border'>
             <SongChart url={'artists/'+ this.state.artist.data.id +'/play_total'}/>
           </div>
-          <div className='card mt20'>
+          <div className='card mt20 margin0 border'>
             <SongChannelChart url={'artists/'+ this.state.artist.data.id +'/play_total_sp'} />
           </div>
-          <div className='card mt20'>
-            <h4>{window.lang.intro}:</h4>
-            <p className='data' dangerouslySetInnerHTML={{__html:this.filter(desc)}}></p>
+          <div className='card mt20 margin0 border'>
+            <h4 className='intro margin0 margin-t-0 margin-b-0 p-b-20'>艺人简介：</h4>
+            <p className='data-p p-b-10' dangerouslySetInnerHTML={{__html:this.filter(desc)}}></p>
           </div>
           <Albums artist_id={this.context.router.getCurrentParams().id} />
         </div>

@@ -179,7 +179,7 @@ var UpAvatar = React.createClass({
   },
 
   render: function() {
-    var _className = classNames('up-avatar', {
+    var _className = classNames('up-avatar border', {
       active: this.state.isDragActive
     });
     var photoStyles
@@ -201,7 +201,6 @@ var UpAvatar = React.createClass({
         onDragLeave={this.handleDragLeave}>
           <div className='photo' style={photoStyles}></div>
           <div className='tips'>
-            <span></span>
             <span>{window.lang.upload}</span>
           </div>
           <input type='file' ref='upInput' onChange={this.handleDrop} />

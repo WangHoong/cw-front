@@ -77,9 +77,8 @@ var Detail = React.createClass({
     } else {
       return tracks.map(function(item, idx) {
         return (
-          <li key={idx} className='col-sm-4 ellipsis p-l-20 p-r-0'>
-            <span className='name'>{idx + 1}</span>
-            <span><a data-id={item.id} onClick={this.handleSongsClick}>{item.name}</a></span>
+          <li key={idx} className='col-sm-4 ellipsis p-l-20 p-r-0 p-b-20'>
+            <a data-id={item.id} onClick={this.handleSongsClick}><span className='name'>{idx + 1}</span>{item.name}</a>
           </li>
         );
       }.bind(this));
@@ -101,7 +100,7 @@ var Detail = React.createClass({
     return (
       <div className='show-wrap'>
         <div className='show-top'>
-          <div className='photo pull-left' style={photoStyles}></div>
+          {/* <div className='photo pull-left' style={photoStyles}></div> */}
           <div className='ctrl-btn pull-right'>
             <button
               className='btn btn-warning mr10 btn-w-h'
@@ -115,23 +114,21 @@ var Detail = React.createClass({
           </div>
         </div>
         <div className='has-top-bar'>
-          <div className='card mt20'>
+          <div className='card margin0 border'>
             <SongChart url={'albums/'+ this.state.album.data.id +'/play_total'} />
           </div>
-          <div className='card mt20'>
+          <div className='card mt20 margin0 border'>
             <SongChannelChart url={'albums/'+ this.state.album.data.id +'/play_total_sp'}/>
           </div>
 
-          <div className='card mt20'>
-            <h4>{window.lang.intro}:</h4>
-            <p>{this.filter(data.desc)}</p>
-          </div>
-          <div className='card mt20'>
-            <ul className='row show-song-list'>
+          <div className='card mt20 p-b-10 margin0 border'>
+            <h4 className='intro p-b-20 margin0'>{window.lang.intro}:</h4>
+            <p className='solid'>{this.filter(data.desc)}</p>
+            <ul className='row show-song-list row_ul'>
               {this.renderList()}
             </ul>
           </div>
-          <div className='card mt20'>
+          <div className='card mt20 margin0 border'>
             <p>
               <span>
                 发行展示

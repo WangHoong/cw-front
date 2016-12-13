@@ -73,17 +73,18 @@ class Company extends React.Component {
           </div>
           <div className='form-group'>
             <label>快递公司：</label>
-            <input type="text" name="express" className='form-control' placeholder='输入寄送发票的快递公司名称' required onChange={this.changeHandle.bind(this)} />
+            <input type="text" name="express" className='form-control form_control-w' placeholder='输入寄送发票的快递公司名称' required onChange={this.changeHandle.bind(this)} />
           </div>
           <div className='form-group'>
             <label>快递号：</label>
-            <input type="text" name="express_number" className='form-control' placeholder='输入快递单号' required onChange={this.changeHandle.bind(this)} />
+            <input type="text" name="express_number" className='form-control form_control-w' placeholder='输入快递单号' required onChange={this.changeHandle.bind(this)} />
           </div>
+          <div style={{font: '10px MicrosoftYaHei', color: '#6b7b8a', marginLeft: '150px', marginTop: 10}}>可提现金额：&yen;{this.state.recorded}</div>
           <div className='form-group'>
-            <label>{window.lang.withdraw_ar}（&yen;{this.state.recorded}）：</label>
-            <input type="text" name='money' className='form-control' placeholder='输入申请提现金额' required onChange={this.changeHandle.bind(this)} />
+            <label>申请提现：</label>
+            <input type="text" name='money' className='form-control form_control-w' placeholder='输入申请提现金额' required onChange={this.changeHandle.bind(this)} />
           </div>
-          <button type='submit' className='btn btn-primary' disabled={this.state.sending}>{stateTxt}</button>
+          <button type='submit' className='btn btn-w-h btn-warning ' style={{marginLeft: '150px'}} disabled={this.state.sending}>{stateTxt}</button>
         </form>
       </div>
     );

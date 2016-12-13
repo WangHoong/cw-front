@@ -109,26 +109,35 @@ class Main extends React.Component {
 
   render() {
     return (
-      <div className='withdraw-wrap'>
-        <h1>{window.lang.withdraw_title}</h1>
-        <div className='panel'>
-          <div className='panel-body container-fluid'>
-            <div className='row'>
-              <div className='col-sm-6'>
+      <div className='show-wrap'>
+        <div className='t-sb h61'>
+          <h3 className='t-sb_detail p-l-20'>{window.lang.withdraw_title}</h3>
+        </div>
+        <div className='has-top-bar'>
+          <div className='card margin0 border'>
+            <div className='row margin0'>
+              {/* <div className='col-sm-6'> */}
                 {this.renderForm()}
-              </div>
-              {this.renderDesc()}
+              {/* </div> */}
+              {/* {this.renderDesc()} */}
+            </div>
+          </div>
+          <div className='card margin0 border mt20'>
+            <div className='row margin0'>
+              <History successData={this.state.successData} />
             </div>
           </div>
         </div>
-        <h1>{window.lang.withdraw_ra}</h1>
-          <div className='panel'>
-            <div className='panel-body container-fluid'>
-              <div className='row'>
-                <History successData={this.state.successData} />
+        {/* <div className='withdraw-wrap'>
+          <h1>{window.lang.withdraw_ra}</h1>
+            <div className='panel'>
+              <div className='panel-body container-fluid'>
+                <div className='row'>
+
+                </div>
               </div>
             </div>
-          </div>
+        </div> */}
       </div>
     );
   }

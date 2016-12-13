@@ -69,7 +69,7 @@ class Personal extends React.Component {
           </div>
           <div className='form-group'>
             <label>{window.lang.withdraw_ar}（&yen; {this.state.recorded}）：</label>
-            <input type="text" name='money' className='form-control' placeholder='输入申请提现金额' required onChange={this.changeHandle.bind(this)} />
+            <input type="text" name='money' className='form-control form_control-w' placeholder='输入申请提现金额' required onChange={this.changeHandle.bind(this)} />
           </div>
           <button type='submit' className='btn btn-primary btn-w-h' disabled={this.state.sending}>{stateTxt}</button>
         </form>

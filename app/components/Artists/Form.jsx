@@ -56,8 +56,11 @@ var Form = React.createClass({
     var data = this.state;
     return (
       <div className='show-wrap'>
+        <div className='t-sb h61'>
+          <h3 className='t-sb_detail p-l-20'>艺人编辑</h3>
+        </div>
         <div className='edit-wrap'>
-          <div className='edit-form card clearfix'>
+          <div className='edit-form card clearfix border margin0'>
             <div className='edit-left'>
               <UpAvatar ref="photo" src={data['photo']} type="artist_photo" uploadComplete={this.handlePhotoUpload}/>
             </div>
@@ -85,10 +88,10 @@ var Form = React.createClass({
                 <p className='form-control-static'>{window.lang.ar_intro}</p>
                 <TextareaAutosize className='form-control' name="desc" onChange={this.handleChange} placeholder={window.lang.ar_editintro} type='text' value={(data.desc || '').split(/\\n|\\r/).join('\n')}></TextareaAutosize>
               </div>
-              <div className='text-right'>
-                {this.props.children}
-              </div>
             </div>
+          </div>
+          <div className='text-left mt20'>
+            {this.props.children}
           </div>
         </div>
       </div>
