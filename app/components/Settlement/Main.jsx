@@ -36,7 +36,7 @@ var Main = React.createClass({
       return this.state.tracks.map((item, key) => {
         return (
           <tr key={key}>
-            <td>{item.id}</td>
+            <td>{key + 1}</td>
             <td>
               {item.bill_cycle_start ? moment(item.bill_cycle_start).format('YYYY/MM/DD') : '暂无'}-
               {item.bill_cycle_end ? moment(item.bill_cycle_end).format('YYYY/MM/DD') : '暂无'}

@@ -33,19 +33,21 @@ class Item extends React.Component {
     })
   }
   render() {
-    const backgroundColorStyle = !this.props.ItemClick ? {backgroundColor: '#fff'} : {backgroundColor: this.props.dsp.all ? '#999' : '#fff'}
     return (
       <div
-        style={this.props.ItemStyle}
         onMouseOver={this.mouseOverHandle.bind(this)}
         onMouseOut={this.mouseOutHandle.bind(this)}>
-        <div onClick={() => {this.props.ItemClick(this.props.dsp.title)}}
-          className='ablums-div'
-          style={backgroundColorStyle}>
-          <div style={{overflow: 'hidden',marginTop:7, marginLeft: 20,width:47, height: 46, border: '1px solid #e5e7e9',float: 'left', borderRadius: '50%'}}>
-            <img style={{marginTop: -18}} src ={this.props.dsp.img} />
+        <div className='ablums-div'>
+          <div>
+            <img src ={this.props.dsp.img} />
           </div>
           {this.props.dsp.title}
+          {this.props.ItemClick &&
+          <div style={{width:16,height:16,cursor:'pointer'}} onClick={() => {this.props.ItemClick(this.props.dsp.title)}}>
+            <img style={{marginTop:-39,marginLeft:0}} src={this.props.dsp.all ? 'images/albums_checked.png' : 'images/albums_check.png'} />
+          </div>
+          }
+          {/* // <input onChange={() => {this.props.ItemClick(this.props.dsp.title)}} type='checkbox' checked={this.props.dsp.all} style={{position:'absolute',top:30,left:130,width:14,height:14}} />} */}
         </div>
         <ul style={{display: this.state.isShow ? 'block' : 'none'}} className='ablums-ul'>
           {this.renderChildren()}

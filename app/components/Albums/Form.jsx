@@ -14,6 +14,7 @@ var classNames = require('classnames');
 var _ = require('lodash');
 var Dialog = require('rc-dialog');
 var List = require('./Dsps/List.jsx');
+let str = ''
 var Form = React.createClass({
 
   getInitialState: function () {
@@ -163,9 +164,11 @@ var Form = React.createClass({
     delete this.state.isDropArtistActive;
     delete this.state.SearchBoxType;
     delete this.state.visible;
-    if(this.refs.form) {
-      this.state.publish_info = JSON.stringify(this.refs.form.getValue());
-    };
+    if(str ===  '') {
+      this.state.publish_info = this.props.data.publish_info
+    } else {
+      this.state.publish_info = str
+    }
     return this.state;
   },
 
@@ -195,7 +198,10 @@ var Form = React.createClass({
 
     this.setState(this.state);
   },
-
+  handClick:function(){
+    str = JSON.stringify(this.refs.form.getValue())
+    this.onClose()
+  },
   renderSongMiniCards: function() {
     this.state.tracks = this.state.tracks || [];
     if (this.state.tracks.length === 0) {
@@ -293,27 +299,24 @@ var Form = React.createClass({
       dialog = (
         <Dialog
           visible={this.state.visible}
-          animation="slide-fade"
+          animation="zoom"
           maskAnimation="fade"
           onClose={this.onClose}
-          style={{ width: 600, backgroundColor: '#ccc',zIndex:9,overflow: 'hidden'}}
-          title={<div style={{textAlign: 'center', overflow: 'hidden'}}>发行设置<button
-            type="button"
-            className="btn btn-default"
-            key="close"
-            onClick={this.onClose}
-            style={{float: 'right'}}
-          >
-          X
-          </button></div>}
+          className='ablums-dialog'
+          title={
+            <div className='ablums-dialog-title'>
+              <span>高级选项</span>
+              <div key="close" onClick={this.onClose}>
+              X
+              </div>
+            </div>}
           mousePosition={this.state.mousePosition}
           footer={
             [
               <List publish_info={this.props.data.publish_info} ref='form' style={{overflow: 'hidden'}} />,
-                <div style={{float:'left'}}>
-                  <button type="button" className="btn btn-default">取消</button>
-                  <button type="button" className="btn btn-default" onClick={this.onClose}>确认</button>
-                  <div style={{height: 200}}></div>
+                <div style={{marginLeft:290}}>
+                  <button style={{width:100,height:40}} onClick={this.handClick} type="button" className="btn btn-warning">确定</button>
+                  <button style={{width:100,height:40,marginLeft:50}} type="button" className="btn btn-default" onClick={this.onClose}>取消</button>
                 </div>
             ]
           }

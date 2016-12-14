@@ -3,7 +3,6 @@ import {APIHelper} from 'app/utils/APIHelper';
 import axios from 'axios';
 import Item from './Item.jsx';
 import data from './DefaultData.jsx';
-const ItemStyle = {float: 'left', width: '15%', height: 50, margin: 5, position: 'relative'}
 
 class List extends React.Component {
   constructor(props) {
@@ -61,13 +60,13 @@ class List extends React.Component {
     const dsps = this.state.data
     return dsps && dsps.length > 0 && dsps.map((item, idx) => {
       return (
-        <Item ItemStyle={ItemStyle} key={idx} dsp={item} id={idx} itemChecked={this.itemChecked} ItemClick={this.ItemClick} />
+        <Item key={idx} dsp={item} id={idx} itemChecked={this.itemChecked} ItemClick={this.ItemClick} />
       )
     })
   }
   render() {
     return (
-      <div>
+      <div className='ablums-detail-dsps-list'>
         {this.renderList()}
       </div>
     )

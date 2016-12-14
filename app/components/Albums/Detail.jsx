@@ -42,7 +42,6 @@ var Detail = React.createClass({
     this.context.router.transitionTo('show_edit_song', {id: id}, {});
   },
   mouseOverHandle() {
-    console.log(0)
     this.state.isShow = true
     this.setState(this.state)
   },
