@@ -123,7 +123,8 @@ class Main extends React.Component {
             </div>
           </div>
           <div className='card margin0 border mt20'>
-            <div className='row margin0'>
+            <div className='row margin0 margin-b-0'>
+              <div className='table-title p-b-20'>提现记录</div>
               <History successData={this.state.successData} />
             </div>
           </div>

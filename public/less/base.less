@@ -102,7 +102,7 @@
       }
     }
   }
-}  
+}
 .btn-group {
   position: absolute;
   top: 13px;
@@ -1184,61 +1184,105 @@
   }
 }
 
-// .withdraw-wrap {
-//   overflow: hidden;
-//   padding: 30px;
-//   color: #37474f;
-//   > h1 {
-//     margin: 0 0 30px 0;
-//     font-size: 26px;
-//   }
-//   .radio-custom {
-//     display: inline-block;
-//   }
-//   .account-info {
-//     margin-bottom: 5px;
-//     > strong {
-//       display: inline-block;
-//       width: 70px;
-//       text-align: right;
-//     }
-//   }
-//   .wd-f-tip {
-//     margin-left: 5px;
-//     position: relative;
-//     .fa {
-//       cursor: pointer;
-//       font-size: 16px;
-//       display: inline-block;
-//       width: 20px;
-//       height: 20px;
-//       border-radius: 50%;
-//       background-color: #eea236;
-//       line-height: 20px;
-//       text-align: center;
-//       color: @backColor;
-//     }
-//     .t-i {
-//       display: none;
-//       position: absolute;
-//       right: -140px;
-//       top: 0;
-//       max-width: 200px;
-//       border-radius: 3px;
-//       background-color: #2e394b;
-//       color: @backColor;
-//       padding: 5px 10px;
-//       &::before {
-//         content: '';
-//         position: absolute;
-//         left: -9px;
-//         top: 5px;
-//         width: 0;
-//         height: 0;
-//         border-top: 5px solid transparent;
-//         border-right: 10px solid #2e394b;
-//         border-bottom: 5px solid transparent;
-//       }
-//     }
-//   }
-// }
+.withdraw-wrap {
+  overflow: hidden;
+  padding: 30px;
+  color: #37474f;
+  > h1 {
+    margin: 0 0 30px 0;
+    font-size: 26px;
+  }
+  .radio-custom {
+    display: inline-block;
+  }
+  .account-info {
+    margin-bottom: 5px;
+    > strong {
+      display: inline-block;
+      width: 70px;
+      text-align: right;
+    }
+  }
+  .wd-f-tip {
+    margin-left: 5px;
+    position: relative;
+    .fa {
+      cursor: pointer;
+      font-size: 16px;
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background-color: #eea236;
+      line-height: 20px;
+      text-align: center;
+      color: @backColor;
+    }
+    .t-i {
+      display: none;
+      position: absolute;
+      right: -140px;
+      top: 0;
+      max-width: 200px;
+      border-radius: 3px;
+      background-color: #2e394b;
+      color: @backColor;
+      padding: 5px 10px;
+      &::before {
+        content: '';
+        position: absolute;
+        left: -9px;
+        top: 5px;
+        width: 0;
+        height: 0;
+        border-top: 5px solid transparent;
+        border-right: 10px solid #2e394b;
+        border-bottom: 5px solid transparent;
+      }
+    }
+  }
+}
+
+// 提现模块
+.table-title {
+  font: 14px MicrosoftYaHei;
+  color: @mainColor;
+}
+.table-stripeds {
+  border: 1px solid @borderColor;
+  color:@mainColor;
+  > thead {
+    background: #fbfbfb;
+    > tr {
+      height:46px;
+      > th {
+        border-right: 1px solid @borderColor;
+        text-align: center;
+        font: 12px/46px MicrosoftYaHei;
+        padding: 0;
+      }
+    }
+  }
+  > tbody {
+    // > tr {
+    //   &:nth-of-type(even) {
+    //     background-color: #fcfcfc;
+    //   }
+    // }
+    .tr-background {
+      height:46px;
+      &:nth-of-type(even) {
+        background-color: #fcfcfc !important;
+      }
+      &:nth-of-type(odd) {
+        background-color: @backColor !important;
+      }
+      > td {
+        border-right: 1px solid @borderColor;
+        text-align: center;
+        font: 12px/46px MicrosoftYaHei;
+        padding: 0;
+      }
+    }
+  }
+}

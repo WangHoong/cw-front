@@ -34,7 +34,7 @@ var UserSwitch = React.createClass({
             <h3 className='t-sb_detail p-l-20'>{window.lang.us}</h3>
           </div>
           <div className='has-top-bar'>
-            <div className='card mt20 margin0 border'>
+            <div className='card margin0 border'>
               <ul style={{marginBottom: '-20px'}}>
                 { this.state.companies.data.data.data.map(function(track,i){
                   return <Item data={track}  key={i}/>

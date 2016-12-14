@@ -71,7 +71,7 @@ class History extends React.Component {
     }
     let items = this.state.data.items.map((item, idx) => {
       return (
-        <tr key={idx}>
+        <tr key={idx} className='tr-background'>
           <td>{item.bank_name}</td>
           <td>{item.account_name}</td>
           <td>{item.account_number}</td>
@@ -85,7 +85,7 @@ class History extends React.Component {
       );
     });
     return (
-      <table className='table table-striped'>
+      <table className='table table-striped table-stripeds margin-b-0'>
         <thead>
           <tr>
             <th>银行名称</th>
