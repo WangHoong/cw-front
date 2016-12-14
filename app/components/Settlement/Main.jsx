@@ -20,7 +20,7 @@ var Main = React.createClass({
   },
   renderTableHeader: function () {
     return (
-      <tr>
+      <tr className='tr-th'>
         <th className='one'>序号</th>
         <th className='two'>结算周期</th>
         <th className='three'>结算日期</th>
@@ -35,10 +35,10 @@ var Main = React.createClass({
     if(this.state.tracks instanceof Array){
       return this.state.tracks.map((item, key) => {
         return (
-          <tr key={key}>
+          <tr key={key} className='tr-background'>
             <td>{key + 1}</td>
             <td>
-              {item.bill_cycle_start ? moment(item.bill_cycle_start).format('YYYY/MM/DD') : '暂无'}-
+              {item.bill_cycle_start ? moment(item.bill_cycle_start).format('YYYY/MM/DD') : '暂无'}&nbsp;- &nbsp;
               {item.bill_cycle_end ? moment(item.bill_cycle_end).format('YYYY/MM/DD') : '暂无'}
             </td>
             <td>{moment(item.created_at).format('YYYY/MM/DD')}</td>
@@ -55,20 +55,22 @@ var Main = React.createClass({
   },
   render: function () {
     return (
-      <div className='Settlement-main'>
-        <p>
-          <span>
-            数据报表
-          </span>
-        </p>
-        <table>
-          <thead>
-            {this.renderTableHeader()}
-          </thead>
-          <tbody>
-            {this.renderTableBody()}
-          </tbody>
-        </table>
+      <div className='show-wrap'>
+        <div className='t-sb h61'>
+          <h3 className='t-sb_detail p-l-20'>数据报表</h3>
+        </div>
+        <div className='has-top-bar'>
+          <div className='row margin0 margin-b-0'>
+            <table className='table table-striped table-stripeds margin-b-0'>
+              <thead>
+                {this.renderTableHeader()}
+              </thead>
+              <tbody>
+                {this.renderTableBody()}
+              </tbody>
+            </table>
+          </div>
+        </div>
       </div>
     );
   }
