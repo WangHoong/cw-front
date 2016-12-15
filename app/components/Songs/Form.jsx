@@ -20,8 +20,7 @@ var Mp3Uploader = require('app/components/Common/Mp3Uploader.jsx');
 
 var Dialog = require('rc-dialog');
 var List = require('./Dsps/List.jsx');
-// import Dialog from '../src/DialogWrap';
-// var ReactDOM = require('react-dom');
+var mydata = require('./Dsps/DefaultData.jsx');
 var SongActions = require('../../actions/SongActions');
 var Form = React.createClass({
 
@@ -143,10 +142,8 @@ var Form = React.createClass({
     delete this.state.isDropAlbumActive;
     delete this.state.SearchBoxType;
     delete this.state.visible;
+    delete this.state.checked;
     this.state.lrc = this.state.lrc.split('\n').join('\\n');
-    if(this.refs.form) {
-      this.state.publish_info = JSON.stringify(this.refs.form.getValue());
-    };
     return this.state;
   },
 
@@ -288,8 +285,36 @@ var Form = React.createClass({
   handleChecked: function (ev) {
     this.state.checked = ev.target.checked
     this.setState(this.state)
+    if(ev.target.checked){
+      let arr = []
+      for(let i in mydata){
+        mydata[i].all = true
+        for(let j in mydata[i].children){
+          mydata[i].children[j].checked = true
+        }
+        arr.push(mydata[i])
+      }
+      this.state.publish_info = JSON.stringify(arr)
+      this.setState(this.state)
+      this.onClose()
+    }else{
+      let arr = []
+      for(let i in mydata){
+        mydata[i].all = false
+        for(let j in mydata[i].children){
+          mydata[i].children[j].checked = false
+        }
+        arr.push(mydata[i])
+      }
+      this.state.publish_info = JSON.stringify(arr)
+      this.setState(this.state)
+    }
   },
-
+  handClick:function(){
+    this.state.publish_info = JSON.stringify(this.refs.form.getValue());
+    this.setState(this.state)
+    this.onClose()
+  },
   render: function() {
     var data = this.state;
     var SearchBoxType = this.state.SearchBoxType;
@@ -312,26 +337,24 @@ var Form = React.createClass({
       dialog = (
         <Dialog
           visible={this.state.visible}
-          animation="slide-fade"
+          animation="zoom"
           maskAnimation="fade"
           onClose={this.onClose}
-          style={{ width: 600, backgroundColor: '#ccc',zIndex:9}}
-          title={<div style={{textAlign: 'center', overflow: 'hidden'}}>发行设置<button
-            type="button"
-            className="btn btn-default"
-            key="close"
-            onClick={this.onClose}
-            style={{float: 'right'}}
-          >
-          X
-          </button></div>}
+          className='ablums-dialog'
+          title={
+            <div className='ablums-dialog-title'>
+              <span>高级选项</span>
+              <div key="close" onClick={this.onClose}>
+              X
+              </div>
+            </div>}
           mousePosition={this.state.mousePosition}
           footer={
             [
-              <List publish_info={this.props.data.publish_info} ref='form' style={{overflow: 'hidden'}} />,
-                <div>
-                  <button type="button" className="btn btn-default">取消</button>
-                  <button type="button" className="btn btn-default" onClick={this.onClose}>确认</button>
+              <List publish_info={this.state.publish_info} ref='form' style={{overflow: 'hidden'}} />,
+                <div style={{marginLeft:290}}>
+                  <button style={{width:100,height:40}} onClick={this.handClick} type="button" className="btn btn-warning">确定</button>
+                  <button style={{width:100,height:40,marginLeft:50}} type="button" className="btn btn-default" onClick={this.onClose}>取消</button>
                 </div>
             ]
           }

@@ -4,7 +4,6 @@ var Reflux = require('reflux');
 var AlbumStore = require('../../stores/AlbumStore');
 var AlbumActions = require('../../actions/AlbumActions');
 var _ = require('lodash');
-const ItemStyle = {float: 'left', width: 184, height: 60, margin: 20, position: 'relative',borderRadius: 4}
 
 var SongChart = require('../Common/Charts/SongChart.jsx');
 var SongChannelChart = require('../Common/Charts/SongChannelChart.jsx');
@@ -61,7 +60,7 @@ var Detail = React.createClass({
     return publish_info.map((item, key) => {
       return (
         <li key={key}>
-          <Item dsp={item} id={key} style={ItemStyle} itemChecked = {null} ItemClick = {null} />
+          <Item dsp={item} id={key} className='detail-dsps-item' itemChecked = {null} ItemClick = {null} />
         </li>
       )
     })

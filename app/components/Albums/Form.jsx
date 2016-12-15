@@ -14,7 +14,7 @@ var classNames = require('classnames');
 var _ = require('lodash');
 var Dialog = require('rc-dialog');
 var List = require('./Dsps/List.jsx');
-let str = ''
+var mydata = require('./Dsps/DefaultData.jsx');
 var Form = React.createClass({
 
   getInitialState: function () {
@@ -164,11 +164,7 @@ var Form = React.createClass({
     delete this.state.isDropArtistActive;
     delete this.state.SearchBoxType;
     delete this.state.visible;
-    if(str ===  '') {
-      this.state.publish_info = this.props.data.publish_info
-    } else {
-      this.state.publish_info = str
-    }
+    delete this.state.checked;
     return this.state;
   },
 
@@ -199,7 +195,8 @@ var Form = React.createClass({
     this.setState(this.state);
   },
   handClick:function(){
-    str = JSON.stringify(this.refs.form.getValue())
+    this.state.publish_info = JSON.stringify(this.refs.form.getValue());
+    this.setState(this.state)
     this.onClose()
   },
   renderSongMiniCards: function() {
@@ -276,6 +273,30 @@ var Form = React.createClass({
   handleChecked: function (ev) {
     this.state.checked = ev.target.checked
     this.setState(this.state)
+    if(ev.target.checked){
+      let arr = []
+      for(let i in mydata){
+        mydata[i].all = true
+        for(let j in mydata[i].children){
+          mydata[i].children[j].checked = true
+        }
+        arr.push(mydata[i])
+      }
+      this.state.publish_info = JSON.stringify(arr)
+      this.setState(this.state)
+      this.onClose()
+    }else{
+      let arr = []
+      for(let i in mydata){
+        mydata[i].all = false
+        for(let j in mydata[i].children){
+          mydata[i].children[j].checked = false
+        }
+        arr.push(mydata[i])
+      }
+      this.state.publish_info = JSON.stringify(arr)
+      this.setState(this.state)
+    }
   },
 
   render: function() {
@@ -313,7 +334,7 @@ var Form = React.createClass({
           mousePosition={this.state.mousePosition}
           footer={
             [
-              <List publish_info={this.props.data.publish_info} ref='form' style={{overflow: 'hidden'}} />,
+              <List publish_info={this.state.publish_info} ref='form' style={{overflow: 'hidden'}} />,
                 <div style={{marginLeft:290}}>
                   <button style={{width:100,height:40}} onClick={this.handClick} type="button" className="btn btn-warning">确定</button>
                   <button style={{width:100,height:40,marginLeft:50}} type="button" className="btn btn-default" onClick={this.onClose}>取消</button>
@@ -394,7 +415,11 @@ var Form = React.createClass({
 
           <div className='card mt20 border' style={{height: '76px', lineHeight: '34px',}}>
             <div>发行设置：
-              <a style={{font: '12px 微软雅黑', color: '#2ed0d7'}}><input type='checkbox' onChange={this.handleChecked} style={{width: 12, height: 12, margin: '0 5px 0 10px'}} />发行到全部平台</a>
+              <a style={{font: '12px 微软雅黑', color: '#2ed0d7'}}>
+                <input checked={this.state.checked} type='checkbox'
+                onChange={this.handleChecked} style={{width: 12, height: 12, margin: '0 5px 0 10px'}} />
+                发行到全部平台
+              </a>
               <button type="button" style={{display: this.state.checked ? 'none' : 'inline-block', marginLeft: 20,}} className="btn btn-warning" onClick={this.onClick}>高级选项</button>
             </div>
           </div>

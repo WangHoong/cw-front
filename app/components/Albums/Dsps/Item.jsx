@@ -19,13 +19,16 @@ class Item extends React.Component {
     this.state.isShow = false
     this.setState(this.state)
   }
-
   renderChildren() {
     return this.props.dsp.children.map((item, key) => {
       return (
         <li className='ablums-p' key={key}>
-          {this.props.ItemClick && <input type='checkbox' onChange={() => {this.props.itemChecked(this.props.id,key)}} checked={item.checked} />}
-          <span>
+          {this.props.ItemClick &&
+            <div style={{float:'left',width:14,height:14,marginTop:4,cursor:'pointer'}} onClick={() => {this.props.itemChecked(this.props.id,key)}}>
+              <img style={{width:'100%',height:'100%'}} src={item.checked ? 'images/albums_checked1.png' : 'images/albums_check2.png'} />
+            </div>
+          }
+          <span style={{marginLeft:10}}>
             {item.title}
           </span>
         </li>
@@ -47,7 +50,6 @@ class Item extends React.Component {
             <img style={{marginTop:-39,marginLeft:0}} src={this.props.dsp.all ? 'images/albums_checked.png' : 'images/albums_check.png'} />
           </div>
           }
-          {/* // <input onChange={() => {this.props.ItemClick(this.props.dsp.title)}} type='checkbox' checked={this.props.dsp.all} style={{position:'absolute',top:30,left:130,width:14,height:14}} />} */}
         </div>
         <ul style={{display: this.state.isShow ? 'block' : 'none'}} className='ablums-ul'>
           {this.renderChildren()}

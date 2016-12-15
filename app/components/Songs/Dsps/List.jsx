@@ -2,7 +2,7 @@ import React from 'react';
 import {APIHelper} from 'app/utils/APIHelper';
 import axios from 'axios';
 import Item from './Item.jsx';
-import data from '../../Albums/Dsps/DefaultData.jsx';
+import data from './DefaultData.jsx';
 
 class List extends React.Component {
   constructor(props) {
@@ -66,7 +66,7 @@ class List extends React.Component {
   }
   render() {
     return (
-      <div>
+      <div className='ablums-detail-dsps-list'>
         {this.renderList()}
       </div>
     )

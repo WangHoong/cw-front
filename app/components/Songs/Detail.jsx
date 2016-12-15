@@ -11,9 +11,9 @@ var SongChart = require('../Common/Charts/SongChart.jsx');
 var SongChannelChart = require('../Common/Charts/SongChannelChart.jsx');
 
 var Loader = require('../Common/Loader.jsx');
-
+var Item = require ('./Dsps/Item.jsx');
 var Player = require('../Common/Player/Player.jsx');
-var mydata = require('../Albums/Dsps/DefaultData.jsx');
+var mydata = require('./Dsps/DefaultData.jsx');
 var Detail = React.createClass({
 
   mixins: [Reflux.connect(SongStore, 'song')],
@@ -106,10 +106,12 @@ var Detail = React.createClass({
         arr.push(obj[i])
       }
     }
-    const publish_info = this.state.song.data.publish_info ? arr : mydata
+    const publish_info = arr.length > 0 ? arr : mydata
     return publish_info.map((item, key) => {
       return (
-        <li key={key} style={{float: 'left', width: '15%'}}>{item.title}</li>
+        <li key={key}>
+          <Item dsp={item} id={key} className='detail-dsps-item' itemChecked = {null} ItemClick = {null} />
+        </li>
       )
     })
   },
@@ -157,11 +159,17 @@ var Detail = React.createClass({
           <div className='card mt20 margin0 border'>
             <p className='data mt20' dangerouslySetInnerHTML={{__html:this.filter(data.lrc || ' 暂无 ')}}></p>
           </div>
-          <div style={{}}>
-            <p>发行展示</p>
-            <ul style={{overflow: 'hidden'}}>
-              {this.renderChildren()}
-            </ul>
+          <div className='card mt20 margin0 border'>
+            <p>
+              <span>
+                发行展示
+              </span>
+            </p>
+            <div>
+              <ul className='detail-dsps-ul'>
+                {this.renderChildren()}
+              </ul>
+            </div>
           </div>
 
         </div>
