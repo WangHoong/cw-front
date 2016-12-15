@@ -126,7 +126,7 @@ var Detail = React.createClass({
               {this.renderList()}
             </ul>
           </div>
-          <div className='card mt20 margin0 border'>
+          <div className='card mt20 margin0 border' style={{marginBottom:140,paddingBottom:280}}>
             <p>
               <span>
                 发行展示
