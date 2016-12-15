@@ -102,24 +102,24 @@ var TotalCard = React.createClass({
         <div className="totalcard">
           <p className="ttc-title"><b>{window.lang.r0}</b></p>
           <p className="ttc-sum"><span>{amount ? amount.amount : '--'}</span><span className="ttc-unit">{window.lang.rmb}</span></p>
-          <div className='row mt10'>
-            <div className='col-sm-6'>
+          <div className='row account' style={{marginBottom: '8px'}}>
+            <div className='col-sm-8'>
               <p>{window.lang.r1}</p>
-              <p><span>{amount ? amount.recorded_amount : '--'}</span><span>{window.lang.rmb}</span></p>
+              <p><span>{amount ? amount.recorded_amount : '--'}</span><span className='rmb'>{window.lang.rmb}</span></p>
             </div>
-            <div className='col-sm-6'>
+            <div className='col-sm-4'>
               <p>{window.lang.r2}</p>
-              <p><span>{amount ? amount.unrecorded_amount : '--'}</span><span>{window.lang.rmb}</span></p>
+              <p><span>{amount ? amount.unrecorded_amount : '--'}</span><span className='rmb'>{window.lang.rmb}</span></p>
             </div>
           </div>
-          <div className='row mt10'>
-            <div className='col-sm-6'>
+          <div className='row account' style={{marginBottom: '8px'}}>
+            <div className='col-sm-8'>
               <p>{window.lang.r3}</p>
-              <p><span>{amount ? amount.withdraw_amount : '--'}</span><span>{window.lang.rmb}</span></p>
+              <p><span>{amount ? amount.withdraw_amount : '--'}</span><span className='rmb'>{window.lang.rmb}</span></p>
             </div>
-            <div className='col-sm-6'>
+            <div className='col-sm-4'>
               <p>{window.lang.r4}</p>
-              <p><span>{amount ? amount.blocked_amount : '--'}</span><span>{window.lang.rmb}</span></p>
+              <p><span>{amount ? amount.blocked_amount : '--'}</span><span className='rmb'>{window.lang.rmb}</span></p>
             </div>
           </div>
         </div>

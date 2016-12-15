@@ -21,14 +21,14 @@ var ArtistItemWrapper = React.createClass({
 
     if(rank<=5){
     return (
-      <p>
-        <span className={_artist.classname}><b>{rank}</b></span>
-        <Link to={_artist.link}>
-          <span className="tsr-avatar" style={_style}></span>
-          <span className="tsr-name">{_artist.artist_name}</span>
-          <span className="tsr-num">{_artist.stream_count}</span>
-        </Link>
-      </p>
+      <tr className='row margin0'>
+        <td className='col-sm-1 p-l-0 p-r-0'><b className={_artist.classname}>{rank}</b></td>
+        <td className="col-sm-2 p-l-0 p-r-0 tsr-avatar" style={_style}><Link to={_artist.link}></Link></td>
+        <td className="col-sm-3 p-l-0 p-r-0 tsr-name"><Link to={_artist.link}>{_artist.artist_name}</Link></td>
+        <td className="col-sm-2 p-l-0 p-r-0 tsr-name text-center"><Link to={_artist.link}>{_artist.stream_count}</Link></td> {/* 专辑数 */}
+        <td className="col-sm-2 p-l-0 p-r-0 tsr-name text-center"><Link to={_artist.link}>{_artist.stream_count}</Link></td> {/* 歌曲数 */}
+        <td className="col-sm-2 p-l-0 p-r-0 tsr-num tsr-name text-center"><Link to={_artist.link}>{_artist.stream_count}</Link></td>  {/* 总播放量 */}
+      </tr>
     );
   }else {
     return <p></p>;
@@ -49,29 +49,38 @@ var TopSingers = React.createClass({
     return(
       <div className="topSingers">
         <p className="tsr-title"><b>{window.lang.at5}</b></p>
-        <p className="tsr-head">
-          <span className="tsr-rank"><b>{window.lang.rank}</b></span>
-          <span className="tsr-singer"><b>{window.lang.artist}</b></span>
-          <span className="tsr-total"><b>{window.lang.at5tp}</b></span>
-        </p>
-        <div className="tsr-body">
-          {this.state.topsinger.data.data.data.map(function(artist,i){
-            return <ArtistItemWrapper data={artist} key={artist.artist_id} rank={i}/>
-          })}
-        </div>
+        <table className='table-song'>
+          <thead>
+            <tr className='row margin0'>
+              <th className='col-sm-6 p-l-0 p-r-0' colSpan='3' style={{paddingLeft: '40px'}}><b>{window.lang.artist}</b></th>
+              <th className='col-sm-2 p-l-0 p-r-0 text-center'>专辑数</th>
+              <th className='col-sm-2 p-l-0 p-r-0 text-center'>歌曲数</th>
+              <th className='col-sm-2 p-l-0 p-r-0 text-center'>{window.lang.at5tp}</th>
+            </tr>
+          </thead>
+          <tbody>
+            {this.state.topsinger.data.data.data.map(function(artist,i){
+              return <ArtistItemWrapper data={artist} key={artist.artist_id} rank={i}/>
+            })}
+          </tbody>
+        </table>
       </div>
     )}else {
       return(
         <div className="topSingers">
           <p className="tsr-title"><b>{window.lang.at5}</b></p>
-          <p className="tsr-head">
-            <span className="tsr-rank"><b>{window.lang.rank}</b></span>
-            <span className="tsr-singer"><b>{window.lang.artist}</b></span>
-            <span className="tsr-total"><b>{window.lang.at5tp}</b></span>
-          </p>
+          <table className='table-song'>
+            <thead>
+              <tr className='row margin0'>
+                <th className='col-sm-6 p-l-0 p-r-0' colSpan='3' style={{paddingLeft: '40px'}}><b>{window.lang.artist}</b></th>
+                <th className='col-sm-2 p-l-0 p-r-0 text-center'>专辑数</th>
+                <th className='col-sm-2 p-l-0 p-r-0 text-center'>歌曲数</th>
+                <th className='col-sm-2 p-l-0 p-r-0 text-center'>{window.lang.at5tp}</th>
+              </tr>
+            </thead>
+          </table>
           <div className='nodata'>{window.lang.nodata}</div>
         </div>
-
       )
     }
   }

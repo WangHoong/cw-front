@@ -3,13 +3,13 @@ class Process extends React.Component {
 
   render() {
     let txt
-    let style1 = {marginLeft: '230px', width: '140px'}
+    let style1 = {marginRight: '100px', width: '140px', float: 'right'}
     let img = !/global\.topdmc\.com/.test(location.host) ? (<img style={style1} src={'../images/topdmc.jpg'} alt="TopDMC微信公众号二维码" />) : ''
     let a =
-    (<div className='card clearfix'>
+    (<div className='card clearfix p-b-0 p-t-0'>
       <div style={{float: 'left'}}>
-        <h3 style={{marginTop:0}}>{window.lang.Please}{window.lang.Please1}</h3>
-        <ol>
+        <h3 style={{marginTop:0}} className='send'>{window.lang.Please}{window.lang.Please1}</h3>
+        <ol className='verify'>
           <li>{window.lang.P1}</li>
           <li>{window.lang.P2}</li>
           <li>{window.lang.P3}</li>
@@ -21,10 +21,10 @@ class Process extends React.Component {
     </div>)
 
     let b =
-    (<div className='card clearfix'>
+    (<div className='card clearfix p-b-0 p-t-0'>
     <div style={{float: 'left'}}>
-      <h3 style={{marginTop:0}}>{window.lang.Please}{window.lang.Please11}</h3>
-      <ol>
+      <h3 style={{marginTop:0}} className='send'>{window.lang.Please}{window.lang.Please11}</h3>
+      <ol className='verify'>
         <li>{window.lang.P11}</li>
         <li>{window.lang.P22}</li>
         <li>{window.lang.P33}</li>

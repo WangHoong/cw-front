@@ -1,142 +1,65 @@
 // dashboard
 .dashboard-container {
-  // padding: 60px 0 20px;
   > .dashboard-header {
     padding-top: 20px;
     > div {
-      height: 200px;
+      height: 210px;
       > div {
-        height: 200px;
-        padding: 10px;
+        height: 210px;
+        padding: 20px;
       }
     }
   }
 }
-.income {
-  background-color: #00d0d5;
+.send {
+  font: bold 20px MicrosoftYaHei;
+  margin-bottom: 20px;
 }
-.songsum {
-  background-color: #fb8caf;
-}
+.verify {
+  font: 12px/24px MicrosoftYaHei;
 
+}
+.income { background-color: #2ed0d7;}
+.songsum { background-color: #63b5f5;}
+.rmb { font: 12px MicrosoftYaHei !important;}
 
 .totalcard {
-  color: #fff;
-  font-size: 14px;
+  color: @backColor;
+  font: 14px MicrosoftYaHei;
   >.ttc-title {
-
+    margin-bottom: 5px;
   }
   >.ttc-sum {
-    font-size: 40px;
+    font: 38px ArialMT;
+    margin-bottom: 20px;
     >.ttc-unit {
-      font-size: 14px;
-    }
-  }
-  >.ttc-class {
-    margin-top: 55px;
-    >.ttc-first {
-      >.ttc-num {
-        font-size: 20px;
-        >.ttc-unit {
-          font-size: 14px;
-        }
-      }
-    }
-    .ttc-next {
-      margin-left: 30px;
-      float: right;
-      position: relative;
-      left: -50px;
-      top: -48px;
-      >.ttc-num {
-        font-size: 20px;
-        >.ttc-unit {
-          font-size: 14px;
-        }
-      }
+      font: 14px MicrosoftYaHei;
     }
   }
 }
 
-.topSingers {
-  color: #5e6161;
-  height: 466px;
-  a{
-    color:#5e6161;
+.account {
+  font: 12px MicrosoftYaHei !important;
+  p {
+    line-height: 22px;
   }
-  .tsr-title {
-    margin-left: 12px;
-  }
-  .tsr-head {
-    margin-top: 25px;
-    .tsr-rank {
-      margin-left: 12px;
-    }
-    .tsr-total {
-      text-align: right;
-      float: right;
-    }
-    .tsr-singer {
-      margin-left: 55px;
-    }
-  }
-  .tsr-body {
-    p {
-      margin-top: 25px;
-    }
-    .tsr-rank-top {
-      display: inline-block;
-      position: relative;
-      top: -18px;
-      background-color: #f48daf;
-      color: #fff;
-      width: 20px;
-      height: 20px;
-      border-radius: 50%;
-      text-align: center;
-      margin-left: 16px;
-    }
-    .tsr-rank-other {
-      display: inline-block;
-      position: relative;
-      top: -18px;
-      background-color: @submitColor;
-      color: #fff;
-      width: 20px;
-      height: 20px;
-      border-radius: 50%;
-      text-align: center;
-      margin-left: 16px;
-    }
-    .tsr-avatar {
-      display: inline-block;
-      width: 45px;
-      height: 45px;
-      background-size: 45px;
-      border-radius: 50%;
-      margin-left: 25px;
-    }
-    .tsr-name {
-      position: relative;
-      top: -18px;
-      margin-left: 5px;
-    }
-    .tsr-num {
-      text-align: right;
-      float: right;
-      margin-top: 13px;
-    }
+  span {
+    font: 16px ArialMT;
   }
 }
+.ttc-class {
+  margin-top: 70px;
+}
 
+// 歌曲top10  和 艺人top5
 .topSongs {
   color: #5e6161;
-  height: 466px;
+  height: 450px;
   a{
     color:#5e6161;
   }
   >.tps-body {
-    margin-top: 20px;
+    margin-top: 26px;
     >.tps-member {
       margin-top: 2px;
       span {
@@ -151,9 +74,10 @@
         border-top-right-radius: 0;
         color: #fff;
         text-align: center;
-        padding-top: 5px;
+        padding-top: 7px;
         position: relative;
         top:-10px;
+        font:14px Arial-BoldMT;
       }
       >.tps-rank-other {
         width: 30px;
@@ -163,34 +87,36 @@
         border-top-right-radius: 0;
         color: #fff;
         text-align: center;
-        padding-top: 5px;
+        padding-top: 7px;
         position: relative;
         top:-10px;
+        font:14px Arial-BoldMT;
       }
       >.tps-num {
         text-align: right;
         float: right;
+        margin-top: 5px;
       }
       >.tps-bgl-top {
-        padding-top: 5px;
+        padding-top: 9px;
         top: -20px;
-        background-color: #f6e8ed;
+        background-color: #fbf1f4;
         >.tps-song {
-          font-size: 14px;
+          font: 14px MicrosoftYaHei;
           padding-left: 10px;
           position: absolute;
-
+          color: @mainColor;
         }
 
       }
       >.tps-bgl-other {
-
-        padding-top: 5px;
-        background-color: #d0f2f3;
+        padding-top: 9px;
+        background-color: #e4f6f6;
         >.tps-song {
-          font-size: 14px;
+          font: 14px MicrosoftYaHei;
           padding-left: 10px;
           position: absolute;
+          color: @mainColor;
         }
       }
     }
@@ -198,9 +124,113 @@
 }
 
 .datum-percent-wrap {
-  background-color: #fff;
-  cursor: pointer;
+  background-color: #f48daf;
+  position: relative;
   .col-xs-4 {
     text-align: center;
   }
+  .look {
+    float: right;
+    background: #f1d8e1;
+    width: 74px;
+    height: 26px;
+    color: #f48daf;
+    text-align: center;
+    border-radius: 13px;
+    font: 12px/26px MicrosoftYaHei;
+  }
+  .sub {
+    width: 14px;
+    height: 14px;
+    border-radius: 7px;
+    background: red;
+    text-align: center;
+    font: 10px/14px MicrosoftYaHei;
+    position: absolute;
+    right: 15px;
+    top: 12px;
+  }
 }
+.tps-title, .tsr-title {
+  font: 14px MicrosoftYaHei-Bold;
+  color: @mainColor;
+}
+.tsr-title {
+  margin-bottom: 20px;
+}
+
+.topSingers {
+  color: #5e6161;
+  height: 450px;
+}
+// {艺人 专辑数 歌曲数 总播放量} ==== 表格
+.table-song {
+    border-bottom: 0 !important;
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 20px;
+    border-collapse: collapse;
+    border-spacing: 0;
+    box-sizing: border-box;
+    display: table;
+    thead {
+      margin: 20px 0 25px 0;
+      > tr {
+        line-height: 36px;
+        height:36px;
+        background: #fcfcfc;
+        > th {
+          font: 14px MicrosoftYaHei-Bold;
+          color: @mainColor;
+        }
+      }
+    }
+    tbody {
+      .tsr-rank-top {
+        display: inline-block;
+        position: absolute;
+        top: 28px;
+        background-color: #f48daf;
+        color: #fff;
+        font: 14px/20px Arial-BoldMT;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        text-align: center;
+      }
+      .tsr-rank-other {
+        display: inline-block;
+        position: absolute;
+        top: 28px;
+        background-color: @submitColor;
+        color: #fff;
+        font: 14px/20px Arial-BoldMT;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        text-align: center;
+      }
+      .tsr-avatar {
+        display: inline-block;
+        width: 40px;
+        height: 40px;
+        background-size: 40px;
+        border-radius: 50%;
+        margin-left: 6px;
+      }
+      .tsr-name {
+        font: 12px MicrosoftYaHei;
+        color: @mainColor;
+      }
+      tr {
+        height:74px;
+        line-height: 74px;
+        > td {
+          position: relative;
+          > a {
+            color:@mainColor;
+          }
+        }
+      }
+    }
+  }
