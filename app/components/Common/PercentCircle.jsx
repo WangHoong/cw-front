@@ -20,7 +20,6 @@ var PercentCircle = React.createClass({
     // var singerPercent=(singerNumber[0]/singerNumber[1]*100).toFixed(0);
     // var specialNumber=this.props.percent[2].split('/');
     // var specialPercent=(specialNumber[0]/specialNumber[1]*100).toFixed(0);
-
     return(
       // <div className='datum-percent'>
       //   <p>{window.lang.pr0}</p>
@@ -40,7 +39,7 @@ var PercentCircle = React.createClass({
       //   </ul>
       // </div>
       <div className="totalcard">
-        <p className="ttc-title"><b>分发渠道</b><a className='look' onClick={this.props.onClick}>查看详情</a><b className='sub'>3</b></p>
+        <p className="ttc-title"><b>分发渠道</b><a className='look' onClick={this.props.onClick}>查看详情</a><b className='sub' style={{display: this.props.icon ? 'none' : 'block' }}>3</b></p>
         <p className="ttc-sum"><span>17</span><span className="ttc-unit">种</span></p>
         <div className="ttc-class">
           <div className='row account' style={{marginBottom: '8px'}}>

@@ -156,8 +156,8 @@ var Detail = React.createClass({
               <ul className="search-box-results clearfix">{this.renderArtistMiniCards()}</ul>
             </div>
           </div>
-          <div className='card mt20 margin0 border'>
-            <p className='data mt20' dangerouslySetInnerHTML={{__html:this.filter(data.lrc || ' 暂无 ')}}></p>
+          <div className='card mt20 margin0 border div-height'>
+            <p className='data' dangerouslySetInnerHTML={{__html:this.filter(data.lrc || ' 暂无 ')}}></p>
           </div>
           <div className='card mt20 margin0 border' style={{marginBottom:140,paddingBottom:280}}>
             <p>

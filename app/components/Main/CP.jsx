@@ -17,6 +17,7 @@ var Main = React.createClass({
   getInitialState: function () {
     return {
       visible: false,
+      icon: false,
     }
   },
 
@@ -27,6 +28,7 @@ var Main = React.createClass({
         y: e.pageY,
       },
       visible: true,
+      icon: true,
     })
   },
 
@@ -34,6 +36,9 @@ var Main = React.createClass({
     this.setState({
       visible: false,
     });
+  },
+  renderList() {
+    return <li></li>
   },
 
   render: function() {
@@ -49,25 +54,17 @@ var Main = React.createClass({
           animation="slide-fade"
           maskAnimation="fade"
           onClose={this.onClose}
-          style={{ width: 600, background: '#fff', }}
-          title={<div style={{lineHeight: '40px',fontSize: '18px'}}>分发渠道<a className="fa fa-times" aria-hidden="true" onClick={this.onClose} style={{float: 'right', marginRight: 5}}></a></div>}
-          mousePosition={this.state.mousePosition}
-          footer={
-            [<button
-                type="button"
-                className="btn btn-default"
-                key="close"
-                onClick={this.onClose}
-              >Close</button>,
-              <button
-                type="button"
-                className="btn btn-primary"
-                key="save"
-                onClick={this.onClose}
-              >Submit</button>,]}>
-            <p>新增渠道公司</p>
+          style={{ width: '820px', background: '#fff', }}
+          title={<div className='text-center rc-title'>分发渠道<a className="fa fa-times error" aria-hidden="true" onClick={this.onClose}></a></div>}
+          mousePosition={this.state.mousePosition} >
+          <div className='rc-body'>
+            <h4>新增渠道公司</h4>
+            <OrderInfo />
+            <h4>渠道公司</h4>
+            <div className='row margin0'>
 
-            <p>渠道公司</p>
+            </div>
+          </div>
         </Dialog>
       );
     }
@@ -88,14 +85,11 @@ var Main = React.createClass({
             </div>
             <div className='col-sm-4 p-l-10'>
               <div className='datum-percent-wrap border' >
-                <PercentCircle percent={_data} onClick={this.onClick}/>
+                <PercentCircle percent={_data} onClick={this.onClick} icon={this.state.icon}/>
               </div>
             </div>
             {dialog}
           </div>
-          {/* <div className='mt20'>
-              <OrderInfo />
-          </div> */}
           <div className='mt20'>
             <div className='row'>
               <div className='col-sm-12'>

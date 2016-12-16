@@ -70,7 +70,7 @@ var Detail = React.createClass({
     var tracks = data.tracks || [];
     if (tracks.length == 0) {
       return (
-        <li style={{width: 'auto', textAlign: 'center', float: 'none'}}>暂无歌曲信息</li>
+        <li style={{width: 'auto', textAlign: 'center', float: 'none',marginBottom: '20px'}}>暂无歌曲信息</li>
       );
     } else {
       return tracks.map(function(item, idx) {

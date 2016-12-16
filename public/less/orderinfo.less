@@ -1,48 +1,63 @@
 .OrderInfoCard {
+  margin-right:-20px !important;
   .oi-item {
-    background-color: #fff;
-    border: 1px solid #CFCFCF;
-    border-left-color: #12bdc4;
-    border-left-width: 5px;
-    width: 100%;
-    height: 80px;
-    margin-top: 10px;
+    background-color: @backColor;
+    border: 1px solid @borderColor;
+    border-radius: 4px;
+    width: 140px;
+    height: 152px;
+    padding:20px;
     overflow: hidden;
     position: relative;
+    float: left;
+    margin-right: 20px;
+    margin-bottom: 20px;
     .oi-img {
-      position: absolute;
-      left: 0;
-      top: 0;
-      height: 78px;
-      width: 78px;
+      height: 50px;
+      width: 50px;
+      text-align: center;
+      border-radius: 50%;
+      // border:1px solid @borderColor;
+      overflow: hidden;
+      margin: 0 auto;
       img {
-        width: 100%;
-        height: 100%;
+        max-width: 50px;
+        max-height: 50px;
+        position:absolute;
+        left:49px;
+        top: 19px;
       }
     }
     .oi-name {
-      border-right: 1px solid #CFCFCF;
-      position: absolute;
-      left: 78px;
-      right: 60px;
-      padding-top: 10px;
-      line-height: 28px;
-      top: 0;
-      height: 100%;
-      padding-left: 10px;
+      padding-top: 5px;
+      text-align: center;
+      display: block;
+      width: 100%;
+      height: 35px;
+    }
+    .oi-name-p {
+      font: 12px MicrosoftYaHei;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      max-height: 25px;
+      position:relative;
+      display: block;
     }
     .oi-price {
-      color: #12bdc4;
+      color: @mainColor;
+      font: 14px MicrosoftYaHei;
+      margin-top: 10px;
     }
     .oi-choose {
       position: absolute;
-      right: 0;
-      top: 0;
-      width: 60px;
+      right: 10px;
+      top: 10px;
       text-align: center;
-      line-height: 90px;
       i {
-        font-size: 35px;
+        font-size: 10px;
         color: #CFCFCF;
       }
     }
