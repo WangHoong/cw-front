@@ -192,6 +192,7 @@ var UpAvatar = React.createClass({
         backgroundImage: 'url(images/use2.png)'
       };
     }
+    const tips = this.props.tips ? this.props.tips : window.lang.upload
     return (
       <div
         className={_className}
@@ -201,7 +202,12 @@ var UpAvatar = React.createClass({
         onDragLeave={this.handleDragLeave}>
           <div className='photo' style={photoStyles}></div>
           <div className='tips'>
+<<<<<<< HEAD
             <span>{window.lang.upload}</span>
+=======
+            <span></span>
+            <span>{tips}</span>
+>>>>>>> master
           </div>
           <input type='file' ref='upInput' onChange={this.handleDrop} />
           {this.showProgress()}

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta charset="UTF-8">
+<title>DMC - Digital Music Cloud</title>
+<meta name="keywords" content="DMC,topdmc,成为科技,音乐,版权,数字音乐,音乐版权云,数字音乐版权云服务,CaaS,Copyright As a Service" />
+<meta name="description" content="DMC依托先进技术构建音乐版权云服务，为音乐权利人提供内容自主授权、数据监测、盗版排查、法务合作和企划推广一站式服务" />
+<meta property="og:title" content="DMC - 数字版权云服务" />
+<meta property="og:type" content="Digital Music Cloud.Platform" />
+<meta property="og:url" content="http://www.topdmc.com" />
+<meta property="og:image" content="http://www.topdmc.com/images/logo2-new.png" />
+<meta property="og:description" content="DMC依托先进技术构建音乐版权云服务，为音乐权利人提供内容自主授权、数据监测、盗版排查、法务合作和企划推广一站式服务" />
+<meta property="og:locale" content="en" />
+<meta property="og:site_name" content="topdmc" />
+<link rel="shortcut icon" href="/images/favicon.ico">
+<link rel="icon" sizes="32x32" href="/images/favicon-32x32.png">
+<link rel="icon" sizes="96x96" href="/images/favicon-96x96.png">
+<link rel="icon" sizes="16x16" href="/images/favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="57x57" href="/images/apple-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="/images/apple-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="/images/apple-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="/images/apple-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="/images/apple-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="/images/apple-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="/images/apple-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="/images/apple-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-icon-180x180.png">
+<link rel="stylesheet" href="/css/mbs.css">
+<link rel="stylesheet" href="/css/main.css">
+<style>
+html, body {
+  height: 100%;
+}
+body {
+  background: none;
+}
+</style>
+</head>
+<body>
+<div id="particles-js"></div>
+<section class="doorbell-wrap">
+  <div class="header-logo">
+    <img src="/images/logo.png" />
+  </div>
+  <form id="visitor_form">
+    <div class="form-group">
+      <label>账户名</label>
+      <input name="username" type="text" class="form-control" placeholder="请输入账户名">
+    </div>
+    <div class="form-group">
+      <label>密码</label>
+      <input name="password" type="password" class="form-control" placeholder="请输入密码">
+    </div>
+    <input name="code" type="text" class="hide" placeholder="请输入邀请码" value="{{CODE}}">
+    <div class="form-group">
+      <input type='checkbox' id="agree" disabled checked>
+      <a href='/license' target="_blank" style="margin-left: 5px; color: #01BCFF;">我同意TopDMC的服务条款</a>
+    </div>
+    <div class="form-group">
+      <p class="js-msg" style="text-align:center;color:#fa3e3e"></p>
+    </div>
+    <input type="submit" value="登陆" class="login btn primary-bg btn-block" />
+    <div class="tips" style="text-align: center; margin-bottom: 10px">or</div>
+    <a href="/wx_signin?{{CODE}}" class="btn primary-bg btn-block">微信扫码登陆</a>
+    <div class="text-right">
+      <a href="/doorbell" style="display:inline-block;color: #FF982D; margin-top: 10px;">立即注册!</a>
+    </div>
+  </form>
+</section>
+<script src="/js/jquery.min.js"></script>
+<script src="/js/common.js"></script>
+<script>
+(function($, undefined) {
+  particlesJS.load('particles-js', '/config/doorbell_pConfig.json');
+
+  $.fn.serializeJson = function() {
+    var serializeObj = {};
+    $(this.serializeArray()).each(function () {
+      serializeObj[this.name]= this.value;
+    });
+    return serializeObj;
+  };
+
+  var $loginBtn = $('.login'),
+      $form = $('#visitor_form');
+
+  var API_URL = '{{API_PREFIX}}',
+      VERIFY_URL = `${API_URL}/standard_login`;
+  var msg = $('.js-msg')
+  $loginBtn.click(function(e) {
+    e.preventDefault();
+    var data = $form.serializeJson();
+    if ( '' === $.trim(data.username) ) {
+      msg.html('请输入账户名');
+      return;
+    }
+    if ( '' === $.trim(data.password) ) {
+      msg.html('请输入密码');
+      return;
+    }
+    $.ajax({
+      method: 'POST',
+      url: VERIFY_URL,
+      dataType: 'json',
+      headers: {
+        'Content-Type':'application/json'
+      },
+      xhrFields: {
+        withCredentials: true
+      },
+      data: JSON.stringify(data),
+      success: function(res) {
+        if (res.status === 302) {
+          location.href = '/';
+        } else if (res.status === 400) {
+          msg.html(res.data.message)
+        }
+      },
+      error: function() {
+        msg.html('服务器错误, 请重试.');
+      }
+    });
+  });
+})(jQuery);
+</script>
+</body>
+</html>
