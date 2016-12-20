@@ -1,9 +1,9 @@
 {
-  "API_PREFIX": "https://api.topdmc.cn/api/v1",
-  "UPLOAD_FILE_URL": "https://api.topdmc.cn/api/v1",
-  "LOGIN_URL": "https://api.topdmc.cn/api/v1/login",
-  "AGREEMENT_URL": "https://api.topdmc.cn/api/v1/agreement",
-  "SWITCH_URL": "https://api.topdmc.cn/api/v1",
+  "API_PREFIX": "http://api.topdmc.cn/api/v1",
+  "UPLOAD_FILE_URL": "http://api.topdmc.cn/api/v1",
+  "LOGIN_URL": "http://api.topdmc.cn/api/v1/login",
+  "AGREEMENT_URL": "http://api.topdmc.cn/api/v1/agreement",
+  "SWITCH_URL": "http://api.topdmc.cn/api/v1",
   "QRCODE_URL": "https://oauth.topdmc.com/oauth/qrcode",
   "PROXY_PREFIX": "http://127.0.0.1:9400"
 }
