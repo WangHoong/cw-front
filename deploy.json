@@ -25,6 +25,19 @@
         "PORT": "8001"
       }
     },
+    "staging": {
+      "user": "ec2-user",
+      "host": "54.223.207.55",
+      "ref": "origin/staging",
+      "repo": "git@github.com:topdmc/cw-front.git",
+      "path": "/srv/dmc/cw-front-staging",
+      "post-deploy": "npm install && pm2 startOrRestart deploy.json --env staging --node-args='--harmony'",
+      "pre-deploy-local": "echo 'Start deploy now.'",
+      "env"  : {
+        "NODE_ENV": "staging",
+        "PORT": 9004
+      }
+    },
     "global": {
       "user": "ec2-user",
       "host": ["52.58.125.207"],
