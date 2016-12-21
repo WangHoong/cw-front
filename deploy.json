@@ -31,7 +31,7 @@
       "ref": "origin/staging",
       "repo": "git@github.com:topdmc/cw-front.git",
       "path": "/srv/dmc/cw-front-staging",
-      "post-deploy": "npm install && pm2 startOrRestart deploy.json --env staging --node-args='--harmony'",
+      "post-deploy": "npm install && bower install && npm run build && pm2 startOrRestart deploy.json --env staging --node-args='--harmony'",
       "pre-deploy-local": "echo 'Start deploy now.'",
       "env"  : {
         "NODE_ENV": "staging",
