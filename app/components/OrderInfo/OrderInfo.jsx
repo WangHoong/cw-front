@@ -39,7 +39,7 @@ var Item = React.createClass({
     case 0 :
       return (
         <div className='oi-item'>
-          <div className='oi-img'><img src='/images/sp_default_logo.jpg'/></div>
+          <div className='oi-img'><img src={_order.icon_url || '/images/sp_default_logo.jpg'}/></div>
           <div className='oi-name'>
             <p className='oi-name-p'>{_order.company_name}</p>
           </div>
@@ -47,7 +47,7 @@ var Item = React.createClass({
           <a href="javascript:void(0)">
             <div className='oi-choose'>
               {/* <i className='fa fa-exclamation-circle grayi' onMouseOver={this.chooseCheck}></i> */}
-              <img style={{marginTop:-39,marginLeft:0}} src={this.state.value==3 ? 'images/albums_checked.png' : 'images/albums_check.png'} />
+              <img src={this.props.data.status==1 ? 'images/albums_checked.png' : 'images/albums_check.png'} />
             </div>
           </a>
         </div>
@@ -56,14 +56,14 @@ var Item = React.createClass({
     case 1 :
       return (
         <div className='oi-item'>
-          <div className='oi-img'><img src='/images/sp_default_logo.jpg'/></div>
+          <div className='oi-img'><img src={_order.icon_url || '/images/sp_default_logo.jpg'}/></div>
           <div className='oi-name'>
             <p className='oi-name-p'>{_order.company_name}</p>
           </div>
           <p className='oi-price'>￥{_order.price}/1000{window.lang.times}</p>
           <div className='oi-choose'>
             {/* <i className='fa fa-check grayi' style={{color: '#12bdc4'}}></i> */}
-            <img style={{marginTop:0,marginLeft:0}} src={this.state.value==1 && 'images/albums_checked.png' || this.state.value==2 ||this.state.value=='' && 'images/albums_check.png'} />
+            <img src={this.props.data.status==1 ? 'images/albums_checked.png' : 'images/albums_check.png'} />
           </div>
         </div>
     );
@@ -71,7 +71,7 @@ var Item = React.createClass({
     case 2 :
       return (
         <div className='oi-item'>
-          <div className='oi-img'><img src='/images/sp_default_logo.jpg'/></div>
+          <div className='oi-img'><img src={_order.icon_url || '/images/sp_default_logo.jpg'}/></div>
           <div className='oi-name'>
             <p className='oi-name-p'>{_order.company_name}</p>
           </div>
@@ -125,7 +125,7 @@ var OrderInfo = React.createClass({
             .map(function (track, i) {
               return <Item data={track} key={i}/>
             })}
-              <div className='oi-item'>
+              {/* <div className='oi-item'>
                 <div className='oi-img'><img src='/images/kuwo.png'/></div>
                 <div className='oi-choose'>
                   <img style={{marginTop:0,marginLeft:0}} src='images/albums_check.png' />
@@ -157,7 +157,7 @@ var OrderInfo = React.createClass({
                   <p className='oi-name-p'>{!isGlobal && 'QQ音乐（暂未授权）'}</p>
                 </div>
                 <p className='oi-price'>￥2.77/1000{window.lang.times}</p>
-              </div>
+              </div> */}
         </div>
       )
     } else {

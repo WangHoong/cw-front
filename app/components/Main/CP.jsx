@@ -104,7 +104,7 @@ var Main = React.createClass({
             </div>
             <div className='col-sm-4 p-l-10'>
               <div className='datum-percent-wrap border' >
-                <PercentCircle percent={_data} onClick={this.onClick} icon={this.state.icon}/>
+                <PercentCircle onClick={this.onClick} icon={this.state.icon} />
               </div>
             </div>
             {dialog}

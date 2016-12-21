@@ -23,10 +23,10 @@ var ArtistItemWrapper = React.createClass({
     return (
       <tr className='row margin0'>
         <td className='col-sm-1 p-l-0 p-r-0'><b className={_artist.classname}>{rank}</b></td>
-        <td className="col-sm-2 p-l-0 p-r-0 tsr-avatar" style={_style}><Link to={_artist.link}></Link></td>
-        <td className="col-sm-3 p-l-0 p-r-0 tsr-name"><Link to={_artist.link}>{_artist.artist_name}</Link></td>
-        <td className="col-sm-2 p-l-0 p-r-0 tsr-name text-center"><Link to={_artist.link}>{_artist.stream_count}</Link></td> {/* 专辑数 */}
-        <td className="col-sm-2 p-l-0 p-r-0 tsr-name text-center"><Link to={_artist.link}>{_artist.stream_count}</Link></td> {/* 歌曲数 */}
+        <td className="col-sm-3 p-l-0 p-r-0 tsr-avatar" style={_style}><Link to={_artist.link}></Link></td>
+        <td className="col-sm-6 p-l-0 p-r-0 tsr-name"><Link to={_artist.link}>{_artist.artist_name}</Link></td>
+        {/* <td className="col-sm-2 p-l-0 p-r-0 tsr-name text-center"><Link to={_artist.link}>{_artist.stream_count}</Link></td> {/* 专辑数 */} */}
+        {/* <td className="col-sm-2 p-l-0 p-r-0 tsr-name text-center"><Link to={_artist.link}>{_artist.stream_count}</Link></td> {/* 歌曲数 */} */}
         <td className="col-sm-2 p-l-0 p-r-0 tsr-num tsr-name text-center"><Link to={_artist.link}>{_artist.stream_count}</Link></td>  {/* 总播放量 */}
       </tr>
     );
@@ -52,9 +52,9 @@ var TopSingers = React.createClass({
         <table className='table-song'>
           <thead>
             <tr className='row margin0'>
-              <th className='col-sm-6 p-l-0 p-r-0' colSpan='3' style={{paddingLeft: '40px'}}><b>{window.lang.artist}</b></th>
-              <th className='col-sm-2 p-l-0 p-r-0 text-center'>专辑数</th>
-              <th className='col-sm-2 p-l-0 p-r-0 text-center'>歌曲数</th>
+              <th className='col-sm-10 p-l-0 p-r-0' colSpan='3' style={{paddingLeft: '90px'}}><b>{window.lang.artist}</b></th>
+              {/* <th className='col-sm-2 p-l-0 p-r-0 text-center'>专辑数</th> */}
+              {/* <th className='col-sm-2 p-l-0 p-r-0 text-center'>歌曲数</th> */}
               <th className='col-sm-2 p-l-0 p-r-0 text-center'>{window.lang.at5tp}</th>
             </tr>
           </thead>
@@ -72,9 +72,9 @@ var TopSingers = React.createClass({
           <table className='table-song'>
             <thead>
               <tr className='row margin0'>
-                <th className='col-sm-6 p-l-0 p-r-0' colSpan='3' style={{paddingLeft: '40px'}}><b>{window.lang.artist}</b></th>
-                <th className='col-sm-2 p-l-0 p-r-0 text-center'>专辑数</th>
-                <th className='col-sm-2 p-l-0 p-r-0 text-center'>歌曲数</th>
+                <th className='col-sm-10 p-l-0 p-r-0' colSpan='3' style={{paddingLeft: '90px'}}><b>{window.lang.artist}</b></th>
+                {/* <th className='col-sm-2 p-l-0 p-r-0 text-center'>专辑数</th> */}
+                {/* <th className='col-sm-2 p-l-0 p-r-0 text-center'>歌曲数</th> */}
                 <th className='col-sm-2 p-l-0 p-r-0 text-center'>{window.lang.at5tp}</th>
               </tr>
             </thead>
