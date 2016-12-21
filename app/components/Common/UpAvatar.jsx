@@ -202,12 +202,8 @@ var UpAvatar = React.createClass({
         onDragLeave={this.handleDragLeave}>
           <div className='photo' style={photoStyles}></div>
           <div className='tips'>
-<<<<<<< HEAD
-            <span>{window.lang.upload}</span>
-=======
             <span></span>
             <span>{tips}</span>
->>>>>>> master
           </div>
           <input type='file' ref='upInput' onChange={this.handleDrop} />
           {this.showProgress()}

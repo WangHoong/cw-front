@@ -10,12 +10,9 @@ var Process = require('app/components/Common/Process.jsx');
 var ProcessTips = require('app/components/Common/ProcessTips.jsx');
 var OrderInfo = require('app/components/OrderInfo/OrderInfo.jsx');
 var GlobalUploadTip = require('app/components/Common/GlobalUploadTip.jsx')
-
-<<<<<<< HEAD
 var Dialog = require('rc-dialog');
 
-=======
->>>>>>> master
+
 var Main = React.createClass({
   getInitialState: function () {
     return {
@@ -46,8 +43,8 @@ var Main = React.createClass({
 
   render: function() {
     var _data=["4/7","6/7","3/7"];
-<<<<<<< HEAD
-    let tip = status<=0 ? (<div className='card' style={{borderBottom: '1px solid #e5e7e9'}}><ProcessTips /></div>) : (<div></div>)
+    let tip = !is_verified ? (<div className='card' style={{display: 'flex', height: '60px', alignItems: 'center', borderBottom: '1px solid #e5e7e9'}}><ProcessTips /></div>) : (<div></div>)
+
 
     // 弹框
     let dialog;
@@ -66,22 +63,6 @@ var Main = React.createClass({
             <OrderInfo />
             <h4>渠道公司</h4>
             <div className='row margin0'>
-
-=======
-    let tip = !is_verified ? (<div className='card'><ProcessTips /></div>) : (<div></div>)
-    return (
-      <div className='dashboard-container'>
-        {tip}
-        <div className='row dashboard-header'>
-          <div className='col-sm-4'>
-            <div className='income'>
-              <TotalCard type={'0'} />
-            </div>
-          </div>
-          <div className='col-sm-3'>
-            <div className='songsum'>
-              <TotalCardOfData />
->>>>>>> master
             </div>
           </div>
         </Dialog>
