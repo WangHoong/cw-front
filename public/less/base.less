@@ -44,9 +44,24 @@
   background-color: @submitHoverColor;
   border: 1px solid @borderColor;
 }
+.btn-warning.disabled, .btn-warning.disabled.active, .btn-warning.disabled.focus, .btn-warning.disabled:active,
+.btn-warning.disabled:focus, .btn-warning.disabled:hover, .btn-warning[disabled], .btn-warning[disabled].active,
+.btn-warning[disabled].focus, .btn-warning[disabled]:active, .btn-warning[disabled]:focus, .btn-warning[disabled]:hover,
+fieldset[disabled] .btn-warning, fieldset[disabled] .btn-warning.active, fieldset[disabled] .btn-warning.focus, fieldset[disabled]
+.btn-warning:active, fieldset[disabled] .btn-warning:focus, fieldset[disabled] .btn-warning:hover {
+  background: @submitHoverColor;
+  border-color: transparent;
+  color: @backColor;
+}
+
 .btn-default {
   border: 1px solid @borderColor;
   background-color: @backColor;
+  color: @mainColor;
+}
+.btn-default:hover, .btn-default:active, .btn-default:active:focus, .btn-default:visited, {
+  background-color: @backHoverColor;
+  border: 1px solid @borderColor;
   color: @mainColor;
 }
 
@@ -240,10 +255,6 @@
      }
    }
 }
-.btn-default:hover, .btn-default:active, .btn-default:active:focus, .btn-default:visited, {
-  background-color: @backHoverColor;
-  border: 1px solid @borderColor;
-}
 
 // input
 .form-control-static {
@@ -273,6 +284,19 @@
 .form-control:focus {
   border-color: @linkColor;
   box-shadow: 0 0 3px rgba(46,208,215,.3);
+}
+.has-error .form-control{
+  border-color: #f3565d;
+}
+.has-error .form-control:focus {
+  border-color: #f3565d;
+}
+.has-error .checkbox, .has-error .checkbox-inline,
+.has-error .control-label, .has-error .form-control-feedback,
+.has-error .help-block, .has-error .radio, .has-error .radio-inline,
+.has-error.checkbox label, .has-error.checkbox-inline label,
+.has-error.radio label, .has-error.radio-inline label {
+  color: #f3565d;
 }
 .form_control-width {
   width: 480px;
@@ -322,6 +346,12 @@
 .mt20 {
   margin-top: 20px;
   // margin: 20px
+}
+.mt40 {
+  margin-top: 40px;
+}
+.mb0 {
+  margin-bottom:0px;
 }
 
 .mb10 {
@@ -1369,4 +1399,29 @@
   .rc-dialog {
     top: 50px !important;
   }
+}
+
+
+// 资料编辑
+.deit-title {
+  font: 14px @fontFamily;
+  margin: 10px 0 30px 0;
+  color: @mainColor;
+}
+.edit-label {
+  font: 12px @fontFamily;
+  color: @mainColor;
+
+}
+.textR {
+  display: inline-block;
+  color: @mainColor;
+}
+.btn-both {
+  position: absolute;
+  top: 140px;
+}
+.text-caution {
+  margin: 20px 0 0 122px;
+  color: @sideBarColor;
 }
