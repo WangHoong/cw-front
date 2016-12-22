@@ -23,7 +23,7 @@ app.use(function *(next) {
   yield next;
 });
 
-if (app.env != 'production' || app.env !== 'staging') {
+if (app.env != 'production' && app.env !== 'staging') {
   app.use(logger());
   app.use(proxy({
     host: config['PROXY_PREFIX'],
