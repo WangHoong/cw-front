@@ -62,10 +62,10 @@ class Main extends React.Component {
     if (this.state.loaded === false) {
       return <Loader />;
     }
-    if (this.state.bankInfo['account_type'] == 1) {
+    if (this.state.bankInfo && this.state.bankInfo['account_type'] == 1) {
       return <Personal setSuccessData={this.setSuccessData.bind(this)} send={this.send} bankInfo={this.state.bankInfo} statisticsInfo={this.state.statisticsInfo} />;
     }
-    if (this.state.bankInfo['account_type'] == 2) {
+    if (this.state.bankInfo && this.state.bankInfo['account_type'] == 2) {
       return <Company setSuccessData={this.setSuccessData.bind(this)} send={this.send} bankInfo={this.state.bankInfo} statisticsInfo={this.state.statisticsInfo} />;
     }
     return <p>账户类型错误</p>;

@@ -11,7 +11,7 @@ class Company extends React.Component {
         express_number: '',
         money: ''
       },
-      recorded: this.props.statisticsInfo.amount['recorded_amount'] || 0,
+      recorded: this.props.statisticsInfo.amount ? this.props.statisticsInfo.amount['recorded_amount'] : 0,
       sending: false
     };
   }
