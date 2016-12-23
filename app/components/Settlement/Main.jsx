@@ -8,7 +8,7 @@ var ListSearch = require('../Common/ListSearch.jsx');
 
 
 var Main = React.createClass({
-  mixins: [Reflux.connect(SettlementStore, 'tracks')],
+  mixins: [Reflux.connect(SettlementStore, 'cp_bills')],
 
   contextTypes: {
     router: React.PropTypes.func
@@ -32,8 +32,8 @@ var Main = React.createClass({
     );
   },
   renderTableBody: function () {
-    if(this.state.tracks instanceof Array){
-      return this.state.tracks.map((item, key) => {
+    if(this.state.cp_bills instanceof Array){
+      return this.state.cp_bills.map((item, key) => {
         return (
           <tr key={key} className='tr-background'>
             <td>{key + 1}</td>
