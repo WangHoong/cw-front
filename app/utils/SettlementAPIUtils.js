@@ -11,7 +11,7 @@ module.exports = {
   find: function(params) {
     return axios({
       method: 'GET',
-      url: 'http://api.dev.topdmc.com.cn/api/bills',
+      url: APIHelper.getPrefix() + '/bills',
       responseType: 'json',
       params: params,
       withCredentials: true
