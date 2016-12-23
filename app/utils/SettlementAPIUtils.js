@@ -4,14 +4,14 @@ var APIHelper = require('./APIHelper').APIHelper;
 
 module.exports = {
   /**
-   * 查询歌手列表
+   * 查询结果单列表
    * @param {Object} params
    * @returns {axios.Promise}
    */
   find: function(params) {
     return axios({
       method: 'GET',
-      url: 'http://api.dev.topdmc.com.cn/api/bills',
+      url: APIHelper.getPrefix() + '/bills',
       responseType: 'json',
       params: params,
       withCredentials: true
