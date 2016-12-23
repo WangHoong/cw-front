@@ -80,7 +80,7 @@ var Main = React.createClass({
             type='Song' />
           <div className='has-top-bar'>
             <div className='btn-group'>
-               <Role component='button' roleName='ADMIN' onClick={this.handleCreate} className="btn btn-default">{window.lang.add_tr}</Role>
+               <button onClick={this.handleCreate} className="btn btn-default">{window.lang.add_tr}</button>
             </div>
             <SongList
               items={this.state.tracks.items}
