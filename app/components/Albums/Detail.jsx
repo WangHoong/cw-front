@@ -96,8 +96,8 @@ var Detail = React.createClass({
       backgroundImage: 'url(' + data.photo + ')'
     };
     return (
-      <div className='show-wrap'>
-        <div className='show-top'>
+      <div className='show-wrap topdmc'>
+        <div className='show-top topdmc'>
           {/* <div className='photo pull-left' style={photoStyles}></div> */}
           <div className='ctrl-btn pull-right'>
             <button
@@ -111,7 +111,7 @@ var Detail = React.createClass({
             <p>{this.filter(data.name)} - {_.collect(data.artists,'name').join(',')}</p>
           </div>
         </div>
-        <div className='has-top-bar'>
+        <div className='has-top-bar topdmc'>
           <div className='card margin0 border'>
             <SongChart url={'albums/'+ this.state.album.data.id +'/play_total'} />
           </div>

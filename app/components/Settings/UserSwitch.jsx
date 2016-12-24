@@ -29,7 +29,7 @@ var UserSwitch = React.createClass({
     if(this.state.companies.loaded){
       // console.log(this.state.companies);
       return(
-        <div className='show-wrap'>
+        <div className='show-wrap topdmc'>
           <div className='t-sb h61'>
             <h3 className='t-sb_detail p-l-20'>{window.lang.us}</h3>
           </div>

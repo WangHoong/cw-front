@@ -49,12 +49,13 @@
   background-color: @backColor;
   color: @mainColor;
 }
-
-.btn-group {
-  position: absolute;
-  top: 13px;
-  right: 40px;
-  z-index: 101;
+.topdmc{
+  .btn-group {
+    position: absolute;
+    top: 13px;
+    right: 40px;
+    z-index: 101;
+  }
 }
 .radio label input {
   margin-top: 0;
@@ -64,7 +65,7 @@
   max-height: 290px;
   overflow-y: scroll;
   overflow-x:visible;
-  font: 12px/22px MicrosoftYaHei;
+  font: 12px/22px @fontFamily;
 }
 .ablums-detail-dsps-list{
   padding: 20px 20px 140px 20px;
@@ -86,7 +87,7 @@
           margin-right: 10px;
         };
         span{
-          font: 12px/30px '微软雅黑';
+          font: 12px/30px @fontFamily;
           &:hover{
             color: #18b998
           }
@@ -161,7 +162,7 @@
     line-height: 30px;
     color: @mainColor;
     &:hover {
-      color: #22d3b6
+      color: #22d3b6;
     }
   }
 }
@@ -179,7 +180,7 @@
   text-align: center;
   >span{
     color: #ffffff;
-    font: 14px/40px '微软雅黑';
+    font: 14px/40px @fontFamily;
     font-weight: 700
   };
   div{
@@ -232,7 +233,7 @@
      line-height: 30px;
      font-size: 12px;
      text-align: center;
-     font: 12px/20px '微软雅黑';
+     font: 12px/20px @fontFamily;
      color: @mainColor;
      background-color: @backColor;
      &:hover {
@@ -246,22 +247,24 @@
 }
 
 // input
-.form-control-static {
-  padding-top: 0;
-  min-height: 0;
-  padding-bottom: 10px;
-}
-.form-padding {
-  padding-bottom: 0;
-}
-.form-group {
-  margin-bottom: 20px;
-  font: 12px MicrosoftYaHei;
-  color: @mainColor;
-  > label {
-    width: 145px;
-    text-align: right;
-    margin-right: 5px;
+.topdmc {
+  .form-control-static {
+    padding-top: 0;
+    min-height: 0;
+    padding-bottom: 10px;
+  }
+  .form-padding {
+    padding-bottom: 0;
+  }
+  .form-group {
+    margin-bottom: 20px;
+    font: 12px @fontFamily;
+    color: @mainColor;
+    > label {
+      width: 145px;
+      text-align: right;
+      margin-right: 5px;
+    }
   }
 }
 .form-control {
@@ -280,25 +283,25 @@
 .form_control-w {
   width: 620px;
   display: inline-block;
-  font: 12px MicrosoftYaHei;
+  font: 12px @fontFamily;
   color: #a3aab2;
 }
 
-.card {
-  background-color: @backColor;
-  padding: 20px 20px;
-  margin-left: -20px;
-  margin-right: -20px;
+.topdmc {
+  .card {
+    background-color: @backColor;
+    padding: 20px 20px;
+    margin-left: -20px;
+    margin-right: -20px;
+  }
+  .row_ul {
+    margin-left: -20px;
+    margin-right: 0px;
+  }
 }
-.row_ul {
-  margin-left: -20px;
-  margin-right: 0px;
-}
-
 .submit_max {
   margin: 0 -20px;
 }
-
 // ellipsis text
 .ellipsis {
   text-overflow: ellipsis;
@@ -331,7 +334,7 @@
   margin-bottom: 20px;
 }
 .data-p {
-  font: 12px/24px MicrosoftYaHei;
+  font: 12px/24px @fontFamily;
   color: @mainColor;
 }
 
@@ -374,7 +377,7 @@
     padding: 10px 20px;
     right: 0;
     p {
-      font: 12px '微软雅黑','Arial';
+      font: 12px @fontFamily;
       color: @mainColor;
     }
   }
@@ -395,7 +398,7 @@
   > .t-sb_detail {
     line-height: 60px;
     color: @mainColor;
-    font: 16px MicrosoftYaHei;
+    font: 16px @fontFamily;
   }
   > .t-sb-header {
     > .form-control {
@@ -488,11 +491,11 @@
     line-height: 60px;
     font-size: 16px;
     color: @mainColor;
-    font-family: 'MicrosoftYaHei';
+    font-family: @fontFamily;
   }
 }
 .intro {
-  font: 16px MicrosoftYaHei;
+  font: 16px @fontFamily;
   color:@mainColor;
 }
 .solid {
@@ -507,7 +510,7 @@
   > li {
     a {
       color: @mainColor;
-      font: 14px MicrosoftYaHei;
+      font: 14px @fontFamily;
       > .name {
         display: inline-block;
         width: 35px;
@@ -543,7 +546,7 @@
       width: 100px;
       border-radius: 50%;
       overflow: hidden;
-      margin: 35px auto 0;
+      margin: 30px auto 0;
       text-align: center;
       cursor: pointer;
       img {
@@ -584,11 +587,11 @@
       }
     }
     > .detailText {
-      padding: 0 18px;
+      padding: 0 20px;
       height: 80px;
       p {
         color:@mainColor;
-        font: 12px/20px '微软雅黑';
+        font: 12px/20px @fontFamily;
         display: -webkit-box;
         -webkit-box-orient: vertical;
         -webkit-line-clamp: 4;
@@ -618,7 +621,7 @@
         > .info-number {
           font-size: 24px;
           color: @mainColor;
-          font-family: 'Arial','Regular';
+          font-family: @fontFamily;
         }
         > .info-text {
           font-size: 14px;
@@ -1003,7 +1006,7 @@
     width: 100%;
     height: 100%;
     text-align: center;
-    font: 14px/240px MicrosoftYaHei bold;
+    font: bold 14px/240px @fontFamily;
     color: @backColor;
     opacity: 1;
     transition: all 0.5s ease;
@@ -1146,7 +1149,7 @@
 }
 .search-type {
   color: #ced2d6;
-  font: 12px MicrosoftYaHei;
+  font: 12px @fontFamily;
   border-radius: 19px !important;
   text-indent: 2em;
 }
@@ -1315,7 +1318,7 @@
 
 // 提现模块
 .table-title {
-  font: 14px MicrosoftYaHei;
+  font: 14px @fontFamily;
   color: @mainColor;
 }
 .table-stripeds {
@@ -1328,12 +1331,12 @@
       > th {
         border-right: 1px solid @borderColor;
         text-align: center;
-        font: 12px/46px MicrosoftYaHei;
+        font: 12px/46px @fontFamily;
         padding: 0;
       }
     }
     > .tr-th th {
-      font: bold 14px/46px MicrosoftYaHei;
+      font: bold 14px/46px @fontFamily;
       color:@mainColor;
       border-bottom: 1px solid @borderColor;
     }
@@ -1350,7 +1353,7 @@
       > td {
         border-right: 1px solid @borderColor;
         text-align: center;
-        font: 12px/46px MicrosoftYaHei;
+        font: 12px/46px @fontFamily;
         padding: 0;
       }
     }
@@ -1366,6 +1369,9 @@
   top:0;
   bottom:0;
   z-index:999;
+  .rc-dialog-body {
+    overflow-y: scroll;
+  }
   .rc-dialog {
     top: 50px !important;
   }

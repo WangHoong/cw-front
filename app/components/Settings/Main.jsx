@@ -28,7 +28,7 @@ var Main = React.createClass({
   },
   render: function(){
     var nav = (
-      <nav className="nav navbar navbar-default">
+      <nav className="nav navbar navbar-default topdmc">
       <div className="collapse navbar-collapse" style={{background: "white"}}>
         <ul className="nav navbar-nav">
           <li style={this.state.navAt === NAVSWITCH ? {fontWeight:"bold"} : {}}><a href='javascript:void(0)' onClick={this.navAction(NAVSWITCH)} >User Switch</a></li>

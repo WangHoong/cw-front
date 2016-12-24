@@ -53,8 +53,9 @@ class History extends React.Component {
       let _style = this.state.isShowTip ? {display: 'block'} : {display: 'none'}
       return (
         <span className='wd-f-tip'>
-          <i className='fa fa-info text-danger' onMouseOver={this.toggleTip.bind(this)} onMouseOut={this.toggleTip.bind(this)}></i>
-          <span style={_style} className='t-i'>{item.desc}</span>
+          {/* <i className='fa fa-info text-danger' onMouseOver={this.toggleTip.bind(this)} onMouseOut={this.toggleTip.bind(this)}></i> */}
+          {/* <span style={_style} className='t-i'>{item.desc}</span> */}
+          <span style={{display: 'inline-block'}} className='t-i'>&nbsp;({item.desc})</span>
         </span>
       );
     } else {

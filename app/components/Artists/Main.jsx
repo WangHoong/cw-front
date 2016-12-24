@@ -156,7 +156,7 @@ var Main = React.createClass({
 
   render: function() {
     return (
-      <div className='list-wrap'>
+      <div className='list-wrap topdmc'>
         <ListSearch ref='searchBar' placeholder={window.lang.serachArtist} handleSearch={this.handleSearch}/>
         <div className='has-top-bar'>
           <div className='btn-group'>

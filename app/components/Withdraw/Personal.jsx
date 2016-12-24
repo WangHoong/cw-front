@@ -57,7 +57,7 @@ class Personal extends React.Component {
     const stateTxt = this.state.sending ? window.lang.withdraw + '...' : window.lang.withdraw;
     return (
       <div>
-        <form onSubmit={this.submit.bind(this)}>
+        <form className='topdmc' onSubmit={this.submit.bind(this)}>
           <div className='form-group'>
             <label>{window.lang.withdraw_an}：</label>{this.props.bankInfo['account_name']}
           </div>

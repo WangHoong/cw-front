@@ -55,7 +55,7 @@ var Main = React.createClass({
   },
   render: function () {
     return (
-      <div className='show-wrap'>
+      <div className='show-wrap topdmc'>
         <div className='t-sb h61'>
           <h3 className='t-sb_detail p-l-20'>数据报表</h3>
         </div>

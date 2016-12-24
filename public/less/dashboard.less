@@ -12,16 +12,16 @@
   }
 }
 .send {
-  font: bold 20px MicrosoftYaHei;
+  font: bold 20px @fontFamily;
   margin-bottom: 20px;
 }
 .verify {
-  font: 12px/24px MicrosoftYaHei;
+  font: 12px/24px @fontFamily;
 
 }
 .income { background-color: #2ed0d7;}
 .songsum { background-color: #63b5f5;}
-.rmb { font: 12px MicrosoftYaHei !important;}
+.rmb { font: 12px @fontFamily !important;}
 
 .totalcard {
   color: @backColor;
@@ -30,21 +30,21 @@
     margin-bottom: 5px;
   }
   >.ttc-sum {
-    font: 38px ArialMT;
+    font: 38px @fontFamily;
     margin-bottom: 20px;
     >.ttc-unit {
-      font: 14px MicrosoftYaHei;
+      font: 14px @fontFamily;
     }
   }
 }
 
 .account {
-  font: 12px MicrosoftYaHei !important;
+  font: 12px @fontFamily !important;
   p {
     line-height: 22px;
   }
   span {
-    font: 16px ArialMT;
+    font: 16px @fontFamily;
   }
 }
 .ttc-class {
@@ -77,7 +77,7 @@
         padding-top: 7px;
         position: relative;
         top:-10px;
-        font:14px Arial-BoldMT;
+        font: bold 14px @fontFamily;
       }
       >.tps-rank-other {
         width: 30px;
@@ -90,7 +90,7 @@
         padding-top: 7px;
         position: relative;
         top:-10px;
-        font:14px Arial-BoldMT;
+        font: bold 14px @fontFamily;
       }
       >.tps-num {
         text-align: right;
@@ -102,7 +102,7 @@
         top: -20px;
         background-color: #fbf1f4;
         >.tps-song {
-          font: 14px MicrosoftYaHei;
+          font: 14px @fontFamily;
           padding-left: 10px;
           position: absolute;
           color: @mainColor;
@@ -113,7 +113,7 @@
         padding-top: 9px;
         background-color: #e4f6f6;
         >.tps-song {
-          font: 14px MicrosoftYaHei;
+          font: 14px @fontFamily;
           padding-left: 10px;
           position: absolute;
           color: @mainColor;
@@ -137,22 +137,22 @@
     color: #f48daf;
     text-align: center;
     border-radius: 13px;
-    font: 12px/26px MicrosoftYaHei;
+    font: 12px/26px @fontFamily;
   }
   .sub {
-    width: 14px;
-    height: 14px;
-    border-radius: 7px;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
     background: red;
     text-align: center;
-    font: 10px/14px MicrosoftYaHei;
+    font: 10px/15px @fontFamily;
     position: absolute;
     right: 15px;
-    top: 12px;
+    top: 15px;
   }
 }
 .tps-title, .tsr-title {
-  font: 14px MicrosoftYaHei-Bold;
+  font: bold 14px @fontFamily;
   color: @mainColor;
 }
 .tsr-title {
@@ -180,7 +180,7 @@
         height:36px;
         background: #fcfcfc;
         > th {
-          font: 14px MicrosoftYaHei-Bold;
+          font: bold 14px @fontFamily;
           color: @mainColor;
         }
       }
@@ -192,7 +192,7 @@
         top: 28px;
         background-color: #f48daf;
         color: #fff;
-        font: 14px/20px Arial-BoldMT;
+        font: bold 14px/20px @fontFamily;
         width: 20px;
         height: 20px;
         border-radius: 50%;
@@ -204,7 +204,7 @@
         top: 28px;
         background-color: @submitColor;
         color: #fff;
-        font: 14px/20px Arial-BoldMT;
+        font: bold 14px/20px @fontFamily;
         width: 20px;
         height: 20px;
         border-radius: 50%;
@@ -219,7 +219,7 @@
         margin-left: 6px;
       }
       .tsr-name {
-        font: 12px MicrosoftYaHei;
+        font: 12px @fontFamily;
         color: @mainColor;
       }
       tr {
@@ -238,7 +238,7 @@
 
   // 首页 弹框样式
   .rc-title {
-    font: 14px/40px MicrosoftYaHei;
+    font: 14px/40px @fontFamily;
     background: #2e394b;
     color: @backColor;
   }
@@ -252,8 +252,8 @@
   .rc-body {
     padding: 20px;
     h4 {
-      font:14px MicrosoftYaHei;
-      color:@mainColor;
+      font: 14px @fontFamily;
+      color: @mainColor;
       margin-bottom: 20px;
       margin-top:0;
     }

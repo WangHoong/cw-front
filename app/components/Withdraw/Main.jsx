@@ -109,7 +109,7 @@ class Main extends React.Component {
 
   render() {
     return (
-      <div className='show-wrap'>
+      <div className='show-wrap topdmc'>
         <div className='t-sb h61'>
           <h3 className='t-sb_detail p-l-20'>{window.lang.withdraw_title}</h3>
         </div>

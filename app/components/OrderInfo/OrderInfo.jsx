@@ -33,8 +33,17 @@ var Item = React.createClass({
       value: 1
     })
   },
+  authorized: function() {
+    var status = this.props.data.status;
+    if (status == 1) {
+      return <img src='images/albums_checked.png' />
+    }else {
+      return <img src='images/albums_check.png' onClick={this.chooseCheck} />
+    }
+  },
   render: function() {
     var _order = this.props.data.authorization;
+    // console.log(this.authorized())
     switch (this.state.value) {
     case 0 :
       return (
@@ -47,7 +56,7 @@ var Item = React.createClass({
           <a href="javascript:void(0)">
             <div className='oi-choose'>
               {/* <i className='fa fa-exclamation-circle grayi' onMouseOver={this.chooseCheck}></i> */}
-              <img src={this.props.data.status==1 ? 'images/albums_checked.png' : 'images/albums_check.png'} />
+              {this.authorized()}
             </div>
           </a>
         </div>
@@ -63,7 +72,7 @@ var Item = React.createClass({
           <p className='oi-price'>￥{_order.price}/1000{window.lang.times}</p>
           <div className='oi-choose'>
             {/* <i className='fa fa-check grayi' style={{color: '#12bdc4'}}></i> */}
-            <img src={this.props.data.status==1 ? 'images/albums_checked.png' : 'images/albums_check.png'} />
+            {this.authorized()}
           </div>
         </div>
     );
@@ -78,7 +87,8 @@ var Item = React.createClass({
           <p className='oi-price'>￥{_order.price}/1000{window.lang.times}</p>
           <a href="javascript:void(0)">
             <div className='oi-choose'>
-              <i className='fa fa-ban grayi' onMouseOver={this.chooseCheck}></i>
+              {/* <i className='fa fa-ban grayi' onClick={this.chooseCheck}></i> */}
+              <img src='images/albums_check.png' onClick={this.chooseCheck} />
             </div>
           </a>
         </div>
@@ -88,15 +98,16 @@ var Item = React.createClass({
       return (
           <div className='oi-item'>
             <a href="javascript:void(0)">
-              <div className='oi-chooseNo' onClick={this.chooseCircle}>
-                <i className='fa fa-ban redi'></i>
-                <span>{window.lang.dontlic}</span>
+              <div className='oi-chooseYes' onClick={this.makeSure}>
+                {/* <i className='fa fa-check greeni'></i> */}
+                <img className='greeni' src='images/albums_checked.png' />
+                <span>{window.lang.lic}</span>
               </div>
             </a>
             <a href="javascript:void(0)">
-              <div className='oi-chooseYes' onClick={this.makeSure}>
-                <i className='fa fa-check greeni'></i>
-                <span>{window.lang.lic}</span>
+              <div className='oi-chooseNo' onClick={this.chooseCircle}>
+                <i className='fa fa-ban redi'></i>
+                <span>{window.lang.dontlic}</span>
               </div>
             </a>
           </div>
@@ -112,6 +123,7 @@ var OrderInfo = React.createClass({
   },
   render: function() {
     var isGlobal = window.location.hostname.indexOf('global') != -1 ? true : false
+    const {isNew} = this.props
     if (this.state.orderinfo.loaded) {
       return (
         <div className='OrderInfoCard row margin0'>
@@ -123,41 +135,12 @@ var OrderInfo = React.createClass({
             .data
             .items
             .map(function (track, i) {
-              return <Item data={track} key={i}/>
+              if (track.authorization.isnew === isNew) {
+                return (
+                  <Item data={track} key={i} />
+                )
+              }
             })}
-              {/* <div className='oi-item'>
-                <div className='oi-img'><img src='/images/kuwo.png'/></div>
-                <div className='oi-choose'>
-                  <img style={{marginTop:0,marginLeft:0}} src='images/albums_check.png' />
-                </div>
-                <div className='oi-name' style={{width: '100%', borderRight: '0'}}>
-                  <p className='oi-name-p'>{isGlobal && 'Master of the Guitar'}</p>
-                  <p className='oi-name-p'>{!isGlobal && '酷我音乐（暂未授权）'}</p>
-                </div>
-                <p className='oi-price'>￥2.77/1000{window.lang.times}</p>
-              </div>
-              <div className='oi-item'>
-                <div className='oi-img'><img src='/images/duomi.png'/></div>
-                <div className='oi-choose'>
-                  <img style={{marginTop:0,marginLeft:0}} src='images/albums_check.png' />
-                </div>
-                <div className='oi-name' style={{width: '100%', borderRight: '0'}}>
-                  <p className='oi-name-p'>{isGlobal && 'Ximalaya FM'}</p>
-                  <p className='oi-name-p'>{!isGlobal && '多米音乐（暂未授权）'}</p>
-                </div>
-                <p className='oi-price'>￥2.77/1000{window.lang.times}</p>
-              </div>
-              <div className='oi-item'>
-                <div className='oi-img'><img src='/images/qq.png'/></div>
-                <div className='oi-choose'>
-                  <img style={{marginTop:0,marginLeft:0}} src='images/albums_check.png' />
-                </div>
-                <div className='oi-name' style={{width: '100%', borderRight: '0'}}>
-                  <p className='oi-name-p'>{isGlobal && 'Qingting FM'}</p>
-                  <p className='oi-name-p'>{!isGlobal && 'QQ音乐（暂未授权）'}</p>
-                </div>
-                <p className='oi-price'>￥2.77/1000{window.lang.times}</p>
-              </div> */}
         </div>
       )
     } else {

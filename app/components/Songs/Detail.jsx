@@ -125,7 +125,7 @@ var Detail = React.createClass({
     };
     var albums = this.state.song.data.albums || [{'name': ''}];
     return (
-      <div className='show-wrap'>
+      <div className='show-wrap topdmc'>
         <div className='show-top'>
           {/* <div className='photo pull-left' style={photoStyles}></div> */}
           <div className='ctrl-btn pull-right'>

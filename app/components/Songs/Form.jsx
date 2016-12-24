@@ -265,7 +265,7 @@ var Form = React.createClass({
   renderUpload: function() {
     let data = this.state;
     return (
-      <Role component='div' className='card mt20 border' roleName='ADMIN'>
+      <Role component='div' className='card mt20 border topdmc' roleName='ADMIN'>
         <p className='form-control-static form-padding p-b-20'>{window.lang.tr_upload}</p>
         <div className='row margin0 p-b-10'>
           <div className='col-sm-6  p-l-0 p-r-10'>
@@ -363,7 +363,7 @@ var Form = React.createClass({
       );
     }
     return (
-      <div className='show-wrap'>
+      <div className='show-wrap topdmc'>
         <div className='t-sb h61'>
           <h3 className='t-sb_detail p-l-20'>歌曲编辑</h3>
         </div>

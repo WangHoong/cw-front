@@ -54,22 +54,22 @@ var Main = React.createClass({
           animation="slide-fade"
           maskAnimation="fade"
           onClose={this.onClose}
-          style={{ width: '820px', background: '#fff', }}
+          style={{ width: '820px', background: '#fff', height: '600px', overflowY: 'scroll' }}
           title={<div className='text-center rc-title'>分发渠道<a className="fa fa-times error" aria-hidden="true" onClick={this.onClose}></a></div>}
           mousePosition={this.state.mousePosition} >
-          <div className='rc-body'>
+          <div className='rc-body topdmc'>
             <h4>新增渠道公司</h4>
-            <OrderInfo />
+            <OrderInfo isNew={1} />
             <h4>渠道公司</h4>
             <div className='row margin0'>
-
+            <OrderInfo isNew={0} />
             </div>
           </div>
         </Dialog>
       );
     }
     return (
-      <div>
+      <div className='topdmc'>
         <div className='dashboard-container'>
           {tip}
           <div className='row dashboard-header'>

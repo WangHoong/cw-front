@@ -309,10 +309,10 @@ var Form = React.createClass({
     if (SearchBoxType === 'Song') {
       selectedItems = this.state.tracks;
     }
-    var dropSongClassName = classNames('card', 'mt20', 'border', 'card-dropzone', {
+    var dropSongClassName = classNames('card', 'mt20', 'border', 'card-dropzone', 'form-control-static', {
       'active': this.state.isDropSongActive
     });
-    var dropArtistClassName = classNames('card', 'mt20', 'border', 'card-dropzone', {
+    var dropArtistClassName = classNames('card', 'mt20', 'border', 'card-dropzone', 'form-control-static', {
       'active': this.state.isDropArtistActive
     });
     let dialog;
@@ -347,7 +347,7 @@ var Form = React.createClass({
     }
     var hasPower = window.__HASPOWER__;
     return (
-      <div className='show-wrap'>
+      <div className='show-wrap topdmc'>
         <div className='t-sb h61'>
           <h3 className='t-sb_detail p-l-20'>专辑编辑</h3>
         </div>
@@ -362,7 +362,7 @@ var Form = React.createClass({
                 uploadComplete={this.handlePhotoUploaded}/>
             </div>
 
-            <div className='edit-right'>
+            <div className='edit-right topdmc'>
               <div className='form-group'>
                 <p className='form-control-static'>{window.lang.al_name}</p>
                 <input

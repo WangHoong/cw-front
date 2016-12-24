@@ -66,7 +66,7 @@ class List extends React.Component {
   }
   render() {
     return (
-      <div className='ablums-detail-dsps-list'>
+      <div className='ablums-detail-dsps-list topdmc'>
         {this.renderList()}
       </div>
     )

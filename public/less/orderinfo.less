@@ -36,7 +36,7 @@
       height: 35px;
     }
     .oi-name-p {
-      font: 12px MicrosoftYaHei;
+      font: 12px @fontFamily;
       display: -webkit-box;
       -webkit-box-orient: vertical;
       -webkit-line-clamp: 2;
@@ -48,7 +48,7 @@
     }
     .oi-price {
       color: @mainColor;
-      font: 14px MicrosoftYaHei;
+      font: 14px @fontFamily;
       margin-top: 12px;
     }
     .oi-choose {
@@ -61,32 +61,47 @@
         color: #CFCFCF;
       }
     }
-    .oi-chooseNo {
-      display: inline-block;
-      width: 50%;
-      height: 100%;
-      text-align: center;
-      font-size: 16px;
-      padding-top: 27px;
-    }
     .oi-chooseYes {
       display: inline-block;
-      width: 50%;
-      height: 100%;
+      width: 100%;
+      height: 50%;
       text-align: center;
-      font-size: 16px;
-      border-left: 1px solid #cfcfcf;
-      padding-top: 27px;
+      font-size: 12px;
+      padding-top: 10px;
+      color: @mainColor;
+      &:hover {
+        color: #2ed0d7;
+      }
+      &:visited, &:active {
+        color: #18b998;
+      }
     }
-    i.redi {
-      margin-right: 5px;
-      color: rgb(252, 16, 29);
-      font-size: 20px;
+    .oi-chooseNo {
+      display: inline-block;
+      width: 100%;
+      height: 50%;
+      text-align: center;
+      font-size: 12px;
+      border-top: 1px solid @borderColor;
+      padding-top: 30px;
+      color: @mainColor;
+      &:hover {
+        color: #18b998 ;
+      }
+      &:visited, &:active {
+        color: #cf2931;
+      }
     }
-    i.greeni {
+    .redi {
       margin-right: 5px;
-      color: rgb(142, 196, 14);
-      font-size: 20px;
+      width: 12px;
+      height: 12px;
+      color: #cf2931;
+    }
+    .greeni {
+      margin: -2px 5px 0 0;
+      width: 12px;
+      height: 12px;
     }
   }
 }

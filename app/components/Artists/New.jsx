@@ -69,7 +69,7 @@ var New = React.createClass({
         this.state.errorTips
       )
         return (
-          <div className='show-box'>
+          <div className='show-box topdmc'>
             <div className='edit-main'>
               <Form ref="form" data={{}}>
                 { hasPower ? errorTips : null }

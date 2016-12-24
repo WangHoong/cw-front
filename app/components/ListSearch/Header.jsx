@@ -24,7 +24,7 @@ var Header = React.createClass({
 
   render: function() {
     return (
-      <div className='t-sb-header'>
+      <div className='t-sb-header topdmc'>
         <input
           ref='input'
           type='text'

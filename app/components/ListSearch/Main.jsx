@@ -70,7 +70,7 @@ var Main = React.createClass({
 
   render: function() {
     return (
-      <div className='t-sb' onClick={this.stopPropagation}>
+      <div className='t-sb topdmc' onClick={this.stopPropagation}>
         <Header
           ref='header'
           handleSearch={this.handleSearch}

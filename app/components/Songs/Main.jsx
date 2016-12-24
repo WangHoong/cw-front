@@ -72,7 +72,7 @@ var Main = React.createClass({
   render: function () {
 
     return (
-        <div className='list-wrap'>
+        <div className='list-wrap topdmc'>
           <ListSearch
             placeholderPattern='${name}的所有歌曲'
             handleKeywordsSearch={this.handleKeywordsSearch}
