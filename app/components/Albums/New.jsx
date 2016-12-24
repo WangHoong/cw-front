@@ -62,7 +62,7 @@ var New = React.createClass({
     )
     return (
       <div className='show-box'>
-        <div className='edit-main'>
+        <div className='edit-main topdmc'>
           <Form ref='form' data={{}} handleSubmit = {this.handleSubmit}>
             { hasPower ? errorTips : null }
             <button className='btn btn-warning mr10 btn-w-h' onClick={this.handleSubmit}>{window.lang.add}</button>

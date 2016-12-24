@@ -79,7 +79,7 @@ var TopSingers = React.createClass({
               </tr>
             </thead>
           </table>
-          <div className='nodata'>{window.lang.nodata}</div>
+          <div className='nodata' style={{marginTop: 95}}>{window.lang.nodata}</div>
         </div>
       )
     }

@@ -37,7 +37,7 @@ class Main extends React.Component {
       return <span />;
     }
     return (
-      <div className='week-top-songs'>
+      <div className='week-top-songs topdmc'>
         <List data={data} />
       </div>
     );

@@ -70,7 +70,7 @@ var SearchBox = React.createClass({
     }
 
     return (
-        <div id="search_box">
+        <div id="search_box topdmc">
           <Header
               type={this.props.type}
               state={this.state.searching.state}

@@ -31,6 +31,7 @@ var Show = React.createClass({
     if (this.state.view === 'detail') {
       return (
         <Detail
+          className='topdmc'
           handleToEdit={this.handleToEdit}
           id={this.context.router.getCurrentParams().id} />
       );
@@ -39,6 +40,7 @@ var Show = React.createClass({
     if (this.state.view === 'edit') {
       return (
         <Edit
+          className='topdmc'
           handleToDetail={this.handleToDetail}
           id={this.context.router.getCurrentParams().id} />
       );

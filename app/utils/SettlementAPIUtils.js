@@ -4,7 +4,7 @@ var APIHelper = require('./APIHelper').APIHelper;
 
 module.exports = {
   /**
-   * 查询歌手列表
+   * 查询结果单列表
    * @param {Object} params
    * @returns {axios.Promise}
    */

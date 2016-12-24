@@ -29,6 +29,7 @@ var List = React.createClass({
     if (this.state.status === 'detail') {
       return (
         <Detail
+          className='topdmc'
           onEditClick={this.handleEditClick}
           id={this.context.router.getCurrentParams().id} />
       );
@@ -37,6 +38,7 @@ var List = React.createClass({
     if (this.state.status === 'edit') {
       return (
         <Edit
+          className='topdmc'
           onUpdated={this.handleUpdated}
           onCancelClick={this.handleUpdated}
           id={this.context.router.getCurrentParams().id} />

@@ -35,7 +35,7 @@ let SongChart = React.createClass({
         text: '专辑播放总量',
         // subtext: new Date().getFullYear()
 				textStyle: {
-					fontFamily: 'MicrosoftYaHei',
+					fontFamily: '微软雅黑',
 					fontSize: 14,
 					fontWeight: 'bold',
 				}

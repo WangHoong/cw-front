@@ -7,13 +7,13 @@ import data from './DefaultData.jsx';
 class List extends React.Component {
   constructor(props) {
     super();
+    this.itemChecked=this.itemChecked.bind(this)
+    this.ItemClick=this.ItemClick.bind(this)
     this.state = {
       data: props.publish_info ? JSON.parse(props.publish_info) : data
     };
   }
   componentDidMount() {
-    this.itemChecked=this.itemChecked.bind(this)
-    this.ItemClick=this.ItemClick.bind(this)
     axios.get(APIHelper.getPrefix() + '/sp/appkey', {withCredentials: true}).then((res) => {
       const res_data = res.data;
       if (res_data.status === 200) {

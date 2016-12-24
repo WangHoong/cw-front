@@ -72,7 +72,7 @@ var Main = React.createClass({
 
   render: function() {
     return (
-      <div>
+      <div className='topdmc'>
         <ListSearch
           placeholderPattern='${name}的所有专辑'
           handleKeywordsSearch={this.handleKeywordsSearch}

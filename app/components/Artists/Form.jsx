@@ -55,7 +55,7 @@ var Form = React.createClass({
   render: function () {
     var data = this.state;
     return (
-      <div className='show-wrap'>
+      <div className='show-wrap topdmc'>
         <div className='t-sb h61'>
           <h3 className='t-sb_detail p-l-20'>艺人编辑</h3>
         </div>
@@ -64,7 +64,7 @@ var Form = React.createClass({
             <div className='edit-left'>
               <UpAvatar ref="photo" src={data['photo']} type="artist_photo" uploadComplete={this.handlePhotoUpload}/>
             </div>
-            <div className='edit-right'>
+            <div className='edit-right topdmc'>
               <div className='form-group'>
                 <p className='form-control-static'>{window.lang.ar_name}</p>
                 <input className='form-control' name='name' onChange={this.handleChange} placeholder={window.lang.ar_editname} type='text' value={data.name}/>

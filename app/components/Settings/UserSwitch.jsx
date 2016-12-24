@@ -29,7 +29,7 @@ var UserSwitch = React.createClass({
     if(this.state.companies.loaded){
       // console.log(this.state.companies);
       return(
-        <div className='show-wrap'>
+        <div className='show-wrap topdmc'>
           <div className='t-sb h61'>
             <h3 className='t-sb_detail p-l-20'>{window.lang.us}</h3>
           </div>
@@ -51,7 +51,7 @@ var UserSwitch = React.createClass({
             <h3 className='t-sb_detail p-l-20'>切换公司</h3>
           </div>
           <div className='has-top-bar'>
-            <div className='card mt20 margin0 border'>
+            <div className='card margin0 border' style={{background: '#fff', paddingTop: 20}}>
               <p className='ce-p ce-center'>{window.lang.nodata}</p>
             </div>
           </div>

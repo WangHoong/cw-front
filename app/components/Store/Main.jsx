@@ -56,7 +56,7 @@ var Main = React.createClass({
 
   render: function() {
     return (
-      <div>
+      <div className='topdmc'>
         <ListSearch handleSearch={this.handleSearch} placeholder='歌手/专辑/歌曲' ref='searchBar'/>
         {this.renderResult()}
         <Pager

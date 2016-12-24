@@ -65,7 +65,7 @@ class Main extends Component {
     if (!this.state.data.authorization) {
       return (
         <div style={{margin:"30px"}}>
-          <form className="form-inline">
+          <form className="form-inline topdmc">
             <div className="form-group">
               <label className="sr-only" for="exampleInputAmount"></label>
 

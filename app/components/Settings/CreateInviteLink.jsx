@@ -94,7 +94,7 @@ var CreateInviteLink = React.createClass({
   },
   render: function(){
     return (
-      <div>
+      <div className='topdmc'>
         <div className='btn-group'>
           <input component='button' className="btn btn-default" placeholder='Enter company name' value={this.state.text} onChange={this.onChange}></input>
           <span component='button' className="btn btn-default" onClick={this.getInvitationLink}>Get Invitation Code</span>
