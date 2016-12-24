@@ -37,7 +37,8 @@ var Detail = React.createClass({
   },
 
   handleSongsClick: function(evt) {
-    var id = evt.target.getAttribute('data-id');
+    evt.preventDefault();
+    var id = evt.target.parentNode.getAttribute('data-id');
     this.context.router.transitionTo('show_edit_song', {id: id}, {});
   },
   mouseOverHandle() {
