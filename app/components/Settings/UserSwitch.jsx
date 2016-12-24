@@ -51,7 +51,7 @@ var UserSwitch = React.createClass({
             <h3 className='t-sb_detail p-l-20'>切换公司</h3>
           </div>
           <div className='has-top-bar'>
-            <div className='card mt20 margin0 border'>
+            <div className='card margin0 border' style={{background: '#fff', paddingTop: 20}}>
               <p className='ce-p ce-center'>{window.lang.nodata}</p>
             </div>
           </div>
