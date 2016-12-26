@@ -81,7 +81,7 @@ var Main = React.createClass({
         <div className='list-wrap'>
           <div className='has-top-bar'>
             <div className='btn-group'>
-              <Role component='button' roleName='ADMIN' onClick={this.handleRedirectNew} className="btn btn-default">{window.lang.add_al}</Role>
+              <button onClick={this.handleRedirectNew} className="btn btn-default">{window.lang.add_al}</button>
             </div>
             <AlbumList
               items={this.state.album.items}
