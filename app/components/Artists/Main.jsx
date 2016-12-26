@@ -160,7 +160,7 @@ var Main = React.createClass({
         <ListSearch ref='searchBar' placeholder={window.lang.serachArtist} handleSearch={this.handleSearch}/>
         <div className='has-top-bar'>
           <div className='btn-group'>
-            <Role component='button' roleName='ADMIN' onClick={this.handleRedirectNew} className="btn btn-default">{window.lang.add_ar}</Role>
+            <button onClick={this.handleRedirectNew} className="btn btn-default">{window.lang.add_ar}</button>
           </div>
           <ArtistList items={this.state.artists.items} loaded={this.state.artists.loaded} onShowDetailAction={this.handleShowDetailAction}/>
         </div>
