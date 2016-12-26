@@ -9,10 +9,10 @@ class Item extends Component {
   render() {
     const { label, desc } = this.props
     return (
-      <div className="row" >
-        <label className="col-xs-2 text-right" >{label}</label>
-        <div className="col-xs-6">
-          <p>{desc}</p>
+      <div style={{lineHeight: '30px'}} >
+        <label className="edit-label text-right" >{label}</label>
+        <div className="textR">
+          <p style={{fontSize: '12px',}}>{desc}</p>
         </div>
       </div>
     )
@@ -46,7 +46,7 @@ var Info = React.createClass({
     	account_name
     } = this.state.userInfo
     let msg = (
-      <span style={{marginLeft: '20px', color: '#FFA39E'}}>
+      <span style={{marginLeft: '20px', color: '#FFA39E', fontSize: '12px'}}>
         基本信息正在审核中，我们将在4-5个工作日内通知您审核结果！
       </span>
     )
@@ -61,28 +61,36 @@ var Info = React.createClass({
       )
     } else {
       return (
-        <div>
-          <div className='card' style={{fontSize: '14px'}}>
+        <div className='show-wrap topdmc'>
+          {/* <div className='card' style={{fontSize: '14px'}}>
             <h4 style={{display: 'inline'}}>公司基本资料详情</h4>
             {is_verified ? null : msg}
+          </div> */}
+          <div className='show-top'>
+            <div className='info'>
+              <p style={{display: 'inline'}}>公司基本资料详情</p>
+              {is_verified ? null : msg}
+            </div>
           </div>
-          <div className='card mt20'>
-            <Item label={'版权方：'} desc={window.currentUser.company.name}/>
-            <Item label={'入驻身份：'} desc={company_type==1?'个人':'公司'}/>
-          </div>
-          <div className='card mt20' >
-            <div>{company_type==1 ? '负责人基本信息' : '公司基本信息'}</div>
-            <Item label={company_type==1 ? '申请人：' : '法人信息：'} desc={representative}/>
-            <Item label={'证件号：'} desc={ID_card}/>
-            <Item label={'联系电话：'} desc={phone}/>
-            <Item label={'常用邮箱：'} desc={email}/>
-            <Item label={'联系地址：'} desc={address}/>
-          </div>
-          <div className='card mt20'>
-            <div>{company_type==1 ? '开户信息' : '公司开户信息'}</div>
-            <Item label={'开户行名称：'} desc={bank_name}/>
-            <Item label={'开户名称：'} desc={account_name}/>
-            <Item label={'开户行账号：'} desc={account_number}/>
+          <div className='has-top-bar'>
+            <div className='card border margin0'>
+              <Item label={'版权方：'} desc={window.currentUser.company.name}/>
+              <Item label={'入驻身份：'} desc={company_type==1?'个人':'公司'}/>
+            </div>
+            <div className='card border margin0 mt20' >
+              <div className='t-sb_detail mb10'>{company_type==1 ? '负责人基本信息' : '公司基本信息'}</div>
+              <Item label={company_type==1 ? '申请人：' : '法人信息：'} desc={representative}/>
+              <Item label={'证件号：'} desc={ID_card}/>
+              <Item label={'联系电话：'} desc={phone}/>
+              <Item label={'常用邮箱：'} desc={email}/>
+              <Item label={'联系地址：'} desc={address}/>
+            </div>
+            <div className='card border margin0 mt20 '>
+              <div className='t-sb_detail mb10'>{company_type==1 ? '开户信息' : '公司开户信息'}</div>
+              <Item label={'开户行名称：'} desc={bank_name}/>
+              <Item label={'开户名称：'} desc={account_name}/>
+              <Item label={'开户行账号：'} desc={account_number}/>
+            </div>
           </div>
         </div>
       )

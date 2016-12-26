@@ -80,7 +80,7 @@ var Edit = React.createClass({
         <div className='t-sb h61'>
           <h3 className='t-sb_detail p-l-20'>基本资料编辑</h3>
         </div>
-        <div className='has-top-bar'>
+        <div className='has-top-bar topdmc'>
           <div className='card margin0 border'>
             <div className="form-group row ">
               <label for="account_number" className="col-form-label text-right edit-label" style={{marginTop: '7px'}}>版权方：</label>
