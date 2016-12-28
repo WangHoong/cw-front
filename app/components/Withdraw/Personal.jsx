@@ -59,16 +59,16 @@ class Personal extends React.Component {
       <div>
         <form className='topdmc' onSubmit={this.submit.bind(this)}>
           <div className='form-group'>
-            <label>{window.lang.withdraw_an}：</label>{this.props.bankInfo['account_name']}
+            <label className='labelW'>{window.lang.withdraw_an}：</label>{this.props.bankInfo['account_name']}
           </div>
           <div className='form-group'>
-            <label>{window.lang.withdraw_bn}：</label>{this.props.bankInfo['bank_name']}
+            <label className='labelW'>{window.lang.withdraw_bn}：</label>{this.props.bankInfo['bank_name']}
           </div>
           <div className='form-group'>
-            <label>{window.lang.withdraw_a}：</label>{this.props.bankInfo['account_number']}
+            <label className='labelW'>{window.lang.withdraw_a}：</label>{this.props.bankInfo['account_number']}
           </div>
           <div className='form-group'>
-            <label>{window.lang.withdraw_ar}（&yen; {this.state.recorded}）：</label>
+            <label className='labelW'>{window.lang.withdraw_ar}（&yen; {this.state.recorded}）：</label>
             <input type="text" name='money' className='form-control form_control-w' placeholder='输入申请提现金额' required onChange={this.changeHandle.bind(this)} />
           </div>
           <button type='submit' className='btn btn-primary btn-w-h' disabled={this.state.sending}>{stateTxt}</button>

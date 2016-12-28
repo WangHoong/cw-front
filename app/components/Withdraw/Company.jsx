@@ -63,25 +63,25 @@ class Company extends React.Component {
       <div>
         <form className='topdmc' onSubmit={this.submit.bind(this)}>
           <div className='form-group'>
-            <label>{window.lang.withdraw_an}：</label>{this.props.bankInfo['account_name']}
+            <label className='labelW'>{window.lang.withdraw_an}：</label>{this.props.bankInfo['account_name']}
           </div>
           <div className='form-group'>
-            <label>{window.lang.withdraw_bn}：</label>{this.props.bankInfo['bank_name']}
+            <label className='labelW'>{window.lang.withdraw_bn}：</label>{this.props.bankInfo['bank_name']}
           </div>
           <div className='form-group'>
-            <label>{window.lang.withdraw_a}：</label>{this.props.bankInfo['account_number']}
+            <label className='labelW'>{window.lang.withdraw_a}：</label>{this.props.bankInfo['account_number']}
           </div>
           <div className='form-group'>
-            <label>快递公司：</label>
+            <label className='labelW'>快递公司：</label>
             <input type="text" name="express" className='form-control form_control-w' placeholder='输入寄送发票的快递公司名称' required onChange={this.changeHandle.bind(this)} />
           </div>
           <div className='form-group'>
-            <label>快递号：</label>
+            <label className='labelW'>快递单号：</label>
             <input type="text" name="express_number" className='form-control form_control-w' placeholder='输入快递单号' required onChange={this.changeHandle.bind(this)} />
           </div>
           <div style={{font: '10px MicrosoftYaHei,微软雅黑', color: '#6b7b8a', marginLeft: '150px', marginTop: 10}}>可提现金额：&yen;{this.state.recorded}</div>
           <div className='form-group'>
-            <label>申请提现：</label>
+            <label className='labelW'>申请提现：</label>
             <input type="text" name='money' className='form-control form_control-w' placeholder='输入申请提现金额' required onChange={this.changeHandle.bind(this)} />
           </div>
           <button type='submit' className='btn btn-w-h btn-warning ' style={{marginLeft: '150px'}} disabled={this.state.sending}>{stateTxt}</button>
