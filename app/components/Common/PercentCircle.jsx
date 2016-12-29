@@ -27,6 +27,16 @@ var PercentCircle = React.createClass({
     }
     return arr
   },
+  noAuthorized: function() {
+    var items = this.state.orderinfo.data.data.data.items;
+    var arr = [];
+    for (var i in items) {
+      if(items[i].status !== 1) {
+        arr.push(items[i].status)
+      }
+    }
+    return arr
+  },
   render: function() {
     // var songNumber=this.props.percent[0].split('/');
     // var songPercent=(songNumber[0]/songNumber[1]*100).toFixed(0);
@@ -53,7 +63,6 @@ var PercentCircle = React.createClass({
       // </div>
     if (this.state.orderinfo.loaded) {
       var dataT = this.state.orderinfo.data.data.data;
-      var noAuthorized = dataT.total-dataT.items.length;
       return (
         <div className="totalcard">
             <p className="ttc-title">
@@ -66,11 +75,11 @@ var PercentCircle = React.createClass({
               <div className='row account' style={{marginBottom: '8px'}}>
                 <div className='col-sm-8'>
                   <p>已授权</p>
-                  <p className="ttc-num"><span>{dataT.items.length}</span><span className="ttc-unit rmb">张</span></p>
+                  <p className="ttc-num"><span>{dataT.items.length}</span><span className="ttc-unit rmb">个</span></p>
                 </div>
                 <div className='col-sm-4'>
                   <p>未授权</p>
-                  <p className="ttc-num"><span>{noAuthorized}</span><span className="ttc-unit rmb">张</span></p>
+                  <p className="ttc-num"><span>{this.noAuthorized().length}</span><span className="ttc-unit rmb">个</span></p>
                 </div>
               </div>
             </div>
