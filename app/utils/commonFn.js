@@ -85,9 +85,9 @@ function transformDataToSDType(data) {
       yAxis : [
       {
         type : 'value',
-        min  : yMin,
-        max	 : yMax,
-        splitNumber,
+        // min  : yMin,
+        // max	 : yMax,
+        // splitNumber,
       }
       ],
       series : [
