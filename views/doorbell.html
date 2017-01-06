@@ -27,19 +27,71 @@
 <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-icon-180x180.png">
 <link rel="stylesheet" href="/css/mbs.css">
 <link rel="stylesheet" href="/css/main.css">
+<link rel="stylesheet" href="/css/font-awesome.min.css">
 <style>
 html, body {
   height: 100%;
 }
 body {
   background: none;
+  font-family: 'PingFang SC', 'PingFangSC-Regular', '苹方', 'Helveitica Regular', '微软雅黑', "Alright Sans LP", "Avenir Next", "Helvetica Neue", Helvetica,Arial, "Source Han Sans SC", "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi MicroHei", 'sans-serif';
 }
 </style>
 </head>
 <body>
-<div id="particles-js"></div>
+<!-- <div id="particles-js"></div> -->
 <section class="doorbell-wrap">
-  <div class="header-logo">
+  <div class='panel'>
+    <div class='login_content'>
+      <div class='content_left'>
+        <div class='logo'>
+          <img src='/images/logo_old@2.png' alt='TopDMC' />
+        </div>
+        <h5>TOP DMC音乐版权管理平台</h5>
+        <div class='line'></div>
+        <p><i class='fa fa-link'></i>拒绝挪用、拒绝盗版，把名字深刻地印在自己的作品上</p>
+        <p><i class='fa fa-line-chart'></i>有效、透明的数据，让音乐行业每一位从业者都获得应有的</p>
+        <p><i class='fa fa-usd'></i>播放=收入，因为每一次的播放都给听众带来了价值，无论主流或是小众</p>
+      </div>
+      <div class='content_right'>
+        <h3 id='h3Width'>账号注册</h3>
+        <form id="visitor_form" class='loginFrom'>
+          <div class="form-group">
+            <input name="number" type="tel" class="tel-input form-control" placeholder="11位手机号（必填）">
+          </div>
+          <div class="form-group">
+            <div class="input-group code-input-wrap">
+              <input name="code" type="tel" class="form-control" placeholder="短信验证码（必填）">
+              <div class="input-group-addon"><input type="button" disabled="disabled" class="get-code-btn btn primary-bg door_vrification" value="获取验证码" /></div>
+            </div>
+          </div>
+          <div class="form-group">
+            <input name="nickname" type="text" class="form-control" placeholder="中文姓名（必填）">
+          </div>
+          <div class="form-group">
+            <input name="team_name" type="text" class="form-control" placeholder="艺名/乐队名称（必填）">
+          </div>
+          <div class="form-group form_borderW">
+            <select class="form-control" name="knew_way" placeholder='请选择您是通过合众途径了解到DMC的？'>
+              <option value="0">请选择您是通过合众途径了解到DMC的？</option>
+              <option value="DMC小伙伴主动向您介绍">DMC小伙伴主动向您介绍</option>
+              <option value="您的朋友已加入DMC，并向您推荐">您的朋友已加入DMC，并向您推荐</option>
+              <option value="您的乐队队友向您推荐">您的乐队队友向您推荐</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <p class="js-msg" style="text-align:center;color:#fa3e3e"></p>
+          </div>
+          <a href="/doorbell"><input type="submit" value="提&nbsp;&nbsp;&nbsp;&nbsp;交" class="sub btn primary-bg btn-block login_submit" /></a>
+          <p class='doorbell_message'>此平台只向已合作音乐人进行开放，如果您希望更多了解TopDMC，请在上方留下联系信息，我们会尽快安排让小伙伴联系您！</p>
+          <!-- <div class='login_register'>
+            <a href="/doorbell" class='registers' style="display:inline-block;">提&nbsp;&nbsp;交</a>
+          </div> -->
+        </form>
+      </div>
+    </div>
+  </div>
+  <!-- <div class="header-logo">
     <img src="/images/logo.png" />
   </div>
   <form id="visitor_form">
@@ -77,14 +129,14 @@ body {
     </div>
     <input type="submit" value="提交" class="sub btn primary-bg btn-block" />
     <div class="tips">此后台只向已合作音乐人进行开放，如果您希望更多了解TopDMC，请在上方留下联系信息，我们会尽快安排让小伙伴联系您！</div>
-  </form>
+  </form> -->
 </section>
 <script src="/js/jquery.min.js"></script>
 <script src="/js/kefir.min.js"></script>
 <script src="/js/common.js"></script>
 <script>
 (function($, undefined) {
-  particlesJS.load('particles-js', '/config/doorbell_pConfig.json');
+  // particlesJS.load('particles-js', '/config/doorbell_pConfig.json');
 
   $.fn.serializeJson = function() {
     var serializeObj = {};

@@ -22,6 +22,7 @@
     body {
       margin: 0;
       line-height: 1.4;
+      font-family: 'PingFang SC', 'PingFangSC-Regular', '苹方', 'Helveitica Regular', '微软雅黑', "Alright Sans LP", "Avenir Next", "Helvetica Neue", Helvetica,Arial, "Source Han Sans SC", "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi MicroHei", 'sans-serif';
     }
 
     h1 {
@@ -35,6 +36,8 @@
 
     li {
       line-height: 250%;
+      font-size: 12px;
+      font-weight: normal;
     }
 
     .authorize_content {
@@ -48,8 +51,7 @@
     }
 
     .authorize_action {
-      margin-top: 20px;
-      margin-bottom: 20px;
+      margin-top: 50px;
       text-align: center;
       margin-bottom: 150px;
     }
@@ -57,10 +59,14 @@
     .authorize_action a {
       padding: 10px 35px 10px 35px;
       font-size: 16px;
-      background-color: #18a5a8;
+      background-color: #2ed0d7;
       color: #ffffff;
       TEXT-DECORATION: none;
       border-radius: 3px;
+    }
+
+    #agreement_btn:hover {
+      background: #20b7be;
     }
 
     .head {
@@ -73,6 +79,12 @@
 
     .content {
       margin: 0 8% 0 8%;
+      color: #6b7b8a;
+    }
+
+    p {
+      font-size: 14px;
+      font-weight: normal;
     }
 
     .head-content-line {
@@ -93,6 +105,7 @@
       color: #18a5a8;
       text-align: center;
     }
+
   </style>
 </head>
 
@@ -209,7 +222,7 @@
         </li>
       </ol>
       <div class="authorize_action">
-        <a id="agreement_btn" href="#">同意</a>
+        <a id="agreement_btn" href="#">同&nbsp;&nbsp;意</a>
       </div>
     </div>
   </div>

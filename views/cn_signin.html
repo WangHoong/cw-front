@@ -27,46 +27,62 @@
 <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-icon-180x180.png">
 <link rel="stylesheet" href="/css/mbs.css">
 <link rel="stylesheet" href="/css/main.css">
+<link rel="stylesheet" href="/css/font-awesome.min.css">
 <style>
 html, body {
   height: 100%;
 }
 body {
   background: none;
+  font-family: 'PingFang SC', 'PingFangSC-Regular', '苹方', 'Helveitica Regular', '微软雅黑', "Alright Sans LP", "Avenir Next", "Helvetica Neue", Helvetica,Arial, "Source Han Sans SC", "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi MicroHei", 'sans-serif';
 }
 </style>
 </head>
 <body>
-<div id="particles-js"></div>
+<!-- <div id="particles-js"></div> -->
 <section class="doorbell-wrap">
-  <div class="header-logo">
+  <!-- <div class="header-logo">
     <img src="/images/logo.png" />
+  </div> -->
+  <div class='panel'>
+    <div class='login_content'>
+      <div class='content_left'>
+        <div class='logo'>
+          <img src='/images/logo_old@2.png' alt='TopDMC' />
+        </div>
+        <h5>TOP DMC音乐版权管理平台</h5>
+        <div class='line'></div>
+        <p><i class='fa fa-link'></i>拒绝挪用、拒绝盗版，把名字深刻地印在自己的作品上</p>
+        <p><i class='fa fa-line-chart'></i>有效、透明的数据，让音乐行业每一位从业者都获得应有的</p>
+        <p><i class='fa fa-usd'></i>播放=收入，因为每一次的播放都给听众带来了价值，无论主流或是小众</p>
+      </div>
+      <div class='content_right'>
+        <h3>账号密码登录</h3>
+        <form id="visitor_form" class='loginFrom'>
+          <div class="form-group">
+            <input name="username" type="text" class="form-control" placeholder="请输入账户">
+          </div>
+          <div class="form-group">
+            <input name="password" type="password" class="form-control" placeholder="请输入密码">
+          </div>
+          <div class="form-group">
+            <p class="js-msg" style="text-align:center;color:#fa3e3e"></p>
+          </div>
+          <input type="submit" value="登&nbsp;&nbsp;&nbsp;&nbsp;录" class="login btn primary-bg btn-block login_submit" />
+          <div class='login_register'>
+            <a href="/doorbell" class='registers' style="display:inline-block;">立即注册</a>
+            <a href="/wx_signin?{{CODE}}" class="signIn">微信扫码登录</a>
+          </div>
+        </form>
+      </div>
+    </div>
   </div>
-  <form id="visitor_form">
-    <div class="form-group">
-      <label>账户名</label>
-      <input name="username" type="text" class="form-control" placeholder="请输入账户名">
-    </div>
-    <div class="form-group">
-      <label>密码</label>
-      <input name="password" type="password" class="form-control" placeholder="请输入密码">
-    </div>
-    <div class="form-group">
-      <p class="js-msg" style="text-align:center;color:#fa3e3e"></p>
-    </div>
-    <input type="submit" value="登录" class="login btn primary-bg btn-block" />
-    <div class="tips" style="text-align: center; margin-bottom: 10px">or</div>
-    <a href="/wx_signin?{{CODE}}" class="btn primary-bg btn-block">微信扫码登录</a>
-    <div class="text-right">
-      <a href="/doorbell" style="display:inline-block;color: #FF982D; margin-top: 10px;">立即注册!</a>
-    </div>
-  </form>
 </section>
 <script src="/js/jquery.min.js"></script>
 <script src="/js/common.js"></script>
 <script>
 (function($, undefined) {
-  particlesJS.load('particles-js', '/config/doorbell_pConfig.json');
+  // particlesJS.load('particles-js', '/config/doorbell_pConfig.json');
 
   $.fn.serializeJson = function() {
     var serializeObj = {};

@@ -27,50 +27,125 @@
 <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-icon-180x180.png">
 <link rel="stylesheet" href="/css/mbs.css">
 <link rel="stylesheet" href="/css/main.css">
+<link rel="stylesheet" href="/css/font-awesome.min.css">
 <style>
 html, body {
   height: 100%;
 }
 body {
   background: none;
+  font-family: 'PingFang SC', 'PingFangSC-Regular', '苹方', 'Helveitica Regular', '微软雅黑', "Alright Sans LP", "Avenir Next", "Helvetica Neue", Helvetica,Arial, "Source Han Sans SC", "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi MicroHei", 'sans-serif';
+}
+.fail-tips {
+	color: #fff;
+	font-size: 18px;
+	margin-top: 40px;
+	text-align: center;
+	display: none;
+}
+.rc-loading {
+	color: #6b7b8a;
+	text-align: center;
+	margin-top: 40px;
+	font-size: 18px;
+	display: none;
 }
 </style>
 </head>
 <body>
-<div id="particles-js"></div>
+<!-- <div id="particles-js"></div> -->
 <section class="doorbell-wrap">
-  <div class="header-logo">
-    <img src="/images/logo.png" />
+  <div class="singnup_header">
+    <img src="/images/logo_old@2.png" alt='TopDMC'/>
+    <span>DMC音乐版权管理平台</span>
   </div>
-  <form id="visitor_form">
-    <div class="form-group">
-      <label>账户名</label>
-      <input name="username" type="text" class="form-control" placeholder="请输入账户名">
+  <p class="rc-loading">正在加载...</p>
+  <div class='singup_centent'>
+    <p>尊敬的<strong class="username"></strong>先生/女士</p>
+    <p class='invitation'>您好！</p>
+    <p class='invitation'>很荣幸邀请您注册为DMC音乐版权用户，请核对您的信息并填写用户名和密码完成注册。</p>
+  </div>
+  <form id="visitor_form" class='signup_form'>
+    <div class='form-group'>
+      <label>版权主题名称：</label>
+      <span><strong class="companyName">空</strong></span>
     </div>
     <div class="form-group">
-      <label>密码</label>
-      <input name="password" type="password" class="form-control" placeholder="请输入密码">
+      <label>用户名：</label>
+      <input name="username" type="text" class="form-control formInputW" placeholder="请输入用户名">
+      <p class='from_remind'>以小写字母开头的8为小写和数字的组合</p>
     </div>
     <div class="form-group">
-      <label>确认密码</label>
-      <input name="_password" type="password" class="form-control" placeholder="请确认密码">
+      <label>密码：</label>
+      <input name="password" type="password" class="form-control formInputW" placeholder="请输入密码">
+      <p class='from_remind'>8个字母和数字的组合，区分大小写</p>
+    </div>
+    <div class="form-group">
+      <label>再次输入密码：</label>
+      <input name="_password" type="password" class="form-control formInputW" placeholder="请确认密码">
+      <p class='from_remind'>必须与密码完全一致</p>
     </div>
     <input name="code" type="text" class="hide" placeholder="请输入邀请码" value="{{CODE}}">
     <div class="form-group">
       <input type='checkbox' id="agree" disabled checked>
-      <a href='/license' target="_blank" style="margin-left: 5px; color: #01BCFF;">我同意TopDMC的服务条款</a>
+      <a href='/license' target="_blank" class='signup_agree'>我已阅读并同意版权方用户协议</a>
     </div>
     <div class="form-group">
-      <p class="js-msg" style="text-align:center;color:#fa3e3e"></p>
+      <p class="js-msg" style="text-align:center;color:#f3565d"></p>
     </div>
-    <input type="submit" value="点击注册" class="login btn primary-bg btn-block" />
+    <input type="submit" value="注&nbsp;&nbsp;册" class="login btn primary-bg btn-block signup_submit" />
   </form>
+  <p class="fail-tips">您的邀请码已失效，请联系DMC客服</p>
 </section>
 <script src="/js/jquery.min.js"></script>
 <script src="/js/common.js"></script>
 <script>
 (function($, undefined) {
-  particlesJS.load('particles-js', '/config/doorbell_pConfig.json');
+  // particlesJS.load('particles-js', '/config/doorbell_pConfig.json');
+
+  var $loading = $('.rc-loading'),
+			$failTips = $('.fail-tips'),
+			$content = $('.rc-content'),
+			$username = $('.username'),
+      $companyName = $('.companyName')
+			$inBtn = $('#inBtn');
+	var url = '{{PROXY_PREFIX}}' + '{{API_PREFIX}}' + '/invitation/' + '{{CODE}}';
+	$.ajax({
+		url: url,
+		method: 'GET',
+		dataType: 'json',
+		beforeSend: function() {
+			$loading.show();
+			$content.hide();
+			$failTips.hide();
+		},
+		success: function(result) {
+			$loading.hide();
+			if (result.status == 200) {
+				$failTips.hide();
+				$username.text(result.data.invitation.username || '');
+				// $inBtn.attr('href', '{{LOGIN_URL}}?refcode=' + result.data.invitation.code);
+        $companyName.text(result.data.invitation.company && result.data.invitation.company.name || '空')
+				$content.show();
+				return;
+			}
+			if (result.status == 400) {
+				$failTips.text('您的邀请码已失效，请联系DMC客服').show();
+				return;
+			}
+			if (result.status == 404) {
+				$failTips.text('没有这个邀请码哟，请联系DMC客服').show();
+				return;
+			}
+		},
+		error: function() {
+			$loading.hide();
+			$failTips.text('异常错误，请重试').show();
+		}
+	});
+
+
+    //+++++++++++++++++++//
 
   $.fn.serializeJson = function() {
     var serializeObj = {};
@@ -90,7 +165,7 @@ body {
     e.preventDefault();
     var data = $form.serializeJson();
     if ( '' === $.trim(data.username) ) {
-      msg.html('请输入账户名');
+      msg.html('请输入用户名');
       return;
     }
     if ( '' === $.trim(data.password) ) {

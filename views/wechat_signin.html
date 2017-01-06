@@ -30,55 +30,70 @@
 <link rel="stylesheet" href="/css/main.css">
 <style>
 body {
-  background: #f8f6f2;
+  background: none;
+  font-family: 'PingFang SC', 'PingFangSC-Regular', '苹方', 'Helveitica Regular', '微软雅黑', "Alright Sans LP", "Avenir Next", "Helvetica Neue", Helvetica,Arial, "Source Han Sans SC", "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi MicroHei", 'sans-serif';
 }
-.single-panel {
-  width: 400px;
-  margin: 5% auto 0;
-}
-.single-panel-header {
+.content_right h2 {
+  font-size: 26px;
+  color: #222;
+  margin: 16px 0 46px 0;
   text-align: center;
+  font-weight: normal;
 }
 .single-panel-header .single-panel-logo img {
   width: 200px;
-}
-.single-panel-body {
-  margin-top: 30px;
-  overflow: hidden;
 }
 .wechat-single {
   text-align: center;
   overflow: hidden;
 }
 .wechat-single #qrcode {
-  margin: 0px auto 0 auto;
-  padding: 0px 50px 0 50px;
-  width: 80%;
-  height: 80%;
+  width: 150px;
+  height: 150px;
+  margin: 0 auto 20px;
 }
-.signin-type {
-  font-size: 18px;
-  text-align: center;
-  margin-bottom: 20px;
-}
-.signin-type .wechat-icon .fa {
-  color: #86cda1;
-  margin-right: 5px;
-}
-p {
-  color: #000;
+.wechat-single p{
+  font-size: 16px;
+  color: #666;
 }
 .back-type {
-  font-size: 16px;
-  text-align: center;
+  font-size: 14px;
+  color: #2ed0d7;
+  margin-top: 34px;
+  float: right;
 }
-
 </style>
 </head>
 
 <body>
+  <section class="doorbell-wrap">
+    <div class='panel'>
+      <div class='login_content'>
+        <div class='content_left'>
+          <div class='logo'>
+            <img src='/images/logo_old@2.png' alt='TopDMC' />
+          </div>
+          <h5>TOP DMC音乐版权管理平台</h5>
+          <div class='line'></div>
+          <p><i class='fa fa-link'></i>拒绝挪用、拒绝盗版，把名字深刻地印在自己的作品上</p>
+          <p><i class='fa fa-line-chart'></i>有效、透明的数据，让音乐行业每一位从业者都获得应有的</p>
+          <p><i class='fa fa-usd'></i>播放=收入，因为每一次的播放都给听众带来了价值，无论主流或是小众</p>
+        </div>
+        <div class='content_right'>
+          <h2>微信扫码登录</h2>
+          <div class="wechat-single">
+            <div id="qrcode"></div>
+            <p>请使用微信扫描二维码登录</p>
+          </div>
+          <div class="back-type">
+            <a href="/signin?{{CODE}}">账户密码登录</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-<main class="single-panel">
+<!-- <main class="single-panel">
   <div class="single-panel-header">
     <a href="/" class="single-panel-logo"><img src="/images/logo2-new.png"></a>
   </div>
@@ -95,7 +110,7 @@ p {
   <div class="back-type" style="margin-top: 10px">
     <a href="/signin?{{CODE}}">返回账户名/密码登录</a>
   </div>
-</main>
+</main> -->
 
 <script>
 // (function(){'{{LOGIN_URL}}'.indexOf('login_demo') !== -1 && function(){window.location.href = '/login_demo'}()})();

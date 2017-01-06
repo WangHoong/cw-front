@@ -1,56 +1,294 @@
-#particles-js {
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  background-color: #2472b4;
-  background-image: url("");
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: 50% 50%;
-  z-index: -1;
-  left: 0;
-  top: 0;
-}
+// #particles-js {
+//   position: fixed;
+//   width: 100%;
+//   height: 100%;
+//   background-color: #2472b4;
+//   background: url(/images/bg_big.png) no-repeat;
+//   background-size: cover;
+//   background-position: 50% 50%;
+//   z-index: 0;
+//   left: 0;
+//   top: 0;
+// }
 
 .doorbell-wrap {
-  width: 400px;
-  margin: 100px auto;
-  padding: 20px;
-  background-color: #fff;
-  border-radius: 3px;
-  box-shadow: 0 2px 3px rgba(0, 0, 0, .4);
-  .header-logo {
-    margin-bottom: 10px;
-    text-align: center;
-    img {
+  height: 100%;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+  // width: 400px;
+  // margin: 100px auto;
+  // padding: 20px;
+  // background-color: #fff;
+  // border-radius: 3px;
+  // box-shadow: 0 2px 3px rgba(0, 0, 0, .4);
+  // .header-logo {
+  //   margin-bottom: 10px;
+  //   text-align: center;
+  //   img {
+  //     width: 100px;
+  //   }
+  // }
+  // .input-group-addon {
+  //   padding: 0;
+  //   border: 0;
+  //   .btn {
+  //     height: 34px;
+  //     border-bottom-left-radius: 0;
+  //     border-top-left-radius: 0;
+  //   }
+  // }
+  // .form-control {
+  //   box-shadow: none;
+  // }
+  // .code-input-wrap {
+  //   .form-control {
+  //     border-right: 0;
+  //   }
+  // }
+  // .primary-bg {
+  //   background-color: #01BCFF;
+  //   color: #fff;
+  // }
+  // .sub {
+  //   border-color: #01BCFF;
+  // }
+  // .tips {
+  //   margin-top: 10px;
+  // }
+// }
+
+.panel {
+  min-height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height:100%;
+  background: url(/images/bg_big.png) no-repeat;
+  background-size: cover;
+  .login_content {
+    width: 1100px;
+    height: 636px;
+    background: url(/images/bg_small.png) no-repeat ;
+    background-size: 100% 100%;
+    // box-shadow: -20px 0px 20px #2a3649;
+    padding: 82px 95px;
+    font-family: 'PingFang SC', 'PingFangSC-Regular', '苹方', 'Helveitica Regular', '微软雅黑', "Alright Sans LP", "Avenir Next", "Helvetica Neue", Helvetica,Arial, "Source Han Sans SC", "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi MicroHei", 'sans-serif';
+    >.content_left {
+      float: left;
+      width: 420px;
+      color: #fff;
+      h5 {
+        font-size: 18px;
+        margin-bottom: 20px;
+      }
+      .line {
+        width: 80px;
+        height:1px;
+        background: #2ed0d7;
+        margin-bottom: 25px;
+      }
+      p{
+        font-size: 12px;
+        line-height: 32px;
+        i {
+          margin-right: 10px;
+          font-style: normal;
+          width: 10px;
+          height: 10px;
+        }
+      }
+
+    }
+    .content_right {
+      float: left;
+      width: 400px;
+      margin-left: 75px;
+      font-style: normal;
+      h3 {
+        font-size: 24px;
+        font-weight: normal;
+        width: 160px;
+        color: #333;
+        margin: 16px auto 66px;
+      }
+      .loginFrom {
+        .form-group input{
+          border: 0 !important;
+          border-bottom: 1px solid @borderColor !important;
+          border-radius: 0 !important;
+          background: #fff;
+          -webkit-box-shadow: 0 0 0px 1000px white inset;
+          font-size: 14px;
+          color: #b3b3b3;
+        }
+        input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
+          background-color: #fff !important;
+        }
+        .form-group select {
+          border: 0 !important;
+          // border-bottom: 1px solid #ccc !important;
+          border-radius: 0 !important;
+          background: #fff;
+          font-size: 14px;
+          color: #b3b3b3;
+        }
+        .form-group select:focus {
+          box-shadow:none;
+        }
+        .input-group-addon {
+          padding: 0;
+          background: #fff;
+          border: none;
+          // border-bottom: 1px solid #ccc;
+        }
+        .login_submit {
+          border-radius: 0;
+          background: @submitColor;
+          color: #fff;
+          border: 0;
+          height: 36px;
+          margin-top: 35px;
+        }
+        .login_submit:hover {
+          border: 0;
+          background: @submitHoverColor;
+        }
+        .login_register {
+          margin-top: 15px;
+          .registers {
+            text-align: left;
+            color: #666666;
+          }
+          .registers:hover {
+            color: @submitHoverColor;
+          }
+          .signIn {
+            float: right;
+            color: @submitColor
+          }
+          .signIn:hover {
+            color: @submitHoverColor;
+          }
+        }
+      }
+    }
+  }
+}
+
+.logo {
+  margin: 16px 0;
+  > img {
+    width: 56px;
+  }
+}
+
+//  邀请注册页面
+.singnup_header {
+  height: 56px;
+  line-height: 56px;
+  background: #2e394b;
+  font-size:16px;
+  color: #e5e7e9;
+  width: 100%;
+  img {
+    width: 40px;
+    margin: 0 15px 0 20px;
+  }
+}
+.singup_centent {
+  width: 600px;
+  margin: 35px auto 45px;
+  font-size: 12px;
+  color: @mainColor;
+  line-height: 30px;
+  p {
+    margin-left: 26px;
+  }
+  .invitation {
+    margin-left: 56px;
+  }
+}
+.signup_form {
+  width: 480px;
+  margin: 0 auto;
+  .form-group {
+    label{
       width: 100px;
+      text-align: right;
+      font-size: 12px;
+      color: @mainColor;
+      font-weight: normal;
+    }
+    span {
+      font-size: 12px;
+    }
+    .formInputW {
+      display: inline-block;
+      width: 370px;
+      -webkit-box-shadow: 0 0 0px 1000px white inset;
+    }
+    input {
+      font-size: 12px;
+    }
+    .from_remind {
+      font-size: 12px;
+      color: #a3aab2;
+      margin: 5px 0 0 110px;
+    }
+    #agree {
+      margin: 25px 0 15px 105px;
+    }
+    .signup_agree {
+      font-size: 1px;
+      color: @submitColor;
+    }
+    .signup_agree:hover{
+      color: @submitHoverColor;
     }
   }
-  .input-group-addon {
-    padding: 0;
-    border: 0;
-    .btn {
-      height: 34px;
-      border-bottom-left-radius: 0;
-      border-top-left-radius: 0;
-    }
-  }
-  .form-control {
-    box-shadow: none;
-  }
-  .code-input-wrap {
-    .form-control {
-      border-right: 0;
-    }
-  }
-  .primary-bg {
-    background-color: #01BCFF;
+  .signup_submit {
+    width: 80px !important;
+    height: 32px;
+    background: @submitColor;
     color: #fff;
+    font-size: 14px;
+    border: 0;
+    margin:0 auto;
   }
-  .sub {
-    border-color: #01BCFF;
+  .signup_submit:hover{
+    background: @submitHoverColor;
+    border: 0;
   }
-  .tips {
-    margin-top: 10px;
+}
+
+
+// 账号注册
+#h3Width {
+  width:110px;
+  margin-bottom: 50px;
+}
+.doorbell_message {
+  font-size: 12px;
+  color: #b2b2b2;
+  line-height: 18px;
+  margin-top: 20px;
+}
+.door_vrification {
+  width: 100px;
+  height: 30px;
+  color: #2ed0d7 !important;
+  font-size: 12px;
+  background: #ccc;
+  opacity: 1 !important;
+  margin-top: 8px;
+  &:disabled {
+    color: #ccc !important;
   }
+}
+.form_borderW {
+  border-bottom: 1px solid @borderColor;
 }
