@@ -72,16 +72,16 @@ class Company extends React.Component {
             <label>{window.lang.withdraw_a}：</label>{this.props.bankInfo['account_number']}
           </div>
           <div className='form-group'>
-            <label>快递公司：</label>
-            <input type="text" name="express" className='form-control' placeholder='输入寄送发票的快递公司名称' required onChange={this.changeHandle.bind(this)} />
+            <label>{window.lang.carrier}：</label>
+            <input type="text" name="express" className='form-control' required onChange={this.changeHandle.bind(this)} />
           </div>
           <div className='form-group'>
-            <label>快递号：</label>
-            <input type="text" name="express_number" className='form-control' placeholder='输入快递单号' required onChange={this.changeHandle.bind(this)} />
+            <label>{window.lang.express_number}：</label>
+            <input type="text" name="express_number" className='form-control' required onChange={this.changeHandle.bind(this)} />
           </div>
           <div className='form-group'>
             <label>{window.lang.withdraw_ar}（&yen;{this.state.recorded}）：</label>
-            <input type="text" name='money' className='form-control' placeholder='输入申请提现金额' required onChange={this.changeHandle.bind(this)} />
+            <input type="text" name='money' className='form-control' placeholder={window.lang.withdraw_placeholder} required onChange={this.changeHandle.bind(this)} />
           </div>
           <button type='submit' className='btn btn-primary' disabled={this.state.sending}>{stateTxt}</button>
         </form>

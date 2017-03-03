@@ -178,13 +178,16 @@
     "sp_cp": "CP",
     "sp_cpst": "Status",
     "sp_cptime": "Time",
-    "withdraw_title": "Withdraw Appication",
+    "withdraw_title": "Withdraw Application",
     "withdraw_an": "Account Name",
     "withdraw_bn": "Bank Name",
     "withdraw_a": "Account",
-    "withdraw_ar": "Available recorded",
+    "withdraw_ar": "Available recorded revenue",
     "withdraw": "Withdraw",
     "withdraw_ra": "Recent Activity",
-    "withdraw_none": "NONE"
+    "withdraw_none": "NONE",
+    "withdraw_placeholder": "please input the wirhdraw amount",
+    "express_number": "Express number",
+    "carrier": "Carrier"
   }
 }

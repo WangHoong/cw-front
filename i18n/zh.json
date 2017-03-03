@@ -181,6 +181,9 @@
     "withdraw_ar": "可提现",
     "withdraw": "提现",
     "withdraw_ra": "提现记录",
-    "withdraw_none": "暂无"
+    "withdraw_none": "暂无",
+    "withdraw_placeholder": "输入申请提现金额",
+    "express_number": "快递号",
+    "carrier": "Carrier"
   }
 }

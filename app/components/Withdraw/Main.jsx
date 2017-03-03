@@ -77,7 +77,7 @@ class Main extends React.Component {
       return (
         <div className='col-sm-6'>
           <p>
-            Step 1: When you would like to withdraw money from your account, please click the ‘withdraw’ button then the system will automatically sending the application to DMC.
+            Step 1: When you would like to withdraw money from your account, please click the ‘withdraw’ button then the system will automatically send the application to DMC.
             <br />
             <br />
             Step 2: DMC will calculate the corresponding tax fee and actual payment after receiving your application, and then DMC will inform you above number by email.
