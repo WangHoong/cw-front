@@ -9,10 +9,10 @@ from './APIHelper';
 
 let getSearchType = function(type) {
   if (type == 'Album') {
-    return 'albums';
+    return 'albums/searchall';
   }
   if (type == 'Song') {
-    return 'tracks';
+    return 'tracks/searchall';
   }
   if (type == 'Artist') {
     return 'artists/searchall';
